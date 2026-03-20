@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: blob:; connect-src 'none';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>DisputeKit Pro — Professional Credit Repair Suite</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -37,11 +36,22 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(–card2);border:1px solid var(–accent);color:var(–text);font-size:12px;font-weight:600;padding:10px 20px;border-radius:20px;z-index:9999;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
 .toast.show{transform:translateX(-50%) translateY(0);}
 .toast.err{border-color:var(–red);}
+.toast.warn{border-color:var(–amber);}
+
+/* ── VALIDATION ── */
+.field-input.invalid,.field-select.invalid,.field-textarea.invalid{border-color:var(–red)!important;box-shadow:0 0 0 3px rgba(239,68,68,0.12)!important;}
+.field-error{font-size:0.71rem;color:var(–red);margin-top:3px;display:none;font-weight:500;}
+.field-error.show{display:block;}
+.validation-banner{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 16px;font-size:0.82rem;color:var(–red);line-height:1.6;margin-bottom:16px;display:none;}
+.validation-banner.show{display:block;}
+.required-star{color:var(–accent);font-weight:700;}
+.form-progress{height:3px;background:var(–card2);border-radius:0;overflow:hidden;}
+.form-progress-fill{height:100%;background:linear-gradient(90deg,var(–accent),var(–blue));border-radius:0;transition:width 0.4s ease;}
 
 /* ── NAV ── */
 .nav{position:sticky;top:0;z-index:200;background:rgba(8,9,15,0.94);backdrop-filter:blur(18px);border-bottom:1px solid var(–border);}
 .nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:24px;}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;cursor:pointer;background:none;border:none;}
 .logo-mark{width:34px;height:34px;background:var(–accent);color:#03120b;font-weight:800;font-size:0.72rem;letter-spacing:0.04em;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .logo-text{font-weight:700;font-size:1rem;color:var(–text);}
 .logo-pro{font-size:0.62rem;font-weight:700;background:linear-gradient(135deg,var(–accent),var(–blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-left:4px;letter-spacing:0.08em;}
@@ -131,6 +141,7 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .letter-out{background:#f5f4f0;padding:22px;}
 .letter-paper{background:#fff;color:#111;font-family:‘Times New Roman’,Times,serif;font-size:0.9rem;line-height:1.8;padding:48px 52px;box-shadow:0 2px 16px rgba(0,0,0,0.12);border-radius:3px;white-space:pre-wrap;word-break:break-word;}
 .preview-disc{display:flex;align-items:center;gap:6px;padding:10px 18px;font-size:0.72rem;color:var(–dim);border-top:1px solid var(–border);}
+.letter-complete-badge{display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:8px;font-size:0.75rem;font-weight:700;color:var(–accent);margin-top:8px;}
 
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;font-family:var(–font);font-weight:600;font-size:0.84rem;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
@@ -139,6 +150,7 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .btn-full{width:100%;justify-content:center;}
 .btn-primary{background:var(–accent);color:#03120b;box-shadow:0 0 20px rgba(34,211,165,0.2);}
 .btn-primary:hover{background:var(–accent2);transform:translateY(-1px);}
+.btn-primary:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
 .btn-ghost{background:transparent;color:var(–muted);border:1px solid var(–border2);}
 .btn-ghost:hover{color:var(–text);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04);}
 .btn-red{background:rgba(239,68,68,0.12);color:var(–red);border:1px solid rgba(239,68,68,0.25);}
@@ -146,6 +158,8 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .btn-amber{background:rgba(245,158,11,0.12);color:var(–amber);border:1px solid rgba(245,158,11,0.25);}
 .btn-blue{background:rgba(79,142,247,0.12);color:var(–blue);border:1px solid rgba(79,142,247,0.25);}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;}
+.btn-pulse{animation:btnPulse 2s ease-in-out infinite;}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 20px rgba(34,211,165,0.2);}50%{box-shadow:0 0 35px rgba(34,211,165,0.5);}}
 
 /* ── FORM ELEMENTS ── */
 .field-group{display:flex;flex-direction:column;gap:13px;}
@@ -154,7 +168,7 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .field-row3{grid-template-columns:2fr 1fr 1fr;}
 .field-label{font-size:0.76rem;font-weight:600;color:var(–muted);}
 .required{color:var(–accent);}
-.field-input,.field-select,.field-textarea{background:var(–card2);border:1px solid var(–border);border-radius:8px;padding:10px 13px;color:var(–text);font-family:var(–font);font-size:0.875rem;width:100%;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+.field-input,.field-select,.field-textarea{background:var(–card2);border:1px solid var(–border);border-radius:8px;padding:10px 13px;color:var(–text);font-family:var(–font);font-size:0.875rem;width:100%;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;}
 .field-input::placeholder{color:var(–dim);}
 .field-input:focus,.field-select:focus,.field-textarea:focus{border-color:rgba(34,211,165,0.45);box-shadow:0 0 0 3px rgba(34,211,165,0.07);}
 .field-select{background-image:url(“data:image/svg+xml,%3Csvg width=‘12’ height=‘8’ viewBox=‘0 0 12 8’ fill=‘none’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cpath d=‘M1 1L6 6L11 1’ stroke=’%236b7590’ stroke-width=‘1.5’ stroke-linecap=‘round’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer;}
@@ -163,9 +177,6 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .field-check{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:0.84rem;color:var(–muted);}
 .field-check input{width:15px;height:15px;accent-color:var(–accent);cursor:pointer;}
 .field-hint{font-size:0.72rem;color:var(–dim);margin-top:2px;}
-.ssn-wrap{position:relative;}
-.ssn-wrap input{padding-right:40px;letter-spacing:0.1em;font-family:var(–mono);}
-.ssn-toggle{position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(–muted);cursor:pointer;font-size:15px;padding:2px;}
 
 /* ── DISPUTE TYPE GRID ── */
 .dt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
@@ -181,6 +192,8 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .bureau-lbl{display:block;text-align:center;padding:10px;background:var(–card2);border:1px solid var(–border);border-radius:8px;font-size:0.82rem;font-weight:600;color:var(–muted);cursor:pointer;transition:all 0.2s;}
 .bureau-opt input:checked + .bureau-lbl{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(–accent);}
 .bureau-lbl:hover{border-color:var(–border2);color:var(–text);}
+.bureau-required-hint{font-size:0.71rem;color:var(–red);margin-top:4px;display:none;}
+.bureau-required-hint.show{display:block;}
 
 /* ── AGGRESSION SLIDER ── */
 .aggression-wrap{display:flex;flex-direction:column;gap:8px;}
@@ -194,7 +207,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 /* ── ID UPLOAD ── */
 .id-upload-zone{border:2px dashed var(–border2);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(–card2);position:relative;}
 .id-upload-zone:hover,.id-upload-zone.dragover{border-color:rgba(34,211,165,0.5);background:rgba(34,211,165,0.04);}
-.id-upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.id-upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .id-upload-ico{font-size:32px;margin-bottom:10px;}
 .id-upload-title{font-size:0.9rem;font-weight:700;margin-bottom:4px;}
 .id-upload-sub{font-size:0.78rem;color:var(–muted);}
@@ -252,8 +265,6 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 .modal-close{position:absolute;top:18px;right:18px;background:var(–card2);border:1px solid var(–border);color:var(–text);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
 .croa-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px;margin-bottom:18px;font-size:0.82rem;color:var(–muted);line-height:1.6;}
 .croa-box strong{color:var(–amber);}
-.ssn-legal-box{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.18);border-radius:12px;padding:14px;font-size:0.78rem;color:var(–muted);line-height:1.6;margin-bottom:14px;}
-.ssn-legal-box strong{color:var(–red);}
 
 /* ── CERTIFIED MAIL ── */
 .mail-label{background:#fff;color:#111;border-radius:8px;padding:20px 24px;font-family:‘Courier New’,monospace;font-size:0.85rem;line-height:1.6;border:2px solid #ccc;position:relative;}
@@ -267,6 +278,14 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 .disc-ico{color:var(–amber);flex-shrink:0;margin-top:2px;font-size:16px;}
 .disc-text{font-size:0.78rem;color:var(–muted);line-height:1.6;}
 .disc-text strong{color:var(–amber);}
+
+/* ── CHECKLIST SECTION ── */
+.checklist-wrap{background:var(–card2);border:1px solid var(–border);border-radius:12px;padding:14px 16px;margin-top:14px;}
+.checklist-title{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(–dim);margin-bottom:10px;}
+.check-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.8rem;color:var(–muted);}
+.check-row.done{color:var(–accent);}
+.check-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(–dim);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all 0.2s;}
+.check-row.done .check-dot{background:var(–accent);border-color:var(–accent);color:#03120b;}
 
 /* ── FOOTER ── */
 .footer{padding:26px 24px;border-top:1px solid var(–border);}
@@ -283,6 +302,10 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 /* ── EMPTY STATE ── */
 .empty-state{text-align:center;padding:48px 20px;color:var(–dim);}
 .empty-state p{font-size:0.84rem;margin-top:10px;line-height:1.6;}
+
+/* ── SHAKE ANIMATION ── */
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-6px);}40%{transform:translateX(6px);}60%{transform:translateX(-4px);}80%{transform:translateX(4px);}}
+.shake{animation:shake 0.4s ease;}
 
 /* ── PRINT ── */
 @media print{body *{visibility:hidden;}.letter-paper,.letter-paper *{visibility:visible;}.letter-paper{position:fixed;top:0;left:0;width:100%;font-size:12pt;box-shadow:none;padding:1in 1.2in;}}
@@ -303,7 +326,6 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 
 <div class="modal-overlay" id="croa-modal">
   <div class="modal">
-    <button class="modal-close" onclick="closeCROA()">×</button>
     <div class="modal-title">⚖️ Required Legal Disclosure</div>
     <div class="modal-sub">Under the Credit Repair Organizations Act (CROA), 15 U.S.C. § 1679, you have certain rights.</div>
     <div class="croa-box">
@@ -323,10 +345,10 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo" onclick="showPage('home')">
+    <button class="nav-logo" onclick="showPage('home')">
       <span class="logo-mark">DK</span>
       <span class="logo-text">DisputeKit<span class="logo-pro">PRO</span></span>
-    </a>
+    </button>
     <div class="nav-tabs">
       <button class="nav-tab active" id="nt-home" onclick="showPage('home')">Home</button>
       <button class="nav-tab" id="nt-app" onclick="gotoApp()">Build Letter</button>
@@ -419,9 +441,15 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 ```
   <!-- FORM PANEL -->
   <div class="form-panel">
+    <div class="form-progress"><div class="form-progress-fill" id="form-progress-fill" style="width:0%"></div></div>
     <div class="panel-hdr">
       <h2 class="panel-title">Build Your Letter</h2>
       <p class="panel-sub">Fill in the fields. Letter updates live on the right.</p>
+    </div>
+
+    <!-- VALIDATION BANNER -->
+    <div style="padding:0 26px;">
+      <div class="validation-banner" id="validation-banner"></div>
     </div>
 
     <!-- ID UPLOAD -->
@@ -436,7 +464,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
       <div id="id-preview-wrap" class="hidden">
         <div class="id-preview"><img id="id-preview-img" src="" alt="ID Preview"></div>
         <div class="id-parsed" id="id-parsed-data">
-          <div class="id-parsed-title">✓ ID Detected — Tap fields to edit</div>
+          <div class="id-parsed-title">✓ ID Detected — Confirm fields below match your ID</div>
           <div id="id-parsed-rows"></div>
         </div>
         <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="clearId()">Remove ID</button>
@@ -447,7 +475,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
     <div class="form-sec">
       <div class="form-sec-lbl">🎚️ Step 1 — Letter Aggression Level</div>
       <div class="aggression-wrap">
-        <input type="range" id="agg-slider" min="1" max="3" value="2" oninput="updateAggBadge();updateLetter()">
+        <input type="range" id="agg-slider" min="1" max="3" value="2" oninput="updateAggBadge();updateLetter();updateProgress()">
         <div class="agg-labels"><span>Standard</span><span>Aggressive</span><span>Maximum Force</span></div>
         <div><span class="agg-badge agg-2" id="agg-badge">⚡ Aggressive — FCRA Citations Included</span></div>
       </div>
@@ -455,38 +483,66 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
 
     <!-- DISPUTE TYPE -->
     <div class="form-sec">
-      <div class="form-sec-lbl">Step 2 — Dispute Type</div>
+      <div class="form-sec-lbl">Step 2 — Dispute Type <span class="required-star">*</span></div>
       <div class="dt-grid" id="dt-grid"></div>
+      <div class="field-error" id="err-dispute-type">Please select a dispute type to continue.</div>
     </div>
 
     <!-- BUREAU -->
     <div class="form-sec">
-      <div class="form-sec-lbl">Step 3 — Credit Bureau</div>
+      <div class="form-sec-lbl">Step 3 — Credit Bureau <span class="required-star">*</span></div>
       <div class="bureau-grid">
-        <label class="bureau-opt"><input type="radio" name="bureau" value="Equifax" onchange="updateLetter()"><span class="bureau-lbl">Equifax</span></label>
-        <label class="bureau-opt"><input type="radio" name="bureau" value="Experian" onchange="updateLetter()"><span class="bureau-lbl">Experian</span></label>
-        <label class="bureau-opt"><input type="radio" name="bureau" value="TransUnion" onchange="updateLetter()"><span class="bureau-lbl">TransUnion</span></label>
+        <label class="bureau-opt"><input type="radio" name="bureau" value="Equifax" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Equifax</span></label>
+        <label class="bureau-opt"><input type="radio" name="bureau" value="Experian" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Experian</span></label>
+        <label class="bureau-opt"><input type="radio" name="bureau" value="TransUnion" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">TransUnion</span></label>
       </div>
+      <div class="bureau-required-hint" id="err-bureau">Please select a credit bureau.</div>
     </div>
 
     <!-- YOUR INFO -->
     <div class="form-sec">
       <div class="form-sec-lbl">Step 4 — Your Information</div>
       <div class="field-group">
-        <div class="field"><label class="field-label">Full Legal Name <span class="required">*</span></label><input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" maxlength="80" oninput="updateLetter()"></div>
-        <div class="field"><label class="field-label">Street Address <span class="required">*</span></label><input type="text" id="address" class="field-input" placeholder="123 Main St" maxlength="100" oninput="updateLetter()"></div>
-        <div class="field-row field-row3">
-          <div class="field"><label class="field-label">City</label><input type="text" id="city" class="field-input" placeholder="Miami" maxlength="60" oninput="updateLetter()"></div>
-          <div class="field"><label class="field-label">State</label><input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="updateLetter()"></div>
-          <div class="field"><label class="field-label">ZIP</label><input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" oninput="updateLetter()"></div>
-        </div>
-        <div class="field"><label class="field-label">Date of Birth</label><input type="date" id="dob" class="field-input" oninput="updateLetter()"></div>
         <div class="field">
-          <label class="field-label">Last 4 of SSN (for identity verification only)</label>
-          <input type="text" id="ssn4" class="field-input" placeholder="••••" maxlength="4" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter()">
+          <label class="field-label">Full Legal Name <span class="required">*</span></label>
+          <input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" maxlength="80" oninput="updateLetter();updateProgress();clearFieldError('fullName')">
+          <div class="field-error" id="err-fullName">Full name is required.</div>
+        </div>
+        <div class="field">
+          <label class="field-label">Street Address <span class="required">*</span></label>
+          <input type="text" id="address" class="field-input" placeholder="123 Main St" maxlength="100" oninput="updateLetter();updateProgress();clearFieldError('address')">
+          <div class="field-error" id="err-address">Street address is required.</div>
+        </div>
+        <div class="field-row field-row3">
+          <div class="field">
+            <label class="field-label">City <span class="required">*</span></label>
+            <input type="text" id="city" class="field-input" placeholder="Miami" maxlength="60" oninput="updateLetter();updateProgress();clearFieldError('city')">
+            <div class="field-error" id="err-city">City is required.</div>
+          </div>
+          <div class="field">
+            <label class="field-label">State <span class="required">*</span></label>
+            <input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="this.value=this.value.toUpperCase();updateLetter();updateProgress();clearFieldError('state')">
+            <div class="field-error" id="err-state">State required.</div>
+          </div>
+          <div class="field">
+            <label class="field-label">ZIP <span class="required">*</span></label>
+            <input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress();clearFieldError('zip')">
+            <div class="field-error" id="err-zip">ZIP required.</div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Date of Birth</label>
+          <input type="date" id="dob" class="field-input" oninput="updateLetter();updateProgress()">
+        </div>
+        <div class="field">
+          <label class="field-label">Last 4 of SSN <span style="font-size:0.7rem;color:var(--dim);font-weight:400;">(for identity verification only)</span></label>
+          <input type="text" id="ssn4" class="field-input" placeholder="••••" maxlength="4" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress()">
           <span class="field-hint">⚠️ Only last 4 digits. Stored locally only. Never transmitted.</span>
         </div>
-        <div class="field"><label class="field-label">Date of Letter</label><input type="date" id="letterDate" class="field-input" oninput="updateLetter()"></div>
+        <div class="field">
+          <label class="field-label">Date of Letter</label>
+          <input type="date" id="letterDate" class="field-input" oninput="updateLetter()">
+        </div>
       </div>
     </div>
 
@@ -498,16 +554,32 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
       </div>
     </div>
 
+    <!-- COMPLETION CHECKLIST -->
+    <div class="form-sec">
+      <div class="form-sec-lbl">📋 Completion Checklist</div>
+      <div class="checklist-wrap">
+        <div class="check-row" id="chk-dispute"><span class="check-dot">✓</span>Dispute type selected</div>
+        <div class="check-row" id="chk-bureau"><span class="check-dot">✓</span>Credit bureau selected</div>
+        <div class="check-row" id="chk-name"><span class="check-dot">✓</span>Full name entered</div>
+        <div class="check-row" id="chk-address"><span class="check-dot">✓</span>Address entered</div>
+        <div class="check-row" id="chk-citystate"><span class="check-dot">✓</span>City, State & ZIP entered</div>
+      </div>
+    </div>
+
     <div style="padding:18px 26px;display:flex;gap:9px;justify-content:flex-end;border-top:1px solid var(--border);">
       <button class="btn btn-ghost" onclick="clearForm()">Clear Form</button>
-      <button class="btn btn-primary" onclick="logDispute()">📬 Log This Dispute</button>
+      <button class="btn btn-primary btn-pulse" onclick="logDispute()" id="log-btn">📬 Log This Dispute</button>
     </div>
   </div>
 
   <!-- PREVIEW PANEL -->
   <div class="preview-panel">
     <div class="preview-hdr">
-      <div><h2 class="panel-title">Letter Preview</h2><p class="panel-sub">Updates live as you type.</p></div>
+      <div>
+        <h2 class="panel-title">Letter Preview</h2>
+        <p class="panel-sub">Updates live as you type.</p>
+        <div class="letter-complete-badge hidden" id="letter-complete-badge">✓ Letter Ready to Send</div>
+      </div>
       <div class="preview-actions">
         <button class="btn btn-sm btn-ghost" onclick="copyLetter()" id="copy-btn">📋 Copy</button>
         <button class="btn btn-sm btn-ghost" onclick="printLetter()">🖨 Print</button>
@@ -527,6 +599,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
     </div>
     <div class="preview-disc">ℹ This letter is a template only and does not constitute legal advice.</div>
   </div>
+
 </div>
 ```
 
@@ -541,17 +614,10 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
       <div><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;">Dispute Tracker</h1><p style="font-size:0.84rem;color:var(--muted);margin-top:3px;">Monitor every dispute from sent to resolved.</p></div>
       <button class="btn btn-primary" onclick="showPage('app')">+ New Dispute</button>
     </div>
-
-```
-<!-- Summary stats -->
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;" id="tracker-stats"></div>
-
-<!-- Dispute list -->
-<div id="disputes-list">
-  <div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click "Log This Dispute" to start tracking.</p></div>
-</div>
-```
-
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;" id="tracker-stats"></div>
+    <div id="disputes-list">
+      <div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click "Log This Dispute" to start tracking.</p></div>
+    </div>
   </div>
 </div>
 
@@ -562,38 +628,41 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
       <div><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;">Score Tracker</h1><p style="font-size:0.84rem;color:var(--muted);margin-top:3px;">Track all 3 bureau scores over time.</p></div>
     </div>
-
-```
-<!-- Gauges -->
-<div class="score-gauges" id="score-gauges"></div>
-
-<!-- History -->
-<div class="score-history">
-  <div class="card-title">Score History</div>
-  <canvas id="score-canvas" style="width:100%;height:120px;display:block;"></canvas>
-  <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;" id="score-legend"></div>
-</div>
-
-<!-- Log new score -->
-<div class="score-entry-form">
-  <div class="card-title">Log New Scores</div>
-  <div class="field-row" style="margin-bottom:12px;">
-    <div class="field"><label class="field-label">Date</label><input type="date" id="score-date" class="field-input"></div>
-    <div class="field"><label class="field-label">Equifax</label><input type="number" id="score-eq" class="field-input" placeholder="720" min="300" max="850" inputmode="numeric"></div>
-  </div>
-  <div class="field-row" style="margin-bottom:14px;">
-    <div class="field"><label class="field-label">Experian</label><input type="number" id="score-ex" class="field-input" placeholder="715" min="300" max="850" inputmode="numeric"></div>
-    <div class="field"><label class="field-label">TransUnion</label><input type="number" id="score-tu" class="field-input" placeholder="710" min="300" max="850" inputmode="numeric"></div>
-  </div>
-  <button class="btn btn-primary btn-full" onclick="logScores()">✓ Save Scores</button>
-</div>
-
-<div style="margin-top:16px;" class="disc-card">
-  <span class="disc-ico">ℹ</span>
-  <p class="disc-text">Enter your scores manually from <strong style="color:var(--text);">AnnualCreditReport.com</strong> (free yearly report) or from your bank/card app. Get all 3 bureau scores free at <strong style="color:var(--text);">AnnualCreditReport.com</strong>. To pull live scores automatically, a bureau data agreement is required — not currently available.</p>
-</div>
-```
-
+    <div class="score-gauges" id="score-gauges"></div>
+    <div class="score-history">
+      <div class="card-title">Score History</div>
+      <canvas id="score-canvas" style="width:100%;height:120px;display:block;"></canvas>
+      <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;" id="score-legend"></div>
+    </div>
+    <div class="score-entry-form">
+      <div class="card-title">Log New Scores</div>
+      <div id="score-validation-banner" class="validation-banner"></div>
+      <div class="field-row" style="margin-bottom:12px;">
+        <div class="field">
+          <label class="field-label">Date <span class="required">*</span></label>
+          <input type="date" id="score-date" class="field-input">
+        </div>
+        <div class="field">
+          <label class="field-label">Equifax</label>
+          <input type="number" id="score-eq" class="field-input" placeholder="720" min="300" max="850" inputmode="numeric">
+        </div>
+      </div>
+      <div class="field-row" style="margin-bottom:14px;">
+        <div class="field">
+          <label class="field-label">Experian</label>
+          <input type="number" id="score-ex" class="field-input" placeholder="715" min="300" max="850" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label class="field-label">TransUnion</label>
+          <input type="number" id="score-tu" class="field-input" placeholder="710" min="300" max="850" inputmode="numeric">
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="logScores()">✓ Save Scores</button>
+    </div>
+    <div style="margin-top:16px;" class="disc-card">
+      <span class="disc-ico">ℹ</span>
+      <p class="disc-text">Enter your scores manually from <strong style="color:var(--text);">AnnualCreditReport.com</strong> (free yearly report) or from your bank/card app. Get all 3 bureau scores free at <strong style="color:var(--text);">AnnualCreditReport.com</strong>.</p>
+    </div>
   </div>
 </div>
 
@@ -618,103 +687,124 @@ function sanitizeStr(s,maxLen){return String(s||'').replace(/[<>]/g,'').slice(0,
 
 // ── STATE ──
 let selDispute=null;
-let disputes=JSON.parse(localStorage.getItem('dk_disputes')||'[]');
-let scoreHistory=JSON.parse(localStorage.getItem('dk_scores')||'[]');
-let croaAccepted=localStorage.getItem('dk_croa')==='1';
+let disputes=[];
+let scoreHistory=[];
+let croaAccepted=false;
+
+try{disputes=JSON.parse(localStorage.getItem('dk_disputes')||'[]');}catch(e){disputes=[];}
+try{scoreHistory=JSON.parse(localStorage.getItem('dk_scores')||'[]');}catch(e){scoreHistory=[];}
+try{croaAccepted=localStorage.getItem('dk_croa')==='1';}catch(e){croaAccepted=false;}
 
 // ── TOAST ──
-function toast(msg,err=false){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' err':'');setTimeout(()=>t.classList.remove('show'),2800);}
+let toastTimer=null;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast show'+(type?' '+type:'');
+  if(toastTimer)clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
+}
 
 // ── CROA ──
-function gotoApp(){if(!croaAccepted){document.getElementById('croa-modal').classList.add('show');}else{showPage('app');}}
-function closeCROA(){document.getElementById('croa-modal').classList.remove('show');}
-function acceptCROA(){croaAccepted=true;localStorage.setItem('dk_croa','1');closeCROA();showPage('app');}
+function gotoApp(){
+  if(!croaAccepted){document.getElementById('croa-modal').classList.add('show');}
+  else{showPage('app');}
+}
+function acceptCROA(){
+  croaAccepted=true;
+  try{localStorage.setItem('dk_croa','1');}catch(e){}
+  document.getElementById('croa-modal').classList.remove('show');
+  showPage('app');
+}
 
 // ── PAGE NAV ──
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  const nt=document.getElementById('nt-'+name);if(nt)nt.classList.add('active');
+  const page=document.getElementById('page-'+name);
+  if(page)page.classList.add('active');
+  const nt=document.getElementById('nt-'+name);
+  if(nt)nt.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   if(name==='tracker')renderTracker();
   if(name==='scores')renderScores();
 }
 
-// ── DISPUTE TYPES ──
+// ── BUREAU ADDRESSES ──
 const BUREAU_ADDR={
   Equifax:'Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256',
   Experian:'Experian\nP.O. Box 4500\nAllen, TX 75013',
   TransUnion:'TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016'
 };
 
+// ── DISPUTE TYPES ──
 const DISPUTE_TYPES=[
   {id:'inaccurate',label:'Inaccurate Info',icon:'🪪',
    fields:[
-     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Bank of America'},
-     {id:'accountNumber',label:'Account Number (last 4 ok)',type:'text',ph:'****1234'},
-     {id:'inaccurateItem',label:'What information is inaccurate?',type:'text',ph:'Wrong address, wrong DOB'},
-     {id:'correctInfo',label:'What is the correct information?',type:'text',ph:'Correct address is...'},
-     {id:'extra',label:'Additional Details (optional)',type:'textarea',ph:'Any supporting context...'}
+     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Bank of America',required:true},
+     {id:'accountNumber',label:'Account Number (last 4 ok)',type:'text',ph:'****1234',required:true},
+     {id:'inaccurateItem',label:'What information is inaccurate?',type:'text',ph:'Wrong address, wrong DOB',required:true},
+     {id:'correctInfo',label:'What is the correct information?',type:'text',ph:'Correct address is...',required:true},
+     {id:'extra',label:'Additional Details (optional)',type:'textarea',ph:'Any supporting context...',required:false}
    ]},
   {id:'late-payment',label:'Late Payment',icon:'📅',
    fields:[
-     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Chase Bank'},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****5678'},
-     {id:'lateDate',label:'Date of Reported Late Payment',type:'text',ph:'March 2023'},
-     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Payment was made on time','Payment was lost or misapplied','Account was in a deferment or hardship program','Never received a statement or billing notice','Other']},
-     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...'}
+     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Chase Bank',required:true},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****5678',required:true},
+     {id:'lateDate',label:'Date of Reported Late Payment',type:'text',ph:'March 2023',required:true},
+     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Payment was made on time','Payment was lost or misapplied','Account was in a deferment or hardship program','Never received a statement or billing notice','Other'],required:true},
+     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...',required:false}
    ]},
   {id:'collection',label:'Collection Account',icon:'🏦',
    fields:[
-     {id:'collectionAgency',label:'Collection Agency Name',type:'text',ph:'Midland Credit Management'},
-     {id:'originalCreditor',label:'Original Creditor (if known)',type:'text',ph:'Capital One'},
-     {id:'accountNumber',label:'Account / Reference Number',type:'text',ph:'****9012'},
-     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['This debt is not mine','This debt has already been paid','The amount reported is incorrect','The debt is past the statute of limitations','I was never notified about this collection','Other']},
-     {id:'extra',label:'Additional Details',type:'textarea',ph:'Explain your dispute...'}
+     {id:'collectionAgency',label:'Collection Agency Name',type:'text',ph:'Midland Credit Management',required:true},
+     {id:'originalCreditor',label:'Original Creditor (if known)',type:'text',ph:'Capital One',required:false},
+     {id:'accountNumber',label:'Account / Reference Number',type:'text',ph:'****9012',required:true},
+     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['This debt is not mine','This debt has already been paid','The amount reported is incorrect','The debt is past the statute of limitations','I was never notified about this collection','Other'],required:true},
+     {id:'extra',label:'Additional Details',type:'textarea',ph:'Explain your dispute...',required:false}
    ]},
   {id:'charge-off',label:'Charge-Off',icon:'❌',
    fields:[
-     {id:'creditorName',label:'Original Creditor Name',type:'text',ph:'Citibank'},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****3456'},
-     {id:'chargeOffDate',label:'Reported Charge-Off Date',type:'text',ph:'June 2021'},
-     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Charge-off date is incorrect','Balance amount is inaccurate','Account was settled/paid in full','This account does not belong to me','Account was included in bankruptcy','Other']},
-     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...'}
+     {id:'creditorName',label:'Original Creditor Name',type:'text',ph:'Citibank',required:true},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****3456',required:true},
+     {id:'chargeOffDate',label:'Reported Charge-Off Date',type:'text',ph:'June 2021',required:true},
+     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Charge-off date is incorrect','Balance amount is inaccurate','Account was settled/paid in full','This account does not belong to me','Account was included in bankruptcy','Other'],required:true},
+     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...',required:false}
    ]},
   {id:'identity-theft',label:'Identity Theft',icon:'🔒',
    fields:[
-     {id:'fraudCreditor',label:'Creditor of Fraudulent Account',type:'text',ph:'Synchrony Bank'},
-     {id:'accountNumber',label:'Fraudulent Account Number',type:'text',ph:'****7890'},
-     {id:'hasFTC',label:'I have an FTC Identity Theft Report',type:'checkbox'},
-     {id:'hasPD',label:'I have a Police Report on file',type:'checkbox'},
-     {id:'ftcNum',label:'FTC Report Number (if available)',type:'text',ph:'123456789'},
-     {id:'pdNum',label:'Police Report Number (if available)',type:'text',ph:'2023-00123'},
-     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the fraudulent activity...'}
+     {id:'fraudCreditor',label:'Creditor of Fraudulent Account',type:'text',ph:'Synchrony Bank',required:true},
+     {id:'accountNumber',label:'Fraudulent Account Number',type:'text',ph:'****7890',required:true},
+     {id:'hasFTC',label:'I have an FTC Identity Theft Report',type:'checkbox',required:false},
+     {id:'hasPD',label:'I have a Police Report on file',type:'checkbox',required:false},
+     {id:'ftcNum',label:'FTC Report Number (if available)',type:'text',ph:'123456789',required:false},
+     {id:'pdNum',label:'Police Report Number (if available)',type:'text',ph:'2023-00123',required:false},
+     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the fraudulent activity...',required:false}
    ]},
   {id:'mixed-file',label:'Mixed File',icon:'🔀',
    fields:[
-     {id:'mixedName',label:"Other Person's Name (if known)",type:'text',ph:'John B. Smith'},
-     {id:'accountNumber',label:'Account Number Being Disputed',type:'text',ph:'****2345'},
-     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Wells Fargo'},
-     {id:'mixedReason',label:'How did this appear?',type:'select',opts:['Similar name to another person','Same address as a previous resident','Possible Social Security Number mix-up',"Deceased person's account mixed with mine",'Other']},
-     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the mix-up...'}
+     {id:'mixedName',label:"Other Person's Name (if known)",type:'text',ph:'John B. Smith',required:false},
+     {id:'accountNumber',label:'Account Number Being Disputed',type:'text',ph:'****2345',required:true},
+     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Wells Fargo',required:true},
+     {id:'mixedReason',label:'How did this appear?',type:'select',opts:['Similar name to another person','Same address as a previous resident','Possible Social Security Number mix-up',"Deceased person's account mixed with mine",'Other'],required:true},
+     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the mix-up...',required:false}
    ]},
   {id:'goodwill',label:'Goodwill Removal',icon:'🤝',
    fields:[
-     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Bank of America'},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****4567'},
-     {id:'lateDate',label:'Date(s) of Late Payment(s)',type:'text',ph:'January–March 2022'},
-     {id:'paymentHistory',label:'Overall Payment History',type:'select',opts:['Excellent — this was an isolated incident','Good — only a few late payments over many years','Paid in full since then','Long-standing customer']},
-     {id:'hardshipReason',label:'Reason for Hardship (optional)',type:'text',ph:'Job loss, medical emergency, etc.'},
-     {id:'extra',label:'Additional Context',type:'textarea',ph:'Why you deserve goodwill removal...'}
+     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Bank of America',required:true},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****4567',required:true},
+     {id:'lateDate',label:'Date(s) of Late Payment(s)',type:'text',ph:'January–March 2022',required:true},
+     {id:'paymentHistory',label:'Overall Payment History',type:'select',opts:['Excellent — this was an isolated incident','Good — only a few late payments over many years','Paid in full since then','Long-standing customer'],required:true},
+     {id:'hardshipReason',label:'Reason for Hardship (optional)',type:'text',ph:'Job loss, medical emergency, etc.',required:false},
+     {id:'extra',label:'Additional Context',type:'textarea',ph:'Why you deserve goodwill removal...',required:false}
    ]},
   {id:'verification',label:'Method of Verification',icon:'🔍',
    fields:[
-     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Discover Financial'},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****6789'},
-     {id:'itemDisputed',label:'What item are you disputing?',type:'text',ph:'Balance, account status, payment history'},
-     {id:'previousDispute',label:'Previous Dispute Date (if Round 2)',type:'text',ph:'e.g. January 15, 2025'},
-     {id:'extra',label:'Explanation',type:'textarea',ph:'Supporting explanation...'}
+     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Discover Financial',required:true},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****6789',required:true},
+     {id:'itemDisputed',label:'What item are you disputing?',type:'text',ph:'Balance, account status, payment history',required:true},
+     {id:'previousDispute',label:'Previous Dispute Date (if Round 2)',type:'text',ph:'e.g. January 15, 2025',required:false},
+     {id:'extra',label:'Explanation',type:'textarea',ph:'Supporting explanation...',required:false}
    ]}
 ];
 
@@ -723,13 +813,18 @@ window.addEventListener('DOMContentLoaded',()=>{
   buildDTButtons();
   setDefaultDate();
   updateAggBadge();
+  updateChecklist();
 });
 
 function buildDTButtons(){
-  const g=document.getElementById('dt-grid');g.innerHTML='';
+  const g=document.getElementById('dt-grid');
+  if(!g)return;
+  g.innerHTML='';
   DISPUTE_TYPES.forEach(dt=>{
     const b=document.createElement('button');
-    b.className='dt-btn';b.setAttribute('data-id',dt.id);
+    b.className='dt-btn';
+    b.setAttribute('data-id',dt.id);
+    b.type='button';
     b.innerHTML=`<span class="dt-ico">${dt.icon}</span>${dt.label}`;
     b.addEventListener('click',()=>selectDT(dt.id));
     g.appendChild(b);
@@ -737,15 +832,19 @@ function buildDTButtons(){
 }
 
 function setDefaultDate(){
-  const d=document.getElementById('letterDate');if(d)d.value=new Date().toISOString().slice(0,10);
-  const sd=document.getElementById('score-date');if(sd)sd.value=new Date().toISOString().slice(0,10);
+  const today=new Date().toISOString().slice(0,10);
+  const d=document.getElementById('letterDate');if(d&&!d.value)d.value=today;
+  const sd=document.getElementById('score-date');if(sd&&!sd.value)sd.value=today;
 }
 
 function selectDT(id){
   selDispute=id;
   document.querySelectorAll('.dt-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-id')===id));
+  clearFieldError('dispute-type');
   renderDynFields(id);
   updateLetter();
+  updateProgress();
+  updateChecklist();
 }
 
 function renderDynFields(id){
@@ -759,14 +858,17 @@ function renderDynFields(id){
     if(f.type==='checkbox'){
       w.innerHTML=`<label class="field-check"><input type="checkbox" id="${escHtml(f.id)}" onchange="updateLetter()"> ${escHtml(f.label)}</label>`;
     }else if(f.type==='textarea'){
-      w.innerHTML=`<label class="field-label">${escHtml(f.label)}</label><textarea id="${escHtml(f.id)}" class="field-textarea" placeholder="${escHtml(f.ph||'')}" maxlength="1000" oninput="updateLetter()"></textarea>`;
+      const req=f.required?`<span class="required"> *</span>`:'';
+      w.innerHTML=`<label class="field-label">${escHtml(f.label)}${req}</label><textarea id="${escHtml(f.id)}" class="field-textarea" placeholder="${escHtml(f.ph||'')}" maxlength="1000" oninput="updateLetter();clearFieldError('${escHtml(f.id)}')"></textarea><div class="field-error" id="err-${escHtml(f.id)}">This field is required.</div>`;
 
 ```
 }else if(f.type==='select'){
+  const req=f.required?`<span class="required"> *</span>`:'';
   const opts=f.opts.map(o=>`<option value="${escHtml(o)}">${escHtml(o)}</option>`).join('');
-  w.innerHTML=`<label class="field-label">${escHtml(f.label)}</label><select id="${escHtml(f.id)}" class="field-select" onchange="updateLetter()"><option value="">— Select —</option>${opts}</select>`;
+  w.innerHTML=`<label class="field-label">${escHtml(f.label)}${req}</label><select id="${escHtml(f.id)}" class="field-select" onchange="updateLetter();clearFieldError('${escHtml(f.id)}')"><option value="">— Select —</option>${opts}</select><div class="field-error" id="err-${escHtml(f.id)}">Please select an option.</div>`;
 }else{
-  w.innerHTML=`<label class="field-label">${escHtml(f.label)}</label><input type="text" id="${escHtml(f.id)}" class="field-input" placeholder="${escHtml(f.ph||'')}" maxlength="200" oninput="updateLetter()">`;
+  const req=f.required?`<span class="required"> *</span>`:'';
+  w.innerHTML=`<label class="field-label">${escHtml(f.label)}${req}</label><input type="text" id="${escHtml(f.id)}" class="field-input" placeholder="${escHtml(f.ph||'')}" maxlength="200" oninput="updateLetter();clearFieldError('${escHtml(f.id)}')"><div class="field-error" id="err-${escHtml(f.id)}">This field is required.</div>`;
 }
 fg.appendChild(w);
 ```
@@ -775,8 +877,161 @@ fg.appendChild(w);
 c.appendChild(fg);
 }
 
+// ── VALIDATION ──
+function showFieldError(id,msg){
+const el=document.getElementById(id);
+const err=document.getElementById(‘err-’+id);
+if(el){el.classList.add(‘invalid’);el.classList.add(‘shake’);setTimeout(()=>el.classList.remove(‘shake’),400);}
+if(err){err.textContent=msg||err.textContent;err.classList.add(‘show’);}
+}
+
+function clearFieldError(id){
+const el=document.getElementById(id);
+const err=document.getElementById(‘err-’+id);
+if(el)el.classList.remove(‘invalid’);
+if(err)err.classList.remove(‘show’);
+}
+
+function validateForm(){
+let errors=[];
+let firstErrorEl=null;
+
+// Dispute type
+if(!selDispute){
+const e=document.getElementById(‘err-dispute-type’);
+if(e){e.classList.add(‘show’);if(!firstErrorEl)firstErrorEl=e;}
+errors.push(‘Select a dispute type’);
+}else{
+const e=document.getElementById(‘err-dispute-type’);if(e)e.classList.remove(‘show’);
+}
+
+// Bureau
+const bureau=document.querySelector(‘input[name=“bureau”]:checked’);
+if(!bureau){
+const e=document.getElementById(‘err-bureau’);
+if(e){e.classList.add(‘show’);if(!firstErrorEl)firstErrorEl=e;}
+errors.push(‘Select a credit bureau’);
+}else{
+const e=document.getElementById(‘err-bureau’);if(e)e.classList.remove(‘show’);
+}
+
+// Core fields
+const coreFields=[
+{id:‘fullName’,msg:‘Full legal name is required’},
+{id:‘address’,msg:‘Street address is required’},
+{id:‘city’,msg:‘City is required’},
+{id:‘state’,msg:‘State is required (2 letters)’},
+{id:‘zip’,msg:‘ZIP code is required’}
+];
+coreFields.forEach(f=>{
+const el=document.getElementById(f.id);
+if(!el||!el.value.trim()){
+showFieldError(f.id,f.msg);
+errors.push(f.msg);
+if(!firstErrorEl)firstErrorEl=el;
+}else{
+clearFieldError(f.id);
+}
+});
+
+// State format
+const stateEl=document.getElementById(‘state’);
+if(stateEl&&stateEl.value.trim()&&stateEl.value.trim().length!==2){
+showFieldError(‘state’,‘State must be 2 letters (e.g. FL)’);
+errors.push(‘State must be 2 letters’);
+}
+
+// ZIP format
+const zipEl=document.getElementById(‘zip’);
+if(zipEl&&zipEl.value.trim()&&zipEl.value.trim().length!==5){
+showFieldError(‘zip’,‘ZIP must be 5 digits’);
+errors.push(‘ZIP must be 5 digits’);
+}
+
+// Dynamic required fields
+if(selDispute){
+const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
+if(dt){
+dt.fields.forEach(f=>{
+if(!f.required||f.type===‘checkbox’)return;
+const el=document.getElementById(f.id);
+if(!el||!el.value.trim()){
+showFieldError(f.id,‘This field is required’);
+errors.push(f.label+’ is required’);
+if(!firstErrorEl)firstErrorEl=el;
+}else{
+clearFieldError(f.id);
+}
+});
+}
+}
+
+if(errors.length>0){
+const banner=document.getElementById(‘validation-banner’);
+if(banner){
+banner.innerHTML=’<strong>⚠️ Please fix the following before continuing:</strong><br>• ‘+errors.join(’<br>• ’);
+banner.classList.add(‘show’);
+}
+if(firstErrorEl){firstErrorEl.scrollIntoView({behavior:‘smooth’,block:‘center’});}
+return false;
+}
+
+const banner=document.getElementById(‘validation-banner’);
+if(banner)banner.classList.remove(‘show’);
+return true;
+}
+
+// ── PROGRESS ──
+function updateProgress(){
+const checks=[
+!!selDispute,
+!!document.querySelector(‘input[name=“bureau”]:checked’),
+!!(document.getElementById(‘fullName’)&&document.getElementById(‘fullName’).value.trim()),
+!!(document.getElementById(‘address’)&&document.getElementById(‘address’).value.trim()),
+!!(document.getElementById(‘city’)&&document.getElementById(‘city’).value.trim())&&
+!!(document.getElementById(‘state’)&&document.getElementById(‘state’).value.trim())&&
+!!(document.getElementById(‘zip’)&&document.getElementById(‘zip’).value.trim())
+];
+const done=checks.filter(Boolean).length;
+const pct=Math.round((done/checks.length)*100);
+const fill=document.getElementById(‘form-progress-fill’);
+if(fill)fill.style.width=pct+’%’;
+updateChecklist(checks);
+
+const badge=document.getElementById(‘letter-complete-badge’);
+if(badge){
+if(pct===100&&selDispute){badge.classList.remove(‘hidden’);}
+else{badge.classList.add(‘hidden’);}
+}
+}
+
+function updateChecklist(checks){
+if(!checks){
+checks=[
+!!selDispute,
+!!document.querySelector(‘input[name=“bureau”]:checked’),
+!!(document.getElementById(‘fullName’)&&document.getElementById(‘fullName’).value.trim()),
+!!(document.getElementById(‘address’)&&document.getElementById(‘address’).value.trim()),
+!!(document.getElementById(‘city’)&&document.getElementById(‘city’).value.trim())&&
+!!(document.getElementById(‘state’)&&document.getElementById(‘state’).value.trim())&&
+!!(document.getElementById(‘zip’)&&document.getElementById(‘zip’).value.trim())
+];
+}
+const ids=[‘chk-dispute’,‘chk-bureau’,‘chk-name’,‘chk-address’,‘chk-citystate’];
+ids.forEach((id,i)=>{
+const row=document.getElementById(id);
+if(row)row.classList.toggle(‘done’,checks[i]);
+});
+}
+
 // ── FIELD VALUES ──
-function getVal(id){const e=document.getElementById(id);if(!e)return ‘’;if(e.type===‘checkbox’)return e.checked;return sanitizeStr(e.value.trim(),500);}
+function getVal(id){
+const e=document.getElementById(id);
+if(!e)return ‘’;
+if(e.type===‘checkbox’)return e.checked;
+return sanitizeStr(e.value.trim(),500);
+}
+
 function getFields(){
 const f={fullName:getVal(‘fullName’),address:getVal(‘address’),city:getVal(‘city’),state:getVal(‘state’),zip:getVal(‘zip’),dob:getVal(‘dob’),ssn4:getVal(‘ssn4’),letterDate:getVal(‘letterDate’),bureau:’’};
 const b=document.querySelector(‘input[name=“bureau”]:checked’);if(b)f.bureau=b.value;
@@ -784,7 +1039,7 @@ if(selDispute){const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);if(dt)dt.fields
 return f;
 }
 
-function formatDate(s){if(!s)return ‘[Date]’;const d=new Date(s+‘T00:00:00’);return d.toLocaleDateString(‘en-US’,{year:‘numeric’,month:‘long’,day:‘numeric’});}
+function formatDate(s){if(!s)return ‘[Date]’;try{const d=new Date(s+‘T00:00:00’);return d.toLocaleDateString(‘en-US’,{year:‘numeric’,month:‘long’,day:‘numeric’});}catch(e){return s;}}
 
 // ── AGGRESSION LEVEL ──
 function updateAggBadge(){
@@ -803,8 +1058,6 @@ const bureauAddr=f.bureau?(BUREAU_ADDR[f.bureau]||`[${f.bureau} Address]`):’[S
 const date=formatDate(f.letterDate);
 const ssnLine=f.ssn4?`\nLast 4 of SSN: ***-**-${f.ssn4}`:’’;
 const dobLine=f.dob?`\nDate of Birth: ${formatDate(f.dob)}`:’’;
-
-// Build dispute body
 let body=’’,closing=’’;
 const cn=f.creditorName||f.collectionAgency||f.fraudCreditor||’[Creditor]’;
 const an=f.accountNumber||’[Account Number]’;
@@ -838,7 +1091,6 @@ body=`I am writing to formally request full verification of an account reported 
 if(f.extra)body+=`\n\n${f.extra}`;
 }
 
-// Closing by aggression
 if(agg===1){
 closing=`Pursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, I respectfully request that you investigate this matter and correct or remove any inaccurate information within the required 30-day period.\n\nPlease provide me with written confirmation of the results of your investigation and a free updated copy of my credit report if any changes are made.`;
 }else if(agg===2){
@@ -857,31 +1109,41 @@ const f=getFields();
 const empty=document.getElementById(‘letter-empty’);
 const out=document.getElementById(‘letter-out’);
 const paper=document.getElementById(‘letter-paper’);
-if(!selDispute||!f.fullName){empty.style.display=‘flex’;out.style.display=‘none’;return;}
+if(!selDispute||!f.fullName){
+if(empty)empty.style.display=‘flex’;
+if(out)out.style.display=‘none’;
+return;
+}
 const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);if(!dt)return;
 const text=generateLetter(f,dt);
-empty.style.display=‘none’;out.style.display=‘block’;
-paper.innerHTML=escHtml(text).replace(/\n/g,’<br>’);
+if(empty)empty.style.display=‘none’;
+if(out)out.style.display=‘block’;
+if(paper)paper.innerHTML=escHtml(text).replace(/\n/g,’<br>’);
 }
 
 // ── ACTIONS ──
 async function copyLetter(){
+if(!validateForAction())return;
 const f=getFields();
-if(!selDispute||!f.fullName){toast(‘⚠️ Select a dispute type and enter your name first.’,true);return;}
 const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
 const text=generateLetter(f,dt);
-try{await navigator.clipboard.writeText(text);const b=document.getElementById(‘copy-btn’);const orig=b.innerHTML;b.innerHTML=‘✓ Copied!’;setTimeout(()=>b.innerHTML=orig,2000);toast(‘✓ Letter copied to clipboard!’);}
-catch(e){toast(‘Copy failed — try the PDF button instead.’,true);}
+try{
+await navigator.clipboard.writeText(text);
+const b=document.getElementById(‘copy-btn’);
+const orig=b.innerHTML;b.innerHTML=‘✓ Copied!’;
+setTimeout(()=>b.innerHTML=orig,2000);
+toast(‘✓ Letter copied to clipboard!’);
+}catch(e){toast(‘Copy failed — try the PDF button instead.’,‘err’);}
 }
 
 function printLetter(){
-if(!selDispute||!getVal(‘fullName’)){toast(‘⚠️ Complete the form first.’,true);return;}
+if(!validateForAction())return;
 window.print();
 }
 
 function downloadPDF(){
+if(!validateForAction())return;
 const f=getFields();
-if(!selDispute||!f.fullName){toast(‘⚠️ Complete the form before downloading.’,true);return;}
 const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
 const text=generateLetter(f,dt);
 try{
@@ -894,12 +1156,20 @@ lines.forEach(line=>{if(y>ph-mt){doc.addPage();y=mt;}doc.text(line,ml,y);y+=lh;}
 const safe=(f.fullName||‘letter’).replace(/\s+/g,’_’).toLowerCase();
 doc.save(`DisputeKit_${dt.id}_${safe}.pdf`);
 toast(‘📥 PDF downloaded!’);
-}catch(e){toast(‘PDF failed — try Copy or Print.’,true);}
+}catch(e){toast(‘PDF failed — try Copy or Print.’,‘err’);}
+}
+
+function validateForAction(){
+const f=getFields();
+if(!selDispute){toast(‘⚠️ Select a dispute type first.’,‘warn’);return false;}
+if(!f.fullName){toast(‘⚠️ Enter your full name first.’,‘warn’);showFieldError(‘fullName’,‘Your name is required.’);return false;}
+if(!f.bureau){toast(‘⚠️ Select a credit bureau first.’,‘warn’);return false;}
+return true;
 }
 
 function logDispute(){
+if(!validateForm())return;
 const f=getFields();
-if(!selDispute||!f.fullName){toast(‘⚠️ Select a dispute type and enter your name first.’,true);return;}
 const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
 const agg=parseInt(document.getElementById(‘agg-slider’).value);
 const aggLabels=[’’,‘Standard’,‘Aggressive’,‘Maximum Force’];
@@ -917,21 +1187,21 @@ deadline:deadline.toISOString().slice(0,10),
 notes:’’
 };
 disputes.unshift(d);
-localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));
+try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
 toast(‘📬 Dispute logged! Check your Tracker.’);
 }
 
 function updateDisputeStatus(id,status){
 const d=disputes.find(x=>x.id===id);if(!d)return;
 d.status=status;
-localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));
+try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
 renderTracker();toast(’✓ Status updated to: ’+status);
 }
 
 function deleteDispute(id){
 if(!confirm(‘Delete this dispute record?’))return;
 disputes=disputes.filter(x=>x.id!==id);
-localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));
+try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
 renderTracker();toast(‘Dispute deleted.’);
 }
 
@@ -943,14 +1213,20 @@ const statusMap={sent:‘Sent’,review:‘In Review’,responded:‘Responded�
 const statusClass={sent:‘s-sent’,review:‘s-review’,responded:‘s-responded’,removed:‘s-removed’,verified:‘s-verified’};
 const counts={sent:0,review:0,responded:0,removed:0,verified:0};
 disputes.forEach(d=>{if(counts[d.status]!==undefined)counts[d.status]++;});
+
+if(stats){
 stats.innerHTML=[
 {label:‘Total’,val:disputes.length,cls:’’},
 {label:‘Active’,val:disputes.filter(d=>[‘sent’,‘review’,‘responded’].includes(d.status)).length,cls:‘vb’},
 {label:‘Removed’,val:counts.removed,cls:‘vg’},
 {label:‘Verified’,val:counts.verified,cls:‘vr’},
 ].map(s=>`<div class="card card-sm"><div class="card-title">${s.label}</div><div style="font-family:var(--mono);font-size:28px;font-weight:700;${s.cls==='vb'?'color:var(--blue)':s.cls==='vg'?'color:var(--accent)':s.cls==='vr'?'color:var(--red)':''}">${s.val}</div></div>`).join(’’);
+}
 
-if(!disputes.length){list.innerHTML=’<div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click “Log This Dispute” to start tracking.</p></div>’;return;}
+if(!disputes.length){
+list.innerHTML=’<div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click “Log This Dispute” to start tracking.</p></div>’;
+return;
+}
 
 list.innerHTML=disputes.map(d=>{
 const sentMs=new Date(d.sentDate).getTime();
@@ -966,25 +1242,27 @@ return `<div class="dispute-item"> <div class="di-top"> <div> <div class="di-nam
 
 function generateRound2(id){
 const d=disputes.find(x=>x.id===id);if(!d)return;
-// Prefill the app form with MOV request
 selectDT(‘verification’);
-document.getElementById(‘fullName’).value=getVal(‘fullName’)||’’;
 setTimeout(()=>{
 const cn=document.getElementById(‘creditorName’);if(cn)cn.value=d.creditor;
 const pd=document.getElementById(‘previousDispute’);if(pd)pd.value=d.sentDate;
 const item=document.getElementById(‘itemDisputed’);if(item)item.value=d.type+’ — Bureau responded Verified. Demanding Method of Verification.’;
 document.getElementById(‘agg-slider’).value=3;
-updateAggBadge();updateLetter();
+updateAggBadge();updateLetter();updateProgress();
 },100);
-showPage(‘app’);
+gotoApp();
 toast(‘⚡ Round 2 letter loaded — set to Maximum Force.’);
 }
 
 // ── MAIL LABEL ──
 function showMailLabel(){
 const f=getFields();
-if(!f.bureau){toast(‘⚠️ Select a bureau first.’,true);return;}
-const bureauFull={Equifax:‘Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256’,Experian:‘Experian\nP.O. Box 4500\nAllen, TX 75013’,TransUnion:‘TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016’};
+if(!f.bureau){toast(‘⚠️ Select a bureau first.’,‘warn’);return;}
+const bureauFull={
+Equifax:‘Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256’,
+Experian:‘Experian\nP.O. Box 4500\nAllen, TX 75013’,
+TransUnion:‘TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016’
+};
 const toAddr=bureauFull[f.bureau]||f.bureau;
 const fromAddr=[f.fullName||’[Your Name]’,f.address||’[Your Address]’,[f.city,f.state,f.zip].filter(Boolean).join(’, ‘)].filter(Boolean).join(’\n’);
 document.getElementById(‘mail-label-content’).innerHTML=` <div class="mail-label"> <div class="mail-certified">CERTIFIED MAIL</div> <div class="mail-label-header">Return Address (From):</div> <div class="mail-label-from">${escHtml(fromAddr).replace(/\n/g,'<br>')}</div> <div class="mail-label-header">Send To:</div> <div class="mail-label-to">${escHtml(toAddr).replace(/\n/g,'<br>')}</div> </div> <p style="font-size:0.78rem;color:var(--muted);margin-top:12px;line-height:1.6;">💡 <strong>Tip:</strong> Send via USPS Certified Mail with Return Receipt Requested. Keep your tracking number and green card as legal proof of delivery. The 30-day dispute window starts when the bureau receives it.</p>`;
@@ -994,6 +1272,7 @@ document.getElementById(‘mail-modal’).classList.add(‘show’);
 function printMailLabel(){
 const content=document.getElementById(‘mail-label-content’).innerHTML;
 const w=window.open(’’,’_blank’);
+if(!w)return;
 w.document.write(`<html><body style="font-family:Courier New,monospace;padding:40px;">${content}<script>window.onload=()=>{window.print();window.close();}<\/script></body></html>`);
 w.document.close();
 }
@@ -1004,17 +1283,15 @@ function idDragLeave(e){document.getElementById(‘id-zone’).classList.remove(
 function idDrop(e){e.preventDefault();idDragLeave(e);const f=e.dataTransfer.files[0];if(f&&f.type.startsWith(‘image/’))handleIdUpload(f);}
 
 function handleIdUpload(file){
-if(!file||!file.type.startsWith(‘image/’)){toast(‘⚠️ Please upload an image file.’,true);return;}
-if(file.size>10*1024*1024){toast(‘⚠️ File too large. Max 10MB.’,true);return;}
+if(!file||!file.type.startsWith(‘image/’)){toast(‘⚠️ Please upload an image file.’,‘err’);return;}
+if(file.size>10*1024*1024){toast(‘⚠️ File too large. Max 10MB.’,‘err’);return;}
 const reader=new FileReader();
 reader.onload=e=>{
 const src=e.target.result;
 document.getElementById(‘id-preview-img’).src=src;
 document.getElementById(‘id-preview-wrap’).classList.remove(‘hidden’);
 document.getElementById(‘id-zone’).style.display=‘none’;
-// Simulate parsing — in production use OCR API
-// For now we just show a prompt to fill manually
-document.getElementById(‘id-parsed-rows’).innerHTML=` <div class="id-parsed-row"><span class="id-parsed-key">Status</span><span class="id-parsed-val" style="color:var(--accent);">✓ ID Uploaded</span></div> <div class="id-parsed-row"><span class="id-parsed-key">Note</span><span class="id-parsed-val" style="font-family:var(--font);font-size:0.78rem;color:var(--muted);">Manually confirm your name & address match your ID</span></div>`;
+document.getElementById(‘id-parsed-rows’).innerHTML=` <div class="id-parsed-row"><span class="id-parsed-key">Status</span><span class="id-parsed-val" style="color:var(--accent);">✓ ID Uploaded</span></div> <div class="id-parsed-row"><span class="id-parsed-key">Note</span><span class="id-parsed-val" style="font-family:var(--font);font-size:0.78rem;color:var(--muted);">Confirm your name & address in Step 4 match your ID</span></div>`;
 toast(‘✓ ID uploaded. Confirm your info matches in Step 4.’);
 };
 reader.readAsDataURL(file);
@@ -1034,48 +1311,75 @@ const date=document.getElementById(‘score-date’).value;
 const eq=parseInt(document.getElementById(‘score-eq’).value)||0;
 const ex=parseInt(document.getElementById(‘score-ex’).value)||0;
 const tu=parseInt(document.getElementById(‘score-tu’).value)||0;
-if(!date){toast(‘⚠️ Select a date.’,true);return;}
-if(!eq&&!ex&&!tu){toast(‘⚠️ Enter at least one score.’,true);return;}
-const validate=s=>s===0||((s>=300)&&(s<=850));
-if(!validate(eq)||!validate(ex)||!validate(tu)){toast(‘⚠️ Scores must be between 300 and 850.’,true);return;}
+
+const banner=document.getElementById(‘score-validation-banner’);
+const errors=[];
+
+if(!date)errors.push(‘Please select a date.’);
+if(!eq&&!ex&&!tu)errors.push(‘Enter at least one score.’);
+const validate=s=>s===0||(s>=300&&s<=850);
+if((eq&&!validate(eq))||(ex&&!validate(ex))||(tu&&!validate(tu)))errors.push(‘Scores must be between 300 and 850.’);
+
+if(errors.length>0){
+if(banner){banner.textContent=’⚠️ ‘+errors.join(’ ’);banner.classList.add(‘show’);}
+// Shake the fields
+[‘score-eq’,‘score-ex’,‘score-tu’,‘score-date’].forEach(id=>{
+const el=document.getElementById(id);
+if(el&&!el.value){el.classList.add(‘invalid’);el.classList.add(‘shake’);setTimeout(()=>{el.classList.remove(‘shake’);el.classList.remove(‘invalid’);},400);}
+});
+return;
+}
+if(banner)banner.classList.remove(‘show’);
+
 scoreHistory.push({date,eq:eq||null,ex:ex||null,tu:tu||null});
 scoreHistory.sort((a,b)=>a.date.localeCompare(b.date));
-localStorage.setItem(‘dk_scores’,JSON.stringify(scoreHistory));
+try{localStorage.setItem(‘dk_scores’,JSON.stringify(scoreHistory));}catch(e){}
 [‘score-eq’,‘score-ex’,‘score-tu’].forEach(id=>{const e=document.getElementById(id);if(e)e.value=’’;});
-renderScores();toast(‘✓ Scores saved!’);
+renderScores();
+toast(‘✓ Scores saved!’);
 }
 
 function scoreTier(s){
 if(!s)return{label:‘No Data’,color:‘var(–dim)’};
 if(s>=800)return{label:‘Exceptional’,color:’#22c55e’};
 if(s>=740)return{label:‘Very Good’,color:‘var(–accent)’};
-if(s>=670)return{label:‘Good’,color:var_(’–blue’)};
+if(s>=670)return{label:‘Good’,color:‘var(–blue)’};
 if(s>=580)return{label:‘Fair’,color:‘var(–amber)’};
 return{label:‘Poor’,color:‘var(–red)’};
 }
-function var_(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
 
 function renderScores(){
 const latest={eq:null,ex:null,tu:null};
 scoreHistory.forEach(e=>{if(e.eq)latest.eq=e.eq;if(e.ex)latest.ex=e.ex;if(e.tu)latest.tu=e.tu;});
 const bureaus=[{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}];
-document.getElementById(‘score-gauges’).innerHTML=bureaus.map(b=>{
+const gauges=document.getElementById(‘score-gauges’);
+if(gauges){
+gauges.innerHTML=bureaus.map(b=>{
 const score=latest[b.key];
 const pct=score?((score-300)/550)*100:0;
 const tier=scoreTier(score);
 const r=54;const circ=2*Math.PI*r;const dash=circ*(pct/100);
 return `<div class="gauge-card"> <div class="gauge-bureau">${b.label}</div> <div class="gauge-ring"> <svg width="120" height="120" viewBox="0 0 120 120"> <circle cx="60" cy="60" r="${r}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10"/> <circle cx="60" cy="60" r="${r}" fill="none" stroke="${score?b.color:'rgba(255,255,255,0.05)'}" stroke-width="10" stroke-dasharray="${dash} ${circ}" stroke-linecap="round" style="transition:stroke-dasharray 0.8s ease;"/> </svg> <div class="gauge-center"> <div class="gauge-num" style="color:${score?b.color:'var(--dim)'}">${score||'—'}</div> <div class="gauge-lbl">score</div> </div> </div> <div class="gauge-tier" style="color:${tier.color}">${tier.label}</div> <div class="gauge-range">Range: 300–850</div> </div>`;
 }).join(’’);
+}
 renderScoreChart(bureaus);
 }
 
 function renderScoreChart(bureaus){
 const canvas=document.getElementById(‘score-canvas’);if(!canvas)return;
 const ctx=canvas.getContext(‘2d’);
-const W=canvas.offsetWidth||800;const H=120;canvas.width=W;canvas.height=H;
+const W=canvas.offsetWidth||800;const H=120;
+canvas.width=W;canvas.height=H;
 ctx.clearRect(0,0,W,H);
-if(scoreHistory.length<2){ctx.fillStyle=‘rgba(255,255,255,0.1)’;ctx.font=‘12px Syne’;ctx.textAlign=‘center’;ctx.fillText(‘Log at least 2 score entries to see chart’,W/2,H/2);return;}
-const pad={l:10,r:10,t:10,b:10};const cW=W-pad.l-pad.r;const cH=H-pad.t-pad.b;
+if(scoreHistory.length<2){
+ctx.fillStyle=‘rgba(255,255,255,0.15)’;
+ctx.font=‘13px Sora, sans-serif’;
+ctx.textAlign=‘center’;
+ctx.fillText(‘Log at least 2 score entries to see your chart’,W/2,H/2);
+return;
+}
+const pad={l:10,r:10,t:10,b:10};
+const cW=W-pad.l-pad.r;const cH=H-pad.t-pad.b;
 const allScores=scoreHistory.flatMap(e=>[e.eq,e.ex,e.tu].filter(Boolean));
 const minS=Math.min(…allScores)-20;const maxS=Math.max(…allScores)+20;
 const toX=i=>pad.l+(i/(scoreHistory.length-1))*cW;
@@ -1094,19 +1398,30 @@ if(legend)legend.innerHTML=bureaus.map(b=>`<span style="display:flex;align-items
 
 function clearForm(){
 if(!confirm(‘Clear the form and start over?’))return;
-document.querySelectorAll(’.field-input,.field-textarea,.field-select’).forEach(e=>e.value=’’);
+document.querySelectorAll(’.field-input,.field-textarea,.field-select’).forEach(e=>{e.value=’’;e.classList.remove(‘invalid’);});
 document.querySelectorAll(’.field-check input’).forEach(e=>e.checked=false);
 document.querySelectorAll(‘input[name=“bureau”]’).forEach(e=>e.checked=false);
+document.querySelectorAll(’.field-error’).forEach(e=>e.classList.remove(‘show’));
+document.querySelectorAll(’.bureau-required-hint’).forEach(e=>e.classList.remove(‘show’));
+const banner=document.getElementById(‘validation-banner’);if(banner)banner.classList.remove(‘show’);
 selDispute=null;
 document.querySelectorAll(’.dt-btn’).forEach(b=>b.classList.remove(‘active’));
 document.getElementById(‘dynamic-fields’).innerHTML=’<div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above.</div>’;
-document.getElementById(‘agg-slider’).value=2;updateAggBadge();
+document.getElementById(‘agg-slider’).value=2;
+updateAggBadge();
 setDefaultDate();
 document.getElementById(‘letter-empty’).style.display=‘flex’;
 document.getElementById(‘letter-out’).style.display=‘none’;
+const badge=document.getElementById(‘letter-complete-badge’);if(badge)badge.classList.add(‘hidden’);
+const fill=document.getElementById(‘form-progress-fill’);if(fill)fill.style.width=‘0%’;
+updateChecklist();
 }
 
-window.addEventListener(‘resize’,()=>{if(scoreHistory.length)renderScoreChart([{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}]);});
+window.addEventListener(‘resize’,()=>{
+if(scoreHistory.length){
+renderScoreChart([{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}]);
+}
+});
 </script>
 
 </body>
