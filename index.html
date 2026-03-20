@@ -1,1770 +1,1113 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DisputeKit — Professional Credit Dispute Letters in Minutes</title>
-  <meta name="description" content="Generate professional credit dispute letters instantly. Free, easy, and built for results." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: blob:; connect-src 'none';">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>DisputeKit Pro — Professional Credit Repair Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#08090f;--bg2:#0c0e18;--card:#10131f;--card2:#151928;--card3:#1a1f30;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#eaecf6;--muted:#6b7590;--dim:#3a4055;
+  --accent:#22d3a5;--accent2:#1ab88e;--accent-glow:rgba(34,211,165,0.15);
+  --red:#ef4444;--red2:#dc2626;--amber:#f59e0b;
+  --blue:#4f8ef7;--purple:#9b6fff;
+  --font:'Sora',sans-serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.hidden{display:none!important;}
+img{max-width:100%;}
+
+/* ── BACKGROUND ── */
+.bg-layer{position:fixed;inset:0;pointer-events:none;z-index:0;
+background:radial-gradient(ellipse 80% 50% at 10% -10%,rgba(34,211,165,0.07) 0%,transparent 55%),
+radial-gradient(ellipse 60% 40% at 90% 110%,rgba(79,142,247,0.06) 0%,transparent 55%),
+linear-gradient(170deg,#08090f 0%,#0a0d18 100%);}
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
+background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,black 20%,transparent 100%);}
+
+/* ── TOAST ── */
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(–card2);border:1px solid var(–accent);color:var(–text);font-size:12px;font-weight:600;padding:10px 20px;border-radius:20px;z-index:9999;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.err{border-color:var(–red);}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:200;background:rgba(8,9,15,0.94);backdrop-filter:blur(18px);border-bottom:1px solid var(–border);}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:24px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.logo-mark{width:34px;height:34px;background:var(–accent);color:#03120b;font-weight:800;font-size:0.72rem;letter-spacing:0.04em;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-text{font-weight:700;font-size:1rem;color:var(–text);}
+.logo-pro{font-size:0.62rem;font-weight:700;background:linear-gradient(135deg,var(–accent),var(–blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-left:4px;letter-spacing:0.08em;}
+.nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto;}
+.nav-tab{background:none;border:none;color:var(–muted);font-family:var(–font);font-size:0.83rem;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.nav-tab:hover{color:var(–text);background:rgba(255,255,255,0.04);}
+.nav-tab.active{color:var(–accent);background:var(–accent-glow);}
+.nav-cta{background:var(–accent);color:#03120b;font-family:var(–font);font-size:0.83rem;font-weight:700;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;margin-left:8px;transition:all 0.2s;}
+.nav-cta:hover{background:var(–accent2);transform:translateY(-1px);}
+
+/* ── PAGES ── */
+.page{display:none;position:relative;z-index:1;animation:fadeIn 0.3s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HERO ── */
+.hero{padding:90px 24px 80px;min-height:88vh;display:flex;align-items:center;position:relative;}
+.hero-inner{max-width:800px;margin:0 auto;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:100px;font-size:0.76rem;font-weight:600;color:var(–accent);margin-bottom:28px;}
+.badge-dot{width:6px;height:6px;background:var(–accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero-h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:1.06;letter-spacing:-0.04em;margin-bottom:20px;}
+.h-acc{background:linear-gradient(135deg,var(–accent) 0%,var(–blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:1.05rem;color:var(–muted);max-width:580px;margin:0 auto 36px;line-height:1.75;}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
+.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-family:var(–font);font-size:0.95rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;}
+.btn-hero-primary{background:var(–accent);color:#03120b;box-shadow:0 0 28px rgba(34,211,165,0.25);}
+.btn-hero-primary:hover{background:var(–accent2);transform:translateY(-2px);box-shadow:0 0 40px rgba(34,211,165,0.4);}
+.btn-hero-ghost{background:transparent;color:var(–muted);border:1px solid var(–border2);}
+.btn-hero-ghost:hover{color:var(–text);background:rgba(255,255,255,0.04);}
+.trust-row{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(–muted);font-weight:500;}
+.trust-check{color:var(–accent);font-size:14px;}
+
+/* ── SECTION ── */
+.section{padding:88px 24px;}
+.section-alt{background:var(–bg2);}
+.container{max-width:1160px;margin:0 auto;}
+.sec-label{font-size:0.74rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–accent);margin-bottom:10px;}
+.sec-title{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:48px;}
+
+/* ── CARDS ── */
+.card{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:24px;}
+.card-sm{padding:18px;}
+.card-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–dim);margin-bottom:14px;}
+
+/* ── STEP GRID ── */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.step-card{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:30px 26px;transition:border-color 0.2s,transform 0.2s;}
+.step-card:hover{border-color:var(–border2);transform:translateY(-2px);}
+.step-num{font-family:var(–mono);font-size:0.68rem;color:var(–dim);letter-spacing:0.08em;margin-bottom:14px;}
+.step-ico{width:50px;height:50px;background:var(–accent-glow);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(–accent);font-size:22px;margin-bottom:18px;}
+.step-title{font-size:0.95rem;font-weight:700;margin-bottom:8px;}
+.step-desc{font-size:0.84rem;color:var(–muted);line-height:1.65;}
+
+/* ── FEATURES GRID ── */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.feat-card{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:26px 22px;transition:border-color 0.2s,transform 0.2s;}
+.feat-card:hover{border-color:var(–border2);transform:translateY(-2px);}
+.feat-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px;}
+.fi-teal{background:rgba(34,211,165,0.1);color:var(–accent);}
+.fi-blue{background:rgba(79,142,247,0.1);color:var(–blue);}
+.fi-purple{background:rgba(155,111,255,0.1);color:var(–purple);}
+.fi-amber{background:rgba(245,158,11,0.1);color:var(–amber);}
+.feat-title{font-size:0.9rem;font-weight:700;margin-bottom:7px;}
+.feat-desc{font-size:0.82rem;color:var(–muted);line-height:1.65;}
+
+/* ── APP LAYOUT ── */
+.app-wrap{max-width:1160px;margin:0 auto;padding:28px 24px 80px;}
+.app-grid{display:grid;grid-template-columns:460px 1fr;gap:22px;align-items:start;}
+.form-panel{background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;}
+.panel-hdr{padding:26px 26px 0;margin-bottom:22px;}
+.panel-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:3px;}
+.panel-sub{font-size:0.82rem;color:var(–muted);}
+.form-sec{padding:0 26px 22px;border-bottom:1px solid var(–border);}
+.form-sec:last-of-type{border-bottom:none;}
+.form-sec-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(–dim);margin-bottom:12px;}
+.preview-panel{position:sticky;top:82px;background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;}
+.preview-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:22px 22px 16px;border-bottom:1px solid var(–border);flex-wrap:wrap;}
+.preview-actions{display:flex;gap:7px;flex-shrink:0;}
+.letter-container{min-height:480px;max-height:72vh;overflow-y:auto;background:#f5f4f0;}
+.letter-container::-webkit-scrollbar{width:5px;}
+.letter-container::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px;}
+.letter-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 24px;min-height:480px;background:var(–card2);text-align:center;}
+.le-title{font-size:0.95rem;font-weight:600;color:var(–dim);}
+.le-sub{font-size:0.82rem;color:var(–dim);max-width:240px;line-height:1.6;}
+.letter-out{background:#f5f4f0;padding:22px;}
+.letter-paper{background:#fff;color:#111;font-family:‘Times New Roman’,Times,serif;font-size:0.9rem;line-height:1.8;padding:48px 52px;box-shadow:0 2px 16px rgba(0,0,0,0.12);border-radius:3px;white-space:pre-wrap;word-break:break-word;}
+.preview-disc{display:flex;align-items:center;gap:6px;padding:10px 18px;font-size:0.72rem;color:var(–dim);border-top:1px solid var(–border);}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;font-family:var(–font);font-weight:600;font-size:0.84rem;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
+.btn-sm{padding:7px 13px;font-size:0.78rem;border-radius:7px;}
+.btn-lg{padding:13px 26px;font-size:0.95rem;border-radius:10px;}
+.btn-full{width:100%;justify-content:center;}
+.btn-primary{background:var(–accent);color:#03120b;box-shadow:0 0 20px rgba(34,211,165,0.2);}
+.btn-primary:hover{background:var(–accent2);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(–muted);border:1px solid var(–border2);}
+.btn-ghost:hover{color:var(–text);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04);}
+.btn-red{background:rgba(239,68,68,0.12);color:var(–red);border:1px solid rgba(239,68,68,0.25);}
+.btn-red:hover{background:rgba(239,68,68,0.2);}
+.btn-amber{background:rgba(245,158,11,0.12);color:var(–amber);border:1px solid rgba(245,158,11,0.25);}
+.btn-blue{background:rgba(79,142,247,0.12);color:var(–blue);border:1px solid rgba(79,142,247,0.25);}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* ── FORM ELEMENTS ── */
+.field-group{display:flex;flex-direction:column;gap:13px;}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.field-row3{grid-template-columns:2fr 1fr 1fr;}
+.field-label{font-size:0.76rem;font-weight:600;color:var(–muted);}
+.required{color:var(–accent);}
+.field-input,.field-select,.field-textarea{background:var(–card2);border:1px solid var(–border);border-radius:8px;padding:10px 13px;color:var(–text);font-family:var(–font);font-size:0.875rem;width:100%;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+.field-input::placeholder{color:var(–dim);}
+.field-input:focus,.field-select:focus,.field-textarea:focus{border-color:rgba(34,211,165,0.45);box-shadow:0 0 0 3px rgba(34,211,165,0.07);}
+.field-select{background-image:url(“data:image/svg+xml,%3Csvg width=‘12’ height=‘8’ viewBox=‘0 0 12 8’ fill=‘none’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cpath d=‘M1 1L6 6L11 1’ stroke=’%236b7590’ stroke-width=‘1.5’ stroke-linecap=‘round’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer;}
+.field-select option{background:var(–card2);color:var(–text);}
+.field-textarea{resize:vertical;min-height:84px;line-height:1.55;}
+.field-check{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:0.84rem;color:var(–muted);}
+.field-check input{width:15px;height:15px;accent-color:var(–accent);cursor:pointer;}
+.field-hint{font-size:0.72rem;color:var(–dim);margin-top:2px;}
+.ssn-wrap{position:relative;}
+.ssn-wrap input{padding-right:40px;letter-spacing:0.1em;font-family:var(–mono);}
+.ssn-toggle{position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(–muted);cursor:pointer;font-size:15px;padding:2px;}
+
+/* ── DISPUTE TYPE GRID ── */
+.dt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.dt-btn{background:var(–card2);border:1px solid var(–border);border-radius:10px;padding:11px 13px;color:var(–muted);font-family:var(–font);font-size:0.79rem;font-weight:500;cursor:pointer;text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:8px;line-height:1.3;}
+.dt-btn:hover{border-color:var(–border2);color:var(–text);background:rgba(255,255,255,0.03);}
+.dt-btn.active{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(–accent);}
+.dt-ico{font-size:1rem;flex-shrink:0;}
+
+/* ── BUREAU GRID ── */
+.bureau-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.bureau-opt{cursor:pointer;}
+.bureau-opt input{display:none;}
+.bureau-lbl{display:block;text-align:center;padding:10px;background:var(–card2);border:1px solid var(–border);border-radius:8px;font-size:0.82rem;font-weight:600;color:var(–muted);cursor:pointer;transition:all 0.2s;}
+.bureau-opt input:checked + .bureau-lbl{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(–accent);}
+.bureau-lbl:hover{border-color:var(–border2);color:var(–text);}
+
+/* ── AGGRESSION SLIDER ── */
+.aggression-wrap{display:flex;flex-direction:column;gap:8px;}
+.agg-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(–dim);}
+input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
+.agg-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;margin-top:4px;}
+.agg-1{background:rgba(34,211,165,0.1);color:var(–accent);}
+.agg-2{background:rgba(245,158,11,0.1);color:var(–amber);}
+.agg-3{background:rgba(239,68,68,0.12);color:var(–red);}
+
+/* ── ID UPLOAD ── */
+.id-upload-zone{border:2px dashed var(–border2);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(–card2);position:relative;}
+.id-upload-zone:hover,.id-upload-zone.dragover{border-color:rgba(34,211,165,0.5);background:rgba(34,211,165,0.04);}
+.id-upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.id-upload-ico{font-size:32px;margin-bottom:10px;}
+.id-upload-title{font-size:0.9rem;font-weight:700;margin-bottom:4px;}
+.id-upload-sub{font-size:0.78rem;color:var(–muted);}
+.id-preview{border-radius:10px;overflow:hidden;margin-top:12px;border:1px solid var(–border);}
+.id-preview img{width:100%;display:block;}
+.id-parsed{background:rgba(34,211,165,0.07);border:1px solid rgba(34,211,165,0.2);border-radius:10px;padding:13px 15px;margin-top:10px;}
+.id-parsed-title{font-size:0.72rem;font-weight:700;color:var(–accent);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;}
+.id-parsed-row{display:flex;justify-content:space-between;font-size:0.82rem;padding:3px 0;border-bottom:1px solid rgba(34,211,165,0.1);}
+.id-parsed-row:last-child{border-bottom:none;}
+.id-parsed-key{color:var(–muted);}
+.id-parsed-val{font-weight:600;font-family:var(–mono);font-size:0.78rem;}
+
+/* ── DISPUTE TRACKER ── */
+.tracker-wrap{max-width:900px;margin:0 auto;padding:28px 24px 80px;}
+.dispute-item{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:16px 18px;margin-bottom:10px;transition:border-color 0.2s;}
+.dispute-item:hover{border-color:var(–border2);}
+.di-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.di-name{font-size:0.95rem;font-weight:700;}
+.di-bureau{font-size:0.72rem;color:var(–muted);margin-top:2px;}
+.di-status-badge{font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px;text-transform:uppercase;white-space:nowrap;}
+.s-sent{background:rgba(79,142,247,0.12);color:var(–blue);border:1px solid rgba(79,142,247,0.25);}
+.s-review{background:rgba(245,158,11,0.1);color:var(–amber);border:1px solid rgba(245,158,11,0.2);}
+.s-responded{background:rgba(155,111,255,0.1);color:var(–purple);border:1px solid rgba(155,111,255,0.2);}
+.s-removed{background:rgba(34,211,165,0.1);color:var(–accent);border:1px solid rgba(34,211,165,0.2);}
+.s-verified{background:rgba(239,68,68,0.1);color:var(–red);border:1px solid rgba(239,68,68,0.2);}
+.di-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:0.78rem;color:var(–muted);margin-bottom:10px;}
+.di-deadline{color:var(–amber);font-weight:600;}
+.di-deadline.urgent{color:var(–red);}
+.di-actions{display:flex;gap:7px;flex-wrap:wrap;}
+.deadline-bar{height:4px;background:var(–card2);border-radius:2px;overflow:hidden;margin-top:8px;}
+.deadline-fill{height:100%;border-radius:2px;transition:width 0.5s ease;}
+
+/* ── SCORE TRACKER ── */
+.score-wrap{max-width:900px;margin:0 auto;padding:28px 24px 80px;}
+.score-gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px;}
+.gauge-card{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:22px;text-align:center;}
+.gauge-bureau{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);margin-bottom:14px;}
+.gauge-ring{position:relative;width:120px;height:120px;margin:0 auto 14px;}
+.gauge-ring svg{transform:rotate(-90deg);}
+.gauge-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.gauge-num{font-family:var(–mono);font-size:32px;font-weight:700;line-height:1;}
+.gauge-lbl{font-size:9px;color:var(–muted);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
+.gauge-tier{font-size:0.8rem;font-weight:700;margin-bottom:4px;}
+.gauge-range{font-size:0.72rem;color:var(–muted);}
+.score-history{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:20px;margin-bottom:16px;}
+.score-chart{width:100%;height:120px;position:relative;}
+.score-entry-form{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:20px;}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(–card);border:1px solid var(–border2);border-radius:20px;padding:28px;width:100%;max-width:500px;animation:fadeIn 0.3s ease;position:relative;max-height:90vh;overflow-y:auto;}
+.modal-title{font-size:1.15rem;font-weight:800;margin-bottom:8px;}
+.modal-sub{font-size:0.84rem;color:var(–muted);line-height:1.6;margin-bottom:20px;}
+.modal-close{position:absolute;top:18px;right:18px;background:var(–card2);border:1px solid var(–border);color:var(–text);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
+.croa-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px;margin-bottom:18px;font-size:0.82rem;color:var(–muted);line-height:1.6;}
+.croa-box strong{color:var(–amber);}
+.ssn-legal-box{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.18);border-radius:12px;padding:14px;font-size:0.78rem;color:var(–muted);line-height:1.6;margin-bottom:14px;}
+.ssn-legal-box strong{color:var(–red);}
+
+/* ── CERTIFIED MAIL ── */
+.mail-label{background:#fff;color:#111;border-radius:8px;padding:20px 24px;font-family:‘Courier New’,monospace;font-size:0.85rem;line-height:1.6;border:2px solid #ccc;position:relative;}
+.mail-label-header{font-weight:700;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;border-bottom:1px solid #ccc;padding-bottom:8px;margin-bottom:12px;color:#555;}
+.mail-label-from{margin-bottom:14px;}
+.mail-label-to{font-weight:700;font-size:1rem;}
+.mail-certified{position:absolute;top:16px;right:16px;background:#c41e3a;color:#fff;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;padding:4px 8px;border-radius:4px;}
+
+/* ── DISCLAIMER ── */
+.disc-card{display:flex;align-items:flex-start;gap:11px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.14);border-radius:12px;padding:15px 18px;}
+.disc-ico{color:var(–amber);flex-shrink:0;margin-top:2px;font-size:16px;}
+.disc-text{font-size:0.78rem;color:var(–muted);line-height:1.6;}
+.disc-text strong{color:var(–amber);}
+
+/* ── FOOTER ── */
+.footer{padding:26px 24px;border-top:1px solid var(–border);}
+.footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.footer-copy{font-size:0.78rem;color:var(–dim);}
+
+/* ── CTA SECTION ── */
+.cta-card{background:linear-gradient(135deg,#0d1f2d,#0d1a2a);border:1px solid rgba(34,211,165,0.18);border-radius:22px;padding:68px 40px;text-align:center;position:relative;overflow:hidden;}
+.cta-glow{position:absolute;width:500px;height:300px;background:rgba(34,211,165,0.05);border-radius:50%;filter:blur(80px);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-content{position:relative;z-index:1;}
+.cta-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:10px;}
+.cta-sub{color:var(–muted);font-size:0.95rem;margin-bottom:28px;}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:48px 20px;color:var(–dim);}
+.empty-state p{font-size:0.84rem;margin-top:10px;line-height:1.6;}
+
+/* ── PRINT ── */
+@media print{body *{visibility:hidden;}.letter-paper,.letter-paper *{visibility:visible;}.letter-paper{position:fixed;top:0;left:0;width:100%;font-size:12pt;box-shadow:none;padding:1in 1.2in;}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){.app-grid{grid-template-columns:1fr;}.preview-panel{position:static;}}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr;}.features-grid{grid-template-columns:1fr;}.dt-grid{grid-template-columns:1fr;}.score-gauges{grid-template-columns:1fr;}.nav-tabs{display:none;}.cta-card{padding:44px 22px;}}
+@media(max-width:480px){.hero-h1{font-size:2.4rem;}.hero-actions{flex-direction:column;align-items:stretch;}.hero-actions .btn-hero{justify-content:center;}.field-row,.field-row3{grid-template-columns:1fr;}.bureau-grid{grid-template-columns:1fr;}.letter-paper{padding:28px 20px;font-size:0.82rem;}}
+</style>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0b0f1a;
-      --bg-2: #0f1422;
-      --bg-card: #141928;
-      --bg-card-2: #1a2035;
-      --border: rgba(255,255,255,0.07);
-      --border-2: rgba(255,255,255,0.12);
-      --text: #e8ecf4;
-      --text-muted: #7a8499;
-      --text-dim: #4a5268;
-      --accent: #22d3a5;
-      --accent-2: #1ab88e;
-      --accent-glow: rgba(34, 211, 165, 0.18);
-      --blue: #4f8ef7;
-      --purple: #9b6fff;
-      --orange: #f59e4b;
-      --radius: 12px;
-      --radius-lg: 18px;
-      --font: 'Sora', sans-serif;
-      --mono: 'DM Mono', monospace;
-      --transition: 0.2s ease;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .hidden { display: none !important; }
-
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-family: var(--font);
-      font-weight: 600;
-      font-size: 0.875rem;
-      cursor: pointer;
-      border: none;
-      transition: var(--transition);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #04120c;
-      box-shadow: 0 0 24px rgba(34,211,165,0.25);
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-2);
-      transform: translateY(-1px);
-      box-shadow: 0 0 32px rgba(34,211,165,0.4);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border-2);
-    }
-
-    .btn-ghost:hover {
-      color: var(--text);
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .btn-lg {
-      padding: 14px 28px;
-      font-size: 1rem;
-      border-radius: 10px;
-    }
-
-    .btn-sm {
-      padding: 7px 14px;
-      font-size: 0.8rem;
-      border-radius: 7px;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11, 15, 26, 0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 20px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      background: var(--accent);
-      color: #04120c;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 0.03em;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .logo-mark--sm {
-      width: 28px;
-      height: 28px;
-      font-size: 0.65rem;
-      border-radius: 6px;
-    }
-
-    .logo-text {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-left: auto;
-    }
-
-    .nav-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color var(--transition);
-    }
-
-    .nav-link:hover { color: var(--text); }
-    .nav-cta { margin-left: 8px; }
-    .nav-mobile-cta { display: none; margin-left: auto; }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 100px 0 80px;
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-bg-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-    }
-
-    .hero-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      pointer-events: none;
-    }
-
-    .hero-glow-1 {
-      width: 600px;
-      height: 500px;
-      background: rgba(34, 211, 165, 0.07);
-      top: -150px;
-      left: -100px;
-    }
-
-    .hero-glow-2 {
-      width: 400px;
-      height: 400px;
-      background: rgba(79, 142, 247, 0.06);
-      bottom: 0;
-      right: -100px;
-    }
-
-    .hero-inner {
-      position: relative;
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      background: rgba(34, 211, 165, 0.08);
-      border: 1px solid rgba(34, 211, 165, 0.2);
-      border-radius: 100px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 28px;
-      letter-spacing: 0.01em;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .hero-headline {
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .headline-accent {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto 36px;
-      line-height: 1.7;
-      font-weight: 400;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .hero-trust {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .section { padding: 90px 0; }
-    .section-alt { background: var(--bg-2); }
-
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 52px;
-    }
-
-    .accent { color: var(--accent); }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .step-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      position: relative;
-      transition: border-color var(--transition), transform var(--transition);
-    }
-
-    .step-card:hover {
-      border-color: var(--border-2);
-      transform: translateY(-2px);
-    }
-
-    .step-num {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-dim);
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
-    }
-
-    .step-icon {
-      width: 52px;
-      height: 52px;
-      background: var(--accent-glow);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .step-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .step-desc {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      transition: border-color var(--transition), transform var(--transition);
-    }
-
-    .feature-card:hover {
-      border-color: var(--border-2);
-      transform: translateY(-2px);
-    }
-
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .feature-icon--teal { background: rgba(34,211,165,0.1); color: var(--accent); }
-    .feature-icon--blue { background: rgba(79,142,247,0.1); color: var(--blue); }
-    .feature-icon--purple { background: rgba(155,111,255,0.1); color: var(--purple); }
-    .feature-icon--orange { background: rgba(245,158,75,0.1); color: var(--orange); }
-
-    .feature-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-
-    .feature-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    .cta-section { padding: 60px 0; }
-
-    .cta-card {
-      position: relative;
-      background: linear-gradient(135deg, #0d1f2d 0%, #0d1a2a 100%);
-      border: 1px solid rgba(34,211,165,0.2);
-      border-radius: 24px;
-      padding: 70px 40px;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .cta-glow {
-      position: absolute;
-      width: 500px;
-      height: 300px;
-      background: rgba(34,211,165,0.06);
-      border-radius: 50%;
-      filter: blur(80px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .cta-content { position: relative; z-index: 1; }
-
-    .cta-title {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
-
-    .cta-sub {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 32px;
-    }
-
-    .disclaimer-section { padding: 28px 0; }
-
-    .disclaimer-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: rgba(245,158,75,0.06);
-      border: 1px solid rgba(245,158,75,0.15);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-    }
-
-    .disclaimer-icon {
-      color: var(--orange);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .disclaimer-text {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .disclaimer-text strong {
-      color: var(--orange);
-      font-weight: 600;
-    }
-
-    .footer {
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-name {
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-
-    .app-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11,15,26,0.95);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .app-header-inner {
-      height: 60px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .btn-back {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: var(--font);
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color var(--transition);
-      padding: 6px 0;
-    }
-
-    .btn-back:hover { color: var(--text); }
-    .app-header-spacer { flex: 1; }
-
-    .app-body {
-      padding: 28px 0 60px;
-      min-height: calc(100vh - 60px);
-    }
-
-    .app-container {
-      display: grid;
-      grid-template-columns: 480px 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .form-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .panel-header {
-      padding: 28px 28px 0;
-      margin-bottom: 24px;
-    }
-
-    .panel-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-    }
-
-    .panel-sub {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-
-    .form-section {
-      padding: 0 28px 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .form-section:last-of-type { border-bottom: none; }
-
-    .form-section-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 14px;
-    }
-
-    .dispute-type-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .dispute-type-btn {
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 14px;
-      color: var(--text-muted);
-      font-family: var(--font);
-      font-size: 0.8rem;
-      font-weight: 500;
-      cursor: pointer;
-      text-align: left;
-      transition: all var(--transition);
-      line-height: 1.4;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dispute-type-btn:hover {
-      border-color: var(--border-2);
-      color: var(--text);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .dispute-type-btn.active {
-      background: rgba(34,211,165,0.1);
-      border-color: rgba(34,211,165,0.4);
-      color: var(--accent);
-    }
-
-    .dispute-type-icon {
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .bureau-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-
-    .bureau-option { cursor: pointer; }
-    .bureau-option input { display: none; }
-
-    .bureau-label {
-      display: block;
-      text-align: center;
-      padding: 10px;
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .bureau-option input:checked + .bureau-label {
-      background: rgba(34,211,165,0.1);
-      border-color: rgba(34,211,165,0.4);
-      color: var(--accent);
-    }
-
-    .bureau-label:hover {
-      border-color: var(--border-2);
-      color: var(--text);
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .field-row--3 { grid-template-columns: 2fr 1fr 1fr; }
-
-    .field-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.01em;
-    }
-
-    .required { color: var(--accent); }
-
-    .field-input,
-    .field-textarea,
-    .field-select {
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 14px;
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 0.875rem;
-      transition: border-color var(--transition);
-      width: 100%;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    .field-input::placeholder { color: var(--text-dim); }
-
-    .field-input:focus,
-    .field-textarea:focus,
-    .field-select:focus {
-      border-color: rgba(34,211,165,0.4);
-    }
-
-    .field-textarea {
-      resize: vertical;
-      min-height: 90px;
-      line-height: 1.55;
-    }
-
-    .field-select {
-      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%237a8499' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 36px;
-      cursor: pointer;
-    }
-
-    .field-select option {
-      background: var(--bg-card-2);
-      color: var(--text);
-    }
-
-    .field-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-
-    .field-checkbox input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
-
-    .empty-dynamic {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      padding: 24px;
-      text-align: center;
-      color: var(--text-dim);
-    }
-
-    .empty-dynamic p {
-      font-size: 0.84rem;
-      line-height: 1.6;
-    }
-
-    .form-actions {
-      padding: 20px 28px;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .preview-panel {
-      position: sticky;
-      top: 88px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .preview-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 24px 24px 16px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .preview-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .letter-container {
-      min-height: 480px;
-      max-height: 72vh;
-      overflow-y: auto;
-      background: #f5f4f0;
-    }
-
-    .letter-container::-webkit-scrollbar { width: 6px; }
-
-    .letter-container::-webkit-scrollbar-thumb {
-      background: rgba(0,0,0,0.15);
-      border-radius: 3px;
-    }
-
-    .letter-empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 60px 24px;
-      color: #a0a8b8;
-      min-height: 480px;
-      background: var(--bg-card-2);
-      text-align: center;
-    }
-
-    .letter-empty-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-dim);
-    }
-
-    .letter-empty-sub {
-      font-size: 0.84rem;
-      color: var(--text-dim);
-      max-width: 260px;
-      line-height: 1.6;
-    }
-
-    .letter-output {
-      background: #f5f4f0;
-      padding: 24px;
-    }
-
-    .letter-paper {
-      background: #ffffff;
-      color: #1a1a1a;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 0.92rem;
-      line-height: 1.75;
-      padding: 48px 52px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-      border-radius: 4px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .preview-disclaimer {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      font-size: 0.74rem;
-      color: var(--text-dim);
-      border-top: 1px solid var(--border);
-    }
-
-    @media (max-width: 1024px) {
-      .app-container { grid-template-columns: 1fr; }
-      .preview-panel { position: static; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-mobile-cta { display: flex; }
-      .hero { padding: 60px 0 56px; min-height: auto; }
-      .hero-headline { font-size: 2.6rem; }
-      .hero-sub { font-size: 1rem; }
-      .hero-trust { gap: 12px; }
-      .steps-grid { grid-template-columns: 1fr; gap: 12px; }
-      .features-grid { grid-template-columns: 1fr; gap: 12px; }
-      .cta-card { padding: 48px 24px; }
-      .cta-title { font-size: 1.5rem; }
-      .section { padding: 64px 0; }
-      .section-title { margin-bottom: 32px; }
-      .dispute-type-grid { grid-template-columns: 1fr; }
-      .bureau-grid { grid-template-columns: repeat(3, 1fr); }
-      .field-row--3 { grid-template-columns: 1fr 1fr; }
-      .app-container { gap: 16px; }
-      .letter-paper { padding: 28px 24px; font-size: 0.85rem; }
-      .preview-header { flex-wrap: wrap; gap: 12px; }
-      .preview-actions { width: 100%; justify-content: flex-end; }
-      .footer-inner { flex-direction: column; text-align: center; }
-    }
-
-    @media (max-width: 420px) {
-      .hero-headline { font-size: 2.1rem; }
-      .hero-actions { flex-direction: column; align-items: stretch; }
-      .hero-actions .btn { justify-content: center; }
-      .bureau-grid { grid-template-columns: 1fr; }
-      .field-row { grid-template-columns: 1fr; }
-      .field-row--3 { grid-template-columns: 1fr; }
-      .letter-paper { padding: 20px 16px; }
-    }
-
-    @media print {
-      body * { visibility: hidden; }
-      .letter-paper, .letter-paper * { visibility: visible; }
-      .letter-paper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        font-size: 12pt;
-        box-shadow: none;
-        padding: 1in 1.2in;
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in { animation: fadeIn 0.3s ease forwards; }
-
-    .btn-copied {
-      background: rgba(34,211,165,0.15) !important;
-      color: var(--accent) !important;
-      border-color: rgba(34,211,165,0.3) !important;
-    }
-  </style>
 </head>
 <body>
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo" onclick="showPage('home')">
-        <span class="logo-mark">DK</span>
-        <span class="logo-text">DisputeKit</span>
-      </a>
-      <div class="nav-links">
-        <a href="#how-it-works" class="nav-link" onclick="showPage('home')">How It Works</a>
-        <a href="#features" class="nav-link" onclick="showPage('home')">Features</a>
-        <button class="btn btn-primary nav-cta" onclick="showPage('app')">Start Free →</button>
-      </div>
-      <button class="nav-mobile-cta btn btn-primary" onclick="showPage('app')">Start Free</button>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+<div class="toast" id="toast"></div>
+
+<!-- CROA MODAL -->
+
+<div class="modal-overlay" id="croa-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCROA()">×</button>
+    <div class="modal-title">⚖️ Required Legal Disclosure</div>
+    <div class="modal-sub">Under the Credit Repair Organizations Act (CROA), 15 U.S.C. § 1679, you have certain rights.</div>
+    <div class="croa-box">
+      <strong>Your Rights Under Federal Law:</strong><br><br>
+      You have a right to dispute inaccurate information in your credit report without the help of a credit repair organization.<br><br>
+      You may review your credit report without charge on a yearly basis. You are entitled to a free copy from AnnualCreditReport.com.<br><br>
+      You have the right to sue a credit repair organization that violates the Credit Repair Organizations Act. This law prohibits deceptive practices by credit repair organizations.<br><br>
+      <strong>Disclaimer:</strong> DisputeKit Pro provides dispute letter templates only. We are not attorneys. These letters do not constitute legal advice. Results are not guaranteed. For complex matters, consult a licensed consumer law attorney.
     </div>
-  </nav>
-
-  <div id="page-home">
-    <section class="hero">
-      <div class="hero-bg-grid"></div>
-      <div class="hero-glow hero-glow-1"></div>
-      <div class="hero-glow hero-glow-2"></div>
-      <div class="container hero-inner">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Free · No Account Needed · Instant Results
-        </div>
-        <h1 class="hero-headline">
-          Fight Credit Errors<br />
-          <span class="headline-accent">Like a Pro.</span>
-        </h1>
-        <p class="hero-sub">
-          Generate professional, bureau-ready credit dispute letters in under 3 minutes.
-          No legal fees. No confusing templates. Just clean, credible letters that get results.
-        </p>
-        <div class="hero-actions">
-          <button class="btn btn-primary btn-lg" onclick="showPage('app')">
-            Build My Dispute Letter
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <a href="#how-it-works" class="btn btn-ghost btn-lg">See How It Works</a>
-        </div>
-        <div class="hero-trust">
-          <span class="trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13 5.7L10 8.5L10.8 13L7 10.8L3.2 13L4 8.5L1 5.7L5.2 5.2L7 1Z" fill="#22d3a5"/></svg>
-            FCRA Compliant Language
-          </span>
-          <span class="trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13 5.7L10 8.5L10.8 13L7 10.8L3.2 13L4 8.5L1 5.7L5.2 5.2L7 1Z" fill="#22d3a5"/></svg>
-            All 3 Bureaus Supported
-          </span>
-          <span class="trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13 5.7L10 8.5L10.8 13L7 10.8L3.2 13L4 8.5L1 5.7L5.2 5.2L7 1Z" fill="#22d3a5"/></svg>
-            Copy, Print, or Download PDF
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="how-it-works">
-      <div class="container">
-        <div class="section-label">Simple Process</div>
-        <h2 class="section-title">Three steps to a<br /><span class="accent">ready-to-send letter</span></h2>
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num">01</div>
-            <div class="step-icon">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="6" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 11h10M9 15h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            </div>
-            <h3 class="step-title">Select Your Dispute Type</h3>
-            <p class="step-desc">Choose from 7 common dispute categories — from inaccurate info to identity theft. We guide the rest.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">02</div>
-            <div class="step-icon">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14h16M6 9h16M6 19h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            </div>
-            <h3 class="step-title">Fill In Your Details</h3>
-            <p class="step-desc">Answer a few focused questions. The form adapts to your dispute type so you only see what's relevant.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">03</div>
-            <div class="step-icon">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v12M9 11l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            </div>
-            <h3 class="step-title">Copy, Print, or Download</h3>
-            <p class="step-desc">Your letter is ready instantly. Copy it, print it, or download a PDF to mail or upload with your dispute.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="features">
-      <div class="container">
-        <div class="section-label">Why DisputeKit</div>
-        <h2 class="section-title">Everything you need.<br /><span class="accent">Nothing you don't.</span></h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon feature-icon--teal">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L13.4 7.6L19 8.4L15 12.3L15.9 18L11 15.4L6.1 18L7 12.3L3 8.4L8.6 7.6L11 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            </div>
-            <h4 class="feature-title">Professional-Grade Language</h4>
-            <p class="feature-desc">Letters use legally recognized dispute language based on FCRA guidelines — credible and direct.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon feature-icon--blue">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M8 11l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <h4 class="feature-title">7 Dispute Categories</h4>
-            <p class="feature-desc">Covers all major dispute types — late payments, collections, charge-offs, identity theft, and more.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon feature-icon--purple">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 11h8M7 7h8M7 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            </div>
-            <h4 class="feature-title">Live Letter Preview</h4>
-            <p class="feature-desc">See your letter update in real time as you type. What you see is exactly what gets generated.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon feature-icon--orange">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M6 12l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <h4 class="feature-title">Equifax, Experian & TransUnion</h4>
-            <p class="feature-desc">Automatically formats for all three major bureaus with the correct mailing addresses included.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon feature-icon--teal">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4v8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <h4 class="feature-title">Done in Under 3 Minutes</h4>
-            <p class="feature-desc">No account needed. No credit card. Just open the tool, fill it in, and walk away with a finished letter.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon feature-icon--blue">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 17l5-5 3 3 5-6 4 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <h4 class="feature-title">PDF Download Included</h4>
-            <p class="feature-desc">Download a clean, print-ready PDF instantly. Upload it directly to bureau portals or mail it in.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cta-section">
-      <div class="container">
-        <div class="cta-card">
-          <div class="cta-glow"></div>
-          <div class="cta-content">
-            <h2 class="cta-title">Ready to dispute your credit report?</h2>
-            <p class="cta-sub">Takes less than 3 minutes. Free forever. No signup required.</p>
-            <button class="btn btn-primary btn-lg" onclick="showPage('app')">
-              Start Building Your Letter
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="disclaimer-section">
-      <div class="container">
-        <div class="disclaimer-card">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="disclaimer-icon"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 8v4M9 6h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="disclaimer-text">
-            <strong>Legal Disclaimer:</strong> DisputeKit provides general letter-generation assistance and is not a substitute for legal advice.
-            The letters generated are provided as templates only. We are not attorneys and do not guarantee any specific outcome.
-            For complex credit or legal matters, consult a licensed credit attorney or consumer rights advocate.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div class="footer-brand">
-          <span class="logo-mark logo-mark--sm">DK</span>
-          <span class="footer-name">DisputeKit</span>
-        </div>
-        <p class="footer-copy">© 2025 DisputeKit. Free to use. Not legal advice.</p>
-      </div>
-    </footer>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-primary btn-full" onclick="acceptCROA()">I Understand — Continue</button>
+    </div>
   </div>
+</div>
 
-  <div id="page-app" class="hidden">
-    <div class="app-header">
-      <div class="container app-header-inner">
-        <button class="btn-back" onclick="showPage('home')">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Back
-        </button>
-        <a class="nav-logo" href="#" onclick="showPage('home')">
-          <span class="logo-mark logo-mark--sm">DK</span>
-          <span class="logo-text">DisputeKit</span>
-        </a>
-        <div class="app-header-spacer"></div>
+<!-- NAV -->
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="showPage('home')">
+      <span class="logo-mark">DK</span>
+      <span class="logo-text">DisputeKit<span class="logo-pro">PRO</span></span>
+    </a>
+    <div class="nav-tabs">
+      <button class="nav-tab active" id="nt-home" onclick="showPage('home')">Home</button>
+      <button class="nav-tab" id="nt-app" onclick="gotoApp()">Build Letter</button>
+      <button class="nav-tab" id="nt-tracker" onclick="showPage('tracker')">Dispute Tracker</button>
+      <button class="nav-tab" id="nt-scores" onclick="showPage('scores')">Score Tracker</button>
+    </div>
+    <button class="nav-cta" onclick="gotoApp()">Start Free →</button>
+  </div>
+</nav>
+
+<!-- ═══ HOME PAGE ═══ -->
+
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-badge"><span class="badge-dot"></span>FCRA Compliant · All 3 Bureaus · Instant Results</div>
+      <h1 class="hero-h1">Fight Credit Errors<br><span class="h-acc">Like a Pro.</span></h1>
+      <p class="hero-sub">Generate aggressive, bureau-ready credit dispute letters with full FCRA citations in under 3 minutes. ID upload, score tracking, and dispute management — all in one place.</p>
+      <div class="hero-actions">
+        <button class="btn-hero btn-hero-primary" onclick="gotoApp()">Build My Dispute Letter <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <button class="btn-hero btn-hero-ghost" onclick="showPage('tracker')">View Dispute Tracker</button>
+      </div>
+      <div class="trust-row">
+        <span class="trust-item"><span class="trust-check">✦</span>Aggressive FCRA Language</span>
+        <span class="trust-item"><span class="trust-check">✦</span>Driver's License Upload</span>
+        <span class="trust-item"><span class="trust-check">✦</span>Dispute Status Tracking</span>
+        <span class="trust-item"><span class="trust-check">✦</span>Score History Dashboard</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="sec-label">Simple Process</div>
+      <h2 class="sec-title">Three steps to a ready-to-send letter</h2>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">01</div><div class="step-ico">📋</div><h3 class="step-title">Select Your Dispute Type</h3><p class="step-desc">Choose from 8 dispute categories including identity theft, collections, charge-offs, and late payments. Upload your ID to auto-fill your information.</p></div>
+        <div class="step-card"><div class="step-num">02</div><div class="step-ico">🎚️</div><h3 class="step-title">Set Your Aggression Level</h3><p class="step-desc">Choose Standard, Aggressive, or Maximum Force. Maximum Force letters cite FCRA §611, §623, demand Method of Verification, and threaten CFPB action.</p></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-ico">📬</div><h3 class="step-title">Send & Track</h3><p class="step-desc">Download your letter as a PDF, generate certified mail labels, then log it in your Dispute Tracker to monitor the 30-day response deadline.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="sec-label">Full Suite</div>
+      <h2 class="sec-title">Everything in one place</h2>
+      <div class="features-grid">
+        <div class="feat-card"><div class="feat-ico fi-teal">🔥</div><h4 class="feat-title">Aggressive Letter Engine</h4><p class="feat-desc">3 aggression levels. Maximum Force cites FCRA §611, §623, §605B, demands proof of verification, and includes CFPB complaint threats.</p></div>
+        <div class="feat-card"><div class="feat-ico fi-blue">🪪</div><h4 class="feat-title">Driver's License Upload</h4><p class="feat-desc">Upload your ID photo to auto-fill your name and address. Stored locally only — never sent anywhere.</p></div>
+        <div class="feat-card"><div class="feat-ico fi-purple">📬</div><h4 class="feat-title">Dispute Tracker</h4><p class="feat-desc">Log every dispute, track status from Sent → Removed, and get deadline countdowns for each bureau's 30-day window.</p></div>
+        <div class="feat-card"><div class="feat-ico fi-amber">📊</div><h4 class="feat-title">Score Dashboard</h4><p class="feat-desc">Manually track Equifax, Experian, and TransUnion scores over time with a visual gauge and history chart.</p></div>
+        <div class="feat-card"><div class="feat-ico fi-teal">📮</div><h4 class="feat-title">Certified Mail Labels</h4><p class="feat-desc">Generate USPS-formatted certified mail address labels for each bureau — print and send.</p></div>
+        <div class="feat-card"><div class="feat-ico fi-blue">⚡</div><h4 class="feat-title">Round 2 Escalation</h4><p class="feat-desc">When bureaus respond "verified," generate an even more aggressive follow-up demanding Method of Verification under FCRA §611(a)(7).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to fight your credit report?</h2>
+          <p class="cta-sub">Takes under 3 minutes. Free. No signup required.</p>
+          <button class="btn-hero btn-hero-primary" onclick="gotoApp()">Start Building Your Letter →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:20px 24px 28px;">
+    <div class="container"><div class="disc-card"><span class="disc-ico">⚠</span><p class="disc-text"><strong>Legal Disclaimer:</strong> DisputeKit Pro generates dispute letter templates only and is not a substitute for legal advice. We are not attorneys and do not guarantee any specific outcome. For complex credit or legal matters, consult a licensed credit attorney or consumer rights advocate.</p></div></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div style="display:flex;align-items:center;gap:9px;"><span class="logo-mark" style="width:28px;height:28px;font-size:0.62rem;border-radius:6px;">DK</span><span style="font-weight:700;font-size:0.9rem;">DisputeKit Pro</span></div>
+      <p class="footer-copy">© 2025 DisputeKit Pro. Free to use. Not legal advice.</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══ APP PAGE ═══ -->
+
+<div class="page" id="page-app">
+  <div class="app-wrap">
+    <div class="app-grid">
+
+```
+  <!-- FORM PANEL -->
+  <div class="form-panel">
+    <div class="panel-hdr">
+      <h2 class="panel-title">Build Your Letter</h2>
+      <p class="panel-sub">Fill in the fields. Letter updates live on the right.</p>
+    </div>
+
+    <!-- ID UPLOAD -->
+    <div class="form-sec">
+      <div class="form-sec-lbl">🪪 Step 0 — ID Upload (Optional)</div>
+      <div class="id-upload-zone" id="id-zone" ondragover="idDragOver(event)" ondragleave="idDragLeave(event)" ondrop="idDrop(event)">
+        <input type="file" id="id-file-input" accept="image/*" onchange="handleIdUpload(this.files[0])">
+        <div class="id-upload-ico">🪪</div>
+        <div class="id-upload-title">Upload Driver's License</div>
+        <div class="id-upload-sub">Drag & drop or tap to select. Auto-fills your name & address.<br>Stored locally only — never uploaded.</div>
+      </div>
+      <div id="id-preview-wrap" class="hidden">
+        <div class="id-preview"><img id="id-preview-img" src="" alt="ID Preview"></div>
+        <div class="id-parsed" id="id-parsed-data">
+          <div class="id-parsed-title">✓ ID Detected — Tap fields to edit</div>
+          <div id="id-parsed-rows"></div>
+        </div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="clearId()">Remove ID</button>
       </div>
     </div>
 
-    <div class="app-body">
-      <div class="container app-container">
-        <div class="form-panel">
-          <div class="panel-header">
-            <h2 class="panel-title">Build Your Letter</h2>
-            <p class="panel-sub">Fill in the fields below. Your letter updates live on the right.</p>
-          </div>
-
-          <div class="form-section">
-            <div class="form-section-label">Step 1 — Dispute Type</div>
-            <div class="dispute-type-grid" id="disputeTypeGrid"></div>
-          </div>
-
-          <div class="form-section">
-            <div class="form-section-label">Step 2 — Credit Bureau</div>
-            <div class="bureau-grid">
-              <label class="bureau-option">
-                <input type="radio" name="bureau" value="Equifax" onchange="updateLetter()" />
-                <span class="bureau-label">Equifax</span>
-              </label>
-              <label class="bureau-option">
-                <input type="radio" name="bureau" value="Experian" onchange="updateLetter()" />
-                <span class="bureau-label">Experian</span>
-              </label>
-              <label class="bureau-option">
-                <input type="radio" name="bureau" value="TransUnion" onchange="updateLetter()" />
-                <span class="bureau-label">TransUnion</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-section">
-            <div class="form-section-label">Step 3 — Your Information</div>
-            <div class="field-group">
-              <div class="field">
-                <label class="field-label">Full Legal Name <span class="required">*</span></label>
-                <input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" oninput="updateLetter()" />
-              </div>
-              <div class="field">
-                <label class="field-label">Street Address <span class="required">*</span></label>
-                <input type="text" id="address" class="field-input" placeholder="123 Main St" oninput="updateLetter()" />
-              </div>
-              <div class="field-row field-row--3">
-                <div class="field">
-                  <label class="field-label">City</label>
-                  <input type="text" id="city" class="field-input" placeholder="Miami" oninput="updateLetter()" />
-                </div>
-                <div class="field">
-                  <label class="field-label">State</label>
-                  <input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="updateLetter()" />
-                </div>
-                <div class="field">
-                  <label class="field-label">ZIP</label>
-                  <input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" oninput="updateLetter()" />
-                </div>
-              </div>
-              <div class="field">
-                <label class="field-label">Date of Letter</label>
-                <input type="date" id="letterDate" class="field-input" oninput="updateLetter()" />
-              </div>
-            </div>
-          </div>
-
-          <div class="form-section" id="dynamicFieldsSection">
-            <div class="form-section-label">Step 4 — Account Details</div>
-            <div class="field-group" id="dynamicFields">
-              <div class="empty-dynamic">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4v16M8 12l8 8 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <p>Select a dispute type above to see relevant fields here.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button class="btn btn-ghost" onclick="clearForm()">
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 2.5l10 10M12.5 2.5l-10 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Clear Form
-            </button>
-          </div>
-        </div>
-
-        <div class="preview-panel">
-          <div class="preview-header">
-            <div>
-              <h2 class="panel-title">Letter Preview</h2>
-              <p class="panel-sub">Updates automatically as you type.</p>
-            </div>
-            <div class="preview-actions">
-              <button class="btn btn-sm btn-ghost" onclick="copyLetter()" id="copyBtn">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="5" y="5" width="8" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M2 10V3a1 1 0 011-1h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Copy
-              </button>
-              <button class="btn btn-sm btn-ghost" onclick="printLetter()">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="3" y="1" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M3 6h9v6H3z" stroke="currentColor" stroke-width="1.5"/><path d="M1 6h13a0 0 0 000-3H1a0 0 0 000 3z" stroke="currentColor" stroke-width="1.5"/></svg>
-                Print
-              </button>
-              <button class="btn btn-sm btn-primary" onclick="downloadPDF()">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2v8M4 7l3.5 3.5L11 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                PDF
-              </button>
-            </div>
-          </div>
-
-          <div class="letter-container" id="letterContainer">
-            <div class="letter-empty" id="letterEmpty">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M15 16h18M15 22h18M15 28h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-              <p class="letter-empty-title">Your letter will appear here</p>
-              <p class="letter-empty-sub">Start by selecting a dispute type and filling in your details.</p>
-            </div>
-            <div class="letter-output" id="letterOutput" style="display:none">
-              <div class="letter-paper" id="letterPaper"></div>
-            </div>
-          </div>
-
-          <div class="preview-disclaimer">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 5.5v3M6.5 4.5h.01" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-            This letter is a template only and does not constitute legal advice.
-          </div>
-        </div>
+    <!-- AGGRESSION -->
+    <div class="form-sec">
+      <div class="form-sec-lbl">🎚️ Step 1 — Letter Aggression Level</div>
+      <div class="aggression-wrap">
+        <input type="range" id="agg-slider" min="1" max="3" value="2" oninput="updateAggBadge();updateLetter()">
+        <div class="agg-labels"><span>Standard</span><span>Aggressive</span><span>Maximum Force</span></div>
+        <div><span class="agg-badge agg-2" id="agg-badge">⚡ Aggressive — FCRA Citations Included</span></div>
       </div>
+    </div>
+
+    <!-- DISPUTE TYPE -->
+    <div class="form-sec">
+      <div class="form-sec-lbl">Step 2 — Dispute Type</div>
+      <div class="dt-grid" id="dt-grid"></div>
+    </div>
+
+    <!-- BUREAU -->
+    <div class="form-sec">
+      <div class="form-sec-lbl">Step 3 — Credit Bureau</div>
+      <div class="bureau-grid">
+        <label class="bureau-opt"><input type="radio" name="bureau" value="Equifax" onchange="updateLetter()"><span class="bureau-lbl">Equifax</span></label>
+        <label class="bureau-opt"><input type="radio" name="bureau" value="Experian" onchange="updateLetter()"><span class="bureau-lbl">Experian</span></label>
+        <label class="bureau-opt"><input type="radio" name="bureau" value="TransUnion" onchange="updateLetter()"><span class="bureau-lbl">TransUnion</span></label>
+      </div>
+    </div>
+
+    <!-- YOUR INFO -->
+    <div class="form-sec">
+      <div class="form-sec-lbl">Step 4 — Your Information</div>
+      <div class="field-group">
+        <div class="field"><label class="field-label">Full Legal Name <span class="required">*</span></label><input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" maxlength="80" oninput="updateLetter()"></div>
+        <div class="field"><label class="field-label">Street Address <span class="required">*</span></label><input type="text" id="address" class="field-input" placeholder="123 Main St" maxlength="100" oninput="updateLetter()"></div>
+        <div class="field-row field-row3">
+          <div class="field"><label class="field-label">City</label><input type="text" id="city" class="field-input" placeholder="Miami" maxlength="60" oninput="updateLetter()"></div>
+          <div class="field"><label class="field-label">State</label><input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="updateLetter()"></div>
+          <div class="field"><label class="field-label">ZIP</label><input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" oninput="updateLetter()"></div>
+        </div>
+        <div class="field"><label class="field-label">Date of Birth</label><input type="date" id="dob" class="field-input" oninput="updateLetter()"></div>
+        <div class="field">
+          <label class="field-label">Last 4 of SSN (for identity verification only)</label>
+          <input type="text" id="ssn4" class="field-input" placeholder="••••" maxlength="4" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter()">
+          <span class="field-hint">⚠️ Only last 4 digits. Stored locally only. Never transmitted.</span>
+        </div>
+        <div class="field"><label class="field-label">Date of Letter</label><input type="date" id="letterDate" class="field-input" oninput="updateLetter()"></div>
+      </div>
+    </div>
+
+    <!-- DYNAMIC FIELDS -->
+    <div class="form-sec" id="dynamic-sec">
+      <div class="form-sec-lbl">Step 5 — Account Details</div>
+      <div id="dynamic-fields">
+        <div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above to see relevant fields.</div>
+      </div>
+    </div>
+
+    <div style="padding:18px 26px;display:flex;gap:9px;justify-content:flex-end;border-top:1px solid var(--border);">
+      <button class="btn btn-ghost" onclick="clearForm()">Clear Form</button>
+      <button class="btn btn-primary" onclick="logDispute()">📬 Log This Dispute</button>
     </div>
   </div>
 
-  <script>
-    function showPage(page) {
-      const home = document.getElementById('page-home');
-      const app = document.getElementById('page-app');
+  <!-- PREVIEW PANEL -->
+  <div class="preview-panel">
+    <div class="preview-hdr">
+      <div><h2 class="panel-title">Letter Preview</h2><p class="panel-sub">Updates live as you type.</p></div>
+      <div class="preview-actions">
+        <button class="btn btn-sm btn-ghost" onclick="copyLetter()" id="copy-btn">📋 Copy</button>
+        <button class="btn btn-sm btn-ghost" onclick="printLetter()">🖨 Print</button>
+        <button class="btn btn-sm btn-ghost" onclick="showMailLabel()">📮 Mail Label</button>
+        <button class="btn btn-sm btn-primary" onclick="downloadPDF()">⬇ PDF</button>
+      </div>
+    </div>
+    <div class="letter-container" id="letter-container">
+      <div class="letter-empty" id="letter-empty">
+        <div style="font-size:48px;">📄</div>
+        <p class="le-title">Your letter will appear here</p>
+        <p class="le-sub">Select a dispute type and enter your name to start generating your letter.</p>
+      </div>
+      <div class="letter-out" id="letter-out" style="display:none;">
+        <div class="letter-paper" id="letter-paper"></div>
+      </div>
+    </div>
+    <div class="preview-disc">ℹ This letter is a template only and does not constitute legal advice.</div>
+  </div>
+</div>
+```
 
-      if (page === 'app') {
-        home.classList.add('hidden');
-        app.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        updateLetter();
-      } else {
-        app.classList.add('hidden');
-        home.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
+  </div>
+</div>
 
-    const disputeTypes = [
-      {
-        id: 'inaccurate-info',
-        label: 'Inaccurate Personal Info',
-        icon: '🪪',
-        fields: [
-          { id: 'creditorName', label: 'Creditor / Furnisher Name', type: 'text', placeholder: 'e.g. Bank of America' },
-          { id: 'accountNumber', label: 'Account Number (last 4 digits OK)', type: 'text', placeholder: 'e.g. ****1234' },
-          { id: 'inaccurateItem', label: 'What information is inaccurate?', type: 'text', placeholder: 'e.g. Wrong address, wrong date of birth' },
-          { id: 'correctInfo', label: 'What is the correct information?', type: 'text', placeholder: 'e.g. My correct address is...' },
-          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Any other context that helps your case...' }
-        ],
-        intro: (f) => `I am writing to dispute inaccurate personal information currently appearing on my credit report. Specifically, the information associated with the account held by ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}) contains the following error: ${f.inaccurateItem || '[Describe the inaccurate item]'}. The correct information is as follows: ${f.correctInfo || '[Provide correct information]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
-        request: () => `Pursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, I respectfully request that you investigate this matter, correct the inaccurate information, and provide me with written confirmation of the correction upon completion of your investigation.`
-      },
-      {
-        id: 'late-payment',
-        label: 'Late Payment Dispute',
-        icon: '📅',
-        fields: [
-          { id: 'creditorName', label: 'Creditor Name', type: 'text', placeholder: 'e.g. Chase Bank' },
-          { id: 'accountNumber', label: 'Account Number', type: 'text', placeholder: 'e.g. ****5678' },
-          { id: 'latePaymentDate', label: 'Date of Reported Late Payment', type: 'text', placeholder: 'e.g. March 2023' },
-          {
-            id: 'disputeReason',
-            label: 'Reason for Dispute',
-            type: 'select',
-            options: [
-              'Payment was made on time',
-              'Payment was lost or misapplied by creditor',
-              'Account was in a hardship or deferment program',
-              'I never received a statement or billing notice',
-              'Other'
-            ]
-          },
-          { id: 'extraDetails', label: 'Additional Explanation (optional)', type: 'textarea', placeholder: 'Provide any supporting details...' }
-        ],
-        intro: (f) => `I am writing to dispute a late payment notation that has been inaccurately reported on my credit file by ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}). Specifically, a late payment is reported for ${f.latePaymentDate || '[Date]'}, which is inaccurate. Reason: ${f.disputeReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
-        request: () => `Under the Fair Credit Reporting Act, I request that you promptly investigate this late payment notation. If the information cannot be verified as accurate, I ask that it be deleted from my credit report immediately. Please provide written notification of the results of your investigation.`
-      },
-      {
-        id: 'collection-account',
-        label: 'Collection Account Dispute',
-        icon: '🏦',
-        fields: [
-          { id: 'collectionAgency', label: 'Collection Agency Name', type: 'text', placeholder: 'e.g. Midland Credit Management' },
-          { id: 'originalCreditor', label: 'Original Creditor (if known)', type: 'text', placeholder: 'e.g. Capital One' },
-          { id: 'accountNumber', label: 'Account / Reference Number', type: 'text', placeholder: 'e.g. ****9012' },
-          {
-            id: 'disputeReason',
-            label: 'Reason for Dispute',
-            type: 'select',
-            options: [
-              'This debt is not mine',
-              'This debt has already been paid',
-              'The amount reported is incorrect',
-              'The debt is past the statute of limitations',
-              'I was never notified about this collection',
-              'Other'
-            ]
-          },
-          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Explain your dispute further...' }
-        ],
-        intro: (f) => `I am writing to dispute a collection account appearing on my credit report from ${f.collectionAgency || '[Collection Agency]'}${f.originalCreditor ? ', originally placed by ' + f.originalCreditor : ''} (Account No. ${f.accountNumber || '[Account Number]'}). My reason for dispute is as follows: ${f.disputeReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
-        request: () => `Pursuant to the FCRA and the Fair Debt Collection Practices Act (FDCPA), I demand that you investigate this account and provide full verification of the debt. If proper verification cannot be provided, I request that this collection account be removed from my credit report entirely. Please provide written confirmation of the results.`
-      },
-      {
-        id: 'charge-off',
-        label: 'Charge-Off Dispute',
-        icon: '❌',
-        fields: [
-          { id: 'creditorName', label: 'Original Creditor Name', type: 'text', placeholder: 'e.g. Citibank' },
-          { id: 'accountNumber', label: 'Account Number', type: 'text', placeholder: 'e.g. ****3456' },
-          { id: 'chargeOffDate', label: 'Reported Charge-Off Date', type: 'text', placeholder: 'e.g. June 2021' },
-          {
-            id: 'disputeReason',
-            label: 'Reason for Dispute',
-            type: 'select',
-            options: [
-              'The charge-off date is incorrect',
-              'The balance amount is inaccurate',
-              'This account was settled / paid in full',
-              'This account does not belong to me',
-              'The account was included in bankruptcy',
-              'Other'
-            ]
-          },
-          { id: 'extraDetails', label: 'Additional Explanation (optional)', type: 'textarea', placeholder: 'Provide supporting details...' }
-        ],
-        intro: (f) => `I am disputing a charge-off account listed on my credit report. The account is reported as a charge-off by ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}), with a reported charge-off date of ${f.chargeOffDate || '[Date]'}. My reason for this dispute is: ${f.disputeReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
-        request: () => `Under the FCRA, I respectfully request that you investigate this charge-off entry. If the information cannot be verified accurately, I request its immediate deletion. If the account balance or status is inaccurate, I request that it be updated to reflect the correct information. Please provide me with the results of your investigation in writing.`
-      },
-      {
-        id: 'identity-theft',
-        label: 'Identity Theft Dispute',
-        icon: '🔒',
-        fields: [
-          { id: 'fraudCreditor', label: 'Creditor / Furnisher of Fraudulent Account', type: 'text', placeholder: 'e.g. Synchrony Bank' },
-          { id: 'accountNumber', label: 'Fraudulent Account Number', type: 'text', placeholder: 'e.g. ****7890' },
-          { id: 'hasFTCReport', label: 'I have an FTC Identity Theft Report', type: 'checkbox' },
-          { id: 'hasPoliceReport', label: 'I have a Police Report on file', type: 'checkbox' },
-          { id: 'ftcReportNum', label: 'FTC Report Number (if available)', type: 'text', placeholder: 'e.g. 123456789' },
-          { id: 'policeReportNum', label: 'Police Report Number (if available)', type: 'text', placeholder: 'e.g. 2023-00123' },
-          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Describe the fraudulent activity...' }
-        ],
-        intro: (f) => {
-          let reports = [];
-          if (f.hasFTCReport) reports.push(`an FTC Identity Theft Report${f.ftcReportNum ? ' (Report No. ' + f.ftcReportNum + ')' : ''}`);
-          if (f.hasPoliceReport) reports.push(`a Police Report${f.policeReportNum ? ' (Report No. ' + f.policeReportNum + ')' : ''}`);
-          const reportLine = reports.length > 0 ? ` I have filed ${reports.join(' and ')}.` : '';
-          return `I am a victim of identity theft and am writing to dispute a fraudulent account that has been opened in my name without my knowledge or consent. The fraudulent account is reported by ${f.fraudCreditor || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}).${reportLine}${f.extraDetails ? '\n\n' + f.extraDetails : ''}`;
-        },
-        request: () => `Pursuant to FCRA Section 605B (15 U.S.C. § 1681c-2), I request that this fraudulent account be blocked from my credit report. I also request that you notify the furnisher of this information that the account is the result of identity theft. Please provide written confirmation of the block and any actions taken.`
-      },
-      {
-        id: 'mixed-file',
-        label: 'Mixed File / Wrong Account',
-        icon: '🔀',
-        fields: [
-          { id: 'mixedName', label: "Other Person's Name (if known)", type: 'text', placeholder: 'e.g. John B. Smith' },
-          { id: 'accountNumber', label: 'Account Number Being Disputed', type: 'text', placeholder: 'e.g. ****2345' },
-          { id: 'creditorName', label: 'Creditor / Furnisher Name', type: 'text', placeholder: 'e.g. Wells Fargo' },
-          {
-            id: 'mixedReason',
-            label: 'How did this appear on your report?',
-            type: 'select',
-            options: [
-              'Similar name to another person',
-              'Same address as a previous resident',
-              'Possible Social Security Number mix-up',
-              "Deceased person's account mixed with mine",
-              'Other'
-            ]
-          },
-          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Describe the mix-up in more detail...' }
-        ],
-        intro: (f) => `I am writing to report a mixed credit file issue. My credit report contains an account that does not belong to me. The account is reported under ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'})${f.mixedName ? ', which appears to belong to another individual by the name of ' + f.mixedName : ''}. The likely cause of this mix-up is: ${f.mixedReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
-        request: () => `Under the FCRA, I request an immediate investigation into this matter. This account should not appear on my credit report as it does not belong to me. I request that this account be removed from my file promptly and that my credit report be corrected to accurately reflect only my own credit history. Please provide written confirmation once the correction has been made.`
-      },
-      {
-        id: 'general-verification',
-        label: 'General Verification Request',
-        icon: '🔍',
-        fields: [
-          { id: 'creditorName', label: 'Creditor / Furnisher Name', type: 'text', placeholder: 'e.g. Discover Financial' },
-          { id: 'accountNumber', label: 'Account Number', type: 'text', placeholder: 'e.g. ****6789' },
-          { id: 'itemDisputed', label: 'What item are you disputing?', type: 'text', placeholder: 'e.g. Balance amount, account status, payment history' },
-          { id: 'extraDetails', label: 'Explanation (optional)', type: 'textarea', placeholder: 'Provide any supporting explanation...' }
-        ],
-        intro: (f) => `I am writing to formally request verification of an account appearing on my credit report. The account is listed under ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}). I am disputing the following item: ${f.itemDisputed || '[Item Disputed]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
-        request: () => `Pursuant to the Fair Credit Reporting Act, I request that you conduct a thorough investigation of this account and provide full verification of all reported information. If any information cannot be verified with certainty, I request that it be removed or corrected on my credit report. Please send me written confirmation of your findings and any changes made.`
-      }
-    ];
+<!-- ═══ TRACKER PAGE ═══ -->
 
-    let selectedDisputeType = null;
+<div class="page" id="page-tracker">
+  <div class="tracker-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
+      <div><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;">Dispute Tracker</h1><p style="font-size:0.84rem;color:var(--muted);margin-top:3px;">Monitor every dispute from sent to resolved.</p></div>
+      <button class="btn btn-primary" onclick="showPage('app')">+ New Dispute</button>
+    </div>
 
-    const bureauAddresses = {
-      Equifax: 'Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256',
-      Experian: 'Experian\nP.O. Box 4500\nAllen, TX 75013',
-      TransUnion: 'TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016'
-    };
+```
+<!-- Summary stats -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;" id="tracker-stats"></div>
 
-    window.addEventListener('DOMContentLoaded', () => {
-      buildDisputeTypeButtons();
-      setDefaultDate();
-    });
+<!-- Dispute list -->
+<div id="disputes-list">
+  <div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click "Log This Dispute" to start tracking.</p></div>
+</div>
+```
 
-    function buildDisputeTypeButtons() {
-      const grid = document.getElementById('disputeTypeGrid');
-      grid.innerHTML = '';
+  </div>
+</div>
 
-      disputeTypes.forEach(dt => {
-        const btn = document.createElement('button');
-        btn.className = 'dispute-type-btn';
-        btn.setAttribute('data-id', dt.id);
-        btn.innerHTML = `<span class="dispute-type-icon">${dt.icon}</span>${dt.label}`;
-        btn.addEventListener('click', () => selectDisputeType(dt.id));
-        grid.appendChild(btn);
-      });
-    }
+<!-- ═══ SCORE TRACKER ═══ -->
 
-    function setDefaultDate() {
-      const dateInput = document.getElementById('letterDate');
-      if (dateInput) {
-        dateInput.value = new Date().toISOString().split('T')[0];
-      }
-    }
+<div class="page" id="page-scores">
+  <div class="score-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
+      <div><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;">Score Tracker</h1><p style="font-size:0.84rem;color:var(--muted);margin-top:3px;">Track all 3 bureau scores over time.</p></div>
+    </div>
 
-    function selectDisputeType(id) {
-      selectedDisputeType = id;
-      document.querySelectorAll('.dispute-type-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-id') === id);
-      });
-      renderDynamicFields(id);
-      updateLetter();
-    }
+```
+<!-- Gauges -->
+<div class="score-gauges" id="score-gauges"></div>
 
-    function renderDynamicFields(id) {
-      const dt = disputeTypes.find(d => d.id === id);
-      const container = document.getElementById('dynamicFields');
-      if (!dt) return;
+<!-- History -->
+<div class="score-history">
+  <div class="card-title">Score History</div>
+  <canvas id="score-canvas" style="width:100%;height:120px;display:block;"></canvas>
+  <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;" id="score-legend"></div>
+</div>
 
-      container.innerHTML = '';
-      container.className = 'field-group fade-in';
+<!-- Log new score -->
+<div class="score-entry-form">
+  <div class="card-title">Log New Scores</div>
+  <div class="field-row" style="margin-bottom:12px;">
+    <div class="field"><label class="field-label">Date</label><input type="date" id="score-date" class="field-input"></div>
+    <div class="field"><label class="field-label">Equifax</label><input type="number" id="score-eq" class="field-input" placeholder="720" min="300" max="850" inputmode="numeric"></div>
+  </div>
+  <div class="field-row" style="margin-bottom:14px;">
+    <div class="field"><label class="field-label">Experian</label><input type="number" id="score-ex" class="field-input" placeholder="715" min="300" max="850" inputmode="numeric"></div>
+    <div class="field"><label class="field-label">TransUnion</label><input type="number" id="score-tu" class="field-input" placeholder="710" min="300" max="850" inputmode="numeric"></div>
+  </div>
+  <button class="btn btn-primary btn-full" onclick="logScores()">✓ Save Scores</button>
+</div>
 
-      dt.fields.forEach(field => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'field';
+<div style="margin-top:16px;" class="disc-card">
+  <span class="disc-ico">ℹ</span>
+  <p class="disc-text">Enter your scores manually from <strong style="color:var(--text);">AnnualCreditReport.com</strong> (free yearly report) or from your bank/card app. Get all 3 bureau scores free at <strong style="color:var(--text);">AnnualCreditReport.com</strong>. To pull live scores automatically, a bureau data agreement is required — not currently available.</p>
+</div>
+```
 
-        if (field.type === 'checkbox') {
-          wrapper.innerHTML = `
-            <label class="field-checkbox">
-              <input type="checkbox" id="${field.id}" onchange="updateLetter()" />
-              ${field.label}
-            </label>`;
-        } else if (field.type === 'textarea') {
-          wrapper.innerHTML = `
-            <label class="field-label">${field.label}</label>
-            <textarea id="${field.id}" class="field-textarea" placeholder="${field.placeholder || ''}" oninput="updateLetter()"></textarea>`;
-        } else if (field.type === 'select') {
-          const options = field.options.map(o => `<option value="${o}">${o}</option>`).join('');
-          wrapper.innerHTML = `
-            <label class="field-label">${field.label}</label>
-            <select id="${field.id}" class="field-select" onchange="updateLetter()">
-              <option value="">— Select a reason —</option>
-              ${options}
-            </select>`;
-        } else {
-          wrapper.innerHTML = `
-            <label class="field-label">${field.label}</label>
-            <input type="text" id="${field.id}" class="field-input" placeholder="${field.placeholder || ''}" oninput="updateLetter()" />`;
-        }
+  </div>
+</div>
 
-        container.appendChild(wrapper);
-      });
-    }
+<!-- MAIL LABEL MODAL -->
 
-    function getFieldValues() {
-      const val = (id) => {
-        const el = document.getElementById(id);
-        if (!el) return '';
-        if (el.type === 'checkbox') return el.checked;
-        return el.value ? el.value.trim() : '';
-      };
+<div class="modal-overlay" id="mail-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('mail-modal').classList.remove('show')">×</button>
+    <div class="modal-title">📮 Certified Mail Label</div>
+    <div class="modal-sub">Print this label and attach to your certified mail envelope. Send via USPS Certified Mail with Return Receipt for legal proof of delivery.</div>
+    <div id="mail-label-content"></div>
+    <div style="display:flex;gap:9px;margin-top:16px;">
+      <button class="btn btn-primary btn-full" onclick="printMailLabel()">🖨 Print Label</button>
+    </div>
+  </div>
+</div>
 
-      const base = {
-        fullName: val('fullName'),
-        address: val('address'),
-        city: val('city'),
-        state: val('state'),
-        zip: val('zip'),
-        letterDate: val('letterDate')
-      };
+<script>
+// ── SECURITY ──
+function escHtml(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');}
+function sanitizeStr(s,maxLen){return String(s||'').replace(/[<>]/g,'').slice(0,maxLen||500);}
 
-      const bureauEl = document.querySelector('input[name="bureau"]:checked');
-      base.bureau = bureauEl ? bureauEl.value : '';
+// ── STATE ──
+let selDispute=null;
+let disputes=JSON.parse(localStorage.getItem('dk_disputes')||'[]');
+let scoreHistory=JSON.parse(localStorage.getItem('dk_scores')||'[]');
+let croaAccepted=localStorage.getItem('dk_croa')==='1';
 
-      if (selectedDisputeType) {
-        const dt = disputeTypes.find(d => d.id === selectedDisputeType);
-        if (dt) {
-          dt.fields.forEach(f => {
-            base[f.id] = val(f.id);
-          });
-        }
-      }
+// ── TOAST ──
+function toast(msg,err=false){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' err':'');setTimeout(()=>t.classList.remove('show'),2800);}
 
-      return base;
-    }
+// ── CROA ──
+function gotoApp(){if(!croaAccepted){document.getElementById('croa-modal').classList.add('show');}else{showPage('app');}}
+function closeCROA(){document.getElementById('croa-modal').classList.remove('show');}
+function acceptCROA(){croaAccepted=true;localStorage.setItem('dk_croa','1');closeCROA();showPage('app');}
 
-    function formatDate(dateStr) {
-      if (!dateStr) return '[Date]';
-      const d = new Date(dateStr + 'T00:00:00');
-      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    }
+// ── PAGE NAV ──
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const nt=document.getElementById('nt-'+name);if(nt)nt.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='tracker')renderTracker();
+  if(name==='scores')renderScores();
+}
 
-    function generateLetter(fields, dt) {
-      const senderAddr = [
-        fields.fullName || '[Your Full Name]',
-        fields.address || '[Your Address]',
-        [fields.city || '[City]', fields.state || '[State]', fields.zip || '[ZIP]'].filter(Boolean).join(', ')
-      ].join('\n');
+// ── DISPUTE TYPES ──
+const BUREAU_ADDR={
+  Equifax:'Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256',
+  Experian:'Experian\nP.O. Box 4500\nAllen, TX 75013',
+  TransUnion:'TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016'
+};
 
-      const bureauAddr = fields.bureau
-        ? (bureauAddresses[fields.bureau] || `[${fields.bureau} Address]`)
-        : '[Select a Credit Bureau]';
+const DISPUTE_TYPES=[
+  {id:'inaccurate',label:'Inaccurate Info',icon:'🪪',
+   fields:[
+     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Bank of America'},
+     {id:'accountNumber',label:'Account Number (last 4 ok)',type:'text',ph:'****1234'},
+     {id:'inaccurateItem',label:'What information is inaccurate?',type:'text',ph:'Wrong address, wrong DOB'},
+     {id:'correctInfo',label:'What is the correct information?',type:'text',ph:'Correct address is...'},
+     {id:'extra',label:'Additional Details (optional)',type:'textarea',ph:'Any supporting context...'}
+   ]},
+  {id:'late-payment',label:'Late Payment',icon:'📅',
+   fields:[
+     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Chase Bank'},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****5678'},
+     {id:'lateDate',label:'Date of Reported Late Payment',type:'text',ph:'March 2023'},
+     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Payment was made on time','Payment was lost or misapplied','Account was in a deferment or hardship program','Never received a statement or billing notice','Other']},
+     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...'}
+   ]},
+  {id:'collection',label:'Collection Account',icon:'🏦',
+   fields:[
+     {id:'collectionAgency',label:'Collection Agency Name',type:'text',ph:'Midland Credit Management'},
+     {id:'originalCreditor',label:'Original Creditor (if known)',type:'text',ph:'Capital One'},
+     {id:'accountNumber',label:'Account / Reference Number',type:'text',ph:'****9012'},
+     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['This debt is not mine','This debt has already been paid','The amount reported is incorrect','The debt is past the statute of limitations','I was never notified about this collection','Other']},
+     {id:'extra',label:'Additional Details',type:'textarea',ph:'Explain your dispute...'}
+   ]},
+  {id:'charge-off',label:'Charge-Off',icon:'❌',
+   fields:[
+     {id:'creditorName',label:'Original Creditor Name',type:'text',ph:'Citibank'},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****3456'},
+     {id:'chargeOffDate',label:'Reported Charge-Off Date',type:'text',ph:'June 2021'},
+     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Charge-off date is incorrect','Balance amount is inaccurate','Account was settled/paid in full','This account does not belong to me','Account was included in bankruptcy','Other']},
+     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...'}
+   ]},
+  {id:'identity-theft',label:'Identity Theft',icon:'🔒',
+   fields:[
+     {id:'fraudCreditor',label:'Creditor of Fraudulent Account',type:'text',ph:'Synchrony Bank'},
+     {id:'accountNumber',label:'Fraudulent Account Number',type:'text',ph:'****7890'},
+     {id:'hasFTC',label:'I have an FTC Identity Theft Report',type:'checkbox'},
+     {id:'hasPD',label:'I have a Police Report on file',type:'checkbox'},
+     {id:'ftcNum',label:'FTC Report Number (if available)',type:'text',ph:'123456789'},
+     {id:'pdNum',label:'Police Report Number (if available)',type:'text',ph:'2023-00123'},
+     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the fraudulent activity...'}
+   ]},
+  {id:'mixed-file',label:'Mixed File',icon:'🔀',
+   fields:[
+     {id:'mixedName',label:"Other Person's Name (if known)",type:'text',ph:'John B. Smith'},
+     {id:'accountNumber',label:'Account Number Being Disputed',type:'text',ph:'****2345'},
+     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Wells Fargo'},
+     {id:'mixedReason',label:'How did this appear?',type:'select',opts:['Similar name to another person','Same address as a previous resident','Possible Social Security Number mix-up',"Deceased person's account mixed with mine",'Other']},
+     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the mix-up...'}
+   ]},
+  {id:'goodwill',label:'Goodwill Removal',icon:'🤝',
+   fields:[
+     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Bank of America'},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****4567'},
+     {id:'lateDate',label:'Date(s) of Late Payment(s)',type:'text',ph:'January–March 2022'},
+     {id:'paymentHistory',label:'Overall Payment History',type:'select',opts:['Excellent — this was an isolated incident','Good — only a few late payments over many years','Paid in full since then','Long-standing customer']},
+     {id:'hardshipReason',label:'Reason for Hardship (optional)',type:'text',ph:'Job loss, medical emergency, etc.'},
+     {id:'extra',label:'Additional Context',type:'textarea',ph:'Why you deserve goodwill removal...'}
+   ]},
+  {id:'verification',label:'Method of Verification',icon:'🔍',
+   fields:[
+     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Discover Financial'},
+     {id:'accountNumber',label:'Account Number',type:'text',ph:'****6789'},
+     {id:'itemDisputed',label:'What item are you disputing?',type:'text',ph:'Balance, account status, payment history'},
+     {id:'previousDispute',label:'Previous Dispute Date (if Round 2)',type:'text',ph:'e.g. January 15, 2025'},
+     {id:'extra',label:'Explanation',type:'textarea',ph:'Supporting explanation...'}
+   ]}
+];
 
-      const date = formatDate(fields.letterDate);
-      const subjectLine = `Re: Formal Credit Report Dispute — ${dt.label}`;
-      const intro = dt.intro(fields);
-      const request = dt.request(fields);
+// ── INIT ──
+window.addEventListener('DOMContentLoaded',()=>{
+  buildDTButtons();
+  setDefaultDate();
+  updateAggBadge();
+});
 
-      return `${senderAddr}
+function buildDTButtons(){
+  const g=document.getElementById('dt-grid');g.innerHTML='';
+  DISPUTE_TYPES.forEach(dt=>{
+    const b=document.createElement('button');
+    b.className='dt-btn';b.setAttribute('data-id',dt.id);
+    b.innerHTML=`<span class="dt-ico">${dt.icon}</span>${dt.label}`;
+    b.addEventListener('click',()=>selectDT(dt.id));
+    g.appendChild(b);
+  });
+}
 
-${date}
+function setDefaultDate(){
+  const d=document.getElementById('letterDate');if(d)d.value=new Date().toISOString().slice(0,10);
+  const sd=document.getElementById('score-date');if(sd)sd.value=new Date().toISOString().slice(0,10);
+}
 
-${bureauAddr}
+function selectDT(id){
+  selDispute=id;
+  document.querySelectorAll('.dt-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-id')===id));
+  renderDynFields(id);
+  updateLetter();
+}
 
-${subjectLine}
+function renderDynFields(id){
+  const dt=DISPUTE_TYPES.find(d=>d.id===id);
+  const c=document.getElementById('dynamic-fields');
+  if(!dt){c.innerHTML='<div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above.</div>';return;}
+  c.innerHTML='';
+  const fg=document.createElement('div');fg.className='field-group';
+  dt.fields.forEach(f=>{
+    const w=document.createElement('div');w.className='field';
+    if(f.type==='checkbox'){
+      w.innerHTML=`<label class="field-check"><input type="checkbox" id="${escHtml(f.id)}" onchange="updateLetter()"> ${escHtml(f.label)}</label>`;
+    }else if(f.type==='textarea'){
+      w.innerHTML=`<label class="field-label">${escHtml(f.label)}</label><textarea id="${escHtml(f.id)}" class="field-textarea" placeholder="${escHtml(f.ph||'')}" maxlength="1000" oninput="updateLetter()"></textarea>`;
 
-To Whom It May Concern:
+```
+}else if(f.type==='select'){
+  const opts=f.opts.map(o=>`<option value="${escHtml(o)}">${escHtml(o)}</option>`).join('');
+  w.innerHTML=`<label class="field-label">${escHtml(f.label)}</label><select id="${escHtml(f.id)}" class="field-select" onchange="updateLetter()"><option value="">— Select —</option>${opts}</select>`;
+}else{
+  w.innerHTML=`<label class="field-label">${escHtml(f.label)}</label><input type="text" id="${escHtml(f.id)}" class="field-input" placeholder="${escHtml(f.ph||'')}" maxlength="200" oninput="updateLetter()">`;
+}
+fg.appendChild(w);
+```
 
-${intro}
+});
+c.appendChild(fg);
+}
 
-${request}
+// ── FIELD VALUES ──
+function getVal(id){const e=document.getElementById(id);if(!e)return ‘’;if(e.type===‘checkbox’)return e.checked;return sanitizeStr(e.value.trim(),500);}
+function getFields(){
+const f={fullName:getVal(‘fullName’),address:getVal(‘address’),city:getVal(‘city’),state:getVal(‘state’),zip:getVal(‘zip’),dob:getVal(‘dob’),ssn4:getVal(‘ssn4’),letterDate:getVal(‘letterDate’),bureau:’’};
+const b=document.querySelector(‘input[name=“bureau”]:checked’);if(b)f.bureau=b.value;
+if(selDispute){const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);if(dt)dt.fields.forEach(fld=>f[fld.id]=getVal(fld.id));}
+return f;
+}
 
-I am requesting this investigation be completed within the 30-day period required by the Fair Credit Reporting Act. Please send written confirmation of the results of your investigation, including a free copy of my updated credit report if any changes are made, to the address listed above.
+function formatDate(s){if(!s)return ‘[Date]’;const d=new Date(s+‘T00:00:00’);return d.toLocaleDateString(‘en-US’,{year:‘numeric’,month:‘long’,day:‘numeric’});}
 
-I appreciate your prompt attention to this matter.
+// ── AGGRESSION LEVEL ──
+function updateAggBadge(){
+const v=parseInt(document.getElementById(‘agg-slider’).value);
+const badge=document.getElementById(‘agg-badge’);
+if(v===1){badge.className=‘agg-badge agg-1’;badge.textContent=‘✅ Standard — Polite & Professional’;}
+else if(v===2){badge.className=‘agg-badge agg-2’;badge.textContent=‘⚡ Aggressive — FCRA Citations Included’;}
+else{badge.className=‘agg-badge agg-3’;badge.textContent=‘🔥 Maximum Force — CFPB Threat + MOV Demand’;}
+}
 
-Sincerely,
+// ── LETTER GENERATION ──
+function generateLetter(f,dt){
+const agg=parseInt(document.getElementById(‘agg-slider’).value);
+const sender=[f.fullName||’[Your Full Name]’,f.address||’[Your Address]’,[f.city||’[City]’,f.state||’[State]’,f.zip||’[ZIP]’].filter(Boolean).join(’, ‘)].join(’\n’);
+const bureauAddr=f.bureau?(BUREAU_ADDR[f.bureau]||`[${f.bureau} Address]`):’[Select a Bureau Above]’;
+const date=formatDate(f.letterDate);
+const ssnLine=f.ssn4?`\nLast 4 of SSN: ***-**-${f.ssn4}`:’’;
+const dobLine=f.dob?`\nDate of Birth: ${formatDate(f.dob)}`:’’;
 
-${fields.fullName || '[Your Signature]'}
-${senderAddr}
-`;
-    }
+// Build dispute body
+let body=’’,closing=’’;
+const cn=f.creditorName||f.collectionAgency||f.fraudCreditor||’[Creditor]’;
+const an=f.accountNumber||’[Account Number]’;
 
-    function escapeHtml(str) {
-      return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
+if(dt.id===‘inaccurate’){
+body=`I am writing to formally dispute inaccurate personal information appearing on my credit report. The account reported by ${cn} (Account No. ${an}) contains the following error:\n\nInaccurate Item: ${f.inaccurateItem||'[Describe error]'}\nCorrect Information: ${f.correctInfo||'[Correct info]'}`;
+if(f.extra)body+=`\n\nAdditional Details: ${f.extra}`;
+}else if(dt.id===‘late-payment’){
+body=`I am writing to dispute a late payment notation reported on my credit file by ${cn} (Account No. ${an}) for the period of ${f.lateDate||'[Date]'}.\n\nReason for Dispute: ${f.disputeReason||'[Reason]'}`;
+if(f.extra)body+=`\n\n${f.extra}`;
+}else if(dt.id===‘collection’){
+body=`I am writing to dispute a collection account appearing on my credit report from ${cn}${f.originalCreditor?', originally placed by '+f.originalCreditor:''} (Account No. ${an}).\n\nReason for Dispute: ${f.disputeReason||'[Reason]'}`;
+if(f.extra)body+=`\n\n${f.extra}`;
+}else if(dt.id===‘charge-off’){
+body=`I am disputing a charge-off listed on my credit report by ${cn} (Account No. ${an}), with a reported charge-off date of ${f.chargeOffDate||'[Date]'}.\n\nReason for Dispute: ${f.disputeReason||'[Reason]'}`;
+if(f.extra)body+=`\n\n${f.extra}`;
+}else if(dt.id===‘identity-theft’){
+let reports=[];
+if(f.hasFTC)reports.push(`an FTC Identity Theft Report${f.ftcNum?' (No. '+f.ftcNum+')':''}`);
+if(f.hasPD)reports.push(`a Police Report${f.pdNum?' (No. '+f.pdNum+')':''}`);
+body=`I am a victim of identity theft and am writing to dispute a fraudulent account opened in my name without my knowledge or consent.\n\nFraudulent Account: ${cn} (Account No. ${an})${reports.length?'\n\nDocumentation filed: '+reports.join(' and '):''}`;
+if(f.extra)body+=`\n\n${f.extra}`;
+}else if(dt.id===‘mixed-file’){
+body=`I am reporting a mixed credit file. My report contains an account that does not belong to me: ${cn} (Account No. ${an})${f.mixedName?', which appears to belong to '+f.mixedName:''}.\n\nProbable Cause: ${f.mixedReason||'[Reason]'}`;
+if(f.extra)body+=`\n\n${f.extra}`;
+}else if(dt.id===‘goodwill’){
+body=`I am writing to respectfully request goodwill removal of a late payment notation on my account with ${cn} (Account No. ${an}) for the period of ${f.lateDate||'[Date]'}.\n\nMy payment history has been: ${f.paymentHistory||'[History]'}${f.hardshipReason?'\n\nCircumstances: '+f.hardshipReason:''}`;
+if(f.extra)body+=`\n\n${f.extra}`;
+}else if(dt.id===‘verification’){
+body=`I am writing to formally request full verification of an account reported by ${cn} (Account No. ${an}).\n\nItem Disputed: ${f.itemDisputed||'[Item]'}${f.previousDispute?'\n\nNote: This follows a prior dispute submitted on '+f.previousDispute+', to which you responded "verified" without providing adequate proof.':''}`;
+if(f.extra)body+=`\n\n${f.extra}`;
+}
 
-    function updateLetter() {
-      const fields = getFieldValues();
-      const letterEmpty = document.getElementById('letterEmpty');
-      const letterOutput = document.getElementById('letterOutput');
-      const letterPaper = document.getElementById('letterPaper');
+// Closing by aggression
+if(agg===1){
+closing=`Pursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, I respectfully request that you investigate this matter and correct or remove any inaccurate information within the required 30-day period.\n\nPlease provide me with written confirmation of the results of your investigation and a free updated copy of my credit report if any changes are made.`;
+}else if(agg===2){
+closing=`Pursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, you are legally required to investigate this dispute within 30 days of receipt. Failure to conduct a reasonable investigation and correct inaccurate information is a violation of the FCRA.\n\nI am also invoking my rights under FCRA § 1681s-2(b), which requires the furnisher of this information to conduct their own reasonable investigation upon notification by the credit reporting agency.\n\nIf this information cannot be verified with documentary evidence, it MUST be deleted immediately. I expect written notification of your findings, including a free copy of my updated credit report.\n\nBe advised: I am aware of my right to seek damages under FCRA § 1681n (willful noncompliance) and § 1681o (negligent noncompliance) for failure to follow proper dispute procedures.`;
+}else{
+closing=`LEGAL NOTICE — RESPONSE REQUIRED WITHIN 30 DAYS\n\nPursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, you are LEGALLY REQUIRED to complete your investigation within 30 days of receipt of this letter (or 45 days if I submit additional information). This is not a request — it is your federal obligation.\n\nFURTHER DEMANDS:\n\n1. FCRA § 1681i(a)(6)(B) — You must provide me with written notice of the results of your investigation.\n\n2. FCRA § 1681i(a)(7) — If you determine the information is accurate, you must provide me with the business name, address, and telephone number of any furnisher contacted, AND the specific method used to verify the information (Method of Verification). I am specifically invoking this right and expect full compliance.\n\n3. FCRA § 1681s-2(b) — The data furnisher has an independent legal duty to investigate upon your notification. I expect you to fulfill your obligations to notify them.\n\n4. FCRA § 623(b) — The furnisher must conduct a reasonable investigation. A rubber-stamp "verified" response without documentary evidence is a violation.\n\nIF YOU FAIL TO COMPLY:\n\nBe advised that willful and negligent noncompliance with the FCRA exposes your organization to civil liability under 15 U.S.C. § 1681n and § 1681o, including actual damages, statutory damages up to $1,000 per violation, punitive damages, and attorney's fees.\n\nI also reserve the right to file a formal complaint with the Consumer Financial Protection Bureau (CFPB) at ConsumerFinance.gov, the Federal Trade Commission (FTC), and my State Attorney General's office if this matter is not resolved promptly.\n\nThis letter is being sent via USPS Certified Mail with Return Receipt Requested. The tracking number and delivery confirmation will be retained as legal proof of delivery.\n\nI demand written confirmation of receipt of this dispute and the results of your investigation within the required timeframe.`;
+}
 
-      if (!selectedDisputeType || !fields.fullName) {
-        letterEmpty.style.display = 'flex';
-        letterOutput.style.display = 'none';
-        return;
-      }
+const idLine=dt.id===‘identity-theft’?`\n\nFCRA § 605B (15 U.S.C. § 1681c-2) requires you to block fraudulent information from appearing on my credit report within 4 business days of receiving this notice.\n`:’’;
 
-      const dt = disputeTypes.find(d => d.id === selectedDisputeType);
-      if (!dt) return;
+return `${sender}${ssnLine}${dobLine}\n\n${date}\n\n${bureauAddr}\n\nRe: Formal Credit Report Dispute — ${dt.label}\n${'─'.repeat(50)}\n\nTo Whom It May Concern:\n\n${body}\n${idLine}\n${closing}\n\nSincerely,\n\n\n${f.fullName||'[Your Full Name]'}\n${sender}`;
+}
 
-      const letterText = generateLetter(fields, dt);
-      letterEmpty.style.display = 'none';
-      letterOutput.style.display = 'block';
-      letterPaper.innerHTML = escapeHtml(letterText).replace(/\n/g, '<br />');
-    }
+function updateLetter(){
+const f=getFields();
+const empty=document.getElementById(‘letter-empty’);
+const out=document.getElementById(‘letter-out’);
+const paper=document.getElementById(‘letter-paper’);
+if(!selDispute||!f.fullName){empty.style.display=‘flex’;out.style.display=‘none’;return;}
+const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);if(!dt)return;
+const text=generateLetter(f,dt);
+empty.style.display=‘none’;out.style.display=‘block’;
+paper.innerHTML=escHtml(text).replace(/\n/g,’<br>’);
+}
 
-    async function copyLetter() {
-      const fields = getFieldValues();
-      if (!selectedDisputeType || !fields.fullName) {
-        alert('Please select a dispute type and enter your name first.');
-        return;
-      }
+// ── ACTIONS ──
+async function copyLetter(){
+const f=getFields();
+if(!selDispute||!f.fullName){toast(‘⚠️ Select a dispute type and enter your name first.’,true);return;}
+const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
+const text=generateLetter(f,dt);
+try{await navigator.clipboard.writeText(text);const b=document.getElementById(‘copy-btn’);const orig=b.innerHTML;b.innerHTML=‘✓ Copied!’;setTimeout(()=>b.innerHTML=orig,2000);toast(‘✓ Letter copied to clipboard!’);}
+catch(e){toast(‘Copy failed — try the PDF button instead.’,true);}
+}
 
-      const dt = disputeTypes.find(d => d.id === selectedDisputeType);
-      const text = generateLetter(fields, dt);
+function printLetter(){
+if(!selDispute||!getVal(‘fullName’)){toast(‘⚠️ Complete the form first.’,true);return;}
+window.print();
+}
 
-      try {
-        await navigator.clipboard.writeText(text);
-        const copyBtn = document.getElementById('copyBtn');
-        const original = copyBtn.innerHTML;
-        copyBtn.classList.add('btn-copied');
-        copyBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 8l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!`;
-        setTimeout(() => {
-          copyBtn.classList.remove('btn-copied');
-          copyBtn.innerHTML = original;
-        }, 2000);
-      } catch (err) {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.cssText = 'position:fixed;opacity:0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        alert('Letter copied to clipboard!');
-      }
-    }
+function downloadPDF(){
+const f=getFields();
+if(!selDispute||!f.fullName){toast(‘⚠️ Complete the form before downloading.’,true);return;}
+const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
+const text=generateLetter(f,dt);
+try{
+const{jsPDF}=window.jspdf;
+const doc=new jsPDF({orientation:‘portrait’,unit:‘pt’,format:‘letter’});
+const ml=72,mt=72,pw=doc.internal.pageSize.getWidth(),ph=doc.internal.pageSize.getHeight(),mw=pw-ml*2;
+doc.setFont(‘Times’,‘normal’);doc.setFontSize(11);doc.setTextColor(30,30,30);
+const lines=doc.splitTextToSize(text,mw);const lh=16;let y=mt;
+lines.forEach(line=>{if(y>ph-mt){doc.addPage();y=mt;}doc.text(line,ml,y);y+=lh;});
+const safe=(f.fullName||‘letter’).replace(/\s+/g,’_’).toLowerCase();
+doc.save(`DisputeKit_${dt.id}_${safe}.pdf`);
+toast(‘📥 PDF downloaded!’);
+}catch(e){toast(‘PDF failed — try Copy or Print.’,true);}
+}
 
-    function printLetter() {
-      const fields = getFieldValues();
-      if (!selectedDisputeType || !fields.fullName) {
-        alert('Please complete the form before printing.');
-        return;
-      }
-      window.print();
-    }
+function logDispute(){
+const f=getFields();
+if(!selDispute||!f.fullName){toast(‘⚠️ Select a dispute type and enter your name first.’,true);return;}
+const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
+const agg=parseInt(document.getElementById(‘agg-slider’).value);
+const aggLabels=[’’,‘Standard’,‘Aggressive’,‘Maximum Force’];
+const now=new Date();
+const deadline=new Date(now);deadline.setDate(now.getDate()+30);
+const d={
+id:Date.now(),
+creditor:sanitizeStr(f.creditorName||f.collectionAgency||f.fraudCreditor||‘Unknown’,100),
+accountNumber:sanitizeStr(f.accountNumber||’’,20),
+type:dt.label,bureau:f.bureau||‘All Bureaus’,
+aggression:aggLabels[agg],
+status:‘sent’,
+sentDate:now.toISOString().slice(0,10),
+deadline:deadline.toISOString().slice(0,10),
+notes:’’
+};
+disputes.unshift(d);
+localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));
+toast(‘📬 Dispute logged! Check your Tracker.’);
+}
 
-    function downloadPDF() {
-      const fields = getFieldValues();
-      if (!selectedDisputeType || !fields.fullName) {
-        alert('Please select a dispute type and enter your name before downloading.');
-        return;
-      }
+function updateDisputeStatus(id,status){
+const d=disputes.find(x=>x.id===id);if(!d)return;
+d.status=status;
+localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));
+renderTracker();toast(’✓ Status updated to: ’+status);
+}
 
-      const dt = disputeTypes.find(d => d.id === selectedDisputeType);
-      const text = generateLetter(fields, dt);
+function deleteDispute(id){
+if(!confirm(‘Delete this dispute record?’))return;
+disputes=disputes.filter(x=>x.id!==id);
+localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));
+renderTracker();toast(‘Dispute deleted.’);
+}
 
-      try {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
+// ── TRACKER RENDER ──
+function renderTracker(){
+const stats=document.getElementById(‘tracker-stats’);
+const list=document.getElementById(‘disputes-list’);
+const statusMap={sent:‘Sent’,review:‘In Review’,responded:‘Responded’,removed:‘Removed ✓’,verified:‘Bureau Verified’};
+const statusClass={sent:‘s-sent’,review:‘s-review’,responded:‘s-responded’,removed:‘s-removed’,verified:‘s-verified’};
+const counts={sent:0,review:0,responded:0,removed:0,verified:0};
+disputes.forEach(d=>{if(counts[d.status]!==undefined)counts[d.status]++;});
+stats.innerHTML=[
+{label:‘Total’,val:disputes.length,cls:’’},
+{label:‘Active’,val:disputes.filter(d=>[‘sent’,‘review’,‘responded’].includes(d.status)).length,cls:‘vb’},
+{label:‘Removed’,val:counts.removed,cls:‘vg’},
+{label:‘Verified’,val:counts.verified,cls:‘vr’},
+].map(s=>`<div class="card card-sm"><div class="card-title">${s.label}</div><div style="font-family:var(--mono);font-size:28px;font-weight:700;${s.cls==='vb'?'color:var(--blue)':s.cls==='vg'?'color:var(--accent)':s.cls==='vr'?'color:var(--red)':''}">${s.val}</div></div>`).join(’’);
 
-        const marginLeft = 72;
-        const marginTop = 72;
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const maxWidth = pageWidth - marginLeft * 2;
+if(!disputes.length){list.innerHTML=’<div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click “Log This Dispute” to start tracking.</p></div>’;return;}
 
-        doc.setFont('Times', 'normal');
-        doc.setFontSize(11);
-        doc.setTextColor(30, 30, 30);
+list.innerHTML=disputes.map(d=>{
+const sentMs=new Date(d.sentDate).getTime();
+const deadMs=new Date(d.deadline).getTime();
+const nowMs=Date.now();
+const daysLeft=Math.ceil((deadMs-nowMs)/(1000*60*60*24));
+const pct=Math.max(0,Math.min(100,((nowMs-sentMs)/(deadMs-sentMs))*100));
+const urgent=daysLeft<=5&&daysLeft>0&&[‘sent’,‘review’].includes(d.status);
+const barColor=d.status===‘removed’?‘var(–accent)’:d.status===‘verified’?‘var(–red)’:pct>80?‘var(–red)’:pct>60?‘var(–amber)’:‘var(–blue)’;
+return `<div class="dispute-item"> <div class="di-top"> <div> <div class="di-name">${escHtml(d.creditor)}${d.accountNumber?' — ****'+escHtml(d.accountNumber.slice(-4)):''}</div> <div class="di-bureau">${escHtml(d.type)} · ${escHtml(d.bureau)} · ${escHtml(d.aggression)}</div> </div> <span class="di-status-badge ${statusClass[d.status]||'s-sent'}">${statusMap[d.status]||d.status}</span> </div> <div class="di-meta"> <span>📅 Sent: ${d.sentDate}</span> <span class="di-deadline${urgent?' urgent':''}">⏰ Deadline: ${d.deadline}${daysLeft>0?' ('+daysLeft+'d left)':' (PAST DUE)'}</span> </div> <div class="deadline-bar"><div class="deadline-fill" style="width:${pct}%;background:${barColor};"></div></div> <div class="di-actions" style="margin-top:12px;"> <select class="field-select" style="max-width:160px;padding:6px 30px 6px 10px;font-size:0.78rem;" onchange="updateDisputeStatus(${d.id},this.value)"> <option value="sent"${d.status==='sent'?' selected':''}>Sent</option> <option value="review"${d.status==='review'?' selected':''}>In Review</option> <option value="responded"${d.status==='responded'?' selected':''}>Responded</option> <option value="removed"${d.status==='removed'?' selected':''}>Removed ✓</option> <option value="verified"${d.status==='verified'?' selected':''}>Bureau Verified</option> </select> <button class="btn btn-sm btn-amber" onclick="generateRound2(${d.id})">⚡ Round 2 Letter</button> <button class="btn btn-sm btn-red" onclick="deleteDispute(${d.id})">✕ Delete</button> </div> </div>`;
+}).join(’’);
+}
 
-        const lines = doc.splitTextToSize(text, maxWidth);
-        const lineHeight = 16;
-        let y = marginTop;
+function generateRound2(id){
+const d=disputes.find(x=>x.id===id);if(!d)return;
+// Prefill the app form with MOV request
+selectDT(‘verification’);
+document.getElementById(‘fullName’).value=getVal(‘fullName’)||’’;
+setTimeout(()=>{
+const cn=document.getElementById(‘creditorName’);if(cn)cn.value=d.creditor;
+const pd=document.getElementById(‘previousDispute’);if(pd)pd.value=d.sentDate;
+const item=document.getElementById(‘itemDisputed’);if(item)item.value=d.type+’ — Bureau responded Verified. Demanding Method of Verification.’;
+document.getElementById(‘agg-slider’).value=3;
+updateAggBadge();updateLetter();
+},100);
+showPage(‘app’);
+toast(‘⚡ Round 2 letter loaded — set to Maximum Force.’);
+}
 
-        lines.forEach(line => {
-          if (y > pageHeight - marginTop) {
-            doc.addPage();
-            y = marginTop;
-          }
-          doc.text(line, marginLeft, y);
-          y += lineHeight;
-        });
+// ── MAIL LABEL ──
+function showMailLabel(){
+const f=getFields();
+if(!f.bureau){toast(‘⚠️ Select a bureau first.’,true);return;}
+const bureauFull={Equifax:‘Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256’,Experian:‘Experian\nP.O. Box 4500\nAllen, TX 75013’,TransUnion:‘TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016’};
+const toAddr=bureauFull[f.bureau]||f.bureau;
+const fromAddr=[f.fullName||’[Your Name]’,f.address||’[Your Address]’,[f.city,f.state,f.zip].filter(Boolean).join(’, ‘)].filter(Boolean).join(’\n’);
+document.getElementById(‘mail-label-content’).innerHTML=` <div class="mail-label"> <div class="mail-certified">CERTIFIED MAIL</div> <div class="mail-label-header">Return Address (From):</div> <div class="mail-label-from">${escHtml(fromAddr).replace(/\n/g,'<br>')}</div> <div class="mail-label-header">Send To:</div> <div class="mail-label-to">${escHtml(toAddr).replace(/\n/g,'<br>')}</div> </div> <p style="font-size:0.78rem;color:var(--muted);margin-top:12px;line-height:1.6;">💡 <strong>Tip:</strong> Send via USPS Certified Mail with Return Receipt Requested. Keep your tracking number and green card as legal proof of delivery. The 30-day dispute window starts when the bureau receives it.</p>`;
+document.getElementById(‘mail-modal’).classList.add(‘show’);
+}
 
-        const safeName = (fields.fullName || 'letter').replace(/\s+/g, '_').toLowerCase();
-        doc.save(`disputekit_${dt.id}_${safeName}.pdf`);
-      } catch (err) {
-        console.error('PDF generation failed:', err);
-        alert('PDF generation failed. Please try Copy or Print instead.');
-      }
-    }
+function printMailLabel(){
+const content=document.getElementById(‘mail-label-content’).innerHTML;
+const w=window.open(’’,’_blank’);
+w.document.write(`<html><body style="font-family:Courier New,monospace;padding:40px;">${content}<script>window.onload=()=>{window.print();window.close();}<\/script></body></html>`);
+w.document.close();
+}
 
-    function clearForm() {
-      if (!confirm('Clear the form and start over?')) return;
+// ── ID UPLOAD ──
+function idDragOver(e){e.preventDefault();document.getElementById(‘id-zone’).classList.add(‘dragover’);}
+function idDragLeave(e){document.getElementById(‘id-zone’).classList.remove(‘dragover’);}
+function idDrop(e){e.preventDefault();idDragLeave(e);const f=e.dataTransfer.files[0];if(f&&f.type.startsWith(‘image/’))handleIdUpload(f);}
 
-      document.querySelectorAll('.field-input, .field-textarea, .field-select').forEach(el => {
-        el.value = '';
-      });
+function handleIdUpload(file){
+if(!file||!file.type.startsWith(‘image/’)){toast(‘⚠️ Please upload an image file.’,true);return;}
+if(file.size>10*1024*1024){toast(‘⚠️ File too large. Max 10MB.’,true);return;}
+const reader=new FileReader();
+reader.onload=e=>{
+const src=e.target.result;
+document.getElementById(‘id-preview-img’).src=src;
+document.getElementById(‘id-preview-wrap’).classList.remove(‘hidden’);
+document.getElementById(‘id-zone’).style.display=‘none’;
+// Simulate parsing — in production use OCR API
+// For now we just show a prompt to fill manually
+document.getElementById(‘id-parsed-rows’).innerHTML=` <div class="id-parsed-row"><span class="id-parsed-key">Status</span><span class="id-parsed-val" style="color:var(--accent);">✓ ID Uploaded</span></div> <div class="id-parsed-row"><span class="id-parsed-key">Note</span><span class="id-parsed-val" style="font-family:var(--font);font-size:0.78rem;color:var(--muted);">Manually confirm your name & address match your ID</span></div>`;
+toast(‘✓ ID uploaded. Confirm your info matches in Step 4.’);
+};
+reader.readAsDataURL(file);
+}
 
-      document.querySelectorAll('.field-checkbox input').forEach(el => {
-        el.checked = false;
-      });
+function clearId(){
+document.getElementById(‘id-preview-wrap’).classList.add(‘hidden’);
+document.getElementById(‘id-zone’).style.display=’’;
+document.getElementById(‘id-file-input’).value=’’;
+document.getElementById(‘id-preview-img’).src=’’;
+toast(‘ID removed.’);
+}
 
-      document.querySelectorAll('input[name="bureau"]').forEach(el => {
-        el.checked = false;
-      });
+// ── SCORE TRACKER ──
+function logScores(){
+const date=document.getElementById(‘score-date’).value;
+const eq=parseInt(document.getElementById(‘score-eq’).value)||0;
+const ex=parseInt(document.getElementById(‘score-ex’).value)||0;
+const tu=parseInt(document.getElementById(‘score-tu’).value)||0;
+if(!date){toast(‘⚠️ Select a date.’,true);return;}
+if(!eq&&!ex&&!tu){toast(‘⚠️ Enter at least one score.’,true);return;}
+const validate=s=>s===0||((s>=300)&&(s<=850));
+if(!validate(eq)||!validate(ex)||!validate(tu)){toast(‘⚠️ Scores must be between 300 and 850.’,true);return;}
+scoreHistory.push({date,eq:eq||null,ex:ex||null,tu:tu||null});
+scoreHistory.sort((a,b)=>a.date.localeCompare(b.date));
+localStorage.setItem(‘dk_scores’,JSON.stringify(scoreHistory));
+[‘score-eq’,‘score-ex’,‘score-tu’].forEach(id=>{const e=document.getElementById(id);if(e)e.value=’’;});
+renderScores();toast(‘✓ Scores saved!’);
+}
 
-      selectedDisputeType = null;
+function scoreTier(s){
+if(!s)return{label:‘No Data’,color:‘var(–dim)’};
+if(s>=800)return{label:‘Exceptional’,color:’#22c55e’};
+if(s>=740)return{label:‘Very Good’,color:‘var(–accent)’};
+if(s>=670)return{label:‘Good’,color:var_(’–blue’)};
+if(s>=580)return{label:‘Fair’,color:‘var(–amber)’};
+return{label:‘Poor’,color:‘var(–red)’};
+}
+function var_(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
 
-      document.querySelectorAll('.dispute-type-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
+function renderScores(){
+const latest={eq:null,ex:null,tu:null};
+scoreHistory.forEach(e=>{if(e.eq)latest.eq=e.eq;if(e.ex)latest.ex=e.ex;if(e.tu)latest.tu=e.tu;});
+const bureaus=[{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}];
+document.getElementById(‘score-gauges’).innerHTML=bureaus.map(b=>{
+const score=latest[b.key];
+const pct=score?((score-300)/550)*100:0;
+const tier=scoreTier(score);
+const r=54;const circ=2*Math.PI*r;const dash=circ*(pct/100);
+return `<div class="gauge-card"> <div class="gauge-bureau">${b.label}</div> <div class="gauge-ring"> <svg width="120" height="120" viewBox="0 0 120 120"> <circle cx="60" cy="60" r="${r}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10"/> <circle cx="60" cy="60" r="${r}" fill="none" stroke="${score?b.color:'rgba(255,255,255,0.05)'}" stroke-width="10" stroke-dasharray="${dash} ${circ}" stroke-linecap="round" style="transition:stroke-dasharray 0.8s ease;"/> </svg> <div class="gauge-center"> <div class="gauge-num" style="color:${score?b.color:'var(--dim)'}">${score||'—'}</div> <div class="gauge-lbl">score</div> </div> </div> <div class="gauge-tier" style="color:${tier.color}">${tier.label}</div> <div class="gauge-range">Range: 300–850</div> </div>`;
+}).join(’’);
+renderScoreChart(bureaus);
+}
 
-      document.getElementById('dynamicFields').innerHTML = `
-        <div class="empty-dynamic">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4v16M8 12l8 8 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <p>Select a dispute type above to see relevant fields here.</p>
-        </div>
-      `;
+function renderScoreChart(bureaus){
+const canvas=document.getElementById(‘score-canvas’);if(!canvas)return;
+const ctx=canvas.getContext(‘2d’);
+const W=canvas.offsetWidth||800;const H=120;canvas.width=W;canvas.height=H;
+ctx.clearRect(0,0,W,H);
+if(scoreHistory.length<2){ctx.fillStyle=‘rgba(255,255,255,0.1)’;ctx.font=‘12px Syne’;ctx.textAlign=‘center’;ctx.fillText(‘Log at least 2 score entries to see chart’,W/2,H/2);return;}
+const pad={l:10,r:10,t:10,b:10};const cW=W-pad.l-pad.r;const cH=H-pad.t-pad.b;
+const allScores=scoreHistory.flatMap(e=>[e.eq,e.ex,e.tu].filter(Boolean));
+const minS=Math.min(…allScores)-20;const maxS=Math.max(…allScores)+20;
+const toX=i=>pad.l+(i/(scoreHistory.length-1))*cW;
+const toY=v=>pad.t+(1-(v-minS)/(maxS-minS))*cH;
+bureaus.forEach(b=>{
+const pts=scoreHistory.map((e,i)=>e[b.key]?{x:toX(i),y:toY(e[b.key])}:null).filter(Boolean);
+if(pts.length<2)return;
+ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+pts.forEach(p=>ctx.lineTo(p.x,p.y));
+ctx.strokeStyle=b.color;ctx.lineWidth=2;ctx.stroke();
+pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fillStyle=b.color;ctx.fill();});
+});
+const legend=document.getElementById(‘score-legend’);
+if(legend)legend.innerHTML=bureaus.map(b=>`<span style="display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted);"><span style="width:12px;height:3px;background:${b.color};border-radius:2px;display:inline-block;"></span>${b.label}</span>`).join(’’);
+}
 
-      setDefaultDate();
-      document.getElementById('letterEmpty').style.display = 'flex';
-      document.getElementById('letterOutput').style.display = 'none';
-    }
-  </script>
+function clearForm(){
+if(!confirm(‘Clear the form and start over?’))return;
+document.querySelectorAll(’.field-input,.field-textarea,.field-select’).forEach(e=>e.value=’’);
+document.querySelectorAll(’.field-check input’).forEach(e=>e.checked=false);
+document.querySelectorAll(‘input[name=“bureau”]’).forEach(e=>e.checked=false);
+selDispute=null;
+document.querySelectorAll(’.dt-btn’).forEach(b=>b.classList.remove(‘active’));
+document.getElementById(‘dynamic-fields’).innerHTML=’<div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above.</div>’;
+document.getElementById(‘agg-slider’).value=2;updateAggBadge();
+setDefaultDate();
+document.getElementById(‘letter-empty’).style.display=‘flex’;
+document.getElementById(‘letter-out’).style.display=‘none’;
+}
+
+window.addEventListener(‘resize’,()=>{if(scoreHistory.length)renderScoreChart([{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}]);});
+</script>
+
 </body>
 </html>
