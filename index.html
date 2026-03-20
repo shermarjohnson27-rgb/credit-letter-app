@@ -22,8 +22,6 @@ html{scroll-behavior:smooth;}
 body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .hidden{display:none!important;}
 img{max-width:100%;}
-
-/* ── BACKGROUND ── */
 .bg-layer{position:fixed;inset:0;pointer-events:none;z-index:0;
 background:radial-gradient(ellipse 80% 50% at 10% -10%,rgba(34,211,165,0.07) 0%,transparent 55%),
 radial-gradient(ellipse 60% 40% at 90% 110%,rgba(79,142,247,0.06) 0%,transparent 55%),
@@ -31,291 +29,361 @@ linear-gradient(170deg,#08090f 0%,#0a0d18 100%);}
 .bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
 background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
 background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,black 20%,transparent 100%);}
-
-/* ── TOAST ── */
-.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(–card2);border:1px solid var(–accent);color:var(–text);font-size:12px;font-weight:600;padding:10px 20px;border-radius:20px;z-index:9999;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(--card2);border:1px solid var(--accent);color:var(--text);font-size:12px;font-weight:600;padding:10px 20px;border-radius:20px;z-index:9999;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
 .toast.show{transform:translateX(-50%) translateY(0);}
-.toast.err{border-color:var(–red);}
-.toast.warn{border-color:var(–amber);}
-
-/* ── VALIDATION ── */
-.field-input.invalid,.field-select.invalid,.field-textarea.invalid{border-color:var(–red)!important;box-shadow:0 0 0 3px rgba(239,68,68,0.12)!important;}
-.field-error{font-size:0.71rem;color:var(–red);margin-top:3px;display:none;font-weight:500;}
+.toast.err{border-color:var(--red);}
+.toast.warn{border-color:var(--amber);}
+.field-input.invalid,.field-select.invalid,.field-textarea.invalid{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(239,68,68,0.12)!important;}
+.field-error{font-size:0.71rem;color:var(--red);margin-top:3px;display:none;font-weight:500;}
 .field-error.show{display:block;}
-.validation-banner{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 16px;font-size:0.82rem;color:var(–red);line-height:1.6;margin-bottom:16px;display:none;}
+.validation-banner{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 16px;font-size:0.82rem;color:var(--red);line-height:1.6;margin-bottom:16px;display:none;}
 .validation-banner.show{display:block;}
-.required-star{color:var(–accent);font-weight:700;}
-.form-progress{height:3px;background:var(–card2);border-radius:0;overflow:hidden;}
-.form-progress-fill{height:100%;background:linear-gradient(90deg,var(–accent),var(–blue));border-radius:0;transition:width 0.4s ease;}
-
-/* ── NAV ── */
-.nav{position:sticky;top:0;z-index:200;background:rgba(8,9,15,0.94);backdrop-filter:blur(18px);border-bottom:1px solid var(–border);}
+.required-star{color:var(--accent);font-weight:700;}
+.form-progress{height:3px;background:var(--card2);border-radius:0;overflow:hidden;}
+.form-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:0;transition:width 0.4s ease;}
+.nav{position:sticky;top:0;z-index:200;background:rgba(8,9,15,0.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
 .nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:24px;}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;cursor:pointer;background:none;border:none;}
-.logo-mark{width:34px;height:34px;background:var(–accent);color:#03120b;font-weight:800;font-size:0.72rem;letter-spacing:0.04em;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.logo-text{font-weight:700;font-size:1rem;color:var(–text);}
-.logo-pro{font-size:0.62rem;font-weight:700;background:linear-gradient(135deg,var(–accent),var(–blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-left:4px;letter-spacing:0.08em;}
+.logo-mark{width:34px;height:34px;background:var(--accent);color:#03120b;font-weight:800;font-size:0.72rem;letter-spacing:0.04em;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-text{font-weight:700;font-size:1rem;color:var(--text);}
+.logo-pro{font-size:0.62rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-left:4px;letter-spacing:0.08em;}
 .nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto;}
-.nav-tab{background:none;border:none;color:var(–muted);font-family:var(–font);font-size:0.83rem;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
-.nav-tab:hover{color:var(–text);background:rgba(255,255,255,0.04);}
-.nav-tab.active{color:var(–accent);background:var(–accent-glow);}
-.nav-cta{background:var(–accent);color:#03120b;font-family:var(–font);font-size:0.83rem;font-weight:700;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;margin-left:8px;transition:all 0.2s;}
-.nav-cta:hover{background:var(–accent2);transform:translateY(-1px);}
-
-/* ── PAGES ── */
+.nav-tab{background:none;border:none;color:var(--muted);font-family:var(--font);font-size:0.83rem;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.nav-tab:hover{color:var(--text);background:rgba(255,255,255,0.04);}
+.nav-tab.active{color:var(--accent);background:var(--accent-glow);}
+.nav-cta{background:var(--accent);color:#03120b;font-family:var(--font);font-size:0.83rem;font-weight:700;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;margin-left:8px;transition:all 0.2s;}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px);}
 .page{display:none;position:relative;z-index:1;animation:fadeIn 0.3s ease;}
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-
-/* ── HERO ── */
 .hero{padding:90px 24px 80px;min-height:88vh;display:flex;align-items:center;position:relative;}
 .hero-inner{max-width:800px;margin:0 auto;text-align:center;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:100px;font-size:0.76rem;font-weight:600;color:var(–accent);margin-bottom:28px;}
-.badge-dot{width:6px;height:6px;background:var(–accent);border-radius:50%;animation:pulse 2s infinite;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:100px;font-size:0.76rem;font-weight:600;color:var(--accent);margin-bottom:28px;}
+.badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
 .hero-h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:1.06;letter-spacing:-0.04em;margin-bottom:20px;}
-.h-acc{background:linear-gradient(135deg,var(–accent) 0%,var(–blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero-sub{font-size:1.05rem;color:var(–muted);max-width:580px;margin:0 auto 36px;line-height:1.75;}
+.h-acc{background:linear-gradient(135deg,var(--accent) 0%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:580px;margin:0 auto 36px;line-height:1.75;}
 .hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
-.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-family:var(–font);font-size:0.95rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;}
-.btn-hero-primary{background:var(–accent);color:#03120b;box-shadow:0 0 28px rgba(34,211,165,0.25);}
-.btn-hero-primary:hover{background:var(–accent2);transform:translateY(-2px);box-shadow:0 0 40px rgba(34,211,165,0.4);}
-.btn-hero-ghost{background:transparent;color:var(–muted);border:1px solid var(–border2);}
-.btn-hero-ghost:hover{color:var(–text);background:rgba(255,255,255,0.04);}
+.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-family:var(--font);font-size:0.95rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;}
+.btn-hero-primary{background:var(--accent);color:#03120b;box-shadow:0 0 28px rgba(34,211,165,0.25);}
+.btn-hero-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 0 40px rgba(34,211,165,0.4);}
+.btn-hero-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2);}
+.btn-hero-ghost:hover{color:var(--text);background:rgba(255,255,255,0.04);}
 .trust-row{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(–muted);font-weight:500;}
-.trust-check{color:var(–accent);font-size:14px;}
-
-/* ── SECTION ── */
+.trust-item{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted);font-weight:500;}
+.trust-check{color:var(--accent);font-size:14px;}
 .section{padding:88px 24px;}
-.section-alt{background:var(–bg2);}
+.section-alt{background:var(--bg2);}
 .container{max-width:1160px;margin:0 auto;}
-.sec-label{font-size:0.74rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–accent);margin-bottom:10px;}
+.sec-label{font-size:0.74rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
 .sec-title{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:48px;}
-
-/* ── CARDS ── */
-.card{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:24px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;}
 .card-sm{padding:18px;}
-.card-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–dim);margin-bottom:14px;}
-
-/* ── STEP GRID ── */
+.card-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;}
 .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.step-card{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:30px 26px;transition:border-color 0.2s,transform 0.2s;}
-.step-card:hover{border-color:var(–border2);transform:translateY(-2px);}
-.step-num{font-family:var(–mono);font-size:0.68rem;color:var(–dim);letter-spacing:0.08em;margin-bottom:14px;}
-.step-ico{width:50px;height:50px;background:var(–accent-glow);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(–accent);font-size:22px;margin-bottom:18px;}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 26px;transition:border-color 0.2s,transform 0.2s;}
+.step-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.step-num{font-family:var(--mono);font-size:0.68rem;color:var(--dim);letter-spacing:0.08em;margin-bottom:14px;}
+.step-ico{width:50px;height:50px;background:var(--accent-glow);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;margin-bottom:18px;}
 .step-title{font-size:0.95rem;font-weight:700;margin-bottom:8px;}
-.step-desc{font-size:0.84rem;color:var(–muted);line-height:1.65;}
-
-/* ── FEATURES GRID ── */
+.step-desc{font-size:0.84rem;color:var(--muted);line-height:1.65;}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.feat-card{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:26px 22px;transition:border-color 0.2s,transform 0.2s;}
-.feat-card:hover{border-color:var(–border2);transform:translateY(-2px);}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;transition:border-color 0.2s,transform 0.2s;}
+.feat-card:hover{border-color:var(--border2);transform:translateY(-2px);}
 .feat-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px;}
-.fi-teal{background:rgba(34,211,165,0.1);color:var(–accent);}
-.fi-blue{background:rgba(79,142,247,0.1);color:var(–blue);}
-.fi-purple{background:rgba(155,111,255,0.1);color:var(–purple);}
-.fi-amber{background:rgba(245,158,11,0.1);color:var(–amber);}
+.fi-teal{background:rgba(34,211,165,0.1);color:var(--accent);}
+.fi-blue{background:rgba(79,142,247,0.1);color:var(--blue);}
+.fi-purple{background:rgba(155,111,255,0.1);color:var(--purple);}
+.fi-amber{background:rgba(245,158,11,0.1);color:var(--amber);}
 .feat-title{font-size:0.9rem;font-weight:700;margin-bottom:7px;}
-.feat-desc{font-size:0.82rem;color:var(–muted);line-height:1.65;}
-
-/* ── APP LAYOUT ── */
+.feat-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;}
 .app-wrap{max-width:1160px;margin:0 auto;padding:28px 24px 80px;}
 .app-grid{display:grid;grid-template-columns:460px 1fr;gap:22px;align-items:start;}
-.form-panel{background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;}
+.form-panel{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;}
 .panel-hdr{padding:26px 26px 0;margin-bottom:22px;}
 .panel-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:3px;}
-.panel-sub{font-size:0.82rem;color:var(–muted);}
-.form-sec{padding:0 26px 22px;border-bottom:1px solid var(–border);}
+.panel-sub{font-size:0.82rem;color:var(--muted);}
+.form-sec{padding:0 26px 22px;border-bottom:1px solid var(--border);}
 .form-sec:last-of-type{border-bottom:none;}
-.form-sec-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(–dim);margin-bottom:12px;}
-.preview-panel{position:sticky;top:82px;background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;}
-.preview-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:22px 22px 16px;border-bottom:1px solid var(–border);flex-wrap:wrap;}
+.form-sec-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;}
+.preview-panel{position:sticky;top:82px;background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;}
+.preview-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:22px 22px 16px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
 .preview-actions{display:flex;gap:7px;flex-shrink:0;}
 .letter-container{min-height:480px;max-height:72vh;overflow-y:auto;background:#f5f4f0;}
 .letter-container::-webkit-scrollbar{width:5px;}
 .letter-container::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px;}
-.letter-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 24px;min-height:480px;background:var(–card2);text-align:center;}
-.le-title{font-size:0.95rem;font-weight:600;color:var(–dim);}
-.le-sub{font-size:0.82rem;color:var(–dim);max-width:240px;line-height:1.6;}
+.letter-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 24px;min-height:480px;background:var(--card2);text-align:center;}
+.le-title{font-size:0.95rem;font-weight:600;color:var(--dim);}
+.le-sub{font-size:0.82rem;color:var(--dim);max-width:240px;line-height:1.6;}
 .letter-out{background:#f5f4f0;padding:22px;}
-.letter-paper{background:#fff;color:#111;font-family:‘Times New Roman’,Times,serif;font-size:0.9rem;line-height:1.8;padding:48px 52px;box-shadow:0 2px 16px rgba(0,0,0,0.12);border-radius:3px;white-space:pre-wrap;word-break:break-word;}
-.preview-disc{display:flex;align-items:center;gap:6px;padding:10px 18px;font-size:0.72rem;color:var(–dim);border-top:1px solid var(–border);}
-.letter-complete-badge{display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:8px;font-size:0.75rem;font-weight:700;color:var(–accent);margin-top:8px;}
-
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;font-family:var(–font);font-weight:600;font-size:0.84rem;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
+.letter-paper{background:#fff;color:#111;font-family:'Times New Roman',Times,serif;font-size:0.9rem;line-height:1.8;padding:48px 52px;box-shadow:0 2px 16px rgba(0,0,0,0.12);border-radius:3px;white-space:pre-wrap;word-break:break-word;}
+.preview-disc{display:flex;align-items:center;gap:6px;padding:10px 18px;font-size:0.72rem;color:var(--dim);border-top:1px solid var(--border);}
+.letter-complete-badge{display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:8px;font-size:0.75rem;font-weight:700;color:var(--accent);margin-top:8px;}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;font-family:var(--font);font-weight:600;font-size:0.84rem;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
 .btn-sm{padding:7px 13px;font-size:0.78rem;border-radius:7px;}
 .btn-lg{padding:13px 26px;font-size:0.95rem;border-radius:10px;}
 .btn-full{width:100%;justify-content:center;}
-.btn-primary{background:var(–accent);color:#03120b;box-shadow:0 0 20px rgba(34,211,165,0.2);}
-.btn-primary:hover{background:var(–accent2);transform:translateY(-1px);}
+.btn-primary{background:var(--accent);color:#03120b;box-shadow:0 0 20px rgba(34,211,165,0.2);}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
 .btn-primary:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
-.btn-ghost{background:transparent;color:var(–muted);border:1px solid var(–border2);}
-.btn-ghost:hover{color:var(–text);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04);}
-.btn-red{background:rgba(239,68,68,0.12);color:var(–red);border:1px solid rgba(239,68,68,0.25);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2);}
+.btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04);}
+.btn-red{background:rgba(239,68,68,0.12);color:var(--red);border:1px solid rgba(239,68,68,0.25);}
 .btn-red:hover{background:rgba(239,68,68,0.2);}
-.btn-amber{background:rgba(245,158,11,0.12);color:var(–amber);border:1px solid rgba(245,158,11,0.25);}
-.btn-blue{background:rgba(79,142,247,0.12);color:var(–blue);border:1px solid rgba(79,142,247,0.25);}
+.btn-amber{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.25);}
+.btn-blue{background:rgba(79,142,247,0.12);color:var(--blue);border:1px solid rgba(79,142,247,0.25);}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;}
 .btn-pulse{animation:btnPulse 2s ease-in-out infinite;}
 @keyframes btnPulse{0%,100%{box-shadow:0 0 20px rgba(34,211,165,0.2);}50%{box-shadow:0 0 35px rgba(34,211,165,0.5);}}
-
-/* ── FORM ELEMENTS ── */
 .field-group{display:flex;flex-direction:column;gap:13px;}
 .field{display:flex;flex-direction:column;gap:5px;}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .field-row3{grid-template-columns:2fr 1fr 1fr;}
-.field-label{font-size:0.76rem;font-weight:600;color:var(–muted);}
-.required{color:var(–accent);}
-.field-input,.field-select,.field-textarea{background:var(–card2);border:1px solid var(–border);border-radius:8px;padding:10px 13px;color:var(–text);font-family:var(–font);font-size:0.875rem;width:100%;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;}
-.field-input::placeholder{color:var(–dim);}
+.field-label{font-size:0.76rem;font-weight:600;color:var(--muted);}
+.required{color:var(--accent);}
+.field-input,.field-select,.field-textarea{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--text);font-family:var(--font);font-size:0.875rem;width:100%;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;}
+.field-input::placeholder{color:var(--dim);}
 .field-input:focus,.field-select:focus,.field-textarea:focus{border-color:rgba(34,211,165,0.45);box-shadow:0 0 0 3px rgba(34,211,165,0.07);}
-.field-select{background-image:url(“data:image/svg+xml,%3Csvg width=‘12’ height=‘8’ viewBox=‘0 0 12 8’ fill=‘none’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cpath d=‘M1 1L6 6L11 1’ stroke=’%236b7590’ stroke-width=‘1.5’ stroke-linecap=‘round’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer;}
-.field-select option{background:var(–card2);color:var(–text);}
+.field-select{background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%236b7590' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer;}
+.field-select option{background:var(--card2);color:var(--text);}
 .field-textarea{resize:vertical;min-height:84px;line-height:1.55;}
-.field-check{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:0.84rem;color:var(–muted);}
-.field-check input{width:15px;height:15px;accent-color:var(–accent);cursor:pointer;}
-.field-hint{font-size:0.72rem;color:var(–dim);margin-top:2px;}
-
-/* ── DISPUTE TYPE GRID ── */
+.field-check{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:0.84rem;color:var(--muted);}
+.field-check input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer;}
+.field-hint{font-size:0.72rem;color:var(--dim);margin-top:2px;}
 .dt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-.dt-btn{background:var(–card2);border:1px solid var(–border);border-radius:10px;padding:11px 13px;color:var(–muted);font-family:var(–font);font-size:0.79rem;font-weight:500;cursor:pointer;text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:8px;line-height:1.3;}
-.dt-btn:hover{border-color:var(–border2);color:var(–text);background:rgba(255,255,255,0.03);}
-.dt-btn.active{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(–accent);}
+.dt-btn{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:11px 13px;color:var(--muted);font-family:var(--font);font-size:0.79rem;font-weight:500;cursor:pointer;text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:8px;line-height:1.3;}
+.dt-btn:hover{border-color:var(--border2);color:var(--text);background:rgba(255,255,255,0.03);}
+.dt-btn.active{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(--accent);}
 .dt-ico{font-size:1rem;flex-shrink:0;}
-
-/* ── BUREAU GRID ── */
 .bureau-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
 .bureau-opt{cursor:pointer;}
 .bureau-opt input{display:none;}
-.bureau-lbl{display:block;text-align:center;padding:10px;background:var(–card2);border:1px solid var(–border);border-radius:8px;font-size:0.82rem;font-weight:600;color:var(–muted);cursor:pointer;transition:all 0.2s;}
-.bureau-opt input:checked + .bureau-lbl{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(–accent);}
-.bureau-lbl:hover{border-color:var(–border2);color:var(–text);}
-.bureau-required-hint{font-size:0.71rem;color:var(–red);margin-top:4px;display:none;}
+.bureau-lbl{display:block;text-align:center;padding:10px;background:var(--card2);border:1px solid var(--border);border-radius:8px;font-size:0.82rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+.bureau-opt input:checked + .bureau-lbl{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(--accent);}
+.bureau-lbl:hover{border-color:var(--border2);color:var(--text);}
+.bureau-required-hint{font-size:0.71rem;color:var(--red);margin-top:4px;display:none;}
 .bureau-required-hint.show{display:block;}
-
-/* ── AGGRESSION SLIDER ── */
 .aggression-wrap{display:flex;flex-direction:column;gap:8px;}
-.agg-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(–dim);}
-input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
+.agg-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--dim);}
+input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
 .agg-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;margin-top:4px;}
-.agg-1{background:rgba(34,211,165,0.1);color:var(–accent);}
-.agg-2{background:rgba(245,158,11,0.1);color:var(–amber);}
-.agg-3{background:rgba(239,68,68,0.12);color:var(–red);}
-
-/* ── ID UPLOAD ── */
-.id-upload-zone{border:2px dashed var(–border2);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(–card2);position:relative;}
+.agg-1{background:rgba(34,211,165,0.1);color:var(--accent);}
+.agg-2{background:rgba(245,158,11,0.1);color:var(--amber);}
+.agg-3{background:rgba(239,68,68,0.12);color:var(--red);}
+.id-upload-zone{border:2px dashed var(--border2);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--card2);position:relative;}
 .id-upload-zone:hover,.id-upload-zone.dragover{border-color:rgba(34,211,165,0.5);background:rgba(34,211,165,0.04);}
 .id-upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .id-upload-ico{font-size:32px;margin-bottom:10px;}
 .id-upload-title{font-size:0.9rem;font-weight:700;margin-bottom:4px;}
-.id-upload-sub{font-size:0.78rem;color:var(–muted);}
-.id-preview{border-radius:10px;overflow:hidden;margin-top:12px;border:1px solid var(–border);}
+.id-upload-sub{font-size:0.78rem;color:var(--muted);}
+.id-preview{border-radius:10px;overflow:hidden;margin-top:12px;border:1px solid var(--border);}
 .id-preview img{width:100%;display:block;}
 .id-parsed{background:rgba(34,211,165,0.07);border:1px solid rgba(34,211,165,0.2);border-radius:10px;padding:13px 15px;margin-top:10px;}
-.id-parsed-title{font-size:0.72rem;font-weight:700;color:var(–accent);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;}
+.id-parsed-title{font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;}
 .id-parsed-row{display:flex;justify-content:space-between;font-size:0.82rem;padding:3px 0;border-bottom:1px solid rgba(34,211,165,0.1);}
 .id-parsed-row:last-child{border-bottom:none;}
-.id-parsed-key{color:var(–muted);}
-.id-parsed-val{font-weight:600;font-family:var(–mono);font-size:0.78rem;}
-
-/* ── DISPUTE TRACKER ── */
+.id-parsed-key{color:var(--muted);}
+.id-parsed-val{font-weight:600;font-family:var(--mono);font-size:0.78rem;}
 .tracker-wrap{max-width:900px;margin:0 auto;padding:28px 24px 80px;}
-.dispute-item{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:16px 18px;margin-bottom:10px;transition:border-color 0.2s;}
-.dispute-item:hover{border-color:var(–border2);}
+.dispute-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:10px;transition:border-color 0.2s;}
+.dispute-item:hover{border-color:var(--border2);}
 .di-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
 .di-name{font-size:0.95rem;font-weight:700;}
-.di-bureau{font-size:0.72rem;color:var(–muted);margin-top:2px;}
+.di-bureau{font-size:0.72rem;color:var(--muted);margin-top:2px;}
 .di-status-badge{font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px;text-transform:uppercase;white-space:nowrap;}
-.s-sent{background:rgba(79,142,247,0.12);color:var(–blue);border:1px solid rgba(79,142,247,0.25);}
-.s-review{background:rgba(245,158,11,0.1);color:var(–amber);border:1px solid rgba(245,158,11,0.2);}
-.s-responded{background:rgba(155,111,255,0.1);color:var(–purple);border:1px solid rgba(155,111,255,0.2);}
-.s-removed{background:rgba(34,211,165,0.1);color:var(–accent);border:1px solid rgba(34,211,165,0.2);}
-.s-verified{background:rgba(239,68,68,0.1);color:var(–red);border:1px solid rgba(239,68,68,0.2);}
-.di-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:0.78rem;color:var(–muted);margin-bottom:10px;}
-.di-deadline{color:var(–amber);font-weight:600;}
-.di-deadline.urgent{color:var(–red);}
+.s-sent{background:rgba(79,142,247,0.12);color:var(--blue);border:1px solid rgba(79,142,247,0.25);}
+.s-review{background:rgba(245,158,11,0.1);color:var(--amber);border:1px solid rgba(245,158,11,0.2);}
+.s-responded{background:rgba(155,111,255,0.1);color:var(--purple);border:1px solid rgba(155,111,255,0.2);}
+.s-removed{background:rgba(34,211,165,0.1);color:var(--accent);border:1px solid rgba(34,211,165,0.2);}
+.s-verified{background:rgba(239,68,68,0.1);color:var(--red);border:1px solid rgba(239,68,68,0.2);}
+.di-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:0.78rem;color:var(--muted);margin-bottom:10px;}
+.di-deadline{color:var(--amber);font-weight:600;}
+.di-deadline.urgent{color:var(--red);}
 .di-actions{display:flex;gap:7px;flex-wrap:wrap;}
-.deadline-bar{height:4px;background:var(–card2);border-radius:2px;overflow:hidden;margin-top:8px;}
+.deadline-bar{height:4px;background:var(--card2);border-radius:2px;overflow:hidden;margin-top:8px;}
 .deadline-fill{height:100%;border-radius:2px;transition:width 0.5s ease;}
-
-/* ── SCORE TRACKER ── */
 .score-wrap{max-width:900px;margin:0 auto;padding:28px 24px 80px;}
 .score-gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px;}
-.gauge-card{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:22px;text-align:center;}
-.gauge-bureau{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);margin-bottom:14px;}
+.gauge-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;}
+.gauge-bureau{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
 .gauge-ring{position:relative;width:120px;height:120px;margin:0 auto 14px;}
 .gauge-ring svg{transform:rotate(-90deg);}
 .gauge-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-.gauge-num{font-family:var(–mono);font-size:32px;font-weight:700;line-height:1;}
-.gauge-lbl{font-size:9px;color:var(–muted);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
+.gauge-num{font-family:var(--mono);font-size:32px;font-weight:700;line-height:1;}
+.gauge-lbl{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
 .gauge-tier{font-size:0.8rem;font-weight:700;margin-bottom:4px;}
-.gauge-range{font-size:0.72rem;color:var(–muted);}
-.score-history{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:20px;margin-bottom:16px;}
-.score-chart{width:100%;height:120px;position:relative;}
-.score-entry-form{background:var(–card);border:1px solid var(–border);border-radius:16px;padding:20px;}
-
-/* ── MODAL ── */
+.gauge-range{font-size:0.72rem;color:var(--muted);}
+.score-history{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;}
+.score-entry-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.show{display:flex;}
-.modal{background:var(–card);border:1px solid var(–border2);border-radius:20px;padding:28px;width:100%;max-width:500px;animation:fadeIn 0.3s ease;position:relative;max-height:90vh;overflow-y:auto;}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:28px;width:100%;max-width:500px;animation:fadeIn 0.3s ease;position:relative;max-height:90vh;overflow-y:auto;}
 .modal-title{font-size:1.15rem;font-weight:800;margin-bottom:8px;}
-.modal-sub{font-size:0.84rem;color:var(–muted);line-height:1.6;margin-bottom:20px;}
-.modal-close{position:absolute;top:18px;right:18px;background:var(–card2);border:1px solid var(–border);color:var(–text);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
-.croa-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px;margin-bottom:18px;font-size:0.82rem;color:var(–muted);line-height:1.6;}
-.croa-box strong{color:var(–amber);}
-
-/* ── CERTIFIED MAIL ── */
-.mail-label{background:#fff;color:#111;border-radius:8px;padding:20px 24px;font-family:‘Courier New’,monospace;font-size:0.85rem;line-height:1.6;border:2px solid #ccc;position:relative;}
+.modal-sub{font-size:0.84rem;color:var(--muted);line-height:1.6;margin-bottom:20px;}
+.modal-close{position:absolute;top:18px;right:18px;background:var(--card2);border:1px solid var(--border);color:var(--text);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
+.croa-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px;margin-bottom:18px;font-size:0.82rem;color:var(--muted);line-height:1.6;}
+.croa-box strong{color:var(--amber);}
+.mail-label{background:#fff;color:#111;border-radius:8px;padding:20px 24px;font-family:'Courier New',monospace;font-size:0.85rem;line-height:1.6;border:2px solid #ccc;position:relative;}
 .mail-label-header{font-weight:700;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;border-bottom:1px solid #ccc;padding-bottom:8px;margin-bottom:12px;color:#555;}
 .mail-label-from{margin-bottom:14px;}
 .mail-label-to{font-weight:700;font-size:1rem;}
 .mail-certified{position:absolute;top:16px;right:16px;background:#c41e3a;color:#fff;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;padding:4px 8px;border-radius:4px;}
-
-/* ── DISCLAIMER ── */
 .disc-card{display:flex;align-items:flex-start;gap:11px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.14);border-radius:12px;padding:15px 18px;}
-.disc-ico{color:var(–amber);flex-shrink:0;margin-top:2px;font-size:16px;}
-.disc-text{font-size:0.78rem;color:var(–muted);line-height:1.6;}
-.disc-text strong{color:var(–amber);}
-
-/* ── CHECKLIST SECTION ── */
-.checklist-wrap{background:var(–card2);border:1px solid var(–border);border-radius:12px;padding:14px 16px;margin-top:14px;}
-.checklist-title{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(–dim);margin-bottom:10px;}
-.check-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.8rem;color:var(–muted);}
-.check-row.done{color:var(–accent);}
-.check-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(–dim);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all 0.2s;}
-.check-row.done .check-dot{background:var(–accent);border-color:var(–accent);color:#03120b;}
-
-/* ── FOOTER ── */
-.footer{padding:26px 24px;border-top:1px solid var(–border);}
+.disc-ico{color:var(--amber);flex-shrink:0;margin-top:2px;font-size:16px;}
+.disc-text{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+.disc-text strong{color:var(--amber);}
+.checklist-wrap{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-top:14px;}
+.checklist-title{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;}
+.check-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.8rem;color:var(--muted);}
+.check-row.done{color:var(--accent);}
+.check-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--dim);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all 0.2s;}
+.check-row.done .check-dot{background:var(--accent);border-color:var(--accent);color:#03120b;}
+.footer{padding:26px 24px;border-top:1px solid var(--border);}
 .footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
-.footer-copy{font-size:0.78rem;color:var(–dim);}
-
-/* ── CTA SECTION ── */
+.footer-copy{font-size:0.78rem;color:var(--dim);}
 .cta-card{background:linear-gradient(135deg,#0d1f2d,#0d1a2a);border:1px solid rgba(34,211,165,0.18);border-radius:22px;padding:68px 40px;text-align:center;position:relative;overflow:hidden;}
 .cta-glow{position:absolute;width:500px;height:300px;background:rgba(34,211,165,0.05);border-radius:50%;filter:blur(80px);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
 .cta-content{position:relative;z-index:1;}
 .cta-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:10px;}
-.cta-sub{color:var(–muted);font-size:0.95rem;margin-bottom:28px;}
-
-/* ── EMPTY STATE ── */
-.empty-state{text-align:center;padding:48px 20px;color:var(–dim);}
+.cta-sub{color:var(--muted);font-size:0.95rem;margin-bottom:28px;}
+.empty-state{text-align:center;padding:48px 20px;color:var(--dim);}
 .empty-state p{font-size:0.84rem;margin-top:10px;line-height:1.6;}
-
-/* ── SHAKE ANIMATION ── */
 @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-6px);}40%{transform:translateX(6px);}60%{transform:translateX(-4px);}80%{transform:translateX(4px);}}
 .shake{animation:shake 0.4s ease;}
-
-/* ── PRINT ── */
 @media print{body *{visibility:hidden;}.letter-paper,.letter-paper *{visibility:visible;}.letter-paper{position:fixed;top:0;left:0;width:100%;font-size:12pt;box-shadow:none;padding:1in 1.2in;}}
-
-/* ── RESPONSIVE ── */
 @media(max-width:1024px){.app-grid{grid-template-columns:1fr;}.preview-panel{position:static;}}
 @media(max-width:768px){.steps-grid{grid-template-columns:1fr;}.features-grid{grid-template-columns:1fr;}.dt-grid{grid-template-columns:1fr;}.score-gauges{grid-template-columns:1fr;}.nav-tabs{display:none;}.cta-card{padding:44px 22px;}}
 @media(max-width:480px){.hero-h1{font-size:2.4rem;}.hero-actions{flex-direction:column;align-items:stretch;}.hero-actions .btn-hero{justify-content:center;}.field-row,.field-row3{grid-template-columns:1fr;}.bureau-grid{grid-template-columns:1fr;}.letter-paper{padding:28px 20px;font-size:0.82rem;}}
-</style>
 
+/* ══ CREDITSMART AI PAGE ══════════════════════════════════════════════════ */
+.cs-wrap{max-width:980px;margin:0 auto;padding:32px 24px 100px;}
+.cs-hero-band{background:linear-gradient(135deg,rgba(155,111,255,0.08),rgba(34,211,165,0.05));border:1px solid rgba(155,111,255,0.2);border-radius:22px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden;}
+.cs-hero-band::after{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 55% 80% at 90% 50%,rgba(155,111,255,0.07),transparent);pointer-events:none;}
+.cs-ai-pill{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(155,111,255,0.12);border:1px solid rgba(155,111,255,0.3);border-radius:20px;font-size:0.68rem;font-weight:700;color:var(–purple);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
+.cs-ai-dot{width:6px;height:6px;background:var(–purple);border-radius:50%;animation:pulse 1.8s infinite;}
+.cs-hero-band h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px;}
+.cs-hero-band p{font-size:0.88rem;color:var(–muted);line-height:1.7;max-width:600px;}
+.cs-warning-note{display:flex;align-items:flex-start;gap:10px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.18);border-radius:10px;padding:12px 15px;margin-top:16px;font-size:0.78rem;color:var(–muted);line-height:1.55;}
+.cs-warning-note strong{color:var(–amber);}
+
+/* step flow */
+.cs-flow{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:28px;}
+.cs-flow-card{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:18px 16px;position:relative;}
+.cs-flow-n{font-family:var(–mono);font-size:0.62rem;color:var(–purple);font-weight:700;letter-spacing:0.1em;margin-bottom:8px;}
+.cs-flow-ico{font-size:20px;margin-bottom:8px;}
+.cs-flow-title{font-size:0.84rem;font-weight:700;margin-bottom:4px;}
+.cs-flow-desc{font-size:0.74rem;color:var(–muted);line-height:1.5;}
+.cs-flow-arrow{display:none;}
+
+/* step 1: get report */
+.cs-get-report{background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;margin-bottom:20px;}
+.cs-panel-hdr{padding:22px 26px;border-bottom:1px solid var(–border);display:flex;align-items:center;gap:14px;}
+.cs-step-badge{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(–mono);font-size:0.7rem;font-weight:700;flex-shrink:0;}
+.cs-badge-active{background:rgba(155,111,255,0.15);border:1px solid rgba(155,111,255,0.3);color:var(–purple);}
+.cs-badge-done{background:rgba(34,211,165,0.12);border:1px solid rgba(34,211,165,0.3);color:var(–accent);}
+.cs-panel-hdr-text h3{font-size:0.95rem;font-weight:700;margin-bottom:2px;}
+.cs-panel-hdr-text p{font-size:0.78rem;color:var(–muted);}
+.cs-panel-body{padding:24px 26px;}
+.cs-acr-launch{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;margin-bottom:20px;}
+.cs-acr-btn{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#1a56db,#4f8ef7);color:#fff;font-family:var(–font);font-size:0.9rem;font-weight:700;padding:14px 22px;border-radius:11px;border:none;cursor:pointer;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 20px rgba(79,142,247,0.25);}
+.cs-acr-btn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(79,142,247,0.4);}
+.cs-acr-info{flex:1;min-width:200px;background:var(–card2);border:1px solid var(–border);border-radius:11px;padding:14px 16px;font-size:0.78rem;color:var(–muted);line-height:1.6;}
+.cs-acr-info strong{color:var(–text);display:block;margin-bottom:4px;}
+.cs-instructions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.cs-inst-card{background:var(–card2);border:1px solid var(–border);border-radius:12px;padding:14px 16px;}
+.cs-inst-num{font-family:var(–mono);font-size:0.62rem;color:var(–purple);font-weight:700;letter-spacing:0.08em;margin-bottom:6px;}
+.cs-inst-title{font-size:0.83rem;font-weight:700;margin-bottom:4px;}
+.cs-inst-desc{font-size:0.76rem;color:var(–muted);line-height:1.55;}
+.cs-copy-tip{background:rgba(34,211,165,0.06);border:1px solid rgba(34,211,165,0.18);border-radius:10px;padding:12px 15px;font-size:0.78rem;color:var(–muted);line-height:1.55;}
+.cs-copy-tip strong{color:var(–accent);}
+.cs-copy-tip code{font-family:var(–mono);background:rgba(34,211,165,0.1);padding:1px 6px;border-radius:4px;font-size:0.75rem;}
+
+/* step 2: paste + scan */
+.cs-paste-panel{background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;margin-bottom:20px;}
+.cs-paste-body{padding:20px 26px 0;}
+.cs-report-ta{background:var(–card2);border:1px solid var(–border);border-radius:10px;padding:14px 16px;color:var(–text);font-family:var(–mono);font-size:0.78rem;width:100%;outline:none;resize:vertical;min-height:220px;line-height:1.65;transition:border-color 0.2s,box-shadow 0.2s;}
+.cs-report-ta:focus{border-color:rgba(155,111,255,0.45);box-shadow:0 0 0 3px rgba(155,111,255,0.07);}
+.cs-report-ta::placeholder{color:var(–dim);font-family:var(–font);font-size:0.82rem;line-height:1.7;}
+.cs-ta-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 26px 20px;flex-wrap:wrap;gap:8px;}
+.cs-char-count{font-size:0.7rem;color:var(–dim);}
+.cs-sample-link{font-size:0.74rem;color:var(–blue);background:none;border:none;cursor:pointer;font-family:var(–font);font-weight:600;text-decoration:underline;text-underline-offset:2px;padding:0;}
+.cs-scan-footer{padding:16px 26px;border-top:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.cs-bureau-select-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cs-bureau-lbl{font-size:0.76rem;color:var(–muted);font-weight:600;white-space:nowrap;}
+.cs-bureau-chip{padding:5px 12px;background:var(–card2);border:1px solid var(–border);border-radius:6px;font-size:0.76rem;font-weight:600;color:var(–muted);cursor:pointer;transition:all 0.2s;font-family:var(–font);}
+.cs-bureau-chip.active{background:rgba(155,111,255,0.1);border-color:rgba(155,111,255,0.35);color:var(–purple);}
+.cs-scan-btn{background:linear-gradient(135deg,var(–purple),#7c55e8);color:#fff;font-family:var(–font);font-size:0.9rem;font-weight:700;padding:12px 22px;border-radius:9px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.2s;box-shadow:0 4px 20px rgba(155,111,255,0.25);}
+.cs-scan-btn:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(155,111,255,0.4);}
+.cs-scan-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
+
+/* loading */
+.cs-loading{display:none;background:var(–card);border:1px solid var(–border);border-radius:18px;padding:52px 30px;text-align:center;margin-bottom:20px;}
+.cs-loading.show{display:block;}
+.cs-spinner{width:52px;height:52px;border:3px solid rgba(155,111,255,0.15);border-top-color:var(–purple);border-radius:50%;animation:spin 0.85s linear infinite;margin:0 auto 22px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.cs-load-title{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
+.cs-load-sub{font-size:0.82rem;color:var(–muted);margin-bottom:24px;}
+.cs-load-steps{display:flex;flex-direction:column;gap:8px;max-width:300px;margin:0 auto;}
+.cs-ls{display:flex;align-items:center;gap:10px;font-size:0.78rem;color:var(–dim);text-align:left;transition:color 0.3s;}
+.cs-ls.active{color:var(–text);}
+.cs-ls.done{color:var(–accent);}
+.cs-ls-dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0;transition:background 0.3s;}
+.cs-ls.active .cs-ls-dot{animation:pulse 0.9s infinite;}
+
+/* results */
+.cs-results{display:none;margin-bottom:20px;}
+.cs-results.show{display:block;}
+.cs-results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+.cs-results-title{font-size:1.1rem;font-weight:800;letter-spacing:-0.02em;}
+.cs-rescan-btn{background:transparent;color:var(–muted);font-family:var(–font);font-size:0.79rem;font-weight:600;padding:7px 14px;border-radius:8px;border:1px solid var(–border2);cursor:pointer;transition:all 0.2s;}
+.cs-rescan-btn:hover{color:var(–text);}
+.cs-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.cs-stat-card{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:18px;text-align:center;}
+.cs-stat-val{font-family:var(–mono);font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:4px;}
+.cs-stat-lbl{font-size:0.68rem;color:var(–muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+.cs-stat-card.cs-crit .cs-stat-val{color:var(–red);}
+.cs-stat-card.cs-high .cs-stat-val{color:var(–amber);}
+.cs-stat-card.cs-med .cs-stat-val{color:var(–blue);}
+.cs-stat-card.cs-total .cs-stat-val{color:var(–accent);}
+.cs-overview-box{background:var(–card2);border:1px solid var(–border);border-radius:12px;padding:16px 18px;margin-bottom:20px;font-size:0.84rem;color:var(–muted);line-height:1.7;}
+.cs-overview-box strong{color:var(–text);}
+.cs-findings-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.cs-findings-label{font-size:0.95rem;font-weight:700;}
+.cs-filter-row{display:flex;gap:5px;}
+.cs-ftab{padding:5px 12px;border-radius:6px;font-size:0.74rem;font-weight:600;cursor:pointer;border:none;font-family:var(–font);color:var(–muted);background:var(–card2);transition:all 0.2s;}
+.cs-ftab.active{background:rgba(155,111,255,0.1);color:var(–purple);border:1px solid rgba(155,111,255,0.25);}
+.cs-finding{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:18px 20px;margin-bottom:10px;transition:border-color 0.2s,transform 0.15s;}
+.cs-finding:hover{border-color:var(–border2);transform:translateY(-1px);}
+.cs-finding.cs-queued{border-color:rgba(34,211,165,0.3);background:rgba(34,211,165,0.02);}
+.cs-finding.cs-ignored{opacity:0.38;}
+.cs-finding-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;}
+.cs-finding-creditor{font-size:0.95rem;font-weight:700;margin-bottom:2px;}
+.cs-finding-subtype{font-size:0.74rem;color:var(–muted);}
+.cs-sev{font-size:0.67rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.4px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.cs-sev-critical{background:rgba(239,68,68,0.12);color:var(–red);border:1px solid rgba(239,68,68,0.22);}
+.cs-sev-high{background:rgba(245,158,11,0.1);color:var(–amber);border:1px solid rgba(245,158,11,0.2);}
+.cs-sev-medium{background:rgba(79,142,247,0.1);color:var(–blue);border:1px solid rgba(79,142,247,0.2);}
+.cs-sev-low{background:rgba(34,211,165,0.08);color:var(–accent);border:1px solid rgba(34,211,165,0.18);}
+.cs-finding-desc{font-size:0.82rem;color:var(–muted);line-height:1.65;margin-bottom:10px;}
+.cs-law-tag{display:inline-flex;align-items:center;font-size:0.72rem;font-family:var(–mono);color:var(–purple);background:rgba(155,111,255,0.08);border:1px solid rgba(155,111,255,0.15);border-radius:5px;padding:3px 9px;margin-bottom:12px;}
+.cs-finding-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cs-dispute-btn{background:var(–accent);color:#03120b;font-family:var(–font);font-size:0.77rem;font-weight:700;padding:7px 14px;border-radius:7px;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all 0.2s;}
+.cs-dispute-btn:hover{background:var(–accent2);transform:translateY(-1px);}
+.cs-queued-tag{font-size:0.72rem;font-weight:700;color:var(–accent);display:flex;align-items:center;gap:5px;}
+.cs-ignore-btn{background:transparent;color:var(–dim);font-family:var(–font);font-size:0.76rem;font-weight:600;padding:7px 12px;border-radius:7px;border:1px solid var(–border);cursor:pointer;transition:all 0.2s;}
+.cs-ignore-btn:hover{color:var(–muted);}
+.cs-bottom-bar{background:var(–card);border:1px solid rgba(34,211,165,0.2);border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.cs-bottom-bar-text{font-size:0.85rem;color:var(–muted);}
+.cs-bottom-bar-text strong{color:var(–accent);}
+.cs-bottom-bar-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.cs-error-panel{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:14px;padding:28px;text-align:center;margin-bottom:20px;display:none;}
+.cs-error-panel.show{display:block;}
+.cs-error-panel p{font-size:0.84rem;color:var(–muted);margin-top:6px;line-height:1.6;}
+@media(max-width:900px){.cs-flow{grid-template-columns:1fr 1fr;}.cs-summary-grid{grid-template-columns:1fr 1fr;}.cs-instructions{grid-template-columns:1fr;}}
+@media(max-width:600px){.cs-flow{grid-template-columns:1fr;}.cs-summary-grid{grid-template-columns:1fr 1fr;}.cs-hero-band{padding:24px 20px;}}
+
+</style>
 </head>
 <body>
 <div class="bg-layer"></div>
@@ -351,6 +419,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
     </button>
     <div class="nav-tabs">
       <button class="nav-tab active" id="nt-home" onclick="showPage('home')">Home</button>
+      <button class="nav-tab" id="nt-creditsmart" onclick="showPage('creditsmart')" style="color:var(--purple);">✦ CreditSmart AI</button>
       <button class="nav-tab" id="nt-app" onclick="gotoApp()">Build Letter</button>
       <button class="nav-tab" id="nt-tracker" onclick="showPage('tracker')">Dispute Tracker</button>
       <button class="nav-tab" id="nt-scores" onclick="showPage('scores')">Score Tracker</button>
@@ -359,7 +428,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
   </div>
 </nav>
 
-<!-- ═══ HOME PAGE ═══ -->
+<!-- HOME PAGE -->
 
 <div class="page active" id="page-home">
   <section class="hero">
@@ -379,7 +448,6 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
       </div>
     </div>
   </section>
-
   <section class="section" id="how-it-works">
     <div class="container">
       <div class="sec-label">Simple Process</div>
@@ -387,11 +455,10 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
       <div class="steps-grid">
         <div class="step-card"><div class="step-num">01</div><div class="step-ico">📋</div><h3 class="step-title">Select Your Dispute Type</h3><p class="step-desc">Choose from 8 dispute categories including identity theft, collections, charge-offs, and late payments. Upload your ID to auto-fill your information.</p></div>
         <div class="step-card"><div class="step-num">02</div><div class="step-ico">🎚️</div><h3 class="step-title">Set Your Aggression Level</h3><p class="step-desc">Choose Standard, Aggressive, or Maximum Force. Maximum Force letters cite FCRA §611, §623, demand Method of Verification, and threaten CFPB action.</p></div>
-        <div class="step-card"><div class="step-num">03</div><div class="step-ico">📬</div><h3 class="step-title">Send & Track</h3><p class="step-desc">Download your letter as a PDF, generate certified mail labels, then log it in your Dispute Tracker to monitor the 30-day response deadline.</p></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-ico">📬</div><h3 class="step-title">Send &amp; Track</h3><p class="step-desc">Download your letter as a PDF, generate certified mail labels, then log it in your Dispute Tracker to monitor the 30-day response deadline.</p></div>
       </div>
     </div>
   </section>
-
   <section class="section section-alt">
     <div class="container">
       <div class="sec-label">Full Suite</div>
@@ -406,7 +473,6 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
       </div>
     </div>
   </section>
-
   <section class="section">
     <div class="container">
       <div class="cta-card">
@@ -419,11 +485,9 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
       </div>
     </div>
   </section>
-
   <section style="padding:20px 24px 28px;">
     <div class="container"><div class="disc-card"><span class="disc-ico">⚠</span><p class="disc-text"><strong>Legal Disclaimer:</strong> DisputeKit Pro generates dispute letter templates only and is not a substitute for legal advice. We are not attorneys and do not guarantee any specific outcome. For complex credit or legal matters, consult a licensed credit attorney or consumer rights advocate.</p></div></div>
   </section>
-
   <footer class="footer">
     <div class="footer-inner">
       <div style="display:flex;align-items:center;gap:9px;"><span class="logo-mark" style="width:28px;height:28px;font-size:0.62rem;border-radius:6px;">DK</span><span style="font-weight:700;font-size:0.9rem;">DisputeKit Pro</span></div>
@@ -432,181 +496,165 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
   </footer>
 </div>
 
-<!-- ═══ APP PAGE ═══ -->
+<!-- APP PAGE -->
 
 <div class="page" id="page-app">
   <div class="app-wrap">
     <div class="app-grid">
-
-```
-  <!-- FORM PANEL -->
-  <div class="form-panel">
-    <div class="form-progress"><div class="form-progress-fill" id="form-progress-fill" style="width:0%"></div></div>
-    <div class="panel-hdr">
-      <h2 class="panel-title">Build Your Letter</h2>
-      <p class="panel-sub">Fill in the fields. Letter updates live on the right.</p>
-    </div>
-
-    <!-- VALIDATION BANNER -->
-    <div style="padding:0 26px;">
-      <div class="validation-banner" id="validation-banner"></div>
-    </div>
-
-    <!-- ID UPLOAD -->
-    <div class="form-sec">
-      <div class="form-sec-lbl">🪪 Step 0 — ID Upload (Optional)</div>
-      <div class="id-upload-zone" id="id-zone" ondragover="idDragOver(event)" ondragleave="idDragLeave(event)" ondrop="idDrop(event)">
-        <input type="file" id="id-file-input" accept="image/*" onchange="handleIdUpload(this.files[0])">
-        <div class="id-upload-ico">🪪</div>
-        <div class="id-upload-title">Upload Driver's License</div>
-        <div class="id-upload-sub">Drag & drop or tap to select. Auto-fills your name & address.<br>Stored locally only — never uploaded.</div>
-      </div>
-      <div id="id-preview-wrap" class="hidden">
-        <div class="id-preview"><img id="id-preview-img" src="" alt="ID Preview"></div>
-        <div class="id-parsed" id="id-parsed-data">
-          <div class="id-parsed-title">✓ ID Detected — Confirm fields below match your ID</div>
-          <div id="id-parsed-rows"></div>
+      <!-- FORM PANEL -->
+      <div class="form-panel">
+        <div class="form-progress"><div class="form-progress-fill" id="form-progress-fill" style="width:0%"></div></div>
+        <div class="panel-hdr">
+          <h2 class="panel-title">Build Your Letter</h2>
+          <p class="panel-sub">Fill in the fields. Letter updates live on the right.</p>
         </div>
-        <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="clearId()">Remove ID</button>
-      </div>
-    </div>
-
-    <!-- AGGRESSION -->
-    <div class="form-sec">
-      <div class="form-sec-lbl">🎚️ Step 1 — Letter Aggression Level</div>
-      <div class="aggression-wrap">
-        <input type="range" id="agg-slider" min="1" max="3" value="2" oninput="updateAggBadge();updateLetter();updateProgress()">
-        <div class="agg-labels"><span>Standard</span><span>Aggressive</span><span>Maximum Force</span></div>
-        <div><span class="agg-badge agg-2" id="agg-badge">⚡ Aggressive — FCRA Citations Included</span></div>
-      </div>
-    </div>
-
-    <!-- DISPUTE TYPE -->
-    <div class="form-sec">
-      <div class="form-sec-lbl">Step 2 — Dispute Type <span class="required-star">*</span></div>
-      <div class="dt-grid" id="dt-grid"></div>
-      <div class="field-error" id="err-dispute-type">Please select a dispute type to continue.</div>
-    </div>
-
-    <!-- BUREAU -->
-    <div class="form-sec">
-      <div class="form-sec-lbl">Step 3 — Credit Bureau <span class="required-star">*</span></div>
-      <div class="bureau-grid">
-        <label class="bureau-opt"><input type="radio" name="bureau" value="Equifax" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Equifax</span></label>
-        <label class="bureau-opt"><input type="radio" name="bureau" value="Experian" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Experian</span></label>
-        <label class="bureau-opt"><input type="radio" name="bureau" value="TransUnion" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">TransUnion</span></label>
-      </div>
-      <div class="bureau-required-hint" id="err-bureau">Please select a credit bureau.</div>
-    </div>
-
-    <!-- YOUR INFO -->
-    <div class="form-sec">
-      <div class="form-sec-lbl">Step 4 — Your Information</div>
-      <div class="field-group">
-        <div class="field">
-          <label class="field-label">Full Legal Name <span class="required">*</span></label>
-          <input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" maxlength="80" oninput="updateLetter();updateProgress();clearFieldError('fullName')">
-          <div class="field-error" id="err-fullName">Full name is required.</div>
+        <div style="padding:0 26px;">
+          <div class="validation-banner" id="validation-banner"></div>
         </div>
-        <div class="field">
-          <label class="field-label">Street Address <span class="required">*</span></label>
-          <input type="text" id="address" class="field-input" placeholder="123 Main St" maxlength="100" oninput="updateLetter();updateProgress();clearFieldError('address')">
-          <div class="field-error" id="err-address">Street address is required.</div>
-        </div>
-        <div class="field-row field-row3">
-          <div class="field">
-            <label class="field-label">City <span class="required">*</span></label>
-            <input type="text" id="city" class="field-input" placeholder="Miami" maxlength="60" oninput="updateLetter();updateProgress();clearFieldError('city')">
-            <div class="field-error" id="err-city">City is required.</div>
+        <!-- ID UPLOAD -->
+        <div class="form-sec">
+          <div class="form-sec-lbl">🪪 Step 0 — ID Upload (Optional)</div>
+          <div class="id-upload-zone" id="id-zone" ondragover="idDragOver(event)" ondragleave="idDragLeave(event)" ondrop="idDrop(event)">
+            <input type="file" id="id-file-input" accept="image/*" onchange="handleIdUpload(this.files[0])">
+            <div class="id-upload-ico">🪪</div>
+            <div class="id-upload-title">Upload Driver's License</div>
+            <div class="id-upload-sub">Drag &amp; drop or tap to select. Auto-fills your name &amp; address.<br>Stored locally only — never uploaded.</div>
           </div>
-          <div class="field">
-            <label class="field-label">State <span class="required">*</span></label>
-            <input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="this.value=this.value.toUpperCase();updateLetter();updateProgress();clearFieldError('state')">
-            <div class="field-error" id="err-state">State required.</div>
-          </div>
-          <div class="field">
-            <label class="field-label">ZIP <span class="required">*</span></label>
-            <input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress();clearFieldError('zip')">
-            <div class="field-error" id="err-zip">ZIP required.</div>
+          <div id="id-preview-wrap" class="hidden">
+            <div class="id-preview"><img id="id-preview-img" src="" alt="ID Preview"></div>
+            <div class="id-parsed" id="id-parsed-data">
+              <div class="id-parsed-title">✓ ID Detected — Confirm fields below match your ID</div>
+              <div id="id-parsed-rows"></div>
+            </div>
+            <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="clearId()">Remove ID</button>
           </div>
         </div>
-        <div class="field">
-          <label class="field-label">Date of Birth</label>
-          <input type="date" id="dob" class="field-input" oninput="updateLetter();updateProgress()">
+        <!-- AGGRESSION -->
+        <div class="form-sec">
+          <div class="form-sec-lbl">🎚️ Step 1 — Letter Aggression Level</div>
+          <div class="aggression-wrap">
+            <input type="range" id="agg-slider" min="1" max="3" value="2" oninput="updateAggBadge();updateLetter();updateProgress()">
+            <div class="agg-labels"><span>Standard</span><span>Aggressive</span><span>Maximum Force</span></div>
+            <div><span class="agg-badge agg-2" id="agg-badge">⚡ Aggressive — FCRA Citations Included</span></div>
+          </div>
         </div>
-        <div class="field">
-          <label class="field-label">Last 4 of SSN <span style="font-size:0.7rem;color:var(--dim);font-weight:400;">(for identity verification only)</span></label>
-          <input type="text" id="ssn4" class="field-input" placeholder="••••" maxlength="4" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress()">
-          <span class="field-hint">⚠️ Only last 4 digits. Stored locally only. Never transmitted.</span>
+        <!-- DISPUTE TYPE -->
+        <div class="form-sec">
+          <div class="form-sec-lbl">Step 2 — Dispute Type <span class="required-star">*</span></div>
+          <div class="dt-grid" id="dt-grid"></div>
+          <div class="field-error" id="err-dispute-type">Please select a dispute type to continue.</div>
         </div>
-        <div class="field">
-          <label class="field-label">Date of Letter</label>
-          <input type="date" id="letterDate" class="field-input" oninput="updateLetter()">
+        <!-- BUREAU -->
+        <div class="form-sec">
+          <div class="form-sec-lbl">Step 3 — Credit Bureau <span class="required-star">*</span></div>
+          <div class="bureau-grid">
+            <label class="bureau-opt"><input type="radio" name="bureau" value="Equifax" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Equifax</span></label>
+            <label class="bureau-opt"><input type="radio" name="bureau" value="Experian" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Experian</span></label>
+            <label class="bureau-opt"><input type="radio" name="bureau" value="TransUnion" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">TransUnion</span></label>
+          </div>
+          <div class="bureau-required-hint" id="err-bureau">Please select a credit bureau.</div>
+        </div>
+        <!-- YOUR INFO -->
+        <div class="form-sec">
+          <div class="form-sec-lbl">Step 4 — Your Information</div>
+          <div class="field-group">
+            <div class="field">
+              <label class="field-label">Full Legal Name <span class="required">*</span></label>
+              <input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" maxlength="80" oninput="updateLetter();updateProgress();clearFieldError('fullName')">
+              <div class="field-error" id="err-fullName">Full name is required.</div>
+            </div>
+            <div class="field">
+              <label class="field-label">Street Address <span class="required">*</span></label>
+              <input type="text" id="address" class="field-input" placeholder="123 Main St" maxlength="100" oninput="updateLetter();updateProgress();clearFieldError('address')">
+              <div class="field-error" id="err-address">Street address is required.</div>
+            </div>
+            <div class="field-row field-row3">
+              <div class="field">
+                <label class="field-label">City <span class="required">*</span></label>
+                <input type="text" id="city" class="field-input" placeholder="Miami" maxlength="60" oninput="updateLetter();updateProgress();clearFieldError('city')">
+                <div class="field-error" id="err-city">City is required.</div>
+              </div>
+              <div class="field">
+                <label class="field-label">State <span class="required">*</span></label>
+                <input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="this.value=this.value.toUpperCase();updateLetter();updateProgress();clearFieldError('state')">
+                <div class="field-error" id="err-state">State required.</div>
+              </div>
+              <div class="field">
+                <label class="field-label">ZIP <span class="required">*</span></label>
+                <input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress();clearFieldError('zip')">
+                <div class="field-error" id="err-zip">ZIP required.</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Date of Birth</label>
+              <input type="date" id="dob" class="field-input" oninput="updateLetter();updateProgress()">
+            </div>
+            <div class="field">
+              <label class="field-label">Last 4 of SSN <span style="font-size:0.7rem;color:var(--dim);font-weight:400;">(for identity verification only)</span></label>
+              <input type="text" id="ssn4" class="field-input" placeholder="••••" maxlength="4" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress()">
+              <span class="field-hint">⚠️ Only last 4 digits. Stored locally only. Never transmitted.</span>
+            </div>
+            <div class="field">
+              <label class="field-label">Date of Letter</label>
+              <input type="date" id="letterDate" class="field-input" oninput="updateLetter()">
+            </div>
+          </div>
+        </div>
+        <!-- DYNAMIC FIELDS -->
+        <div class="form-sec" id="dynamic-sec">
+          <div class="form-sec-lbl">Step 5 — Account Details</div>
+          <div id="dynamic-fields">
+            <div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above to see relevant fields.</div>
+          </div>
+        </div>
+        <!-- CHECKLIST -->
+        <div class="form-sec">
+          <div class="form-sec-lbl">📋 Completion Checklist</div>
+          <div class="checklist-wrap">
+            <div class="check-row" id="chk-dispute"><span class="check-dot">✓</span>Dispute type selected</div>
+            <div class="check-row" id="chk-bureau"><span class="check-dot">✓</span>Credit bureau selected</div>
+            <div class="check-row" id="chk-name"><span class="check-dot">✓</span>Full name entered</div>
+            <div class="check-row" id="chk-address"><span class="check-dot">✓</span>Address entered</div>
+            <div class="check-row" id="chk-citystate"><span class="check-dot">✓</span>City, State &amp; ZIP entered</div>
+          </div>
+        </div>
+        <div style="padding:18px 26px;display:flex;gap:9px;justify-content:flex-end;border-top:1px solid var(--border);">
+          <button class="btn btn-ghost" onclick="clearForm()">Clear Form</button>
+          <button class="btn btn-primary btn-pulse" onclick="logDispute()" id="log-btn">📬 Log This Dispute</button>
         </div>
       </div>
-    </div>
-
-    <!-- DYNAMIC FIELDS -->
-    <div class="form-sec" id="dynamic-sec">
-      <div class="form-sec-lbl">Step 5 — Account Details</div>
-      <div id="dynamic-fields">
-        <div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above to see relevant fields.</div>
+      <!-- PREVIEW PANEL -->
+      <div class="preview-panel">
+        <div class="preview-hdr">
+          <div>
+            <h2 class="panel-title">Letter Preview</h2>
+            <p class="panel-sub">Updates live as you type.</p>
+            <div class="letter-complete-badge hidden" id="letter-complete-badge">✓ Letter Ready to Send</div>
+          </div>
+          <div class="preview-actions">
+            <button class="btn btn-sm btn-ghost" onclick="copyLetter()" id="copy-btn">📋 Copy</button>
+            <button class="btn btn-sm btn-ghost" onclick="printLetter()">🖨 Print</button>
+            <button class="btn btn-sm btn-ghost" onclick="showMailLabel()">📮 Mail Label</button>
+            <button class="btn btn-sm btn-primary" onclick="downloadPDF()">⬇ PDF</button>
+          </div>
+        </div>
+        <div class="letter-container" id="letter-container">
+          <div class="letter-empty" id="letter-empty">
+            <div style="font-size:48px;">📄</div>
+            <p class="le-title">Your letter will appear here</p>
+            <p class="le-sub">Select a dispute type and enter your name to start generating your letter.</p>
+          </div>
+          <div class="letter-out" id="letter-out" style="display:none;">
+            <div class="letter-paper" id="letter-paper"></div>
+          </div>
+        </div>
+        <div class="preview-disc">ℹ This letter is a template only and does not constitute legal advice.</div>
       </div>
     </div>
-
-    <!-- COMPLETION CHECKLIST -->
-    <div class="form-sec">
-      <div class="form-sec-lbl">📋 Completion Checklist</div>
-      <div class="checklist-wrap">
-        <div class="check-row" id="chk-dispute"><span class="check-dot">✓</span>Dispute type selected</div>
-        <div class="check-row" id="chk-bureau"><span class="check-dot">✓</span>Credit bureau selected</div>
-        <div class="check-row" id="chk-name"><span class="check-dot">✓</span>Full name entered</div>
-        <div class="check-row" id="chk-address"><span class="check-dot">✓</span>Address entered</div>
-        <div class="check-row" id="chk-citystate"><span class="check-dot">✓</span>City, State & ZIP entered</div>
-      </div>
-    </div>
-
-    <div style="padding:18px 26px;display:flex;gap:9px;justify-content:flex-end;border-top:1px solid var(--border);">
-      <button class="btn btn-ghost" onclick="clearForm()">Clear Form</button>
-      <button class="btn btn-primary btn-pulse" onclick="logDispute()" id="log-btn">📬 Log This Dispute</button>
-    </div>
-  </div>
-
-  <!-- PREVIEW PANEL -->
-  <div class="preview-panel">
-    <div class="preview-hdr">
-      <div>
-        <h2 class="panel-title">Letter Preview</h2>
-        <p class="panel-sub">Updates live as you type.</p>
-        <div class="letter-complete-badge hidden" id="letter-complete-badge">✓ Letter Ready to Send</div>
-      </div>
-      <div class="preview-actions">
-        <button class="btn btn-sm btn-ghost" onclick="copyLetter()" id="copy-btn">📋 Copy</button>
-        <button class="btn btn-sm btn-ghost" onclick="printLetter()">🖨 Print</button>
-        <button class="btn btn-sm btn-ghost" onclick="showMailLabel()">📮 Mail Label</button>
-        <button class="btn btn-sm btn-primary" onclick="downloadPDF()">⬇ PDF</button>
-      </div>
-    </div>
-    <div class="letter-container" id="letter-container">
-      <div class="letter-empty" id="letter-empty">
-        <div style="font-size:48px;">📄</div>
-        <p class="le-title">Your letter will appear here</p>
-        <p class="le-sub">Select a dispute type and enter your name to start generating your letter.</p>
-      </div>
-      <div class="letter-out" id="letter-out" style="display:none;">
-        <div class="letter-paper" id="letter-paper"></div>
-      </div>
-    </div>
-    <div class="preview-disc">ℹ This letter is a template only and does not constitute legal advice.</div>
-  </div>
-
-</div>
-```
-
   </div>
 </div>
 
-<!-- ═══ TRACKER PAGE ═══ -->
+<!-- TRACKER PAGE -->
 
 <div class="page" id="page-tracker">
   <div class="tracker-wrap">
@@ -621,7 +669,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
   </div>
 </div>
 
-<!-- ═══ SCORE TRACKER ═══ -->
+<!-- SCORE TRACKER PAGE -->
 
 <div class="page" id="page-scores">
   <div class="score-wrap">
@@ -661,7 +709,7 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
     </div>
     <div style="margin-top:16px;" class="disc-card">
       <span class="disc-ico">ℹ</span>
-      <p class="disc-text">Enter your scores manually from <strong style="color:var(--text);">AnnualCreditReport.com</strong> (free yearly report) or from your bank/card app. Get all 3 bureau scores free at <strong style="color:var(--text);">AnnualCreditReport.com</strong>.</p>
+      <p class="disc-text">Enter your scores manually from <strong style="color:var(--text);">AnnualCreditReport.com</strong> (free yearly report) or from your bank/card app.</p>
     </div>
   </div>
 </div>
@@ -680,9 +728,197 @@ input[type=range]{width:100%;accent-color:var(–accent);cursor:pointer;}
   </div>
 </div>
 
+<!-- ═══ CREDITSMART AI PAGE ═══ -->
+
+<div class="page" id="page-creditsmart">
+<div class="cs-wrap">
+
+  <!-- Hero -->
+
+  <div class="cs-hero-band">
+    <div class="cs-ai-pill"><span class="cs-ai-dot"></span>Powered by Claude AI</div>
+    <h1>CreditSmart <span class="h-acc">AI Scanner</span></h1>
+    <p>Get your free credit report from AnnualCreditReport.com, paste it below, and let Claude AI scan every line for errors, FCRA violations, and disputable items. One click sends any finding straight to the letter builder.</p>
+    <div class="cs-warning-note">
+      <span style="font-size:16px;flex-shrink:0;">&#x26A0;</span>
+      <span><strong>Privacy Note:</strong> Your credit report text is sent to the Claude AI API for analysis only. It is never stored by this app. Do not include your full SSN — last 4 digits only if needed for context.</span>
+    </div>
+  </div>
+
+  <!-- How it works flow -->
+
+  <div class="cs-flow">
+    <div class="cs-flow-card">
+      <div class="cs-flow-n">STEP 01</div>
+      <div class="cs-flow-ico">&#x1F4CA;</div>
+      <div class="cs-flow-title">Get Your Free Report</div>
+      <div class="cs-flow-desc">Visit AnnualCreditReport.com — the only federally authorized free source. You can now access it weekly.</div>
+    </div>
+    <div class="cs-flow-card">
+      <div class="cs-flow-n">STEP 02</div>
+      <div class="cs-flow-ico">&#x1F4CB;</div>
+      <div class="cs-flow-title">Copy &amp; Paste the Text</div>
+      <div class="cs-flow-desc">Select all text from your report page, copy it, and paste it into the box below.</div>
+    </div>
+    <div class="cs-flow-card">
+      <div class="cs-flow-n">STEP 03</div>
+      <div class="cs-flow-ico">&#x1F916;</div>
+      <div class="cs-flow-title">AI Finds Every Error</div>
+      <div class="cs-flow-desc">Claude scans for late payment errors, unknown collections, wrong balances, outdated items, and more.</div>
+    </div>
+    <div class="cs-flow-card">
+      <div class="cs-flow-n">STEP 04</div>
+      <div class="cs-flow-ico">&#x1F4EC;</div>
+      <div class="cs-flow-title">Dispute in One Click</div>
+      <div class="cs-flow-desc">Each flagged item auto-loads into the letter builder. Review, set aggression level, and send.</div>
+    </div>
+  </div>
+
+  <!-- STEP 1: Get Report Panel -->
+
+  <div class="cs-get-report">
+    <div class="cs-panel-hdr">
+      <div class="cs-step-badge cs-badge-active">1</div>
+      <div class="cs-panel-hdr-text">
+        <h3>Get Your Free Credit Report</h3>
+        <p>AnnualCreditReport.com is the only official, federally authorized free source — free weekly now</p>
+      </div>
+    </div>
+    <div class="cs-panel-body">
+      <div class="cs-acr-launch">
+        <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener noreferrer" class="cs-acr-btn">
+          &#x1F517; Open AnnualCreditReport.com
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="opacity:0.7"><path d="M2 11L11 2M11 2H5M11 2V8" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </a>
+        <div class="cs-acr-info">
+          <strong>&#x2714; Free &amp; Government Authorized</strong>
+          Mandated by the Fair Credit Reporting Act. No credit card required. Access all 3 bureaus: Equifax, Experian &amp; TransUnion.
+        </div>
+      </div>
+      <div class="cs-instructions">
+        <div class="cs-inst-card">
+          <div class="cs-inst-num">A &mdash; REQUEST</div>
+          <div class="cs-inst-title">Choose your bureaus</div>
+          <div class="cs-inst-desc">Select Equifax, Experian, or TransUnion (or all 3). Request the full report — not just the score.</div>
+        </div>
+        <div class="cs-inst-card">
+          <div class="cs-inst-num">B &mdash; VERIFY</div>
+          <div class="cs-inst-title">Complete identity verification</div>
+          <div class="cs-inst-desc">You'll answer a few security questions. This is normal — it's required to protect your data.</div>
+        </div>
+        <div class="cs-inst-card">
+          <div class="cs-inst-num">C &mdash; REVIEW</div>
+          <div class="cs-inst-title">View your full report online</div>
+          <div class="cs-inst-desc">Once it loads, you can see all accounts, payment history, inquiries, and personal information.</div>
+        </div>
+        <div class="cs-inst-card">
+          <div class="cs-inst-num">D &mdash; COPY</div>
+          <div class="cs-inst-title">Select All &rarr; Copy &rarr; Paste below</div>
+          <div class="cs-inst-desc">Use Ctrl+A (or Cmd+A on Mac) to select all, then Ctrl+C to copy. Come back here and paste it.</div>
+        </div>
+      </div>
+      <div class="cs-copy-tip">
+        <strong>&#x1F4A1; Pro Tip:</strong> On the report page, press <code>Ctrl+A</code> then <code>Ctrl+C</code> to copy everything. Paste into the box below. Don't worry if it looks messy — Claude can read it. The more text you include, the better the analysis.
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Paste + Scan -->
+
+  <div class="cs-paste-panel">
+    <div class="cs-panel-hdr">
+      <div class="cs-step-badge cs-badge-active">2</div>
+      <div class="cs-panel-hdr-text">
+        <h3>Paste Your Credit Report</h3>
+        <p>Paste the full text from your AnnualCreditReport.com page below</p>
+      </div>
+    </div>
+    <div class="cs-paste-body">
+      <textarea class="cs-report-ta" id="cs-report-text"
+        placeholder="Paste your credit report text here...&#10;&#10;Example of what it might look like:&#10;&#10;EQUIFAX CREDIT REPORT&#10;Report Date: 01/15/2025&#10;&#10;ACCOUNT INFORMATION&#10;Capital One Platinum Mastercard&#10;Account #: 414700XXXXXX1234&#10;Date Opened: 03/15/2019&#10;Account Status: Open&#10;Payment Status: 120 Days Past Due&#10;Balance: $2,340&#10;Credit Limit: $3,000&#10;&#10;Midland Credit Management&#10;Original Creditor: Sprint&#10;Account #: MCM-8823991&#10;Balance: $847&#10;Status: In Collections&#10;Date Opened: 11/2020&#10;..."
+        oninput="csUpdateCharCount()" maxlength="40000"></textarea>
+    </div>
+    <div class="cs-ta-footer">
+      <button class="cs-sample-link" onclick="csLoadSample()">&#x1F9EA; Load a sample report to try it out</button>
+      <div class="cs-char-count" id="cs-char-count">0 / 40,000</div>
+    </div>
+    <div class="cs-scan-footer">
+      <div class="cs-bureau-select-row">
+        <span class="cs-bureau-lbl">Bureau:</span>
+        <button class="cs-bureau-chip active" id="csbtn-all" onclick="csBureauSelect('all',this)">All 3</button>
+        <button class="cs-bureau-chip" id="csbtn-eq" onclick="csBureauSelect('Equifax',this)">Equifax</button>
+        <button class="cs-bureau-chip" id="csbtn-ex" onclick="csBureauSelect('Experian',this)">Experian</button>
+        <button class="cs-bureau-chip" id="csbtn-tu" onclick="csBureauSelect('TransUnion',this)">TransUnion</button>
+      </div>
+      <button class="cs-scan-btn" id="cs-scan-btn" onclick="csRunScan()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.6"/><path d="M8 5v3.5l2 1.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Scan with Claude AI
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+
+  <div class="cs-loading" id="cs-loading">
+    <div class="cs-spinner"></div>
+    <div class="cs-load-title">Scanning your credit report...</div>
+    <div class="cs-load-sub">Claude AI is reading every account for errors and FCRA violations</div>
+    <div class="cs-load-steps" id="cs-load-steps">
+      <div class="cs-ls active" id="csl-0"><span class="cs-ls-dot"></span>Parsing account information...</div>
+      <div class="cs-ls" id="csl-1"><span class="cs-ls-dot"></span>Checking payment history accuracy...</div>
+      <div class="cs-ls" id="csl-2"><span class="cs-ls-dot"></span>Scanning collections &amp; charge-offs...</div>
+      <div class="cs-ls" id="csl-3"><span class="cs-ls-dot"></span>Verifying balances and dates...</div>
+      <div class="cs-ls" id="csl-4"><span class="cs-ls-dot"></span>Checking inquiries &amp; identity info...</div>
+      <div class="cs-ls" id="csl-5"><span class="cs-ls-dot"></span>Building dispute recommendations...</div>
+    </div>
+  </div>
+
+  <!-- Error Panel -->
+
+  <div class="cs-error-panel" id="cs-error-panel">
+    <div style="font-size:36px;margin-bottom:10px;">&#x26A0;&#xFE0F;</div>
+    <div style="font-weight:700;font-size:1rem;" id="cs-error-title">Scan failed</div>
+    <p id="cs-error-msg">Something went wrong. Please check your report text and try again.</p>
+    <button class="btn btn-ghost" style="margin-top:16px;" onclick="csReset()">&#x21BA; Try Again</button>
+  </div>
+
+  <!-- Results -->
+
+  <div class="cs-results" id="cs-results">
+    <div class="cs-results-hdr">
+      <div>
+        <div class="cs-results-title">&#x2705; Scan Complete</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;" id="cs-scan-time"></div>
+      </div>
+      <button class="cs-rescan-btn" onclick="csReset()">&#x21BA; New Scan</button>
+    </div>
+    <div class="cs-overview-box" id="cs-overview"></div>
+    <div class="cs-summary-grid" id="cs-summary-grid"></div>
+    <div class="cs-findings-bar">
+      <div class="cs-findings-label">Flagged Items</div>
+      <div class="cs-filter-row">
+        <button class="cs-ftab active" onclick="csFilter('all',this)">All</button>
+        <button class="cs-ftab" onclick="csFilter('critical',this)">&#x1F534; Critical</button>
+        <button class="cs-ftab" onclick="csFilter('high',this)">&#x1F7E1; High</button>
+        <button class="cs-ftab" onclick="csFilter('medium',this)">&#x1F535; Medium</button>
+      </div>
+    </div>
+    <div id="cs-findings-list"></div>
+    <div class="cs-bottom-bar">
+      <div class="cs-bottom-bar-text"><strong id="cs-queued-label">0 items queued</strong> &mdash; ready to dispute</div>
+      <div class="cs-bottom-bar-actions">
+        <button class="btn btn-ghost btn-sm" onclick="csQueueAll()">Queue All</button>
+        <button class="btn btn-primary" onclick="csGoDispute()">Open Letter Builder &#x2192;</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
 <script>
 // ── SECURITY ──
-function escHtml(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');}
+function escHtml(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');}
 function sanitizeStr(s,maxLen){return String(s||'').replace(/[<>]/g,'').slice(0,maxLen||500);}
 
 // ── STATE ──
@@ -884,19 +1120,15 @@ const err=document.getElementById(‘err-’+id);
 if(el){el.classList.add(‘invalid’);el.classList.add(‘shake’);setTimeout(()=>el.classList.remove(‘shake’),400);}
 if(err){err.textContent=msg||err.textContent;err.classList.add(‘show’);}
 }
-
 function clearFieldError(id){
 const el=document.getElementById(id);
 const err=document.getElementById(‘err-’+id);
 if(el)el.classList.remove(‘invalid’);
 if(err)err.classList.remove(‘show’);
 }
-
 function validateForm(){
 let errors=[];
 let firstErrorEl=null;
-
-// Dispute type
 if(!selDispute){
 const e=document.getElementById(‘err-dispute-type’);
 if(e){e.classList.add(‘show’);if(!firstErrorEl)firstErrorEl=e;}
@@ -904,8 +1136,6 @@ errors.push(‘Select a dispute type’);
 }else{
 const e=document.getElementById(‘err-dispute-type’);if(e)e.classList.remove(‘show’);
 }
-
-// Bureau
 const bureau=document.querySelector(‘input[name=“bureau”]:checked’);
 if(!bureau){
 const e=document.getElementById(‘err-bureau’);
@@ -914,8 +1144,6 @@ errors.push(‘Select a credit bureau’);
 }else{
 const e=document.getElementById(‘err-bureau’);if(e)e.classList.remove(‘show’);
 }
-
-// Core fields
 const coreFields=[
 {id:‘fullName’,msg:‘Full legal name is required’},
 {id:‘address’,msg:‘Street address is required’},
@@ -933,22 +1161,16 @@ if(!firstErrorEl)firstErrorEl=el;
 clearFieldError(f.id);
 }
 });
-
-// State format
 const stateEl=document.getElementById(‘state’);
 if(stateEl&&stateEl.value.trim()&&stateEl.value.trim().length!==2){
 showFieldError(‘state’,‘State must be 2 letters (e.g. FL)’);
 errors.push(‘State must be 2 letters’);
 }
-
-// ZIP format
 const zipEl=document.getElementById(‘zip’);
 if(zipEl&&zipEl.value.trim()&&zipEl.value.trim().length!==5){
 showFieldError(‘zip’,‘ZIP must be 5 digits’);
 errors.push(‘ZIP must be 5 digits’);
 }
-
-// Dynamic required fields
 if(selDispute){
 const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
 if(dt){
@@ -965,7 +1187,6 @@ clearFieldError(f.id);
 });
 }
 }
-
 if(errors.length>0){
 const banner=document.getElementById(‘validation-banner’);
 if(banner){
@@ -975,7 +1196,6 @@ banner.classList.add(‘show’);
 if(firstErrorEl){firstErrorEl.scrollIntoView({behavior:‘smooth’,block:‘center’});}
 return false;
 }
-
 const banner=document.getElementById(‘validation-banner’);
 if(banner)banner.classList.remove(‘show’);
 return true;
@@ -997,7 +1217,6 @@ const pct=Math.round((done/checks.length)*100);
 const fill=document.getElementById(‘form-progress-fill’);
 if(fill)fill.style.width=pct+’%’;
 updateChecklist(checks);
-
 const badge=document.getElementById(‘letter-complete-badge’);
 if(badge){
 if(pct===100&&selDispute){badge.classList.remove(‘hidden’);}
@@ -1027,21 +1246,19 @@ if(row)row.classList.toggle(‘done’,checks[i]);
 // ── FIELD VALUES ──
 function getVal(id){
 const e=document.getElementById(id);
-if(!e)return ‘’;
+if(!e)return’’;
 if(e.type===‘checkbox’)return e.checked;
 return sanitizeStr(e.value.trim(),500);
 }
-
 function getFields(){
 const f={fullName:getVal(‘fullName’),address:getVal(‘address’),city:getVal(‘city’),state:getVal(‘state’),zip:getVal(‘zip’),dob:getVal(‘dob’),ssn4:getVal(‘ssn4’),letterDate:getVal(‘letterDate’),bureau:’’};
 const b=document.querySelector(‘input[name=“bureau”]:checked’);if(b)f.bureau=b.value;
 if(selDispute){const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);if(dt)dt.fields.forEach(fld=>f[fld.id]=getVal(fld.id));}
 return f;
 }
+function formatDate(s){if(!s)return’[Date]’;try{const d=new Date(s+‘T00:00:00’);return d.toLocaleDateString(‘en-US’,{year:‘numeric’,month:‘long’,day:‘numeric’});}catch(e){return s;}}
 
-function formatDate(s){if(!s)return ‘[Date]’;try{const d=new Date(s+‘T00:00:00’);return d.toLocaleDateString(‘en-US’,{year:‘numeric’,month:‘long’,day:‘numeric’});}catch(e){return s;}}
-
-// ── AGGRESSION LEVEL ──
+// ── AGGRESSION ──
 function updateAggBadge(){
 const v=parseInt(document.getElementById(‘agg-slider’).value);
 const badge=document.getElementById(‘agg-badge’);
@@ -1135,12 +1352,10 @@ setTimeout(()=>b.innerHTML=orig,2000);
 toast(‘✓ Letter copied to clipboard!’);
 }catch(e){toast(‘Copy failed — try the PDF button instead.’,‘err’);}
 }
-
 function printLetter(){
 if(!validateForAction())return;
 window.print();
 }
-
 function downloadPDF(){
 if(!validateForAction())return;
 const f=getFields();
@@ -1158,7 +1373,6 @@ doc.save(`DisputeKit_${dt.id}_${safe}.pdf`);
 toast(‘📥 PDF downloaded!’);
 }catch(e){toast(‘PDF failed — try Copy or Print.’,‘err’);}
 }
-
 function validateForAction(){
 const f=getFields();
 if(!selDispute){toast(‘⚠️ Select a dispute type first.’,‘warn’);return false;}
@@ -1166,7 +1380,6 @@ if(!f.fullName){toast(‘⚠️ Enter your full name first.’,‘warn’);showF
 if(!f.bureau){toast(‘⚠️ Select a credit bureau first.’,‘warn’);return false;}
 return true;
 }
-
 function logDispute(){
 if(!validateForm())return;
 const f=getFields();
@@ -1190,14 +1403,12 @@ disputes.unshift(d);
 try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
 toast(‘📬 Dispute logged! Check your Tracker.’);
 }
-
 function updateDisputeStatus(id,status){
 const d=disputes.find(x=>x.id===id);if(!d)return;
 d.status=status;
 try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
 renderTracker();toast(’✓ Status updated to: ’+status);
 }
-
 function deleteDispute(id){
 if(!confirm(‘Delete this dispute record?’))return;
 disputes=disputes.filter(x=>x.id!==id);
@@ -1213,7 +1424,6 @@ const statusMap={sent:‘Sent’,review:‘In Review’,responded:‘Responded�
 const statusClass={sent:‘s-sent’,review:‘s-review’,responded:‘s-responded’,removed:‘s-removed’,verified:‘s-verified’};
 const counts={sent:0,review:0,responded:0,removed:0,verified:0};
 disputes.forEach(d=>{if(counts[d.status]!==undefined)counts[d.status]++;});
-
 if(stats){
 stats.innerHTML=[
 {label:‘Total’,val:disputes.length,cls:’’},
@@ -1222,12 +1432,10 @@ stats.innerHTML=[
 {label:‘Verified’,val:counts.verified,cls:‘vr’},
 ].map(s=>`<div class="card card-sm"><div class="card-title">${s.label}</div><div style="font-family:var(--mono);font-size:28px;font-weight:700;${s.cls==='vb'?'color:var(--blue)':s.cls==='vg'?'color:var(--accent)':s.cls==='vr'?'color:var(--red)':''}">${s.val}</div></div>`).join(’’);
 }
-
 if(!disputes.length){
 list.innerHTML=’<div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click “Log This Dispute” to start tracking.</p></div>’;
 return;
 }
-
 list.innerHTML=disputes.map(d=>{
 const sentMs=new Date(d.sentDate).getTime();
 const deadMs=new Date(d.deadline).getTime();
@@ -1236,7 +1444,7 @@ const daysLeft=Math.ceil((deadMs-nowMs)/(1000*60*60*24));
 const pct=Math.max(0,Math.min(100,((nowMs-sentMs)/(deadMs-sentMs))*100));
 const urgent=daysLeft<=5&&daysLeft>0&&[‘sent’,‘review’].includes(d.status);
 const barColor=d.status===‘removed’?‘var(–accent)’:d.status===‘verified’?‘var(–red)’:pct>80?‘var(–red)’:pct>60?‘var(–amber)’:‘var(–blue)’;
-return `<div class="dispute-item"> <div class="di-top"> <div> <div class="di-name">${escHtml(d.creditor)}${d.accountNumber?' — ****'+escHtml(d.accountNumber.slice(-4)):''}</div> <div class="di-bureau">${escHtml(d.type)} · ${escHtml(d.bureau)} · ${escHtml(d.aggression)}</div> </div> <span class="di-status-badge ${statusClass[d.status]||'s-sent'}">${statusMap[d.status]||d.status}</span> </div> <div class="di-meta"> <span>📅 Sent: ${d.sentDate}</span> <span class="di-deadline${urgent?' urgent':''}">⏰ Deadline: ${d.deadline}${daysLeft>0?' ('+daysLeft+'d left)':' (PAST DUE)'}</span> </div> <div class="deadline-bar"><div class="deadline-fill" style="width:${pct}%;background:${barColor};"></div></div> <div class="di-actions" style="margin-top:12px;"> <select class="field-select" style="max-width:160px;padding:6px 30px 6px 10px;font-size:0.78rem;" onchange="updateDisputeStatus(${d.id},this.value)"> <option value="sent"${d.status==='sent'?' selected':''}>Sent</option> <option value="review"${d.status==='review'?' selected':''}>In Review</option> <option value="responded"${d.status==='responded'?' selected':''}>Responded</option> <option value="removed"${d.status==='removed'?' selected':''}>Removed ✓</option> <option value="verified"${d.status==='verified'?' selected':''}>Bureau Verified</option> </select> <button class="btn btn-sm btn-amber" onclick="generateRound2(${d.id})">⚡ Round 2 Letter</button> <button class="btn btn-sm btn-red" onclick="deleteDispute(${d.id})">✕ Delete</button> </div> </div>`;
+return `<div class="dispute-item"><div class="di-top"><div><div class="di-name">${escHtml(d.creditor)}${d.accountNumber?' — ****'+escHtml(d.accountNumber.slice(-4)):''}</div><div class="di-bureau">${escHtml(d.type)} · ${escHtml(d.bureau)} · ${escHtml(d.aggression)}</div></div><span class="di-status-badge ${statusClass[d.status]||'s-sent'}">${statusMap[d.status]||d.status}</span></div><div class="di-meta"><span>📅 Sent: ${d.sentDate}</span><span class="di-deadline${urgent?' urgent':''}">⏰ Deadline: ${d.deadline}${daysLeft>0?' ('+daysLeft+'d left)':' (PAST DUE)'}</span></div><div class="deadline-bar"><div class="deadline-fill" style="width:${pct}%;background:${barColor};"></div></div><div class="di-actions" style="margin-top:12px;"><select class="field-select" style="max-width:160px;padding:6px 30px 6px 10px;font-size:0.78rem;" onchange="updateDisputeStatus(${d.id},this.value)"><option value="sent"${d.status==='sent'?' selected':''}>Sent</option><option value="review"${d.status==='review'?' selected':''}>In Review</option><option value="responded"${d.status==='responded'?' selected':''}>Responded</option><option value="removed"${d.status==='removed'?' selected':''}>Removed ✓</option><option value="verified"${d.status==='verified'?' selected':''}>Bureau Verified</option></select><button class="btn btn-sm btn-amber" onclick="generateRound2(${d.id})">⚡ Round 2 Letter</button><button class="btn btn-sm btn-red" onclick="deleteDispute(${d.id})">✕ Delete</button></div></div>`;
 }).join(’’);
 }
 
@@ -1265,10 +1473,9 @@ TransUnion:‘TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, P
 };
 const toAddr=bureauFull[f.bureau]||f.bureau;
 const fromAddr=[f.fullName||’[Your Name]’,f.address||’[Your Address]’,[f.city,f.state,f.zip].filter(Boolean).join(’, ‘)].filter(Boolean).join(’\n’);
-document.getElementById(‘mail-label-content’).innerHTML=` <div class="mail-label"> <div class="mail-certified">CERTIFIED MAIL</div> <div class="mail-label-header">Return Address (From):</div> <div class="mail-label-from">${escHtml(fromAddr).replace(/\n/g,'<br>')}</div> <div class="mail-label-header">Send To:</div> <div class="mail-label-to">${escHtml(toAddr).replace(/\n/g,'<br>')}</div> </div> <p style="font-size:0.78rem;color:var(--muted);margin-top:12px;line-height:1.6;">💡 <strong>Tip:</strong> Send via USPS Certified Mail with Return Receipt Requested. Keep your tracking number and green card as legal proof of delivery. The 30-day dispute window starts when the bureau receives it.</p>`;
+document.getElementById(‘mail-label-content’).innerHTML=`<div class="mail-label"><div class="mail-certified">CERTIFIED MAIL</div><div class="mail-label-header">Return Address (From):</div><div class="mail-label-from">${escHtml(fromAddr).replace(/\n/g,'<br>')}</div><div class="mail-label-header">Send To:</div><div class="mail-label-to">${escHtml(toAddr).replace(/\n/g,'<br>')}</div></div><p style="font-size:0.78rem;color:var(--muted);margin-top:12px;line-height:1.6;">💡 <strong>Tip:</strong> Send via USPS Certified Mail with Return Receipt Requested. Keep your tracking number and green card as legal proof of delivery. The 30-day dispute window starts when the bureau receives it.</p>`;
 document.getElementById(‘mail-modal’).classList.add(‘show’);
 }
-
 function printMailLabel(){
 const content=document.getElementById(‘mail-label-content’).innerHTML;
 const w=window.open(’’,’_blank’);
@@ -1281,7 +1488,6 @@ w.document.close();
 function idDragOver(e){e.preventDefault();document.getElementById(‘id-zone’).classList.add(‘dragover’);}
 function idDragLeave(e){document.getElementById(‘id-zone’).classList.remove(‘dragover’);}
 function idDrop(e){e.preventDefault();idDragLeave(e);const f=e.dataTransfer.files[0];if(f&&f.type.startsWith(‘image/’))handleIdUpload(f);}
-
 function handleIdUpload(file){
 if(!file||!file.type.startsWith(‘image/’)){toast(‘⚠️ Please upload an image file.’,‘err’);return;}
 if(file.size>10*1024*1024){toast(‘⚠️ File too large. Max 10MB.’,‘err’);return;}
@@ -1291,12 +1497,11 @@ const src=e.target.result;
 document.getElementById(‘id-preview-img’).src=src;
 document.getElementById(‘id-preview-wrap’).classList.remove(‘hidden’);
 document.getElementById(‘id-zone’).style.display=‘none’;
-document.getElementById(‘id-parsed-rows’).innerHTML=` <div class="id-parsed-row"><span class="id-parsed-key">Status</span><span class="id-parsed-val" style="color:var(--accent);">✓ ID Uploaded</span></div> <div class="id-parsed-row"><span class="id-parsed-key">Note</span><span class="id-parsed-val" style="font-family:var(--font);font-size:0.78rem;color:var(--muted);">Confirm your name & address in Step 4 match your ID</span></div>`;
+document.getElementById(‘id-parsed-rows’).innerHTML=`<div class="id-parsed-row"><span class="id-parsed-key">Status</span><span class="id-parsed-val" style="color:var(--accent);">✓ ID Uploaded</span></div><div class="id-parsed-row"><span class="id-parsed-key">Note</span><span class="id-parsed-val" style="font-family:var(--font);font-size:0.78rem;color:var(--muted);">Confirm your name &amp; address in Step 4 match your ID</span></div>`;
 toast(‘✓ ID uploaded. Confirm your info matches in Step 4.’);
 };
 reader.readAsDataURL(file);
 }
-
 function clearId(){
 document.getElementById(‘id-preview-wrap’).classList.add(‘hidden’);
 document.getElementById(‘id-zone’).style.display=’’;
@@ -1311,18 +1516,14 @@ const date=document.getElementById(‘score-date’).value;
 const eq=parseInt(document.getElementById(‘score-eq’).value)||0;
 const ex=parseInt(document.getElementById(‘score-ex’).value)||0;
 const tu=parseInt(document.getElementById(‘score-tu’).value)||0;
-
 const banner=document.getElementById(‘score-validation-banner’);
 const errors=[];
-
 if(!date)errors.push(‘Please select a date.’);
 if(!eq&&!ex&&!tu)errors.push(‘Enter at least one score.’);
 const validate=s=>s===0||(s>=300&&s<=850);
 if((eq&&!validate(eq))||(ex&&!validate(ex))||(tu&&!validate(tu)))errors.push(‘Scores must be between 300 and 850.’);
-
 if(errors.length>0){
-if(banner){banner.textContent=’⚠️ ‘+errors.join(’ ’);banner.classList.add(‘show’);}
-// Shake the fields
+if(banner){banner.textContent=‘⚠️ ‘+errors.join(’ ‘);banner.classList.add(‘show’);}
 [‘score-eq’,‘score-ex’,‘score-tu’,‘score-date’].forEach(id=>{
 const el=document.getElementById(id);
 if(el&&!el.value){el.classList.add(‘invalid’);el.classList.add(‘shake’);setTimeout(()=>{el.classList.remove(‘shake’);el.classList.remove(‘invalid’);},400);}
@@ -1330,7 +1531,6 @@ if(el&&!el.value){el.classList.add(‘invalid’);el.classList.add(‘shake’);
 return;
 }
 if(banner)banner.classList.remove(‘show’);
-
 scoreHistory.push({date,eq:eq||null,ex:ex||null,tu:tu||null});
 scoreHistory.sort((a,b)=>a.date.localeCompare(b.date));
 try{localStorage.setItem(‘dk_scores’,JSON.stringify(scoreHistory));}catch(e){}
@@ -1359,7 +1559,7 @@ const score=latest[b.key];
 const pct=score?((score-300)/550)*100:0;
 const tier=scoreTier(score);
 const r=54;const circ=2*Math.PI*r;const dash=circ*(pct/100);
-return `<div class="gauge-card"> <div class="gauge-bureau">${b.label}</div> <div class="gauge-ring"> <svg width="120" height="120" viewBox="0 0 120 120"> <circle cx="60" cy="60" r="${r}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10"/> <circle cx="60" cy="60" r="${r}" fill="none" stroke="${score?b.color:'rgba(255,255,255,0.05)'}" stroke-width="10" stroke-dasharray="${dash} ${circ}" stroke-linecap="round" style="transition:stroke-dasharray 0.8s ease;"/> </svg> <div class="gauge-center"> <div class="gauge-num" style="color:${score?b.color:'var(--dim)'}">${score||'—'}</div> <div class="gauge-lbl">score</div> </div> </div> <div class="gauge-tier" style="color:${tier.color}">${tier.label}</div> <div class="gauge-range">Range: 300–850</div> </div>`;
+return `<div class="gauge-card"><div class="gauge-bureau">${b.label}</div><div class="gauge-ring"><svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="${r}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10"/><circle cx="60" cy="60" r="${r}" fill="none" stroke="${score?b.color:'rgba(255,255,255,0.05)'}" stroke-width="10" stroke-dasharray="${dash} ${circ}" stroke-linecap="round" style="transition:stroke-dasharray 0.8s ease;"/></svg><div class="gauge-center"><div class="gauge-num" style="color:${score?b.color:'var(--dim)'}">${score||'—'}</div><div class="gauge-lbl">score</div></div></div><div class="gauge-tier" style="color:${tier.color}">${tier.label}</div><div class="gauge-range">Range: 300–850</div></div>`;
 }).join(’’);
 }
 renderScoreChart(bureaus);
@@ -1381,9 +1581,11 @@ return;
 const pad={l:10,r:10,t:10,b:10};
 const cW=W-pad.l-pad.r;const cH=H-pad.t-pad.b;
 const allScores=scoreHistory.flatMap(e=>[e.eq,e.ex,e.tu].filter(Boolean));
-const minS=Math.min(…allScores)-20;const maxS=Math.max(…allScores)+20;
-const toX=i=>pad.l+(i/(scoreHistory.length-1))*cW;
-const toY=v=>pad.t+(1-(v-minS)/(maxS-minS))*cH;
+// FIX: use Function.prototype.apply instead of spread operator to avoid Unicode ellipsis bug
+const minS=Math.min.apply(null,allScores)-20;
+const maxS=Math.max.apply(null,allScores)+20;
+const toX=function(i){return pad.l+(i/(scoreHistory.length-1))*cW;};
+const toY=function(v){return pad.t+(1-(v-minS)/(maxS-minS))*cH;};
 bureaus.forEach(b=>{
 const pts=scoreHistory.map((e,i)=>e[b.key]?{x:toX(i),y:toY(e[b.key])}:null).filter(Boolean);
 if(pts.length<2)return;
@@ -1415,6 +1617,304 @@ document.getElementById(‘letter-out’).style.display=‘none’;
 const badge=document.getElementById(‘letter-complete-badge’);if(badge)badge.classList.add(‘hidden’);
 const fill=document.getElementById(‘form-progress-fill’);if(fill)fill.style.width=‘0%’;
 updateChecklist();
+}
+
+// ══ CREDITSMART AI ══════════════════════════════════════════════════════════
+let csSelectedBureau = ‘all’;
+let csFindings = [];
+let csLoadTimer = null;
+
+function csBureauSelect(val, btn) {
+csSelectedBureau = val;
+document.querySelectorAll(’.cs-bureau-chip’).forEach(b => b.classList.remove(‘active’));
+if(btn) btn.classList.add(‘active’);
+}
+
+function csUpdateCharCount() {
+const ta = document.getElementById(‘cs-report-text’);
+const el = document.getElementById(‘cs-char-count’);
+if(ta && el) el.textContent = ta.value.length.toLocaleString() + ’ / 40,000’;
+}
+
+function csLoadSample() {
+const sample = `EQUIFAX CREDIT REPORT
+Report Date: January 15, 2025
+Consumer: John A. Smith | DOB: 05/14/1985
+
+=== ACCOUNT INFORMATION ===
+
+Capital One Platinum Mastercard
+Account #: 414700XXXXXX1234
+Date Opened: 03/15/2019
+Account Type: Revolving
+Account Status: Open
+Payment Status: 120 Days Past Due
+High Balance: $3,000 | Balance: $2,340 | Credit Limit: $3,000
+Payment History: OK OK OK OK OK 30 60 90 120 120 120
+
+Midland Credit Management
+Original Creditor: T-Mobile USA
+Account #: MCM-88239914
+Date Opened: 11/10/2020
+Balance: $847
+Account Status: Collection
+Date of First Delinquency: 08/2018
+
+Chase Sapphire Preferred
+Account #: 4147XXXXXXXX5678
+Date Opened: 07/2016
+Payment Status: Paid, Closed
+Balance: $1,200
+[NOTE: Consumer reports this account was paid in full in 2022]
+
+Synchrony Bank / Amazon Store Card
+Account #: SYNC-AMZN-3310
+Date Opened: 01/2021
+Payment Status: Current
+Balance: $0
+[This account does not appear on consumer’s records]
+
+=== INQUIRIES ===
+Hard Inquiry: Carvana Auto Finance — 03/12/2024
+Hard Inquiry: Best Buy Credit Services — 03/12/2024
+Hard Inquiry: Credit One Bank — 01/05/2025
+Hard Inquiry: Credit One Bank — 01/06/2025
+
+=== PERSONAL INFORMATION ===
+Current Address: 123 Main St, Miami FL 33101
+Previous Address: 4892 Unknown Ave, Detroit MI 48201 [Consumer states this address is not theirs]`;
+
+const ta = document.getElementById(‘cs-report-text’);
+if(ta) { ta.value = sample; csUpdateCharCount(); }
+}
+
+async function csRunScan() {
+const ta = document.getElementById(‘cs-report-text’);
+const text = ta ? ta.value.trim() : ‘’;
+if(text.length < 50) { toast(‘⚠️ Please paste your credit report text first (minimum 50 characters).’, ‘warn’); return; }
+
+// Hide results, show loading
+document.getElementById(‘cs-results’).classList.remove(‘show’);
+document.getElementById(‘cs-error-panel’).classList.remove(‘show’);
+document.getElementById(‘cs-loading’).classList.add(‘show’);
+document.getElementById(‘cs-scan-btn’).disabled = true;
+
+// Animate loading steps
+let step = 0;
+const steps = document.querySelectorAll(’.cs-ls’);
+steps.forEach(s => { s.classList.remove(‘active’,‘done’); });
+steps[0].classList.add(‘active’);
+csLoadTimer = setInterval(() => {
+if(step < steps.length - 1) {
+steps[step].classList.remove(‘active’); steps[step].classList.add(‘done’);
+step++; steps[step].classList.add(‘active’);
+}
+}, 900);
+
+const bureauNote = csSelectedBureau === ‘all’ ? ‘all three bureaus (Equifax, Experian, TransUnion)’ : csSelectedBureau;
+
+const prompt = `You are a professional credit repair expert and FCRA (Fair Credit Reporting Act) attorney. Analyze the following credit report text and identify every potentially disputable item.
+
+Bureau context: ${bureauNote}
+
+For each issue found, provide a JSON array. Each item must have these exact fields:
+
+- “creditor”: string (name of the creditor or agency)
+- “accountNumber”: string (last 4 digits if visible, otherwise “N/A”)
+- “severity”: string (one of: “critical”, “high”, “medium”, “low”)
+- “disputeType”: string (one of: “inaccurate”, “late-payment”, “collection”, “charge-off”, “identity-theft”, “mixed-file”, “goodwill”, “verification”)
+- “issue”: string (short title of the problem, max 12 words)
+- “description”: string (clear explanation of why this is disputable, 1-3 sentences, written for a consumer to understand)
+- “fcraSection”: string (most relevant FCRA section, e.g. “§ 1681i”, “§ 1681c”, “§ 1681s-2(b)”, “§ 605B”)
+- “suggestedAction”: string (what to say in a dispute letter, 1 sentence)
+- “bureau”: string (which bureau this appears on, based on the report text, or “Unknown”)
+
+Severity guide:
+
+- critical: identity theft, fraudulent accounts, accounts you don’t recognize, severe errors causing major damage
+- high: incorrect late payments, charge-offs with wrong dates/amounts, collections past statute of limitations, wrong balances
+- medium: duplicate hard inquiries, wrong personal information, accounts that should be removed due to age (7-year rule)
+- low: minor discrepancies, goodwill removal candidates, accounts to verify
+
+Also provide a brief overall summary. Return your response as a JSON object with two keys:
+
+1. “overview”: string (2-3 sentence summary of the report and key concerns found)
+1. “findings”: array of the items above
+
+If no issues are found, return findings as an empty array with an appropriate overview.
+
+IMPORTANT: Return ONLY valid JSON. No markdown, no backticks, no explanation outside the JSON.
+
+CREDIT REPORT TEXT:
+${text.slice(0, 15000)}`;
+
+try {
+const response = await fetch(‘https://api.anthropic.com/v1/messages’, {
+method: ‘POST’,
+headers: { ‘Content-Type’: ‘application/json’ },
+body: JSON.stringify({
+model: ‘claude-sonnet-4-20250514’,
+max_tokens: 4000,
+messages: [{ role: ‘user’, content: prompt }]
+})
+});
+
+```
+clearInterval(csLoadTimer);
+// Mark all steps done
+document.querySelectorAll('.cs-ls').forEach(s => { s.classList.remove('active'); s.classList.add('done'); });
+
+if(!response.ok) {
+  const err = await response.json().catch(() => ({}));
+  throw new Error(err.error?.message || 'API error ' + response.status);
+}
+
+const data = await response.json();
+const raw = data.content.filter(c => c.type === 'text').map(c => c.text).join('');
+
+let parsed;
+try {
+  const clean = raw.replace(/```json|```/g, '').trim();
+  parsed = JSON.parse(clean);
+} catch(e) {
+  throw new Error('Could not parse AI response. Please try again.');
+}
+
+csFindings = (parsed.findings || []).map((f, i) => ({ ...f, id: i, queued: false, ignored: false }));
+const overview = parsed.overview || 'Scan complete.';
+
+document.getElementById('cs-loading').classList.remove('show');
+csRenderResults(overview, csFindings);
+document.getElementById('cs-scan-btn').disabled = false;
+```
+
+} catch(err) {
+clearInterval(csLoadTimer);
+document.getElementById(‘cs-loading’).classList.remove(‘show’);
+document.getElementById(‘cs-error-title’).textContent = ‘Scan failed’;
+document.getElementById(‘cs-error-msg’).textContent = err.message || ‘Something went wrong. Please try again.’;
+document.getElementById(‘cs-error-panel’).classList.add(‘show’);
+document.getElementById(‘cs-scan-btn’).disabled = false;
+console.error(‘CreditSmart error:’, err);
+}
+}
+
+function csRenderResults(overview, findings) {
+document.getElementById(‘cs-scan-time’).textContent = ‘Scanned ’ + new Date().toLocaleString();
+document.getElementById(‘cs-overview’).innerHTML = escHtml(overview).replace(/\n/g,’<br>’);
+
+const counts = { critical:0, high:0, medium:0, low:0 };
+findings.forEach(f => { if(counts[f.severity] !== undefined) counts[f.severity]++; });
+
+document.getElementById(‘cs-summary-grid’).innerHTML = [
+{ cls:‘cs-crit’, val: counts.critical, lbl:‘Critical’ },
+{ cls:‘cs-high’, val: counts.high, lbl:‘High Priority’ },
+{ cls:‘cs-med’, val: counts.medium, lbl:‘Medium’ },
+{ cls:‘cs-total’, val: findings.length, lbl:‘Total Flagged’ },
+].map(s => `<div class="cs-stat-card ${s.cls}"><div class="cs-stat-val">${s.val}</div><div class="cs-stat-lbl">${s.lbl}</div></div>`).join(’’);
+
+csRenderFindings(‘all’);
+document.getElementById(‘cs-results’).classList.add(‘show’);
+document.getElementById(‘cs-results’).scrollIntoView({behavior:‘smooth’,block:‘start’});
+}
+
+function csRenderFindings(filter) {
+const list = document.getElementById(‘cs-findings-list’);
+const visible = filter === ‘all’ ? csFindings : csFindings.filter(f => f.severity === filter);
+
+if(!visible.length) {
+list.innerHTML = `<div class="empty-state"><div style="font-size:36px;">${filter==='all'?'✅':'🔍'}</div><p>${filter==='all'?'No disputable items found in this report.':'No '+filter+' severity items found.'}</p></div>`;
+return;
+}
+
+const sevMap = { critical:‘cs-sev-critical’, high:‘cs-sev-high’, medium:‘cs-sev-medium’, low:‘cs-sev-low’ };
+const sevLabel = { critical:‘🔴 Critical’, high:‘🟡 High’, medium:‘🔵 Medium’, low:‘🟢 Low’ };
+
+list.innerHTML = visible.map(f => `<div class="cs-finding${f.queued?' cs-queued':''}${f.ignored?' cs-ignored':''}" id="cs-f-${f.id}"> <div class="cs-finding-top"> <div> <div class="cs-finding-creditor">${escHtml(f.creditor)}${f.accountNumber&&f.accountNumber!=='N/A'?' &mdash; <span style=\"font-family:var(--mono);font-size:0.82rem;\">'+'****'+escHtml(f.accountNumber.slice(-4))+'</span>':''}</div> <div class="cs-finding-subtype">${escHtml(f.issue)} &bull; ${escHtml(f.bureau||'')}</div> </div> <span class="cs-sev ${sevMap[f.severity]||'cs-sev-medium'}">${sevLabel[f.severity]||f.severity}</span> </div> <div class="cs-finding-desc">${escHtml(f.description)}</div> <div class="cs-law-tag">FCRA ${escHtml(f.fcraSection||'§ 1681i')}</div> <div class="cs-finding-actions"> ${f.queued ?`<span class="cs-queued-tag">✓ Queued for Dispute</span><button class="cs-ignore-btn" onclick="csUnqueue(${f.id})">Remove</button>`:`<button class="cs-dispute-btn" onclick="csQueueItem(${f.id})">→ Dispute This</button><button class="cs-ignore-btn" onclick="csIgnore(${f.id})">${f.ignored?‘Restore’:‘Ignore’}</button>` } </div> </div>`).join(’’);
+
+csUpdateQueuedCount();
+}
+
+function csQueueItem(id) {
+const f = csFindings.find(x => x.id === id);
+if(!f) return;
+f.queued = true; f.ignored = false;
+csRenderFinding(id);
+csUpdateQueuedCount();
+toast(‘✓ Added to dispute queue’);
+}
+
+function csUnqueue(id) {
+const f = csFindings.find(x => x.id === id);
+if(f) { f.queued = false; csRenderFinding(id); csUpdateQueuedCount(); }
+}
+
+function csIgnore(id) {
+const f = csFindings.find(x => x.id === id);
+if(f) { f.ignored = !f.ignored; if(f.ignored) f.queued = false; csRenderFinding(id); csUpdateQueuedCount(); }
+}
+
+function csRenderFinding(id) {
+// Re-render just the one card without full list re-render to preserve filter
+const activeFilter = document.querySelector(’.cs-ftab.active’);
+csFilter(activeFilter ? activeFilter.textContent.toLowerCase().replace(/[^a-z]/g,’’) || ‘all’ : ‘all’, activeFilter);
+}
+
+function csUpdateQueuedCount() {
+const n = csFindings.filter(f => f.queued).length;
+const el = document.getElementById(‘cs-queued-label’);
+if(el) el.textContent = n + (n === 1 ? ’ item queued’ : ’ items queued’);
+}
+
+function csQueueAll() {
+csFindings.forEach(f => { if(!f.ignored) f.queued = true; });
+const activeFilter = document.querySelector(’.cs-ftab.active’);
+csRenderFindings(activeFilter ? (activeFilter.dataset.filter || ‘all’) : ‘all’);
+toast(‘✓ All items queued for dispute’);
+}
+
+function csFilter(filter, btn) {
+// Normalize filter value
+const filterMap = {‘all’:‘all’,‘critical’:‘critical’,‘high’:‘high’,‘medium’:‘medium’,‘🔴critical’:‘critical’,‘🟡high’:‘high’,‘🔵medium’:‘medium’};
+const key = filterMap[filter] || filter;
+document.querySelectorAll(’.cs-ftab’).forEach(b => b.classList.remove(‘active’));
+if(btn) { btn.classList.add(‘active’); btn.dataset.filter = key; }
+csRenderFindings(key);
+}
+
+function csGoDispute() {
+const queued = csFindings.filter(f => f.queued);
+if(!queued.length) { toast(‘⚠️ Queue at least one item first using “Dispute This”’,‘warn’); return; }
+const first = queued[0];
+// Map dispute type and pre-fill
+const dtMap = {
+‘inaccurate’:‘inaccurate’,‘late-payment’:‘late-payment’,‘collection’:‘collection’,
+‘charge-off’:‘charge-off’,‘identity-theft’:‘identity-theft’,‘mixed-file’:‘mixed-file’,
+‘goodwill’:‘goodwill’,‘verification’:‘verification’
+};
+const dtId = dtMap[first.disputeType] || ‘inaccurate’;
+selectDT(dtId);
+setTimeout(() => {
+const cn = document.getElementById(‘creditorName’) || document.getElementById(‘collectionAgency’) || document.getElementById(‘fraudCreditor’);
+if(cn) cn.value = first.creditor || ‘’;
+const an = document.getElementById(‘accountNumber’);
+if(an) an.value = first.accountNumber !== ‘N/A’ ? first.accountNumber : ‘’;
+const extra = document.getElementById(‘extra’);
+if(extra) extra.value = first.suggestedAction || ‘’;
+updateLetter(); updateProgress();
+}, 150);
+gotoApp();
+toast(’⚡ Letter builder loaded from CreditSmart findings!’);
+}
+
+function csReset() {
+csFindings = [];
+document.getElementById(‘cs-results’).classList.remove(‘show’);
+document.getElementById(‘cs-error-panel’).classList.remove(‘show’);
+document.getElementById(‘cs-loading’).classList.remove(‘show’);
+document.getElementById(‘cs-report-text’).value = ‘’;
+csUpdateCharCount();
+window.scrollTo({top:0,behavior:‘smooth’});
 }
 
 window.addEventListener(‘resize’,()=>{
