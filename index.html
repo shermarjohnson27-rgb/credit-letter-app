@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DisputeKit — Professional Credit Dispute Letters in Minutes</title>
+  <meta name="description" content="Generate professional credit dispute letters instantly. Free, easy, and built for results." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0f1a;
+      --bg-2: #0f1422;
+      --bg-card: #141928;
+      --bg-card-2: #1a2035;
+      --border: rgba(255,255,255,0.07);
+      --border-2: rgba(255,255,255,0.12);
+      --text: #e8ecf4;
+      --text-muted: #7a8499;
+      --text-dim: #4a5268;
+      --accent: #22d3a5;
+      --accent-2: #1ab88e;
+      --accent-glow: rgba(34, 211, 165, 0.18);
+      --blue: #4f8ef7;
+      --purple: #9b6fff;
+      --orange: #f59e4b;
+      --radius: 12px;
+      --radius-lg: 18px;
+      --font: 'Sora', sans-serif;
+      --mono: 'DM Mono', monospace;
+      --transition: 0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hidden { display: none !important; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #04120c;
+      box-shadow: 0 0 24px rgba(34,211,165,0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-2);
+      transform: translateY(-1px);
+      box-shadow: 0 0 32px rgba(34,211,165,0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-2);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-lg {
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: 10px;
+    }
+
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      border-radius: 7px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 26, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      background: var(--accent);
+      color: #04120c;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark--sm {
+      width: 28px;
+      height: 28px;
+      font-size: 0.65rem;
+      border-radius: 6px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-left: auto;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-link:hover { color: var(--text); }
+    .nav-cta { margin-left: 8px; }
+    .nav-mobile-cta { display: none; margin-left: auto; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 80px;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+
+    .hero-glow-1 {
+      width: 600px;
+      height: 500px;
+      background: rgba(34, 211, 165, 0.07);
+      top: -150px;
+      left: -100px;
+    }
+
+    .hero-glow-2 {
+      width: 400px;
+      height: 400px;
+      background: rgba(79, 142, 247, 0.06);
+      bottom: 0;
+      right: -100px;
+    }
+
+    .hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(34, 211, 165, 0.08);
+      border: 1px solid rgba(34, 211, 165, 0.2);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 28px;
+      letter-spacing: 0.01em;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-headline {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .headline-accent {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .section { padding: 90px 0; }
+    .section-alt { background: var(--bg-2); }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 52px;
+    }
+
+    .accent { color: var(--accent); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      position: relative;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .step-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
+    }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .step-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--accent-glow);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon--teal { background: rgba(34,211,165,0.1); color: var(--accent); }
+    .feature-icon--blue { background: rgba(79,142,247,0.1); color: var(--blue); }
+    .feature-icon--purple { background: rgba(155,111,255,0.1); color: var(--purple); }
+    .feature-icon--orange { background: rgba(245,158,75,0.1); color: var(--orange); }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .cta-section { padding: 60px 0; }
+
+    .cta-card {
+      position: relative;
+      background: linear-gradient(135deg, #0d1f2d 0%, #0d1a2a 100%);
+      border: 1px solid rgba(34,211,165,0.2);
+      border-radius: 24px;
+      padding: 70px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta-glow {
+      position: absolute;
+      width: 500px;
+      height: 300px;
+      background: rgba(34,211,165,0.06);
+      border-radius: 50%;
+      filter: blur(80px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-content { position: relative; z-index: 1; }
+
+    .cta-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .cta-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+
+    .disclaimer-section { padding: 28px 0; }
+
+    .disclaimer-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(245,158,75,0.06);
+      border: 1px solid rgba(245,158,75,0.15);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+    }
+
+    .disclaimer-icon {
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .disclaimer-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .disclaimer-text strong {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,15,26,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-header-inner {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color var(--transition);
+      padding: 6px 0;
+    }
+
+    .btn-back:hover { color: var(--text); }
+    .app-header-spacer { flex: 1; }
+
+    .app-body {
+      padding: 28px 0 60px;
+      min-height: calc(100vh - 60px);
+    }
+
+    .app-container {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .form-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 28px 28px 0;
+      margin-bottom: 24px;
+    }
+
+    .panel-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .panel-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .form-section {
+      padding: 0 28px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-section:last-of-type { border-bottom: none; }
+
+    .form-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .dispute-type-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .dispute-type-btn {
+      background: var(--bg-card-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text-muted);
+      font-family: var(--font);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--transition);
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dispute-type-btn:hover {
+      border-color: var(--border-2);
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .dispute-type-btn.active {
+      background: rgba(34,211,165,0.1);
+      border-color: rgba(34,211,165,0.4);
+      color: var(--accent);
+    }
+
+    .dispute-type-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .bureau-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .bureau-option { cursor: pointer; }
+    .bureau-option input { display: none; }
+
+    .bureau-label {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background: var(--bg-card-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .bureau-option input:checked + .bureau-label {
+      background: rgba(34,211,165,0.1);
+      border-color: rgba(34,211,165,0.4);
+      color: var(--accent);
+    }
+
+    .bureau-label:hover {
+      border-color: var(--border-2);
+      color: var(--text);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field-row--3 { grid-template-columns: 2fr 1fr 1fr; }
+
+    .field-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+    }
+
+    .required { color: var(--accent); }
+
+    .field-input,
+    .field-textarea,
+    .field-select {
+      background: var(--bg-card-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.875rem;
+      transition: border-color var(--transition);
+      width: 100%;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .field-input::placeholder { color: var(--text-dim); }
+
+    .field-input:focus,
+    .field-textarea:focus,
+    .field-select:focus {
+      border-color: rgba(34,211,165,0.4);
+    }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.55;
+    }
+
+    .field-select {
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%237a8499' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .field-select option {
+      background: var(--bg-card-2);
+      color: var(--text);
+    }
+
+    .field-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .field-checkbox input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .empty-dynamic {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px;
+      text-align: center;
+      color: var(--text-dim);
+    }
+
+    .empty-dynamic p {
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .form-actions {
+      padding: 20px 28px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .preview-panel {
+      position: sticky;
+      top: 88px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preview-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .letter-container {
+      min-height: 480px;
+      max-height: 72vh;
+      overflow-y: auto;
+      background: #f5f4f0;
+    }
+
+    .letter-container::-webkit-scrollbar { width: 6px; }
+
+    .letter-container::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.15);
+      border-radius: 3px;
+    }
+
+    .letter-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 60px 24px;
+      color: #a0a8b8;
+      min-height: 480px;
+      background: var(--bg-card-2);
+      text-align: center;
+    }
+
+    .letter-empty-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .letter-empty-sub {
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      max-width: 260px;
+      line-height: 1.6;
+    }
+
+    .letter-output {
+      background: #f5f4f0;
+      padding: 24px;
+    }
+
+    .letter-paper {
+      background: #ffffff;
+      color: #1a1a1a;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      padding: 48px 52px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+      border-radius: 4px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .preview-disclaimer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 0.74rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 1024px) {
+      .app-container { grid-template-columns: 1fr; }
+      .preview-panel { position: static; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-cta { display: flex; }
+      .hero { padding: 60px 0 56px; min-height: auto; }
+      .hero-headline { font-size: 2.6rem; }
+      .hero-sub { font-size: 1rem; }
+      .hero-trust { gap: 12px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 12px; }
+      .features-grid { grid-template-columns: 1fr; gap: 12px; }
+      .cta-card { padding: 48px 24px; }
+      .cta-title { font-size: 1.5rem; }
+      .section { padding: 64px 0; }
+      .section-title { margin-bottom: 32px; }
+      .dispute-type-grid { grid-template-columns: 1fr; }
+      .bureau-grid { grid-template-columns: repeat(3, 1fr); }
+      .field-row--3 { grid-template-columns: 1fr 1fr; }
+      .app-container { gap: 16px; }
+      .letter-paper { padding: 28px 24px; font-size: 0.85rem; }
+      .preview-header { flex-wrap: wrap; gap: 12px; }
+      .preview-actions { width: 100%; justify-content: flex-end; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 420px) {
+      .hero-headline { font-size: 2.1rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { justify-content: center; }
+      .bureau-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .field-row--3 { grid-template-columns: 1fr; }
+      .letter-paper { padding: 20px 16px; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      .letter-paper, .letter-paper * { visibility: visible; }
+      .letter-paper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        font-size: 12pt;
+        box-shadow: none;
+        padding: 1in 1.2in;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeIn 0.3s ease forwards; }
+
+    .btn-copied {
+      background: rgba(34,211,165,0.15) !important;
+      color: var(--accent) !important;
+      border-color: rgba(34,211,165,0.3) !important;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" onclick="showPage('home')">
+        <span class="logo-mark">DK</span>
+        <span class="logo-text">DisputeKit</span>
+      </a>
+      <div class="nav-links">
+        <a href="#how-it-works" class="nav-link" onclick="showPage('home')">How It Works</a>
+        <a href="#features" class="nav-link" onclick="showPage('home')">Features</a>
+        <button class="btn btn-primary nav-cta" onclick="showPage('app')">Start Free →</button>
+      </div>
+      <button class="nav-mobile-cta btn btn-primary" onclick="showPage('app')">Start Free</button>
+    </div>
+  </nav>
+
+  <div id="page-home">
+    <section class="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="container hero-inner">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Free · No Account Needed · Instant Results
+        </div>
+        <h1 class="hero-headline">
+          Fight Credit Errors<br />
+          <span class="headline-accent">Like a Pro.</span>
+        </h1>
+        <p class="hero-sub">
+          Generate professional, bureau-ready credit dispute letters in under 3 minutes.
+          No legal fees. No confusing templates. Just clean, credible letters that get results.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" onclick="showPage('app')">
+            Build My Dispute Letter
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <a href="#how-it-works" class="btn btn-ghost btn-lg">See How It Works</a>
+        </div>
+        <div class="hero-trust">
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13 5.7L10 8.5L10.8 13L7 10.8L3.2 13L4 8.5L1 5.7L5.2 5.2L7 1Z" fill="#22d3a5"/></svg>
+            FCRA Compliant Language
+          </span>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13 5.7L10 8.5L10.8 13L7 10.8L3.2 13L4 8.5L1 5.7L5.2 5.2L7 1Z" fill="#22d3a5"/></svg>
+            All 3 Bureaus Supported
+          </span>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13 5.7L10 8.5L10.8 13L7 10.8L3.2 13L4 8.5L1 5.7L5.2 5.2L7 1Z" fill="#22d3a5"/></svg>
+            Copy, Print, or Download PDF
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-label">Simple Process</div>
+        <h2 class="section-title">Three steps to a<br /><span class="accent">ready-to-send letter</span></h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <div class="step-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="6" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 11h10M9 15h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="step-title">Select Your Dispute Type</h3>
+            <p class="step-desc">Choose from 7 common dispute categories — from inaccurate info to identity theft. We guide the rest.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <div class="step-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14h16M6 9h16M6 19h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="step-title">Fill In Your Details</h3>
+            <p class="step-desc">Answer a few focused questions. The form adapts to your dispute type so you only see what's relevant.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <div class="step-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v12M9 11l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="step-title">Copy, Print, or Download</h3>
+            <p class="step-desc">Your letter is ready instantly. Copy it, print it, or download a PDF to mail or upload with your dispute.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="features">
+      <div class="container">
+        <div class="section-label">Why DisputeKit</div>
+        <h2 class="section-title">Everything you need.<br /><span class="accent">Nothing you don't.</span></h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon feature-icon--teal">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L13.4 7.6L19 8.4L15 12.3L15.9 18L11 15.4L6.1 18L7 12.3L3 8.4L8.6 7.6L11 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            <h4 class="feature-title">Professional-Grade Language</h4>
+            <p class="feature-desc">Letters use legally recognized dispute language based on FCRA guidelines — credible and direct.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon feature-icon--blue">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M8 11l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4 class="feature-title">7 Dispute Categories</h4>
+            <p class="feature-desc">Covers all major dispute types — late payments, collections, charge-offs, identity theft, and more.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon feature-icon--purple">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 11h8M7 7h8M7 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h4 class="feature-title">Live Letter Preview</h4>
+            <p class="feature-desc">See your letter update in real time as you type. What you see is exactly what gets generated.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon feature-icon--orange">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M6 12l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h4 class="feature-title">Equifax, Experian & TransUnion</h4>
+            <p class="feature-desc">Automatically formats for all three major bureaus with the correct mailing addresses included.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon feature-icon--teal">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4v8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h4 class="feature-title">Done in Under 3 Minutes</h4>
+            <p class="feature-desc">No account needed. No credit card. Just open the tool, fill it in, and walk away with a finished letter.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon feature-icon--blue">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 17l5-5 3 3 5-6 4 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4 class="feature-title">PDF Download Included</h4>
+            <p class="feature-desc">Download a clean, print-ready PDF instantly. Upload it directly to bureau portals or mail it in.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-glow"></div>
+          <div class="cta-content">
+            <h2 class="cta-title">Ready to dispute your credit report?</h2>
+            <p class="cta-sub">Takes less than 3 minutes. Free forever. No signup required.</p>
+            <button class="btn btn-primary btn-lg" onclick="showPage('app')">
+              Start Building Your Letter
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="disclaimer-section">
+      <div class="container">
+        <div class="disclaimer-card">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="disclaimer-icon"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 8v4M9 6h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p class="disclaimer-text">
+            <strong>Legal Disclaimer:</strong> DisputeKit provides general letter-generation assistance and is not a substitute for legal advice.
+            The letters generated are provided as templates only. We are not attorneys and do not guarantee any specific outcome.
+            For complex credit or legal matters, consult a licensed credit attorney or consumer rights advocate.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mark logo-mark--sm">DK</span>
+          <span class="footer-name">DisputeKit</span>
+        </div>
+        <p class="footer-copy">© 2025 DisputeKit. Free to use. Not legal advice.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="page-app" class="hidden">
+    <div class="app-header">
+      <div class="container app-header-inner">
+        <button class="btn-back" onclick="showPage('home')">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <a class="nav-logo" href="#" onclick="showPage('home')">
+          <span class="logo-mark logo-mark--sm">DK</span>
+          <span class="logo-text">DisputeKit</span>
+        </a>
+        <div class="app-header-spacer"></div>
+      </div>
+    </div>
+
+    <div class="app-body">
+      <div class="container app-container">
+        <div class="form-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Build Your Letter</h2>
+            <p class="panel-sub">Fill in the fields below. Your letter updates live on the right.</p>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-label">Step 1 — Dispute Type</div>
+            <div class="dispute-type-grid" id="disputeTypeGrid"></div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-label">Step 2 — Credit Bureau</div>
+            <div class="bureau-grid">
+              <label class="bureau-option">
+                <input type="radio" name="bureau" value="Equifax" onchange="updateLetter()" />
+                <span class="bureau-label">Equifax</span>
+              </label>
+              <label class="bureau-option">
+                <input type="radio" name="bureau" value="Experian" onchange="updateLetter()" />
+                <span class="bureau-label">Experian</span>
+              </label>
+              <label class="bureau-option">
+                <input type="radio" name="bureau" value="TransUnion" onchange="updateLetter()" />
+                <span class="bureau-label">TransUnion</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-label">Step 3 — Your Information</div>
+            <div class="field-group">
+              <div class="field">
+                <label class="field-label">Full Legal Name <span class="required">*</span></label>
+                <input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" oninput="updateLetter()" />
+              </div>
+              <div class="field">
+                <label class="field-label">Street Address <span class="required">*</span></label>
+                <input type="text" id="address" class="field-input" placeholder="123 Main St" oninput="updateLetter()" />
+              </div>
+              <div class="field-row field-row--3">
+                <div class="field">
+                  <label class="field-label">City</label>
+                  <input type="text" id="city" class="field-input" placeholder="Miami" oninput="updateLetter()" />
+                </div>
+                <div class="field">
+                  <label class="field-label">State</label>
+                  <input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="updateLetter()" />
+                </div>
+                <div class="field">
+                  <label class="field-label">ZIP</label>
+                  <input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" oninput="updateLetter()" />
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label">Date of Letter</label>
+                <input type="date" id="letterDate" class="field-input" oninput="updateLetter()" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section" id="dynamicFieldsSection">
+            <div class="form-section-label">Step 4 — Account Details</div>
+            <div class="field-group" id="dynamicFields">
+              <div class="empty-dynamic">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4v16M8 12l8 8 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p>Select a dispute type above to see relevant fields here.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-ghost" onclick="clearForm()">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 2.5l10 10M12.5 2.5l-10 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              Clear Form
+            </button>
+          </div>
+        </div>
+
+        <div class="preview-panel">
+          <div class="preview-header">
+            <div>
+              <h2 class="panel-title">Letter Preview</h2>
+              <p class="panel-sub">Updates automatically as you type.</p>
+            </div>
+            <div class="preview-actions">
+              <button class="btn btn-sm btn-ghost" onclick="copyLetter()" id="copyBtn">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="5" y="5" width="8" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M2 10V3a1 1 0 011-1h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Copy
+              </button>
+              <button class="btn btn-sm btn-ghost" onclick="printLetter()">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="3" y="1" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M3 6h9v6H3z" stroke="currentColor" stroke-width="1.5"/><path d="M1 6h13a0 0 0 000-3H1a0 0 0 000 3z" stroke="currentColor" stroke-width="1.5"/></svg>
+                Print
+              </button>
+              <button class="btn btn-sm btn-primary" onclick="downloadPDF()">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2v8M4 7l3.5 3.5L11 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                PDF
+              </button>
+            </div>
+          </div>
+
+          <div class="letter-container" id="letterContainer">
+            <div class="letter-empty" id="letterEmpty">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M15 16h18M15 22h18M15 28h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <p class="letter-empty-title">Your letter will appear here</p>
+              <p class="letter-empty-sub">Start by selecting a dispute type and filling in your details.</p>
+            </div>
+            <div class="letter-output" id="letterOutput" style="display:none">
+              <div class="letter-paper" id="letterPaper"></div>
+            </div>
+          </div>
+
+          <div class="preview-disclaimer">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 5.5v3M6.5 4.5h.01" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            This letter is a template only and does not constitute legal advice.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPage(page) {
+      const home = document.getElementById('page-home');
+      const app = document.getElementById('page-app');
+
+      if (page === 'app') {
+        home.classList.add('hidden');
+        app.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateLetter();
+      } else {
+        app.classList.add('hidden');
+        home.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    const disputeTypes = [
+      {
+        id: 'inaccurate-info',
+        label: 'Inaccurate Personal Info',
+        icon: '🪪',
+        fields: [
+          { id: 'creditorName', label: 'Creditor / Furnisher Name', type: 'text', placeholder: 'e.g. Bank of America' },
+          { id: 'accountNumber', label: 'Account Number (last 4 digits OK)', type: 'text', placeholder: 'e.g. ****1234' },
+          { id: 'inaccurateItem', label: 'What information is inaccurate?', type: 'text', placeholder: 'e.g. Wrong address, wrong date of birth' },
+          { id: 'correctInfo', label: 'What is the correct information?', type: 'text', placeholder: 'e.g. My correct address is...' },
+          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Any other context that helps your case...' }
+        ],
+        intro: (f) => `I am writing to dispute inaccurate personal information currently appearing on my credit report. Specifically, the information associated with the account held by ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}) contains the following error: ${f.inaccurateItem || '[Describe the inaccurate item]'}. The correct information is as follows: ${f.correctInfo || '[Provide correct information]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
+        request: () => `Pursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, I respectfully request that you investigate this matter, correct the inaccurate information, and provide me with written confirmation of the correction upon completion of your investigation.`
+      },
+      {
+        id: 'late-payment',
+        label: 'Late Payment Dispute',
+        icon: '📅',
+        fields: [
+          { id: 'creditorName', label: 'Creditor Name', type: 'text', placeholder: 'e.g. Chase Bank' },
+          { id: 'accountNumber', label: 'Account Number', type: 'text', placeholder: 'e.g. ****5678' },
+          { id: 'latePaymentDate', label: 'Date of Reported Late Payment', type: 'text', placeholder: 'e.g. March 2023' },
+          {
+            id: 'disputeReason',
+            label: 'Reason for Dispute',
+            type: 'select',
+            options: [
+              'Payment was made on time',
+              'Payment was lost or misapplied by creditor',
+              'Account was in a hardship or deferment program',
+              'I never received a statement or billing notice',
+              'Other'
+            ]
+          },
+          { id: 'extraDetails', label: 'Additional Explanation (optional)', type: 'textarea', placeholder: 'Provide any supporting details...' }
+        ],
+        intro: (f) => `I am writing to dispute a late payment notation that has been inaccurately reported on my credit file by ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}). Specifically, a late payment is reported for ${f.latePaymentDate || '[Date]'}, which is inaccurate. Reason: ${f.disputeReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
+        request: () => `Under the Fair Credit Reporting Act, I request that you promptly investigate this late payment notation. If the information cannot be verified as accurate, I ask that it be deleted from my credit report immediately. Please provide written notification of the results of your investigation.`
+      },
+      {
+        id: 'collection-account',
+        label: 'Collection Account Dispute',
+        icon: '🏦',
+        fields: [
+          { id: 'collectionAgency', label: 'Collection Agency Name', type: 'text', placeholder: 'e.g. Midland Credit Management' },
+          { id: 'originalCreditor', label: 'Original Creditor (if known)', type: 'text', placeholder: 'e.g. Capital One' },
+          { id: 'accountNumber', label: 'Account / Reference Number', type: 'text', placeholder: 'e.g. ****9012' },
+          {
+            id: 'disputeReason',
+            label: 'Reason for Dispute',
+            type: 'select',
+            options: [
+              'This debt is not mine',
+              'This debt has already been paid',
+              'The amount reported is incorrect',
+              'The debt is past the statute of limitations',
+              'I was never notified about this collection',
+              'Other'
+            ]
+          },
+          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Explain your dispute further...' }
+        ],
+        intro: (f) => `I am writing to dispute a collection account appearing on my credit report from ${f.collectionAgency || '[Collection Agency]'}${f.originalCreditor ? ', originally placed by ' + f.originalCreditor : ''} (Account No. ${f.accountNumber || '[Account Number]'}). My reason for dispute is as follows: ${f.disputeReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
+        request: () => `Pursuant to the FCRA and the Fair Debt Collection Practices Act (FDCPA), I demand that you investigate this account and provide full verification of the debt. If proper verification cannot be provided, I request that this collection account be removed from my credit report entirely. Please provide written confirmation of the results.`
+      },
+      {
+        id: 'charge-off',
+        label: 'Charge-Off Dispute',
+        icon: '❌',
+        fields: [
+          { id: 'creditorName', label: 'Original Creditor Name', type: 'text', placeholder: 'e.g. Citibank' },
+          { id: 'accountNumber', label: 'Account Number', type: 'text', placeholder: 'e.g. ****3456' },
+          { id: 'chargeOffDate', label: 'Reported Charge-Off Date', type: 'text', placeholder: 'e.g. June 2021' },
+          {
+            id: 'disputeReason',
+            label: 'Reason for Dispute',
+            type: 'select',
+            options: [
+              'The charge-off date is incorrect',
+              'The balance amount is inaccurate',
+              'This account was settled / paid in full',
+              'This account does not belong to me',
+              'The account was included in bankruptcy',
+              'Other'
+            ]
+          },
+          { id: 'extraDetails', label: 'Additional Explanation (optional)', type: 'textarea', placeholder: 'Provide supporting details...' }
+        ],
+        intro: (f) => `I am disputing a charge-off account listed on my credit report. The account is reported as a charge-off by ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}), with a reported charge-off date of ${f.chargeOffDate || '[Date]'}. My reason for this dispute is: ${f.disputeReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
+        request: () => `Under the FCRA, I respectfully request that you investigate this charge-off entry. If the information cannot be verified accurately, I request its immediate deletion. If the account balance or status is inaccurate, I request that it be updated to reflect the correct information. Please provide me with the results of your investigation in writing.`
+      },
+      {
+        id: 'identity-theft',
+        label: 'Identity Theft Dispute',
+        icon: '🔒',
+        fields: [
+          { id: 'fraudCreditor', label: 'Creditor / Furnisher of Fraudulent Account', type: 'text', placeholder: 'e.g. Synchrony Bank' },
+          { id: 'accountNumber', label: 'Fraudulent Account Number', type: 'text', placeholder: 'e.g. ****7890' },
+          { id: 'hasFTCReport', label: 'I have an FTC Identity Theft Report', type: 'checkbox' },
+          { id: 'hasPoliceReport', label: 'I have a Police Report on file', type: 'checkbox' },
+          { id: 'ftcReportNum', label: 'FTC Report Number (if available)', type: 'text', placeholder: 'e.g. 123456789' },
+          { id: 'policeReportNum', label: 'Police Report Number (if available)', type: 'text', placeholder: 'e.g. 2023-00123' },
+          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Describe the fraudulent activity...' }
+        ],
+        intro: (f) => {
+          let reports = [];
+          if (f.hasFTCReport) reports.push(`an FTC Identity Theft Report${f.ftcReportNum ? ' (Report No. ' + f.ftcReportNum + ')' : ''}`);
+          if (f.hasPoliceReport) reports.push(`a Police Report${f.policeReportNum ? ' (Report No. ' + f.policeReportNum + ')' : ''}`);
+          const reportLine = reports.length > 0 ? ` I have filed ${reports.join(' and ')}.` : '';
+          return `I am a victim of identity theft and am writing to dispute a fraudulent account that has been opened in my name without my knowledge or consent. The fraudulent account is reported by ${f.fraudCreditor || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}).${reportLine}${f.extraDetails ? '\n\n' + f.extraDetails : ''}`;
+        },
+        request: () => `Pursuant to FCRA Section 605B (15 U.S.C. § 1681c-2), I request that this fraudulent account be blocked from my credit report. I also request that you notify the furnisher of this information that the account is the result of identity theft. Please provide written confirmation of the block and any actions taken.`
+      },
+      {
+        id: 'mixed-file',
+        label: 'Mixed File / Wrong Account',
+        icon: '🔀',
+        fields: [
+          { id: 'mixedName', label: "Other Person's Name (if known)", type: 'text', placeholder: 'e.g. John B. Smith' },
+          { id: 'accountNumber', label: 'Account Number Being Disputed', type: 'text', placeholder: 'e.g. ****2345' },
+          { id: 'creditorName', label: 'Creditor / Furnisher Name', type: 'text', placeholder: 'e.g. Wells Fargo' },
+          {
+            id: 'mixedReason',
+            label: 'How did this appear on your report?',
+            type: 'select',
+            options: [
+              'Similar name to another person',
+              'Same address as a previous resident',
+              'Possible Social Security Number mix-up',
+              "Deceased person's account mixed with mine",
+              'Other'
+            ]
+          },
+          { id: 'extraDetails', label: 'Additional Details (optional)', type: 'textarea', placeholder: 'Describe the mix-up in more detail...' }
+        ],
+        intro: (f) => `I am writing to report a mixed credit file issue. My credit report contains an account that does not belong to me. The account is reported under ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'})${f.mixedName ? ', which appears to belong to another individual by the name of ' + f.mixedName : ''}. The likely cause of this mix-up is: ${f.mixedReason || '[Reason]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
+        request: () => `Under the FCRA, I request an immediate investigation into this matter. This account should not appear on my credit report as it does not belong to me. I request that this account be removed from my file promptly and that my credit report be corrected to accurately reflect only my own credit history. Please provide written confirmation once the correction has been made.`
+      },
+      {
+        id: 'general-verification',
+        label: 'General Verification Request',
+        icon: '🔍',
+        fields: [
+          { id: 'creditorName', label: 'Creditor / Furnisher Name', type: 'text', placeholder: 'e.g. Discover Financial' },
+          { id: 'accountNumber', label: 'Account Number', type: 'text', placeholder: 'e.g. ****6789' },
+          { id: 'itemDisputed', label: 'What item are you disputing?', type: 'text', placeholder: 'e.g. Balance amount, account status, payment history' },
+          { id: 'extraDetails', label: 'Explanation (optional)', type: 'textarea', placeholder: 'Provide any supporting explanation...' }
+        ],
+        intro: (f) => `I am writing to formally request verification of an account appearing on my credit report. The account is listed under ${f.creditorName || '[Creditor Name]'} (Account No. ${f.accountNumber || '[Account Number]'}). I am disputing the following item: ${f.itemDisputed || '[Item Disputed]'}.${f.extraDetails ? '\n\n' + f.extraDetails : ''}`,
+        request: () => `Pursuant to the Fair Credit Reporting Act, I request that you conduct a thorough investigation of this account and provide full verification of all reported information. If any information cannot be verified with certainty, I request that it be removed or corrected on my credit report. Please send me written confirmation of your findings and any changes made.`
+      }
+    ];
+
+    let selectedDisputeType = null;
+
+    const bureauAddresses = {
+      Equifax: 'Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256',
+      Experian: 'Experian\nP.O. Box 4500\nAllen, TX 75013',
+      TransUnion: 'TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016'
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      buildDisputeTypeButtons();
+      setDefaultDate();
+    });
+
+    function buildDisputeTypeButtons() {
+      const grid = document.getElementById('disputeTypeGrid');
+      grid.innerHTML = '';
+
+      disputeTypes.forEach(dt => {
+        const btn = document.createElement('button');
+        btn.className = 'dispute-type-btn';
+        btn.setAttribute('data-id', dt.id);
+        btn.innerHTML = `<span class="dispute-type-icon">${dt.icon}</span>${dt.label}`;
+        btn.addEventListener('click', () => selectDisputeType(dt.id));
+        grid.appendChild(btn);
+      });
+    }
+
+    function setDefaultDate() {
+      const dateInput = document.getElementById('letterDate');
+      if (dateInput) {
+        dateInput.value = new Date().toISOString().split('T')[0];
+      }
+    }
+
+    function selectDisputeType(id) {
+      selectedDisputeType = id;
+      document.querySelectorAll('.dispute-type-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-id') === id);
+      });
+      renderDynamicFields(id);
+      updateLetter();
+    }
+
+    function renderDynamicFields(id) {
+      const dt = disputeTypes.find(d => d.id === id);
+      const container = document.getElementById('dynamicFields');
+      if (!dt) return;
+
+      container.innerHTML = '';
+      container.className = 'field-group fade-in';
+
+      dt.fields.forEach(field => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'field';
+
+        if (field.type === 'checkbox') {
+          wrapper.innerHTML = `
+            <label class="field-checkbox">
+              <input type="checkbox" id="${field.id}" onchange="updateLetter()" />
+              ${field.label}
+            </label>`;
+        } else if (field.type === 'textarea') {
+          wrapper.innerHTML = `
+            <label class="field-label">${field.label}</label>
+            <textarea id="${field.id}" class="field-textarea" placeholder="${field.placeholder || ''}" oninput="updateLetter()"></textarea>`;
+        } else if (field.type === 'select') {
+          const options = field.options.map(o => `<option value="${o}">${o}</option>`).join('');
+          wrapper.innerHTML = `
+            <label class="field-label">${field.label}</label>
+            <select id="${field.id}" class="field-select" onchange="updateLetter()">
+              <option value="">— Select a reason —</option>
+              ${options}
+            </select>`;
+        } else {
+          wrapper.innerHTML = `
+            <label class="field-label">${field.label}</label>
+            <input type="text" id="${field.id}" class="field-input" placeholder="${field.placeholder || ''}" oninput="updateLetter()" />`;
+        }
+
+        container.appendChild(wrapper);
+      });
+    }
+
+    function getFieldValues() {
+      const val = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return '';
+        if (el.type === 'checkbox') return el.checked;
+        return el.value ? el.value.trim() : '';
+      };
+
+      const base = {
+        fullName: val('fullName'),
+        address: val('address'),
+        city: val('city'),
+        state: val('state'),
+        zip: val('zip'),
+        letterDate: val('letterDate')
+      };
+
+      const bureauEl = document.querySelector('input[name="bureau"]:checked');
+      base.bureau = bureauEl ? bureauEl.value : '';
+
+      if (selectedDisputeType) {
+        const dt = disputeTypes.find(d => d.id === selectedDisputeType);
+        if (dt) {
+          dt.fields.forEach(f => {
+            base[f.id] = val(f.id);
+          });
+        }
+      }
+
+      return base;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '[Date]';
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function generateLetter(fields, dt) {
+      const senderAddr = [
+        fields.fullName || '[Your Full Name]',
+        fields.address || '[Your Address]',
+        [fields.city || '[City]', fields.state || '[State]', fields.zip || '[ZIP]'].filter(Boolean).join(', ')
+      ].join('\n');
+
+      const bureauAddr = fields.bureau
+        ? (bureauAddresses[fields.bureau] || `[${fields.bureau} Address]`)
+        : '[Select a Credit Bureau]';
+
+      const date = formatDate(fields.letterDate);
+      const subjectLine = `Re: Formal Credit Report Dispute — ${dt.label}`;
+      const intro = dt.intro(fields);
+      const request = dt.request(fields);
+
+      return `${senderAddr}
+
+${date}
+
+${bureauAddr}
+
+${subjectLine}
+
+To Whom It May Concern:
+
+${intro}
+
+${request}
+
+I am requesting this investigation be completed within the 30-day period required by the Fair Credit Reporting Act. Please send written confirmation of the results of your investigation, including a free copy of my updated credit report if any changes are made, to the address listed above.
+
+I appreciate your prompt attention to this matter.
+
+Sincerely,
+
+${fields.fullName || '[Your Signature]'}
+${senderAddr}
+`;
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function updateLetter() {
+      const fields = getFieldValues();
+      const letterEmpty = document.getElementById('letterEmpty');
+      const letterOutput = document.getElementById('letterOutput');
+      const letterPaper = document.getElementById('letterPaper');
+
+      if (!selectedDisputeType || !fields.fullName) {
+        letterEmpty.style.display = 'flex';
+        letterOutput.style.display = 'none';
+        return;
+      }
+
+      const dt = disputeTypes.find(d => d.id === selectedDisputeType);
+      if (!dt) return;
+
+      const letterText = generateLetter(fields, dt);
+      letterEmpty.style.display = 'none';
+      letterOutput.style.display = 'block';
+      letterPaper.innerHTML = escapeHtml(letterText).replace(/\n/g, '<br />');
+    }
+
+    async function copyLetter() {
+      const fields = getFieldValues();
+      if (!selectedDisputeType || !fields.fullName) {
+        alert('Please select a dispute type and enter your name first.');
+        return;
+      }
+
+      const dt = disputeTypes.find(d => d.id === selectedDisputeType);
+      const text = generateLetter(fields, dt);
+
+      try {
+        await navigator.clipboard.writeText(text);
+        const copyBtn = document.getElementById('copyBtn');
+        const original = copyBtn.innerHTML;
+        copyBtn.classList.add('btn-copied');
+        copyBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 8l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!`;
+        setTimeout(() => {
+          copyBtn.classList.remove('btn-copied');
+          copyBtn.innerHTML = original;
+        }, 2000);
+      } catch (err) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Letter copied to clipboard!');
+      }
+    }
+
+    function printLetter() {
+      const fields = getFieldValues();
+      if (!selectedDisputeType || !fields.fullName) {
+        alert('Please complete the form before printing.');
+        return;
+      }
+      window.print();
+    }
+
+    function downloadPDF() {
+      const fields = getFieldValues();
+      if (!selectedDisputeType || !fields.fullName) {
+        alert('Please select a dispute type and enter your name before downloading.');
+        return;
+      }
+
+      const dt = disputeTypes.find(d => d.id === selectedDisputeType);
+      const text = generateLetter(fields, dt);
+
+      try {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
+
+        const marginLeft = 72;
+        const marginTop = 72;
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const maxWidth = pageWidth - marginLeft * 2;
+
+        doc.setFont('Times', 'normal');
+        doc.setFontSize(11);
+        doc.setTextColor(30, 30, 30);
+
+        const lines = doc.splitTextToSize(text, maxWidth);
+        const lineHeight = 16;
+        let y = marginTop;
+
+        lines.forEach(line => {
+          if (y > pageHeight - marginTop) {
+            doc.addPage();
+            y = marginTop;
+          }
+          doc.text(line, marginLeft, y);
+          y += lineHeight;
+        });
+
+        const safeName = (fields.fullName || 'letter').replace(/\s+/g, '_').toLowerCase();
+        doc.save(`disputekit_${dt.id}_${safeName}.pdf`);
+      } catch (err) {
+        console.error('PDF generation failed:', err);
+        alert('PDF generation failed. Please try Copy or Print instead.');
+      }
+    }
+
+    function clearForm() {
+      if (!confirm('Clear the form and start over?')) return;
+
+      document.querySelectorAll('.field-input, .field-textarea, .field-select').forEach(el => {
+        el.value = '';
+      });
+
+      document.querySelectorAll('.field-checkbox input').forEach(el => {
+        el.checked = false;
+      });
+
+      document.querySelectorAll('input[name="bureau"]').forEach(el => {
+        el.checked = false;
+      });
+
+      selectedDisputeType = null;
+
+      document.querySelectorAll('.dispute-type-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById('dynamicFields').innerHTML = `
+        <div class="empty-dynamic">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4v16M8 12l8 8 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Select a dispute type above to see relevant fields here.</p>
+        </div>
+      `;
+
+      setDefaultDate();
+      document.getElementById('letterEmpty').style.display = 'flex';
+      document.getElementById('letterOutput').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
