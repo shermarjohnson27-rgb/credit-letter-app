@@ -256,6 +256,113 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
 @media(max-width:768px){.steps-grid{grid-template-columns:1fr;}.features-grid{grid-template-columns:1fr;}.dt-grid{grid-template-columns:1fr;}.score-gauges{grid-template-columns:1fr;}.nav-tabs{display:none;}.cta-card{padding:44px 22px;}}
 @media(max-width:480px){.hero-h1{font-size:2.4rem;}.hero-actions{flex-direction:column;align-items:stretch;}.hero-actions .btn-hero{justify-content:center;}.field-row,.field-row3{grid-template-columns:1fr;}.bureau-grid{grid-template-columns:1fr;}.letter-paper{padding:28px 20px;font-size:0.82rem;}}
 
+/* ══ CREDIT REPAIR ROADMAP PAGE ══════════════════════════════════════════ */
+.rm-wrap{max-width:980px;margin:0 auto;padding:32px 24px 100px;}
+.rm-hero{background:linear-gradient(135deg,rgba(79,142,247,0.08),rgba(34,211,165,0.05));border:1px solid rgba(79,142,247,0.2);border-radius:22px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden;text-align:center;}
+.rm-hero h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px;}
+.rm-hero p{color:var(--muted);font-size:0.9rem;max-width:600px;margin:0 auto;line-height:1.7;}
+.rm-hero-ico{font-size:48px;margin-bottom:14px;display:block;}
+
+/* Goal Card */
+.rm-goal-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:24px;}
+.rm-goal-card h2{font-size:1.1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.rm-goal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
+@media(max-width:640px){.rm-goal-grid{grid-template-columns:1fr;}}
+.rm-goal-field{display:flex;flex-direction:column;gap:6px;}
+.rm-goal-field label{font-size:0.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
+.rm-goal-field input,.rm-goal-field select{background:var(--bg);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:var(--font);font-size:0.92rem;padding:10px 14px;outline:none;transition:border 0.2s;}
+.rm-goal-field input:focus,.rm-goal-field select:focus{border-color:var(--accent);}
+.rm-goal-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.rm-generate-btn{background:linear-gradient(135deg,var(--blue),var(--accent));color:#fff;font-family:var(--font);font-size:0.88rem;font-weight:700;padding:11px 24px;border-radius:10px;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;}
+.rm-generate-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(79,142,247,0.3);}
+.rm-clear-btn{background:none;border:1px solid var(--border2);color:var(--muted);font-family:var(--font);font-size:0.82rem;font-weight:600;padding:10px 18px;border-radius:10px;cursor:pointer;transition:all 0.2s;}
+.rm-clear-btn:hover{color:var(--text);border-color:var(--text);}
+
+/* Summary Stats Row */
+.rm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+@media(max-width:640px){.rm-stats{grid-template-columns:repeat(2,1fr);}}
+.rm-stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;}
+.rm-stat-val{font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:2px;}
+.rm-stat-val.teal{color:var(--accent);}
+.rm-stat-val.blue{color:var(--blue);}
+.rm-stat-val.purple{color:var(--purple);}
+.rm-stat-val.amber{color:var(--amber);}
+.rm-stat-lbl{font-size:0.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;}
+
+/* Progress Ring */
+.rm-progress-section{display:grid;grid-template-columns:280px 1fr;gap:24px;margin-bottom:24px;}
+@media(max-width:768px){.rm-progress-section{grid-template-columns:1fr;}}
+.rm-ring-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rm-ring-wrap{position:relative;width:180px;height:180px;margin-bottom:14px;}
+.rm-ring-svg{width:180px;height:180px;transform:rotate(-90deg);}
+.rm-ring-bg{fill:none;stroke:var(--card3);stroke-width:12;}
+.rm-ring-fill{fill:none;stroke:url(#rm-ring-grad);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.rm-ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.rm-ring-pct{font-size:2rem;font-weight:800;letter-spacing:-0.02em;}
+.rm-ring-lbl{font-size:0.72rem;color:var(--muted);font-weight:600;}
+.rm-ring-caption{font-size:0.82rem;color:var(--muted);font-weight:500;}
+
+/* Timeline */
+.rm-timeline-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;overflow:hidden;}
+.rm-timeline-card h3{font-size:1rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.rm-timeline{position:relative;padding-left:28px;}
+.rm-timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--accent),var(--blue),var(--purple));border-radius:2px;}
+.rm-tl-item{position:relative;padding-bottom:22px;}
+.rm-tl-item:last-child{padding-bottom:0;}
+.rm-tl-dot{position:absolute;left:-24px;top:3px;width:14px;height:14px;border-radius:50%;border:2px solid var(--dim);background:var(--bg);transition:all 0.3s;z-index:1;}
+.rm-tl-item.done .rm-tl-dot{background:var(--accent);border-color:var(--accent);box-shadow:0 0 8px rgba(34,211,165,0.4);}
+.rm-tl-item.active .rm-tl-dot{background:var(--blue);border-color:var(--blue);box-shadow:0 0 8px rgba(79,142,247,0.4);animation:pulse 2s infinite;}
+.rm-tl-item.upcoming .rm-tl-dot{border-color:var(--dim);}
+.rm-tl-title{font-size:0.88rem;font-weight:700;margin-bottom:3px;}
+.rm-tl-item.done .rm-tl-title{color:var(--accent);}
+.rm-tl-item.active .rm-tl-title{color:var(--blue);}
+.rm-tl-item.upcoming .rm-tl-title{color:var(--dim);}
+.rm-tl-desc{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+.rm-tl-meta{font-size:0.7rem;color:var(--dim);font-family:var(--mono);margin-top:4px;}
+
+/* Milestones */
+.rm-milestones{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:24px;}
+.rm-milestones h3{font-size:1rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.rm-ms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.rm-ms-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;position:relative;overflow:hidden;transition:all 0.2s;}
+.rm-ms-card.achieved{border-color:rgba(34,211,165,0.3);background:rgba(34,211,165,0.04);}
+.rm-ms-card.achieved::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--blue));}
+.rm-ms-ico{font-size:24px;margin-bottom:8px;}
+.rm-ms-title{font-size:0.84rem;font-weight:700;margin-bottom:4px;}
+.rm-ms-desc{font-size:0.74rem;color:var(--muted);line-height:1.5;}
+.rm-ms-badge{display:inline-flex;align-items:center;gap:4px;font-size:0.68rem;font-weight:700;padding:3px 8px;border-radius:6px;margin-top:8px;}
+.rm-ms-badge.done{background:rgba(34,211,165,0.12);color:var(--accent);}
+.rm-ms-badge.pending{background:rgba(107,117,144,0.12);color:var(--muted);}
+
+/* Recommendations */
+.rm-recs{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:24px;}
+.rm-recs h3{font-size:1rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.rm-rec-list{display:flex;flex-direction:column;gap:10px;}
+.rm-rec{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all 0.2s;}
+.rm-rec:hover{border-color:var(--border2);transform:translateX(2px);}
+.rm-rec-pri{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;font-family:var(--mono);}
+.rm-rec-pri.high{background:rgba(239,68,68,0.12);color:var(--red);}
+.rm-rec-pri.med{background:rgba(245,158,11,0.12);color:var(--amber);}
+.rm-rec-pri.low{background:rgba(79,142,247,0.12);color:var(--blue);}
+.rm-rec-body{flex:1;min-width:0;}
+.rm-rec-title{font-size:0.84rem;font-weight:700;margin-bottom:3px;}
+.rm-rec-desc{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+.rm-rec-action{font-size:0.74rem;font-weight:600;color:var(--accent);margin-top:6px;cursor:pointer;background:none;border:none;font-family:var(--font);padding:0;}
+.rm-rec-action:hover{text-decoration:underline;}
+
+/* Projection Chart */
+.rm-proj{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:24px;}
+.rm-proj h3{font-size:1rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.rm-proj-canvas{width:100%;height:200px;display:block;}
+.rm-proj-legend{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap;}
+.rm-proj-legend-item{display:flex;align-items:center;gap:6px;font-size:0.76rem;color:var(--muted);font-weight:500;}
+.rm-proj-dot{width:10px;height:10px;border-radius:3px;}
+
+/* Empty state */
+.rm-empty{text-align:center;padding:60px 20px;color:var(--dim);}
+.rm-empty-ico{font-size:56px;margin-bottom:14px;}
+.rm-empty p{font-size:0.88rem;line-height:1.7;max-width:460px;margin:0 auto;}
+
 /* ══ CREDITSMART AI PAGE ══════════════════════════════════════════════════ */
 .cs-wrap{max-width:980px;margin:0 auto;padding:32px 24px 100px;}
 .cs-hero-band{background:linear-gradient(135deg,rgba(155,111,255,0.08),rgba(34,211,165,0.05));border:1px solid rgba(155,111,255,0.2);border-radius:22px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden;}
@@ -423,6 +530,7 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
       <button class="nav-tab" id="nt-app" onclick="gotoApp()">Build Letter</button>
       <button class="nav-tab" id="nt-tracker" onclick="showPage('tracker')">Dispute Tracker</button>
       <button class="nav-tab" id="nt-scores" onclick="showPage('scores')">Score Tracker</button>
+      <button class="nav-tab" id="nt-roadmap" onclick="showPage('roadmap')" style="color:var(--blue);">🗺 Roadmap</button>
     </div>
     <button class="nav-cta" onclick="gotoApp()">Start Free →</button>
   </div>
@@ -714,6 +822,121 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
   </div>
 </div>
 
+<!-- CREDIT REPAIR ROADMAP PAGE -->
+
+<div class="page" id="page-roadmap">
+<div class="rm-wrap">
+
+  <!-- Hero -->
+  <div class="rm-hero">
+    <span class="rm-hero-ico">🗺️</span>
+    <h1>Credit Repair <span class="h-acc">Roadmap</span></h1>
+    <p>Set your credit score goal, and get a personalized step-by-step plan with milestones, smart recommendations, and projected score improvements based on your dispute activity.</p>
+  </div>
+
+  <!-- Goal Setting -->
+  <div class="rm-goal-card">
+    <h2>🎯 Set Your Credit Goal</h2>
+    <div class="rm-goal-grid">
+      <div class="rm-goal-field">
+        <label>Current Score (avg)</label>
+        <input type="number" id="rm-current-score" placeholder="580" min="300" max="850" inputmode="numeric">
+      </div>
+      <div class="rm-goal-field">
+        <label>Target Score</label>
+        <select id="rm-target-tier">
+          <option value="670">670 — Good</option>
+          <option value="700">700 — Good+</option>
+          <option value="740" selected>740 — Very Good</option>
+          <option value="780">780 — Exceptional</option>
+          <option value="800">800+ — Elite</option>
+        </select>
+      </div>
+      <div class="rm-goal-field">
+        <label>Target Timeframe</label>
+        <select id="rm-timeframe">
+          <option value="3">3 Months</option>
+          <option value="6" selected>6 Months</option>
+          <option value="9">9 Months</option>
+          <option value="12">12 Months</option>
+        </select>
+      </div>
+    </div>
+    <div class="rm-goal-actions">
+      <button class="rm-generate-btn" onclick="rmGenerate()">🚀 Generate My Roadmap</button>
+      <button class="rm-clear-btn" onclick="rmClear()">Clear</button>
+    </div>
+  </div>
+
+  <!-- Roadmap Content (hidden until generated) -->
+  <div id="rm-content" class="hidden">
+
+    <!-- Stats Row -->
+    <div class="rm-stats" id="rm-stats"></div>
+
+    <!-- Progress Ring + Timeline -->
+    <div class="rm-progress-section">
+      <div class="rm-ring-card">
+        <div class="rm-ring-wrap">
+          <svg class="rm-ring-svg" viewBox="0 0 180 180">
+            <defs>
+              <linearGradient id="rm-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--accent)"/>
+                <stop offset="100%" stop-color="var(--blue)"/>
+              </linearGradient>
+            </defs>
+            <circle class="rm-ring-bg" cx="90" cy="90" r="78"/>
+            <circle class="rm-ring-fill" id="rm-ring-fill" cx="90" cy="90" r="78"/>
+          </svg>
+          <div class="rm-ring-center">
+            <div class="rm-ring-pct" id="rm-ring-pct">0%</div>
+            <div class="rm-ring-lbl">Progress</div>
+          </div>
+        </div>
+        <div class="rm-ring-caption" id="rm-ring-caption">Set a goal to begin</div>
+      </div>
+      <div class="rm-timeline-card">
+        <h3>📍 Your Journey</h3>
+        <div class="rm-timeline" id="rm-timeline"></div>
+      </div>
+    </div>
+
+    <!-- Milestones -->
+    <div class="rm-milestones">
+      <h3>🏆 Milestones</h3>
+      <div class="rm-ms-grid" id="rm-milestones-grid"></div>
+    </div>
+
+    <!-- Projection Chart -->
+    <div class="rm-proj">
+      <h3>📈 Score Projection</h3>
+      <canvas class="rm-proj-canvas" id="rm-proj-canvas"></canvas>
+      <div class="rm-proj-legend">
+        <div class="rm-proj-legend-item"><span class="rm-proj-dot" style="background:var(--accent);"></span> Projected Score</div>
+        <div class="rm-proj-legend-item"><span class="rm-proj-dot" style="background:var(--blue);opacity:0.4;"></span> Target Score</div>
+        <div class="rm-proj-legend-item"><span class="rm-proj-dot" style="background:var(--muted);opacity:0.3;"></span> Current Score</div>
+      </div>
+    </div>
+
+    <!-- Smart Recommendations -->
+    <div class="rm-recs">
+      <h3>💡 Smart Recommendations</h3>
+      <div class="rm-rec-list" id="rm-rec-list"></div>
+    </div>
+
+  </div>
+
+  <!-- Empty state (shown before generation) -->
+  <div id="rm-empty" class="">
+    <div class="rm-empty">
+      <div class="rm-empty-ico">🧭</div>
+      <p>Enter your current credit score and target above, then click <strong>"Generate My Roadmap"</strong> to get a personalized credit repair plan with milestones, projections, and action items.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
 <!-- MAIL LABEL MODAL -->
 
 <div class="modal-overlay" id="mail-modal">
@@ -964,6 +1187,14 @@ function showPage(name){
   window.scrollTo({top:0,behavior:'smooth'});
   if(name==='tracker')renderTracker();
   if(name==='scores')renderScores();
+  if(name==='roadmap'){
+    if(rmState.generated) rmRenderRoadmap();
+    else {
+      const auto = rmGetLatestScore();
+      const el = document.getElementById('rm-current-score');
+      if(auto && el && !el.value) el.value = auto;
+    }
+  }
 }
 
 // ── BUREAU ADDRESSES ──
@@ -1919,9 +2150,412 @@ window.scrollTo({top:0,behavior:‘smooth’});
 
 window.addEventListener(‘resize’,()=>{
 if(scoreHistory.length){
-renderScoreChart([{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}]);
+renderScoreChart([{key:’eq’,label:’Equifax’,color:’#ef4444’},{key:’ex’,label:’Experian’,color:’#4f8ef7’},{key:’tu’,label:’TransUnion’,color:’#22d3a5’}]);
 }
+if(rmState.generated) rmDrawProjection();
 });
+
+// ══════════════════════════════════════════════════════════════════════════
+// ── CREDIT REPAIR ROADMAP ──
+// ══════════════════════════════════════════════════════════════════════════
+
+let rmState = { generated:false, current:0, target:0, months:0, roadmap:null };
+
+function rmGetDisputeStats(){
+  const d = disputes || [];
+  return {
+    total: d.length,
+    active: d.filter(x=>x.status===’sent’||x.status===’review’).length,
+    removed: d.filter(x=>x.status===’removed’).length,
+    verified: d.filter(x=>x.status===’verified’).length,
+    responded: d.filter(x=>x.status===’responded’).length
+  };
+}
+
+function rmGetLatestScore(){
+  if(!scoreHistory||!scoreHistory.length) return null;
+  const last = scoreHistory[scoreHistory.length-1];
+  const scores = [last.eq,last.ex,last.tu].filter(s=>s&&s>=300&&s<=850);
+  if(!scores.length) return null;
+  return Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+}
+
+function rmGenerate(){
+  const currentInput = document.getElementById(‘rm-current-score’);
+  const targetSel = document.getElementById(‘rm-target-tier’);
+  const timeSel = document.getElementById(‘rm-timeframe’);
+
+  let current = parseInt(currentInput.value);
+  if(!current||isNaN(current)){
+    const autoScore = rmGetLatestScore();
+    if(autoScore){ current = autoScore; currentInput.value = autoScore; }
+    else { toast(‘⚠️ Enter your current credit score (or log scores in Score Tracker first)’,’warn’); return; }
+  }
+  if(current<300||current>850){ toast(‘⚠️ Score must be between 300 and 850’,’warn’); return; }
+
+  const target = parseInt(targetSel.value);
+  const months = parseInt(timeSel.value);
+
+  if(current >= target){
+    toast(‘🎉 You\’ve already reached your target score!’);
+    return;
+  }
+
+  rmState = { generated:true, current, target, months, roadmap:null };
+  rmState.roadmap = rmBuildRoadmap(current, target, months);
+
+  document.getElementById(‘rm-empty’).classList.add(‘hidden’);
+  document.getElementById(‘rm-content’).classList.remove(‘hidden’);
+
+  rmRenderStats();
+  rmRenderProgress();
+  rmRenderTimeline();
+  rmRenderMilestones();
+  rmRenderRecs();
+  rmDrawProjection();
+}
+
+function rmClear(){
+  rmState = { generated:false, current:0, target:0, months:0, roadmap:null };
+  document.getElementById(‘rm-content’).classList.add(‘hidden’);
+  document.getElementById(‘rm-empty’).classList.remove(‘hidden’);
+  document.getElementById(‘rm-current-score’).value = ‘’;
+}
+
+function rmBuildRoadmap(current, target, months){
+  const gap = target - current;
+  const ds = rmGetDisputeStats();
+  const phases = [];
+  const monthNames = [‘Jan’,’Feb’,’Mar’,’Apr’,’May’,’Jun’,’Jul’,’Aug’,’Sep’,’Oct’,’Nov’,’Dec’];
+  const now = new Date();
+
+  // Phase 1: Audit & Preparation (Month 1)
+  phases.push({
+    title:’Credit Report Audit’,
+    desc:’Pull all 3 bureau reports, identify errors, collections, and inaccurate items. Use CreditSmart AI to scan automatically.’,
+    month:0, status: ds.total > 0 ? ‘done’ : ‘active’,
+    action:’creditsmart’
+  });
+
+  // Phase 2: First Wave of Disputes (Month 1-2)
+  phases.push({
+    title:’First Wave Disputes’,
+    desc:’File disputes for the most impactful items: collections, charge-offs, and inaccurate late payments. Send via certified mail.’,
+    month:1, status: ds.total >= 3 ? ‘done’ : ds.total > 0 ? ‘active’ : ‘upcoming’,
+    action:’app’
+  });
+
+  // Phase 3: Track & Follow Up (Month 2-3)
+  phases.push({
+    title:’Track Responses & Escalate’,
+    desc:’Monitor 30-day response deadlines. For unverified items, send Round 2 escalation letters with Method of Verification demands.’,
+    month:2, status: ds.responded > 0 || ds.removed > 0 ? ‘done’ : ds.active > 0 ? ‘active’ : ‘upcoming’,
+    action:’tracker’
+  });
+
+  // Phase 4: Second Wave (Month 3-4)
+  if(months >= 4){
+    phases.push({
+      title:’Second Wave & Goodwill Letters’,
+      desc:’Dispute remaining items. Send goodwill removal requests for legitimate late payments where you have a strong payment history.’,
+      month:3, status: ‘upcoming’,
+      action:’app’
+    });
+  }
+
+  // Phase 5: Score Monitoring (Month 4-5)
+  if(months >= 5){
+    phases.push({
+      title:’Score Monitoring & Optimization’,
+      desc:’Track score improvements across all 3 bureaus. Optimize credit utilization below 30%. Request credit limit increases.’,
+      month:Math.min(4, months-1), status: ‘upcoming’,
+      action:’scores’
+    });
+  }
+
+  // Phase 6: Final Push (Last month)
+  if(months >= 6){
+    phases.push({
+      title:’Final Review & CFPB Complaints’,
+      desc:’File CFPB complaints for any remaining unresolved disputes. Review all 3 reports for accuracy. Verify deletions are reflected.’,
+      month:months-1, status: ‘upcoming’,
+      action:null
+    });
+  }
+
+  // Calculate projected scores at each month
+  const projections = [];
+  for(let i = 0; i <= months; i++){
+    // S-curve projection: slow start, fast middle, plateau
+    const t = i / months;
+    const sCurve = 1 / (1 + Math.exp(-10*(t-0.4)));
+    const projected = Math.round(current + gap * sCurve);
+    const mIdx = (now.getMonth() + i) % 12;
+    projections.push({ month:i, label:monthNames[mIdx] + ‘ ‘ + (now.getFullYear() + Math.floor((now.getMonth()+i)/12)), score:Math.min(projected, target) });
+  }
+
+  // Build milestones
+  const milestones = [];
+  const tiers = [
+    {score:580, label:’Fair Credit’, icon:’🌱’, desc:’Qualify for basic credit cards and some auto loans.’},
+    {score:620, label:’Subprime Exit’, icon:’🚪’, desc:’Leave subprime territory. Better interest rates unlock.’},
+    {score:670, label:’Good Credit’, icon:’⭐’, desc:’Qualify for most credit cards, auto loans, and apartments.’},
+    {score:700, label:’Prime Borrower’, icon:’🏠’, desc:’Eligible for competitive mortgage rates and premium cards.’},
+    {score:740, label:’Very Good’, icon:’🌟’, desc:’Access the best rates. Top-tier credit card approvals.’},
+    {score:780, label:’Exceptional’, icon:’👑’, desc:’Elite credit status. Lowest rates on everything.’},
+    {score:800, label:’Perfect Territory’, icon:’💎’, desc:’Top 1% of consumers. Maximum financial flexibility.’}
+  ];
+  tiers.forEach(t=>{
+    if(t.score > current && t.score <= target){
+      milestones.push({...t, achieved: current >= t.score});
+    }
+  });
+
+  // Dispute milestones
+  milestones.push({score:null, label:’First Dispute Sent’, icon:’📬’, desc:’Your credit repair journey officially begins.’, achieved: ds.total > 0});
+  milestones.push({score:null, label:’First Item Removed’, icon:’🗑️’, desc:’A negative item has been deleted from your report!’, achieved: ds.removed > 0});
+  if(ds.total >= 5) milestones.push({score:null, label:’5 Disputes Filed’, icon:’⚡’, desc:’Power disputer! You\’re actively cleaning your credit.’, achieved: true});
+
+  return { phases, projections, milestones, gap, ds };
+}
+
+function rmRenderStats(){
+  const r = rmState.roadmap;
+  const ds = r.ds;
+  const pct = Math.min(100, Math.round((ds.removed / Math.max(1, ds.total)) * 100));
+  const pointsGained = ds.removed * 15; // Estimate ~15 pts per removal
+
+  document.getElementById(‘rm-stats’).innerHTML = `
+    <div class="rm-stat"><div class="rm-stat-val teal">${escHtml(String(rmState.current))}</div><div class="rm-stat-lbl">Current Score</div></div>
+    <div class="rm-stat"><div class="rm-stat-val blue">${escHtml(String(rmState.target))}</div><div class="rm-stat-lbl">Target Score</div></div>
+    <div class="rm-stat"><div class="rm-stat-val purple">${escHtml(String(r.gap))}</div><div class="rm-stat-lbl">Points to Go</div></div>
+    <div class="rm-stat"><div class="rm-stat-val amber">${escHtml(String(rmState.months))}mo</div><div class="rm-stat-lbl">Timeframe</div></div>
+  `;
+}
+
+function rmRenderProgress(){
+  const r = rmState.roadmap;
+  const ds = r.ds;
+  // Progress based on: disputes filed (30%), items removed (50%), time elapsed (20%)
+  const disputeProgress = Math.min(1, ds.total / Math.max(1, Math.ceil(r.gap / 15))) * 0.3;
+  const removalProgress = Math.min(1, ds.removed / Math.max(1, ds.total)) * 0.5;
+  const timeProgress = 0; // They just set the goal, so 0 time elapsed
+  const pct = Math.min(100, Math.round((disputeProgress + removalProgress + timeProgress) * 100));
+
+  const circ = 2 * Math.PI * 78;
+  const offset = circ - (pct / 100) * circ;
+  const ring = document.getElementById(‘rm-ring-fill’);
+  ring.style.strokeDasharray = circ;
+  ring.style.strokeDashoffset = circ;
+  setTimeout(()=>{ ring.style.strokeDashoffset = offset; }, 100);
+
+  document.getElementById(‘rm-ring-pct’).textContent = pct + ‘%’;
+
+  let caption = ‘Just getting started — set up disputes to see progress!’;
+  if(pct >= 80) caption = ‘Almost there! Your credit is transforming!’;
+  else if(pct >= 50) caption = ‘Great progress! Removals are boosting your score.’;
+  else if(pct >= 20) caption = ‘Disputes are in motion. Keep tracking responses!’;
+  else if(ds.total > 0) caption = ‘Disputes filed! Waiting for bureau responses.’;
+  document.getElementById(‘rm-ring-caption’).textContent = caption;
+}
+
+function rmRenderTimeline(){
+  const phases = rmState.roadmap.phases;
+  const now = new Date();
+  const html = phases.map(p => {
+    const targetDate = new Date(now);
+    targetDate.setMonth(targetDate.getMonth() + p.month);
+    const dateStr = targetDate.toLocaleDateString(‘en-US’, {month:’short’, year:’numeric’});
+    const actionBtn = p.action ? `<button class="rm-rec-action" onclick="showPage(‘${escHtml(p.action)}’)">${p.action === ‘creditsmart’ ? ‘Open AI Scanner →’ : p.action === ‘app’ ? ‘Build Letter →’ : p.action === ‘tracker’ ? ‘View Tracker →’ : ‘Track Scores →’}</button>` : ‘’;
+    return `<div class="rm-tl-item ${escHtml(p.status)}">
+      <div class="rm-tl-dot"></div>
+      <div class="rm-tl-title">${p.status === ‘done’ ? ‘✓ ‘ : ‘’}${escHtml(p.title)}</div>
+      <div class="rm-tl-desc">${escHtml(p.desc)}</div>
+      <div class="rm-tl-meta">${escHtml(dateStr)}</div>
+      ${actionBtn}
+    </div>`;
+  }).join(‘’);
+  document.getElementById(‘rm-timeline’).innerHTML = html;
+}
+
+function rmRenderMilestones(){
+  const ms = rmState.roadmap.milestones;
+  const html = ms.map(m => `
+    <div class="rm-ms-card ${m.achieved ? ‘achieved’ : ‘’}">
+      <div class="rm-ms-ico">${m.icon}</div>
+      <div class="rm-ms-title">${escHtml(m.label)}</div>
+      <div class="rm-ms-desc">${escHtml(m.desc)}</div>
+      ${m.score ? `<div class="rm-ms-badge ${m.achieved ? ‘done’ : ‘pending’}">${m.achieved ? ‘✓ Achieved’ : escHtml(String(m.score)) + ‘ pts’}</div>` : `<div class="rm-ms-badge ${m.achieved ? ‘done’ : ‘pending’}">${m.achieved ? ‘✓ Done’ : ‘Pending’}</div>`}
+    </div>
+  `).join(‘’);
+  document.getElementById(‘rm-milestones-grid’).innerHTML = html;
+}
+
+function rmRenderRecs(){
+  const ds = rmState.roadmap.ds;
+  const current = rmState.current;
+  const recs = [];
+
+  // Smart recommendations based on current state
+  if(ds.total === 0){
+    recs.push({pri:’high’, title:’Start Disputing Now’, desc:’You haven\’t filed any disputes yet. Use the CreditSmart AI Scanner to analyze your credit report and identify disputable items automatically.’, action:’creditsmart’, actionLabel:’Open AI Scanner →’});
+  }
+  if(current < 670){
+    recs.push({pri:’high’, title:’Target Collections First’, desc:’Removing collection accounts can boost your score 20-50 points. Dispute collections using the "Collection Account" template with Maximum Force aggression.’, action:’app’, actionLabel:’Build Letter →’});
+  }
+  if(ds.active > 0 && ds.responded === 0 && ds.removed === 0){
+    recs.push({pri:’med’, title:’Monitor Your Deadlines’, desc:’You have ‘ + ds.active + ‘ active dispute(s). Bureaus must respond within 30 days. Check your Dispute Tracker for deadline updates.’, action:’tracker’, actionLabel:’View Tracker →’});
+  }
+  if(ds.total > 0 && ds.removed === 0){
+    recs.push({pri:’med’, title:’Consider Round 2 Escalation’, desc:’If bureaus verify disputed items without proper investigation, send a Round 2 letter demanding Method of Verification. This puts stronger legal pressure.’, action:’tracker’, actionLabel:’View Tracker →’});
+  }
+  recs.push({pri:’low’, title:’Keep Credit Utilization Below 30%’, desc:’High credit card balances hurt your score. Pay down balances to below 30% of your limit — below 10% is ideal for maximum score impact.’, action:null, actionLabel:null});
+  recs.push({pri:’low’, title:’Don\’t Close Old Accounts’, desc:’Length of credit history accounts for 15% of your score. Keep old accounts open even if you don\’t use them regularly.’, action:null, actionLabel:null});
+  if(current < 740){
+    recs.push({pri:’med’, title:’Request Credit Limit Increases’, desc:’Higher limits lower your utilization ratio. Call your card issuers and request increases — this is a soft pull with most banks.’, action:null, actionLabel:null});
+  }
+  recs.push({pri:’low’, title:’Log Your Scores Monthly’, desc:’Track your progress across all 3 bureaus in the Score Tracker. Seeing improvements motivates continued effort.’, action:’scores’, actionLabel:’Track Scores →’});
+
+  const html = recs.map(r => `
+    <div class="rm-rec">
+      <div class="rm-rec-pri ${escHtml(r.pri)}">${r.pri === ‘high’ ? ‘!’ : r.pri === ‘med’ ? ‘~’ : ‘·’}</div>
+      <div class="rm-rec-body">
+        <div class="rm-rec-title">${escHtml(r.title)}</div>
+        <div class="rm-rec-desc">${escHtml(r.desc)}</div>
+        ${r.action ? `<button class="rm-rec-action" onclick="showPage(‘${escHtml(r.action)}’)">${escHtml(r.actionLabel)}</button>` : ‘’}
+      </div>
+    </div>
+  `).join(‘’);
+  document.getElementById(‘rm-rec-list’).innerHTML = html;
+}
+
+function rmDrawProjection(){
+  const canvas = document.getElementById(‘rm-proj-canvas’);
+  if(!canvas) return;
+  const ctx = canvas.getContext(‘2d’);
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+  const pad = {top:20, right:20, bottom:30, left:45};
+  const cW = W - pad.left - pad.right;
+  const cH = H - pad.top - pad.bottom;
+
+  const proj = rmState.roadmap.projections;
+  const current = rmState.current;
+  const target = rmState.target;
+  const minS = Math.max(300, current - 20);
+  const maxS = Math.min(850, target + 30);
+  const range = maxS - minS;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid lines
+  ctx.strokeStyle = ‘rgba(255,255,255,0.04)’;
+  ctx.lineWidth = 1;
+  const gridSteps = 5;
+  for(let i = 0; i <= gridSteps; i++){
+    const y = pad.top + (i / gridSteps) * cH;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    const scoreLabel = Math.round(maxS - (i / gridSteps) * range);
+    ctx.fillStyle = ‘rgba(255,255,255,0.25)’;
+    ctx.font = ‘10px "DM Mono", monospace’;
+    ctx.textAlign = ‘right’;
+    ctx.fillText(scoreLabel, pad.left - 8, y + 4);
+  }
+
+  // Month labels
+  ctx.fillStyle = ‘rgba(255,255,255,0.25)’;
+  ctx.font = ‘10px "DM Mono", monospace’;
+  ctx.textAlign = ‘center’;
+  proj.forEach((p, i) => {
+    const x = pad.left + (i / Math.max(1, proj.length - 1)) * cW;
+    ctx.fillText(p.label, x, H - 6);
+  });
+
+  // Target line (dashed)
+  const targetY = pad.top + ((maxS - target) / range) * cH;
+  ctx.strokeStyle = ‘rgba(79,142,247,0.35)’;
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(pad.left, targetY); ctx.lineTo(W - pad.right, targetY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = ‘rgba(79,142,247,0.6)’;
+  ctx.font = ‘10px "Sora", sans-serif’;
+  ctx.textAlign = ‘left’;
+  ctx.fillText(‘Target: ‘ + target, W - pad.right - 70, targetY - 6);
+
+  // Current line (dashed)
+  const currentY = pad.top + ((maxS - current) / range) * cH;
+  ctx.strokeStyle = ‘rgba(255,255,255,0.12)’;
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(pad.left, currentY); ctx.lineTo(W - pad.right, currentY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Projection curve with gradient fill
+  if(proj.length > 1){
+    const points = proj.map((p, i) => ({
+      x: pad.left + (i / (proj.length - 1)) * cW,
+      y: pad.top + ((maxS - p.score) / range) * cH
+    }));
+
+    // Fill area under curve
+    const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + cH);
+    grad.addColorStop(0, ‘rgba(34,211,165,0.15)’);
+    grad.addColorStop(1, ‘rgba(34,211,165,0.01)’);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, pad.top + cH);
+    points.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(points[points.length-1].x, pad.top + cH);
+    ctx.closePath();
+    ctx.fill();
+
+    // Draw curve
+    ctx.strokeStyle = ‘#22d3a5’;
+    ctx.lineWidth = 2.5;
+    ctx.lineJoin = ‘round’;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for(let i = 1; i < points.length; i++){
+      const prev = points[i-1];
+      const curr = points[i];
+      const cpx = (prev.x + curr.x) / 2;
+      ctx.bezierCurveTo(cpx, prev.y, cpx, curr.y, curr.x, curr.y);
+    }
+    ctx.stroke();
+
+    // Draw dots
+    points.forEach((p, i) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, i === 0 ? 5 : i === points.length-1 ? 6 : 3.5, 0, Math.PI*2);
+      ctx.fillStyle = i === points.length-1 ? ‘#4f8ef7’ : ‘#22d3a5’;
+      ctx.fill();
+      if(i === 0 || i === points.length-1){
+        ctx.strokeStyle = ‘rgba(0,0,0,0.3)’;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = ‘rgba(255,255,255,0.8)’;
+        ctx.font = ‘bold 11px "Sora", sans-serif’;
+        ctx.textAlign = ‘center’;
+        ctx.fillText(proj[i].score, p.x, p.y - 12);
+      }
+    });
+  }
+}
+
+function rmRenderRoadmap(){
+  if(!rmState.generated) return;
+  rmRenderStats();
+  rmRenderProgress();
+  rmRenderTimeline();
+  rmRenderMilestones();
+  rmRenderRecs();
+  rmDrawProjection();
+}
 </script>
 
 </body>
