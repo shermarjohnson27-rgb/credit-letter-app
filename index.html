@@ -88,7 +88,7 @@ background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,
 .step-ico{width:50px;height:50px;background:var(--accent-glow);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;margin-bottom:18px;}
 .step-title{font-size:0.95rem;font-weight:700;margin-bottom:8px;}
 .step-desc{font-size:0.84rem;color:var(--muted);line-height:1.65;}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
 .feat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;transition:border-color 0.2s,transform 0.2s;}
 .feat-card:hover{border-color:var(--border2);transform:translateY(-2px);}
 .feat-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px;}
@@ -253,7 +253,7 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
 .shake{animation:shake 0.4s ease;}
 @media print{body *{visibility:hidden;}.letter-paper,.letter-paper *{visibility:visible;}.letter-paper{position:fixed;top:0;left:0;width:100%;font-size:12pt;box-shadow:none;padding:1in 1.2in;}}
 @media(max-width:1024px){.app-grid{grid-template-columns:1fr;}.preview-panel{position:static;}}
-@media(max-width:768px){.steps-grid{grid-template-columns:1fr;}.features-grid{grid-template-columns:1fr;}.dt-grid{grid-template-columns:1fr;}.score-gauges{grid-template-columns:1fr;}.nav-tabs{display:none;}.cta-card{padding:44px 22px;}}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr;}.features-grid{grid-template-columns:1fr 1fr;}.dt-grid{grid-template-columns:1fr;}.score-gauges{grid-template-columns:1fr;}.nav-tabs{display:none;}.cta-card{padding:44px 22px;}}
 @media(max-width:480px){.hero-h1{font-size:2.4rem;}.hero-actions{flex-direction:column;align-items:stretch;}.hero-actions .btn-hero{justify-content:center;}.field-row,.field-row3{grid-template-columns:1fr;}.bureau-grid{grid-template-columns:1fr;}.letter-paper{padding:28px 20px;font-size:0.82rem;}}
 
 /* ══ CREDITSMART AI PAGE ══════════════════════════════════════════════════ */
@@ -383,6 +383,77 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
 @media(max-width:900px){.cs-flow{grid-template-columns:1fr 1fr;}.cs-summary-grid{grid-template-columns:1fr 1fr;}.cs-instructions{grid-template-columns:1fr;}}
 @media(max-width:600px){.cs-flow{grid-template-columns:1fr;}.cs-summary-grid{grid-template-columns:1fr 1fr;}.cs-hero-band{padding:24px 20px;}}
 
+/* ══ COMMAND CENTER DASHBOARD ════════════════════════════════════════════ */
+.cc-wrap{max-width:1160px;margin:0 auto;padding:28px 24px 80px;}
+.cc-hero{background:linear-gradient(135deg,rgba(79,142,247,0.08),rgba(34,211,165,0.05));border:1px solid rgba(79,142,247,0.2);border-radius:22px;padding:32px 36px;margin-bottom:24px;position:relative;overflow:hidden;}
+.cc-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 80% at 90% 50%,rgba(79,142,247,0.06),transparent);pointer-events:none;}
+.cc-hero-pill{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(79,142,247,0.12);border:1px solid rgba(79,142,247,0.3);border-radius:20px;font-size:0.68rem;font-weight:700;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;}
+.cc-hero-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 1.8s infinite;}
+.cc-hero h1{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:6px;position:relative;z-index:1;}
+.cc-hero p{font-size:0.86rem;color:var(--muted);line-height:1.7;max-width:600px;position:relative;z-index:1;}
+.cc-kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px;}
+.cc-kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 16px;text-align:center;transition:border-color 0.2s,transform 0.2s;}
+.cc-kpi:hover{border-color:var(--border2);transform:translateY(-2px);}
+.cc-kpi-val{font-family:var(--mono);font-size:1.8rem;font-weight:700;line-height:1;margin-bottom:4px;}
+.cc-kpi-lbl{font-size:0.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
+.cc-kpi-sub{font-size:0.68rem;color:var(--dim);margin-top:4px;}
+.cc-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.cc-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;}
+.cc-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.cc-panel-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);}
+.cc-panel-title{font-size:0.92rem;font-weight:700;}
+.cc-panel-badge{font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px;text-transform:uppercase;}
+.cc-panel-body{padding:18px 20px;}
+.cc-funnel{display:flex;flex-direction:column;gap:8px;}
+.cc-funnel-row{display:flex;align-items:center;gap:12px;}
+.cc-funnel-label{font-size:0.78rem;font-weight:600;color:var(--muted);width:90px;flex-shrink:0;text-align:right;}
+.cc-funnel-bar-bg{flex:1;height:28px;background:var(--card2);border-radius:6px;overflow:hidden;position:relative;}
+.cc-funnel-bar{height:100%;border-radius:6px;transition:width 0.8s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;min-width:0;}
+.cc-funnel-count{font-family:var(--mono);font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.9);}
+.cc-bureau-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;transition:border-color 0.2s,transform 0.2s;}
+.cc-bureau-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.cc-bureau-name{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.cc-bureau-winrate{font-family:var(--mono);font-size:2rem;font-weight:700;line-height:1;margin-bottom:4px;}
+.cc-bureau-sublbl{font-size:0.68rem;color:var(--dim);}
+.cc-bureau-stat{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:0.76rem;color:var(--muted);}
+.cc-bureau-stat span{font-family:var(--mono);font-weight:700;color:var(--text);}
+.cc-deadlines{display:flex;flex-direction:column;gap:8px;}
+.cc-dl-item{display:flex;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;transition:border-color 0.2s;}
+.cc-dl-item.cc-dl-urgent{border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.04);}
+.cc-dl-item.cc-dl-warn{border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.04);}
+.cc-dl-days{font-family:var(--mono);font-size:1.3rem;font-weight:700;width:50px;text-align:center;flex-shrink:0;}
+.cc-dl-info{flex:1;min-width:0;}
+.cc-dl-name{font-size:0.84rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cc-dl-meta{font-size:0.72rem;color:var(--muted);}
+.cc-dl-status{font-size:0.67rem;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.cc-insight{display:flex;align-items:flex-start;gap:12px;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:8px;transition:border-color 0.2s;}
+.cc-insight:hover{border-color:var(--border2);}
+.cc-insight-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
+.cc-insight-body{flex:1;}
+.cc-insight-title{font-size:0.84rem;font-weight:700;margin-bottom:3px;}
+.cc-insight-desc{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+.cc-insight-tag{display:inline-flex;font-size:0.66rem;font-weight:700;padding:2px 8px;border-radius:4px;margin-top:6px;letter-spacing:0.04em;text-transform:uppercase;}
+.cc-tag-action{background:rgba(34,211,165,0.1);color:var(--accent);border:1px solid rgba(34,211,165,0.2);}
+.cc-tag-info{background:rgba(79,142,247,0.1);color:var(--blue);border:1px solid rgba(79,142,247,0.2);}
+.cc-tag-warn{background:rgba(245,158,11,0.1);color:var(--amber);border:1px solid rgba(245,158,11,0.2);}
+.cc-tag-crit{background:rgba(239,68,68,0.1);color:var(--red);border:1px solid rgba(239,68,68,0.2);}
+.cc-timeline-canvas{width:100%;height:160px;display:block;}
+.cc-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;}
+.cc-legend-item{display:flex;align-items:center;gap:6px;font-size:0.76rem;color:var(--muted);}
+.cc-legend-dot{width:10px;height:3px;border-radius:2px;display:inline-block;}
+.cc-export-row{display:flex;gap:10px;justify-content:flex-end;margin-bottom:20px;}
+.cc-empty{text-align:center;padding:40px 20px;color:var(--dim);}
+.cc-empty-ico{font-size:40px;margin-bottom:10px;}
+.cc-empty p{font-size:0.84rem;line-height:1.6;}
+.cc-type-bar{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.cc-type-label{font-size:0.76rem;color:var(--muted);width:110px;flex-shrink:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cc-type-fill-bg{flex:1;height:18px;background:var(--card2);border-radius:4px;overflow:hidden;}
+.cc-type-fill{height:100%;border-radius:4px;transition:width 0.6s ease;}
+.cc-type-count{font-family:var(--mono);font-size:0.72rem;font-weight:700;width:28px;text-align:right;color:var(--muted);}
+@media(max-width:1024px){.cc-kpi-row{grid-template-columns:repeat(3,1fr);}.cc-grid-2{grid-template-columns:1fr;}.cc-grid-3{grid-template-columns:1fr;}}
+@media(max-width:768px){.cc-kpi-row{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.cc-kpi-row{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
@@ -423,6 +494,7 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
       <button class="nav-tab" id="nt-app" onclick="gotoApp()">Build Letter</button>
       <button class="nav-tab" id="nt-tracker" onclick="showPage('tracker')">Dispute Tracker</button>
       <button class="nav-tab" id="nt-scores" onclick="showPage('scores')">Score Tracker</button>
+      <button class="nav-tab" id="nt-dashboard" onclick="showPage('dashboard')" style="color:var(--blue);">◆ Command Center</button>
     </div>
     <button class="nav-cta" onclick="gotoApp()">Start Free →</button>
   </div>
@@ -445,6 +517,7 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
         <span class="trust-item"><span class="trust-check">✦</span>Driver's License Upload</span>
         <span class="trust-item"><span class="trust-check">✦</span>Dispute Status Tracking</span>
         <span class="trust-item"><span class="trust-check">✦</span>Score History Dashboard</span>
+        <span class="trust-item"><span class="trust-check">✦</span>Command Center Analytics</span>
       </div>
     </div>
   </section>
@@ -470,6 +543,8 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
         <div class="feat-card"><div class="feat-ico fi-amber">📊</div><h4 class="feat-title">Score Dashboard</h4><p class="feat-desc">Manually track Equifax, Experian, and TransUnion scores over time with a visual gauge and history chart.</p></div>
         <div class="feat-card"><div class="feat-ico fi-teal">📮</div><h4 class="feat-title">Certified Mail Labels</h4><p class="feat-desc">Generate USPS-formatted certified mail address labels for each bureau — print and send.</p></div>
         <div class="feat-card"><div class="feat-ico fi-blue">⚡</div><h4 class="feat-title">Round 2 Escalation</h4><p class="feat-desc">When bureaus respond "verified," generate an even more aggressive follow-up demanding Method of Verification under FCRA §611(a)(7).</p></div>
+        <div class="feat-card"><div class="feat-ico fi-purple">◆</div><h4 class="feat-title">Command Center</h4><p class="feat-desc">Full analytics dashboard with dispute pipeline, bureau win rates, score impact timelines, deadline alerts, and AI-powered strategy insights.</p></div>
+        <div class="feat-card"><div class="feat-ico fi-teal">📑</div><h4 class="feat-title">Export PDF Reports</h4><p class="feat-desc">Generate comprehensive PDF reports of your entire dispute history, bureau performance, and progress — perfect for attorney consultations.</p></div>
       </div>
     </div>
   </section>
@@ -911,6 +986,92 @@ input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
         <button class="btn btn-primary" onclick="csGoDispute()">Open Letter Builder &#x2192;</button>
       </div>
     </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══ COMMAND CENTER DASHBOARD ═══ -->
+
+<div class="page" id="page-dashboard">
+<div class="cc-wrap">
+
+  <!-- Hero -->
+  <div class="cc-hero">
+    <div class="cc-hero-pill"><span class="cc-hero-dot"></span>Live Analytics</div>
+    <h1>Command <span class="h-acc">Center</span></h1>
+    <p>Your dispute intelligence dashboard. Track success rates, monitor deadlines, analyze bureau performance, and get AI-powered strategy recommendations — all from your local data.</p>
+  </div>
+
+  <!-- Export -->
+  <div class="cc-export-row">
+    <button class="btn btn-sm btn-ghost" onclick="ccExportPDF()">⬇ Export Report PDF</button>
+  </div>
+
+  <!-- KPI Row -->
+  <div class="cc-kpi-row" id="cc-kpis"></div>
+
+  <!-- Row 1: Funnel + Deadlines -->
+  <div class="cc-grid-2">
+    <div class="cc-panel">
+      <div class="cc-panel-hdr">
+        <span class="cc-panel-title">Dispute Pipeline</span>
+        <span class="cc-panel-badge" style="background:rgba(79,142,247,0.1);color:var(--blue);">Funnel</span>
+      </div>
+      <div class="cc-panel-body">
+        <div class="cc-funnel" id="cc-funnel"></div>
+      </div>
+    </div>
+    <div class="cc-panel">
+      <div class="cc-panel-hdr">
+        <span class="cc-panel-title">Upcoming Deadlines</span>
+        <span class="cc-panel-badge" style="background:rgba(245,158,11,0.1);color:var(--amber);">Alerts</span>
+      </div>
+      <div class="cc-panel-body">
+        <div class="cc-deadlines" id="cc-deadlines"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2: Bureau Battle Cards -->
+  <div class="cc-panel" style="margin-bottom:20px;">
+    <div class="cc-panel-hdr">
+      <span class="cc-panel-title">Bureau Performance</span>
+      <span class="cc-panel-badge" style="background:rgba(155,111,255,0.1);color:var(--purple);">Battle Cards</span>
+    </div>
+    <div class="cc-panel-body">
+      <div class="cc-grid-3" id="cc-bureaus" style="margin-bottom:0;"></div>
+    </div>
+  </div>
+
+  <!-- Row 3: Score Impact Timeline + Dispute Types -->
+  <div class="cc-grid-2">
+    <div class="cc-panel">
+      <div class="cc-panel-hdr">
+        <span class="cc-panel-title">Score Impact Timeline</span>
+        <span class="cc-panel-badge" style="background:rgba(34,211,165,0.1);color:var(--accent);">Trends</span>
+      </div>
+      <div class="cc-panel-body">
+        <canvas class="cc-timeline-canvas" id="cc-timeline-canvas"></canvas>
+        <div class="cc-legend" id="cc-timeline-legend"></div>
+      </div>
+    </div>
+    <div class="cc-panel">
+      <div class="cc-panel-hdr">
+        <span class="cc-panel-title">Dispute Types Breakdown</span>
+        <span class="cc-panel-badge" style="background:rgba(155,111,255,0.1);color:var(--purple);">Analysis</span>
+      </div>
+      <div class="cc-panel-body" id="cc-types-body"></div>
+    </div>
+  </div>
+
+  <!-- Row 4: Strategy Insights -->
+  <div class="cc-panel" style="margin-bottom:20px;">
+    <div class="cc-panel-hdr">
+      <span class="cc-panel-title">Strategy Insights</span>
+      <span class="cc-panel-badge" style="background:rgba(34,211,165,0.1);color:var(--accent);">AI Recommendations</span>
+    </div>
+    <div class="cc-panel-body" id="cc-insights"></div>
   </div>
 
 </div>
@@ -1919,9 +2080,367 @@ window.scrollTo({top:0,behavior:‘smooth’});
 
 window.addEventListener(‘resize’,()=>{
 if(scoreHistory.length){
-renderScoreChart([{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}]);
+renderScoreChart([{key:’eq’,label:’Equifax’,color:’#ef4444’},{key:’ex’,label:’Experian’,color:’#4f8ef7’},{key:’tu’,label:’TransUnion’,color:’#22d3a5’}]);
+}
+if(document.getElementById(‘page-dashboard’).classList.contains(‘active’)){
+ccRenderTimeline();
 }
 });
+
+// ══ COMMAND CENTER ══════════════════════════════════════════════════════════
+
+function renderDashboard(){
+ccRenderKPIs();
+ccRenderFunnel();
+ccRenderDeadlines();
+ccRenderBureaus();
+ccRenderTimeline();
+ccRenderTypes();
+ccRenderInsights();
+}
+
+function ccRenderKPIs(){
+const el=document.getElementById(‘cc-kpis’);if(!el)return;
+const total=disputes.length;
+const active=disputes.filter(d=>[‘sent’,’review’,’responded’].includes(d.status)).length;
+const removed=disputes.filter(d=>d.status===’removed’).length;
+const verified=disputes.filter(d=>d.status===’verified’).length;
+const winRate=total>0?Math.round((removed/total)*100):0;
+
+const latest={eq:null,ex:null,tu:null};
+scoreHistory.forEach(e=>{if(e.eq)latest.eq=e.eq;if(e.ex)latest.ex=e.ex;if(e.tu)latest.tu=e.tu;});
+const scores=[latest.eq,latest.ex,latest.tu].filter(Boolean);
+const avgScore=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+
+el.innerHTML=[
+{val:total,lbl:’Total Disputes’,color:’var(--text)’,sub:active+’ active’},
+{val:removed,lbl:’Items Removed’,color:’var(--accent)’,sub:’successful’},
+{val:verified,lbl:’Bureau Verified’,color:’var(--red)’,sub:’needs round 2’},
+{val:winRate+’%’,lbl:’Success Rate’,color:winRate>=50?’var(--accent)’:winRate>=25?’var(--amber)’:’var(--muted)’,sub:total>0?’of all disputes’:’no data yet’},
+{val:avgScore||’—‘,lbl:’Avg Credit Score’,color:avgScore>=670?’var(--accent)’:avgScore>=580?’var(--amber)’:’var(--muted)’,sub:scores.length?scores.length+’ bureau’+(scores.length>1?’s’:’’):’no scores logged’},
+].map(k=>`<div class="cc-kpi"><div class="cc-kpi-val" style="color:${k.color}">${k.val}</div><div class="cc-kpi-lbl">${k.lbl}</div><div class="cc-kpi-sub">${k.sub}</div></div>`).join(‘’);
+}
+
+function ccRenderFunnel(){
+const el=document.getElementById(‘cc-funnel’);if(!el)return;
+if(!disputes.length){el.innerHTML=’<div class="cc-empty"><div class="cc-empty-ico">📊</div><p>Log disputes to see your pipeline funnel.</p></div>’;return;}
+
+const stages=[
+{key:’sent’,label:’Sent’,color:’var(--blue)’},
+{key:’review’,label:’In Review’,color:’var(--amber)’},
+{key:’responded’,label:’Responded’,color:’var(--purple)’},
+{key:’removed’,label:’Removed’,color:’var(--accent)’},
+{key:’verified’,label:’Verified’,color:’var(--red)’}
+];
+const total=disputes.length;
+el.innerHTML=stages.map(s=>{
+const count=disputes.filter(d=>d.status===s.key).length;
+const pct=total>0?Math.round((count/total)*100):0;
+return `<div class="cc-funnel-row"><span class="cc-funnel-label">${s.label}</span><div class="cc-funnel-bar-bg"><div class="cc-funnel-bar" style="width:${Math.max(pct,count>0?8:0)}%;background:${s.color};"><span class="cc-funnel-count">${count}</span></div></div></div>`;
+}).join(‘’);
+}
+
+function ccRenderDeadlines(){
+const el=document.getElementById(‘cc-deadlines’);if(!el)return;
+const activeDisputes=disputes.filter(d=>[‘sent’,’review’,’responded’].includes(d.status));
+if(!activeDisputes.length){el.innerHTML=’<div class="cc-empty"><div class="cc-empty-ico">✅</div><p>No active deadlines. All caught up!</p></div>’;return;}
+
+const now=Date.now();
+const sorted=activeDisputes.map(d=>{
+const deadMs=new Date(d.deadline).getTime();
+const daysLeft=Math.ceil((deadMs-now)/(1000*60*60*24));
+return{...d,daysLeft};
+}).sort((a,b)=>a.daysLeft-b.daysLeft).slice(0,6);
+
+const statusClass={sent:’s-sent’,review:’s-review’,responded:’s-responded’};
+const statusMap={sent:’Sent’,review:’In Review’,responded:’Responded’};
+
+el.innerHTML=sorted.map(d=>{
+const urgency=d.daysLeft<=0?’cc-dl-urgent’:d.daysLeft<=7?’cc-dl-urgent’:d.daysLeft<=14?’cc-dl-warn’:’’;
+const dayColor=d.daysLeft<=0?’var(--red)’:d.daysLeft<=7?’var(--red)’:d.daysLeft<=14?’var(--amber)’:’var(--text)’;
+const dayText=d.daysLeft<=0?’LATE’:d.daysLeft+’d’;
+return `<div class="cc-dl-item ${urgency}"><div class="cc-dl-days" style="color:${dayColor}">${dayText}</div><div class="cc-dl-info"><div class="cc-dl-name">${escHtml(d.creditor)}</div><div class="cc-dl-meta">${escHtml(d.bureau)} · ${escHtml(d.type)} · Due ${d.deadline}</div></div><span class="cc-dl-status ${statusClass[d.status]||’s-sent’}">${statusMap[d.status]||d.status}</span></div>`;
+}).join(‘’);
+}
+
+function ccRenderBureaus(){
+const el=document.getElementById(‘cc-bureaus’);if(!el)return;
+const bureauNames=[‘Equifax’,’Experian’,’TransUnion’];
+const bureauColors={‘Equifax’:’#ef4444’,’Experian’:’#4f8ef7’,’TransUnion’:’#22d3a5’};
+
+if(!disputes.length){el.innerHTML=’<div class="cc-empty" style="grid-column:1/-1;"><div class="cc-empty-ico">🏦</div><p>Log disputes to see bureau performance breakdown.</p></div>’;return;}
+
+el.innerHTML=bureauNames.map(name=>{
+const bd=disputes.filter(d=>d.bureau===name);
+const total=bd.length;
+const removed=bd.filter(d=>d.status===’removed’).length;
+const verified=bd.filter(d=>d.status===’verified’).length;
+const active=bd.filter(d=>[‘sent’,’review’,’responded’].includes(d.status)).length;
+const winRate=total>0?Math.round((removed/total)*100):0;
+const color=bureauColors[name]||’var(--text)’;
+
+return `<div class="cc-bureau-card"><div class="cc-bureau-name">${name}</div><div class="cc-bureau-winrate" style="color:${total>0?color:’var(--dim)’}">${total>0?winRate+’%’:’—‘}</div><div class="cc-bureau-sublbl">${total>0?’removal rate’:’no disputes’}</div><div class="cc-bureau-stat"><span style="font-weight:400;">Total</span><span>${total}</span></div><div class="cc-bureau-stat"><span style="font-weight:400;">Removed</span><span style="color:var(--accent)">${removed}</span></div><div class="cc-bureau-stat"><span style="font-weight:400;">Verified</span><span style="color:var(--red)">${verified}</span></div><div class="cc-bureau-stat"><span style="font-weight:400;">Active</span><span style="color:var(--blue)">${active}</span></div></div>`;
+}).join(‘’);
+}
+
+function ccRenderTimeline(){
+const canvas=document.getElementById(‘cc-timeline-canvas’);if(!canvas)return;
+const ctx=canvas.getContext(‘2d’);
+const W=canvas.offsetWidth||800;const H=160;
+canvas.width=W;canvas.height=H;
+ctx.clearRect(0,0,W,H);
+
+if(scoreHistory.length<2&&!disputes.length){
+ctx.fillStyle=’rgba(255,255,255,0.15)’;
+ctx.font=’13px Sora, sans-serif’;
+ctx.textAlign=’center’;
+ctx.fillText(‘Log scores and disputes to see your impact timeline’,W/2,H/2);
+document.getElementById(‘cc-timeline-legend’).innerHTML=’’;
+return;
+}
+
+const pad={l:10,r:10,t:14,b:14};
+const cW=W-pad.l-pad.r;const cH=H-pad.t-pad.b;
+
+// Draw score lines
+if(scoreHistory.length>=2){
+const allScores=scoreHistory.flatMap(e=>[e.eq,e.ex,e.tu].filter(Boolean));
+const minS=Math.min.apply(null,allScores)-20;
+const maxS=Math.max.apply(null,allScores)+20;
+const toX=function(i){return pad.l+(i/(scoreHistory.length-1))*cW;};
+const toY=function(v){return pad.t+(1-(v-minS)/(maxS-minS))*cH;};
+const bureaus=[{key:’eq’,color:’#ef4444’},{key:’ex’,color:’#4f8ef7’},{key:’tu’,color:’#22d3a5’}];
+bureaus.forEach(b=>{
+const pts=scoreHistory.map((e,i)=>e[b.key]?{x:toX(i),y:toY(e[b.key])}:null).filter(Boolean);
+if(pts.length<2)return;
+// Gradient fill under line
+const grad=ctx.createLinearGradient(0,0,0,H);
+grad.addColorStop(0,b.color+’33’);
+grad.addColorStop(1,b.color+’05’);
+ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+pts.forEach(p=>ctx.lineTo(p.x,p.y));
+ctx.lineTo(pts[pts.length-1].x,H-pad.b);ctx.lineTo(pts[0].x,H-pad.b);
+ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+// Line
+ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+pts.forEach(p=>ctx.lineTo(p.x,p.y));
+ctx.strokeStyle=b.color;ctx.lineWidth=2;ctx.stroke();
+pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fillStyle=b.color;ctx.fill();});
+});
+}
+
+// Draw dispute event markers
+if(disputes.length&&scoreHistory.length>=2){
+const allDates=scoreHistory.map(e=>e.date).sort();
+const startDate=new Date(allDates[0]).getTime();
+const endDate=new Date(allDates[allDates.length-1]).getTime();
+const range=endDate-startDate;
+if(range>0){
+disputes.forEach(d=>{
+const dMs=new Date(d.sentDate).getTime();
+if(dMs>=startDate&&dMs<=endDate){
+const x=pad.l+((dMs-startDate)/range)*cW;
+ctx.beginPath();
+ctx.setLineDash([3,3]);
+ctx.moveTo(x,pad.t);ctx.lineTo(x,H-pad.b);
+ctx.strokeStyle=d.status===’removed’?’rgba(34,211,165,0.4)’:’rgba(79,142,247,0.25)’;
+ctx.lineWidth=1;ctx.stroke();
+ctx.setLineDash([]);
+// Dot marker
+ctx.beginPath();ctx.arc(x,pad.t+4,4,0,Math.PI*2);
+ctx.fillStyle=d.status===’removed’?’var(--accent)’:’var(--blue)’;
+ctx.fillStyle=d.status===’removed’?’#22d3a5’:’#4f8ef7’;
+ctx.fill();
+}
+});
+}
+}
+
+const legend=document.getElementById(‘cc-timeline-legend’);
+if(legend)legend.innerHTML=’<span class="cc-legend-item"><span class="cc-legend-dot" style="background:#ef4444;"></span>Equifax</span><span class="cc-legend-item"><span class="cc-legend-dot" style="background:#4f8ef7;"></span>Experian</span><span class="cc-legend-item"><span class="cc-legend-dot" style="background:#22d3a5;"></span>TransUnion</span><span class="cc-legend-item"><span class="cc-legend-dot" style="background:#4f8ef7;width:4px;height:4px;border-radius:50%;"></span>Dispute Filed</span><span class="cc-legend-item"><span class="cc-legend-dot" style="background:#22d3a5;width:4px;height:4px;border-radius:50%;"></span>Item Removed</span>’;
+}
+
+function ccRenderTypes(){
+const el=document.getElementById(‘cc-types-body’);if(!el)return;
+if(!disputes.length){el.innerHTML=’<div class="cc-empty"><div class="cc-empty-ico">📋</div><p>Log disputes to see your type breakdown.</p></div>’;return;}
+
+const typeCounts={};
+disputes.forEach(d=>{typeCounts[d.type]=(typeCounts[d.type]||0)+1;});
+const sorted=Object.entries(typeCounts).sort((a,b)=>b[1]-a[1]);
+const max=sorted[0]?sorted[0][1]:1;
+const typeColors=[‘var(--accent)’,’var(--blue)’,’var(--purple)’,’var(--amber)’,’var(--red)’,’#22c55e’,’#f472b6’,’#a78bfa’];
+
+el.innerHTML=sorted.map((t,i)=>{
+const pct=Math.round((t[1]/max)*100);
+const color=typeColors[i%typeColors.length];
+return `<div class="cc-type-bar"><span class="cc-type-label">${escHtml(t[0])}</span><div class="cc-type-fill-bg"><div class="cc-type-fill" style="width:${pct}%;background:${color};"></div></div><span class="cc-type-count">${t[1]}</span></div>`;
+}).join(‘’);
+}
+
+function ccRenderInsights(){
+const el=document.getElementById(‘cc-insights’);if(!el)return;
+const insights=[];
+
+if(!disputes.length&&!scoreHistory.length){
+el.innerHTML=’<div class="cc-empty"><div class="cc-empty-ico">💡</div><p>Start logging disputes and scores to receive personalized strategy insights.</p></div>’;
+return;
+}
+
+// Insight: No disputes yet
+if(!disputes.length){
+insights.push({ico:’🚀’,title:’Get Started with Your First Dispute’,desc:’You haven\’t logged any disputes yet. Use the Letter Builder to create your first FCRA-compliant dispute letter and track it here.’,tag:’action’,tagLabel:’Take Action’});
+}
+
+// Insight: Overdue deadlines
+const now=Date.now();
+const overdue=disputes.filter(d=>{
+const deadMs=new Date(d.deadline).getTime();
+return deadMs<now&&[‘sent’,’review’].includes(d.status);
+});
+if(overdue.length>0){
+insights.push({ico:’🚨’,title:overdue.length+’ Dispute’+(overdue.length>1?’s’:’’)+’ Past Deadline’,desc:’Bureau’+(overdue.length>1?’s have’:’ has’)+’ exceeded the 30-day response window. Under FCRA § 1681i, failure to investigate within 30 days requires deletion. Consider filing a CFPB complaint.’,tag:’crit’,tagLabel:’Urgent’});
+}
+
+// Insight: Bureau verified items need round 2
+const verifiedItems=disputes.filter(d=>d.status===’verified’);
+if(verifiedItems.length>0){
+insights.push({ico:’⚡’,title:verifiedItems.length+’ Item’+(verifiedItems.length>1?’s’:’’)+’ Need Round 2 Letters’,desc:’Bureau-verified items should be challenged with a Method of Verification demand under FCRA § 611(a)(7). Use Maximum Force aggression for best results.’,tag:’action’,tagLabel:’Take Action’});
+}
+
+// Insight: Win rate analysis
+const total=disputes.length;
+const removed=disputes.filter(d=>d.status===’removed’).length;
+if(total>=3){
+const rate=Math.round((removed/total)*100);
+if(rate>=60){
+insights.push({ico:’🏆’,title:’Strong ‘+rate+’% Success Rate’,desc:’Your dispute strategy is working well. Keep documenting everything and sending via certified mail. Consider escalating remaining items with Maximum Force letters.’,tag:’info’,tagLabel:’Great Work’});
+}else if(rate>=25){
+insights.push({ico:’📈’,title:’Building Momentum — ‘+rate+’% Success Rate’,desc:’You\’re making progress. For stubborn items, try escalating to Maximum Force aggression, including FTC report numbers, and threatening CFPB complaints.’,tag:’info’,tagLabel:’Keep Going’});
+}else{
+insights.push({ico:’🔄’,title:’Low Success Rate (‘+rate+’%) — Time to Escalate’,desc:’Consider switching to Maximum Force letters with CFPB complaint threats. Demand Method of Verification for any "verified" responses. Document everything via certified mail.’,tag:’warn’,tagLabel:’Needs Attention’});
+}
+}
+
+// Insight: Bureau-specific analysis
+const bureauNames=[‘Equifax’,’Experian’,’TransUnion’];
+bureauNames.forEach(name=>{
+const bd=disputes.filter(d=>d.bureau===name);
+const bRemoved=bd.filter(d=>d.status===’removed’).length;
+const bTotal=bd.length;
+if(bTotal>=2&&bRemoved===0){
+insights.push({ico:’🏦’,title:name+’ — 0% Removal Rate’,desc:name+’ has not removed any of your ‘+bTotal+’ disputed items. Consider filing a direct complaint with the CFPB specifically about ‘+name+’\’s investigation practices.’,tag:’warn’,tagLabel:’Escalate’});
+}
+});
+
+// Insight: Score trend
+if(scoreHistory.length>=3){
+const recent=scoreHistory.slice(-3);
+const earlier=scoreHistory.slice(-6,-3);
+if(earlier.length>=1){
+const getAvg=arr=>{const scores=arr.flatMap(e=>[e.eq,e.ex,e.tu].filter(Boolean));return scores.length?scores.reduce((a,b)=>a+b,0)/scores.length:0;};
+const recentAvg=getAvg(recent);
+const earlierAvg=getAvg(earlier);
+const diff=Math.round(recentAvg-earlierAvg);
+if(diff>0){
+insights.push({ico:’📊’,title:’Scores Trending Up (+’+diff+’ pts avg)’,desc:’Your credit scores are improving. Continue monitoring and disputing inaccurate items. Dispute removals typically take 1-2 billing cycles to fully reflect.’,tag:’info’,tagLabel:’Positive Trend’});
+}else if(diff<-10){
+insights.push({ico:’📉’,title:’Scores Dropped (‘+diff+’ pts avg)’,desc:’Your average score has declined recently. Check for new negative items, increased utilization, or hard inquiries. Run a CreditSmart AI scan to identify new issues.’,tag:’warn’,tagLabel:’Monitor’});
+}
+}
+}
+
+// Insight: Aggression level recommendation
+const standardCount=disputes.filter(d=>d.aggression===’Standard’).length;
+const maxForceCount=disputes.filter(d=>d.aggression===’Maximum Force’).length;
+if(standardCount>3&&maxForceCount===0&&removed<total*0.3){
+insights.push({ico:’🔥’,title:’Try Maximum Force Letters’,desc:’All your disputes have been Standard or Aggressive level. For stubborn bureaus, Maximum Force letters include CFPB threats, MOV demands, and full legal citations — significantly improving removal rates.’,tag:’action’,tagLabel:’Recommendation’});
+}
+
+// Insight: Use CreditSmart
+if(total>0&&total<=3){
+insights.push({ico:’🤖’,title:’Scan Your Full Report with CreditSmart AI’,desc:’You have ‘+total+’ dispute’+(total>1?’s’:’’)+’ logged. Run a full credit report through CreditSmart AI Scanner to automatically identify all disputable items across your entire report.’,tag:’info’,tagLabel:’Pro Tip’});
+}
+
+if(insights.length===0){
+insights.push({ico:’✅’,title:’All Clear’,desc:’No urgent actions needed right now. Keep monitoring your disputes and logging your scores regularly.’,tag:’info’,tagLabel:’Status’});
+}
+
+el.innerHTML=insights.map(i=>`<div class="cc-insight"><span class="cc-insight-ico">${i.ico}</span><div class="cc-insight-body"><div class="cc-insight-title">${escHtml(i.title)}</div><div class="cc-insight-desc">${escHtml(i.desc)}</div><span class="cc-insight-tag cc-tag-${i.tag}">${i.tagLabel}</span></div></div>`).join(‘’);
+}
+
+function ccExportPDF(){
+try{
+const{jsPDF}=window.jspdf;
+const doc=new jsPDF({orientation:’portrait’,unit:’pt’,format:’letter’});
+const ml=60,mt=60,pw=doc.internal.pageSize.getWidth(),mw=pw-ml*2;
+let y=mt;
+const lh=16;
+const checkPage=function(needed){if(y+needed>doc.internal.pageSize.getHeight()-60){doc.addPage();y=mt;}};
+
+// Title
+doc.setFont(‘Helvetica’,’bold’);doc.setFontSize(20);doc.setTextColor(34,211,165);
+doc.text(‘DisputeKit Pro — Command Center Report’,ml,y);y+=30;
+doc.setFontSize(10);doc.setTextColor(100,100,100);
+doc.text(‘Generated: ‘+new Date().toLocaleString(),ml,y);y+=24;
+
+// KPIs
+doc.setFont(‘Helvetica’,’bold’);doc.setFontSize(14);doc.setTextColor(30,30,30);
+doc.text(‘Overview’,ml,y);y+=18;
+doc.setFont(‘Helvetica’,’normal’);doc.setFontSize(10);doc.setTextColor(50,50,50);
+const total=disputes.length;
+const removed=disputes.filter(d=>d.status===’removed’).length;
+const active=disputes.filter(d=>[‘sent’,’review’,’responded’].includes(d.status)).length;
+const verified=disputes.filter(d=>d.status===’verified’).length;
+const winRate=total>0?Math.round((removed/total)*100):0;
+
+const kpiLines=[
+‘Total Disputes: ‘+total,
+‘Active: ‘+active+’ | Removed: ‘+removed+’ | Verified: ‘+verified,
+‘Success Rate: ‘+winRate+’%’
+];
+kpiLines.forEach(function(line){doc.text(line,ml,y);y+=lh;});
+y+=10;
+
+// Bureau breakdown
+checkPage(80);
+doc.setFont(‘Helvetica’,’bold’);doc.setFontSize(14);doc.setTextColor(30,30,30);
+doc.text(‘Bureau Performance’,ml,y);y+=18;
+doc.setFont(‘Helvetica’,’normal’);doc.setFontSize(10);doc.setTextColor(50,50,50);
+[‘Equifax’,’Experian’,’TransUnion’].forEach(function(name){
+const bd=disputes.filter(function(d){return d.bureau===name;});
+const bRemoved=bd.filter(function(d){return d.status===’removed’;}).length;
+const bRate=bd.length>0?Math.round((bRemoved/bd.length)*100):0;
+doc.text(name+’: ‘+bd.length+’ disputes, ‘+bRemoved+’ removed (‘+bRate+’%)’,ml,y);y+=lh;
+});
+y+=10;
+
+// Dispute list
+checkPage(40);
+doc.setFont(‘Helvetica’,’bold’);doc.setFontSize(14);doc.setTextColor(30,30,30);
+doc.text(‘All Disputes’,ml,y);y+=18;
+doc.setFont(‘Helvetica’,’normal’);doc.setFontSize(9);doc.setTextColor(50,50,50);
+if(!disputes.length){
+doc.text(‘No disputes logged.’,ml,y);y+=lh;
+}else{
+disputes.forEach(function(d){
+checkPage(40);
+doc.text(d.creditor+’ | ‘+d.bureau+’ | ‘+d.type+’ | ‘+d.status.toUpperCase()+’ | Sent: ‘+d.sentDate+’ | Deadline: ‘+d.deadline,ml,y,{maxWidth:mw});
+y+=lh;
+});
+}
+
+doc.save(‘DisputeKit_CommandCenter_Report.pdf’);
+toast(‘📥 Report PDF downloaded!’);
+}catch(e){toast(‘PDF generation failed.’,’err’);console.error(e);}
+}
+
+// Hook dashboard into showPage
+const _origShowPage=showPage;
+showPage=function(name){
+_origShowPage(name);
+if(name===’dashboard’)renderDashboard();
+};
+
 </script>
 
 </body>
