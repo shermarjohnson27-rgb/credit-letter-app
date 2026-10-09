@@ -97,13 +97,13 @@
     .hero {
       background: linear-gradient(160deg, #1D2842 0%, #0f1623 55%);
       padding: 72px 24px 80px;
-      overflow: hidden;
+      /* no overflow:hidden — it clips the card's glow shadow on the right */
     }
     .hero-inner {
       max-width: 1080px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-columns: 1fr 460px;
       gap: 48px;
       align-items: center;
     }
@@ -145,10 +145,10 @@
     }
     .hero-card-img {
       width: 100%;
-      max-width: 400px;
+      max-width: 440px;
       height: auto;
       display: block;
-      border-radius: 16px;
+      /* no border-radius — card PNG already has natural rounded corners */
       animation: floatCard 5s ease-in-out infinite;
       filter: drop-shadow(0 0 32px rgba(0,174,239,0.45))
               drop-shadow(0 0 80px rgba(0,174,239,0.18));
@@ -364,14 +364,14 @@
 <body>
 
 <!-- ══════════════════════════════════════════════════════
-     CONFIG — fill these in, everything wires up automatically
+     CONFIG — update these links here, nothing else to change
      ══════════════════════════════════════════════════════ -->
 <script>
   const CONFIG = {
-    VIDEO_URL:    "",                         // YouTube embed URL, Vimeo embed URL, or .mp4
-    CHECKOUT_URL: "#checkout",                // payment / checkout page URL
-    SKOOL_URL:    "#skool",                   // ITC Skool community URL
-    COACHING_URL: "#coaching",               // 1-on-1 coaching booking URL
+    VIDEO_URL:    "https://youtu.be/_i4c48wvAdQ",                        // YouTube / Vimeo / .mp4
+    CHECKOUT_URL: "https://www.skool.com/i-teach-credit",                // ⚠️ TEMPORARY — replace with digital product payment link when ready
+    SKOOL_URL:    "https://www.skool.com/i-teach-credit",                // ITC Skool community
+    COACHING_URL: "https://buy.stripe.com/8x214o2zDelE9PB5EY4Rq0d",     // 1-on-1 coaching booking
   };
 </script>
 
@@ -534,12 +534,20 @@
 <!-- INIT -->
 <script>
   (function () {
-    const { VIDEO_URL, CHECKOUT_URL } = CONFIG;
+    var VIDEO_URL    = CONFIG.VIDEO_URL;
+    var CHECKOUT_URL = CONFIG.CHECKOUT_URL;
 
-    // wire all buy buttons
+    // convert any YouTube watch/short URL to embed URL
+    function toEmbed(url) {
+      var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([A-Za-z0-9_-]{11})/);
+      if (m) return "https://www.youtube.com/embed/" + m[1] + "?rel=0";
+      return url;
+    }
+
+    // wire all buy buttons — open in new tab
     ["headerBtn","heroBtn","ctaBtn","stickyBtn"].forEach(function(id) {
       var el = document.getElementById(id);
-      if (el) el.href = CHECKOUT_URL || "#";
+      if (el) { el.href = CHECKOUT_URL || "#"; el.target = "_blank"; el.rel = "noopener noreferrer"; }
     });
 
     // copyright year
@@ -551,9 +559,7 @@
 
     if (VIDEO_URL) {
       ph.style.display = "none";
-      var isYT   = /youtube\.com|youtu\.be/.test(VIDEO_URL);
-      var isVim  = /vimeo\.com/.test(VIDEO_URL);
-      var isMp4  = /\.(mp4|webm|ogg)(\?|$)/i.test(VIDEO_URL);
+      var isMp4 = /\.(mp4|webm|ogg)(\?|$)/i.test(VIDEO_URL);
 
       if (isMp4) {
         var v = document.createElement("video");
@@ -562,9 +568,8 @@
         v.style.cssText = "position:absolute;inset:0;width:100%;height:100%;";
         wrap.appendChild(v);
       } else {
-        // YouTube or Vimeo or generic iframe
         var f = document.createElement("iframe");
-        f.src = VIDEO_URL;
+        f.src = toEmbed(VIDEO_URL);
         f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
         f.allowFullscreen = true;
         f.title = "I Teach Credit — Program Overview";
@@ -572,7 +577,7 @@
       }
     }
 
-    // simple scroll-triggered fade-ups
+    // scroll-triggered fade-ups
     if ("IntersectionObserver" in window) {
       var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {

@@ -253,8 +253,8 @@
      ══════════════════════════════════════════════════════ -->
 <script>
   const CONFIG = {
-    SKOOL_URL:    "#skool",       // ITC Skool community URL
-    COACHING_URL: "#coaching",   // 1-on-1 coaching booking URL
+    SKOOL_URL:    "https://www.skool.com/i-teach-credit",            // ITC Skool community
+    COACHING_URL: "https://buy.stripe.com/8x214o2zDelE9PB5EY4Rq0d", // 1-on-1 coaching booking
   };
 </script>
 
@@ -353,8 +353,10 @@
   (function () {
     var s = CONFIG.SKOOL_URL    || "#";
     var c = CONFIG.COACHING_URL || "#";
-    document.getElementById("skoolBtn").href    = s;
-    document.getElementById("coachingBtn").href = c;
+    var skool    = document.getElementById("skoolBtn");
+    var coaching = document.getElementById("coachingBtn");
+    skool.href    = s; skool.target    = "_blank"; skool.rel    = "noopener noreferrer";
+    coaching.href = c; coaching.target = "_blank"; coaching.rel = "noopener noreferrer";
   })();
 </script>
 </body>
