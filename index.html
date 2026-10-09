@@ -1,1928 +1,459 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>DisputeKit Pro — Professional Credit Repair Suite</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#08090f;--bg2:#0c0e18;--card:#10131f;--card2:#151928;--card3:#1a1f30;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
-  --text:#eaecf6;--muted:#6b7590;--dim:#3a4055;
-  --accent:#22d3a5;--accent2:#1ab88e;--accent-glow:rgba(34,211,165,0.15);
-  --red:#ef4444;--red2:#dc2626;--amber:#f59e0b;
-  --blue:#4f8ef7;--purple:#9b6fff;
-  --font:'Sora',sans-serif;--mono:'DM Mono',monospace;
-}
-html{scroll-behavior:smooth;}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-.hidden{display:none!important;}
-img{max-width:100%;}
-.bg-layer{position:fixed;inset:0;pointer-events:none;z-index:0;
-background:radial-gradient(ellipse 80% 50% at 10% -10%,rgba(34,211,165,0.07) 0%,transparent 55%),
-radial-gradient(ellipse 60% 40% at 90% 110%,rgba(79,142,247,0.06) 0%,transparent 55%),
-linear-gradient(170deg,#08090f 0%,#0a0d18 100%);}
-.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
-background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
-background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 70% at 50% 0%,black 20%,transparent 100%);}
-.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(--card2);border:1px solid var(--accent);color:var(--text);font-size:12px;font-weight:600;padding:10px 20px;border-radius:20px;z-index:9999;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
-.toast.show{transform:translateX(-50%) translateY(0);}
-.toast.err{border-color:var(--red);}
-.toast.warn{border-color:var(--amber);}
-.field-input.invalid,.field-select.invalid,.field-textarea.invalid{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(239,68,68,0.12)!important;}
-.field-error{font-size:0.71rem;color:var(--red);margin-top:3px;display:none;font-weight:500;}
-.field-error.show{display:block;}
-.validation-banner{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 16px;font-size:0.82rem;color:var(--red);line-height:1.6;margin-bottom:16px;display:none;}
-.validation-banner.show{display:block;}
-.required-star{color:var(--accent);font-weight:700;}
-.form-progress{height:3px;background:var(--card2);border-radius:0;overflow:hidden;}
-.form-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:0;transition:width 0.4s ease;}
-.nav{position:sticky;top:0;z-index:200;background:rgba(8,9,15,0.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
-.nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:24px;}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;cursor:pointer;background:none;border:none;}
-.logo-mark{width:34px;height:34px;background:var(--accent);color:#03120b;font-weight:800;font-size:0.72rem;letter-spacing:0.04em;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.logo-text{font-weight:700;font-size:1rem;color:var(--text);}
-.logo-pro{font-size:0.62rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-left:4px;letter-spacing:0.08em;}
-.nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto;}
-.nav-tab{background:none;border:none;color:var(--muted);font-family:var(--font);font-size:0.83rem;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
-.nav-tab:hover{color:var(--text);background:rgba(255,255,255,0.04);}
-.nav-tab.active{color:var(--accent);background:var(--accent-glow);}
-.nav-cta{background:var(--accent);color:#03120b;font-family:var(--font);font-size:0.83rem;font-weight:700;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;margin-left:8px;transition:all 0.2s;}
-.nav-cta:hover{background:var(--accent2);transform:translateY(-1px);}
-.page{display:none;position:relative;z-index:1;animation:fadeIn 0.3s ease;}
-.page.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-.hero{padding:90px 24px 80px;min-height:88vh;display:flex;align-items:center;position:relative;}
-.hero-inner{max-width:800px;margin:0 auto;text-align:center;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:100px;font-size:0.76rem;font-weight:600;color:var(--accent);margin-bottom:28px;}
-.badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.hero-h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:1.06;letter-spacing:-0.04em;margin-bottom:20px;}
-.h-acc{background:linear-gradient(135deg,var(--accent) 0%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero-sub{font-size:1.05rem;color:var(--muted);max-width:580px;margin:0 auto 36px;line-height:1.75;}
-.hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
-.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-family:var(--font);font-size:0.95rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;}
-.btn-hero-primary{background:var(--accent);color:#03120b;box-shadow:0 0 28px rgba(34,211,165,0.25);}
-.btn-hero-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 0 40px rgba(34,211,165,0.4);}
-.btn-hero-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2);}
-.btn-hero-ghost:hover{color:var(--text);background:rgba(255,255,255,0.04);}
-.trust-row{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted);font-weight:500;}
-.trust-check{color:var(--accent);font-size:14px;}
-.section{padding:88px 24px;}
-.section-alt{background:var(--bg2);}
-.container{max-width:1160px;margin:0 auto;}
-.sec-label{font-size:0.74rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
-.sec-title{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:48px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;}
-.card-sm{padding:18px;}
-.card-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.step-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 26px;transition:border-color 0.2s,transform 0.2s;}
-.step-card:hover{border-color:var(--border2);transform:translateY(-2px);}
-.step-num{font-family:var(--mono);font-size:0.68rem;color:var(--dim);letter-spacing:0.08em;margin-bottom:14px;}
-.step-ico{width:50px;height:50px;background:var(--accent-glow);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;margin-bottom:18px;}
-.step-title{font-size:0.95rem;font-weight:700;margin-bottom:8px;}
-.step-desc{font-size:0.84rem;color:var(--muted);line-height:1.65;}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.feat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;transition:border-color 0.2s,transform 0.2s;}
-.feat-card:hover{border-color:var(--border2);transform:translateY(-2px);}
-.feat-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px;}
-.fi-teal{background:rgba(34,211,165,0.1);color:var(--accent);}
-.fi-blue{background:rgba(79,142,247,0.1);color:var(--blue);}
-.fi-purple{background:rgba(155,111,255,0.1);color:var(--purple);}
-.fi-amber{background:rgba(245,158,11,0.1);color:var(--amber);}
-.feat-title{font-size:0.9rem;font-weight:700;margin-bottom:7px;}
-.feat-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;}
-.app-wrap{max-width:1160px;margin:0 auto;padding:28px 24px 80px;}
-.app-grid{display:grid;grid-template-columns:460px 1fr;gap:22px;align-items:start;}
-.form-panel{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;}
-.panel-hdr{padding:26px 26px 0;margin-bottom:22px;}
-.panel-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:3px;}
-.panel-sub{font-size:0.82rem;color:var(--muted);}
-.form-sec{padding:0 26px 22px;border-bottom:1px solid var(--border);}
-.form-sec:last-of-type{border-bottom:none;}
-.form-sec-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;}
-.preview-panel{position:sticky;top:82px;background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;}
-.preview-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:22px 22px 16px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.preview-actions{display:flex;gap:7px;flex-shrink:0;}
-.letter-container{min-height:480px;max-height:72vh;overflow-y:auto;background:#f5f4f0;}
-.letter-container::-webkit-scrollbar{width:5px;}
-.letter-container::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px;}
-.letter-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 24px;min-height:480px;background:var(--card2);text-align:center;}
-.le-title{font-size:0.95rem;font-weight:600;color:var(--dim);}
-.le-sub{font-size:0.82rem;color:var(--dim);max-width:240px;line-height:1.6;}
-.letter-out{background:#f5f4f0;padding:22px;}
-.letter-paper{background:#fff;color:#111;font-family:'Times New Roman',Times,serif;font-size:0.9rem;line-height:1.8;padding:48px 52px;box-shadow:0 2px 16px rgba(0,0,0,0.12);border-radius:3px;white-space:pre-wrap;word-break:break-word;}
-.preview-disc{display:flex;align-items:center;gap:6px;padding:10px 18px;font-size:0.72rem;color:var(--dim);border-top:1px solid var(--border);}
-.letter-complete-badge{display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,211,165,0.08);border:1px solid rgba(34,211,165,0.2);border-radius:8px;font-size:0.75rem;font-weight:700;color:var(--accent);margin-top:8px;}
-.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;font-family:var(--font);font-weight:600;font-size:0.84rem;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
-.btn-sm{padding:7px 13px;font-size:0.78rem;border-radius:7px;}
-.btn-lg{padding:13px 26px;font-size:0.95rem;border-radius:10px;}
-.btn-full{width:100%;justify-content:center;}
-.btn-primary{background:var(--accent);color:#03120b;box-shadow:0 0 20px rgba(34,211,165,0.2);}
-.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
-.btn-primary:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
-.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2);}
-.btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04);}
-.btn-red{background:rgba(239,68,68,0.12);color:var(--red);border:1px solid rgba(239,68,68,0.25);}
-.btn-red:hover{background:rgba(239,68,68,0.2);}
-.btn-amber{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.25);}
-.btn-blue{background:rgba(79,142,247,0.12);color:var(--blue);border:1px solid rgba(79,142,247,0.25);}
-.btn-row{display:flex;gap:8px;flex-wrap:wrap;}
-.btn-pulse{animation:btnPulse 2s ease-in-out infinite;}
-@keyframes btnPulse{0%,100%{box-shadow:0 0 20px rgba(34,211,165,0.2);}50%{box-shadow:0 0 35px rgba(34,211,165,0.5);}}
-.field-group{display:flex;flex-direction:column;gap:13px;}
-.field{display:flex;flex-direction:column;gap:5px;}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.field-row3{grid-template-columns:2fr 1fr 1fr;}
-.field-label{font-size:0.76rem;font-weight:600;color:var(--muted);}
-.required{color:var(--accent);}
-.field-input,.field-select,.field-textarea{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--text);font-family:var(--font);font-size:0.875rem;width:100%;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;}
-.field-input::placeholder{color:var(--dim);}
-.field-input:focus,.field-select:focus,.field-textarea:focus{border-color:rgba(34,211,165,0.45);box-shadow:0 0 0 3px rgba(34,211,165,0.07);}
-.field-select{background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%236b7590' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer;}
-.field-select option{background:var(--card2);color:var(--text);}
-.field-textarea{resize:vertical;min-height:84px;line-height:1.55;}
-.field-check{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:0.84rem;color:var(--muted);}
-.field-check input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer;}
-.field-hint{font-size:0.72rem;color:var(--dim);margin-top:2px;}
-.dt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-.dt-btn{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:11px 13px;color:var(--muted);font-family:var(--font);font-size:0.79rem;font-weight:500;cursor:pointer;text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:8px;line-height:1.3;}
-.dt-btn:hover{border-color:var(--border2);color:var(--text);background:rgba(255,255,255,0.03);}
-.dt-btn.active{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(--accent);}
-.dt-ico{font-size:1rem;flex-shrink:0;}
-.bureau-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
-.bureau-opt{cursor:pointer;}
-.bureau-opt input{display:none;}
-.bureau-lbl{display:block;text-align:center;padding:10px;background:var(--card2);border:1px solid var(--border);border-radius:8px;font-size:0.82rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s;}
-.bureau-opt input:checked + .bureau-lbl{background:rgba(34,211,165,0.1);border-color:rgba(34,211,165,0.4);color:var(--accent);}
-.bureau-lbl:hover{border-color:var(--border2);color:var(--text);}
-.bureau-required-hint{font-size:0.71rem;color:var(--red);margin-top:4px;display:none;}
-.bureau-required-hint.show{display:block;}
-.aggression-wrap{display:flex;flex-direction:column;gap:8px;}
-.agg-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--dim);}
-input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;}
-.agg-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;margin-top:4px;}
-.agg-1{background:rgba(34,211,165,0.1);color:var(--accent);}
-.agg-2{background:rgba(245,158,11,0.1);color:var(--amber);}
-.agg-3{background:rgba(239,68,68,0.12);color:var(--red);}
-.id-upload-zone{border:2px dashed var(--border2);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--card2);position:relative;}
-.id-upload-zone:hover,.id-upload-zone.dragover{border-color:rgba(34,211,165,0.5);background:rgba(34,211,165,0.04);}
-.id-upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.id-upload-ico{font-size:32px;margin-bottom:10px;}
-.id-upload-title{font-size:0.9rem;font-weight:700;margin-bottom:4px;}
-.id-upload-sub{font-size:0.78rem;color:var(--muted);}
-.id-preview{border-radius:10px;overflow:hidden;margin-top:12px;border:1px solid var(--border);}
-.id-preview img{width:100%;display:block;}
-.id-parsed{background:rgba(34,211,165,0.07);border:1px solid rgba(34,211,165,0.2);border-radius:10px;padding:13px 15px;margin-top:10px;}
-.id-parsed-title{font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;}
-.id-parsed-row{display:flex;justify-content:space-between;font-size:0.82rem;padding:3px 0;border-bottom:1px solid rgba(34,211,165,0.1);}
-.id-parsed-row:last-child{border-bottom:none;}
-.id-parsed-key{color:var(--muted);}
-.id-parsed-val{font-weight:600;font-family:var(--mono);font-size:0.78rem;}
-.tracker-wrap{max-width:900px;margin:0 auto;padding:28px 24px 80px;}
-.dispute-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:10px;transition:border-color 0.2s;}
-.dispute-item:hover{border-color:var(--border2);}
-.di-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.di-name{font-size:0.95rem;font-weight:700;}
-.di-bureau{font-size:0.72rem;color:var(--muted);margin-top:2px;}
-.di-status-badge{font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px;text-transform:uppercase;white-space:nowrap;}
-.s-sent{background:rgba(79,142,247,0.12);color:var(--blue);border:1px solid rgba(79,142,247,0.25);}
-.s-review{background:rgba(245,158,11,0.1);color:var(--amber);border:1px solid rgba(245,158,11,0.2);}
-.s-responded{background:rgba(155,111,255,0.1);color:var(--purple);border:1px solid rgba(155,111,255,0.2);}
-.s-removed{background:rgba(34,211,165,0.1);color:var(--accent);border:1px solid rgba(34,211,165,0.2);}
-.s-verified{background:rgba(239,68,68,0.1);color:var(--red);border:1px solid rgba(239,68,68,0.2);}
-.di-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:0.78rem;color:var(--muted);margin-bottom:10px;}
-.di-deadline{color:var(--amber);font-weight:600;}
-.di-deadline.urgent{color:var(--red);}
-.di-actions{display:flex;gap:7px;flex-wrap:wrap;}
-.deadline-bar{height:4px;background:var(--card2);border-radius:2px;overflow:hidden;margin-top:8px;}
-.deadline-fill{height:100%;border-radius:2px;transition:width 0.5s ease;}
-.score-wrap{max-width:900px;margin:0 auto;padding:28px 24px 80px;}
-.score-gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px;}
-.gauge-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;}
-.gauge-bureau{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
-.gauge-ring{position:relative;width:120px;height:120px;margin:0 auto 14px;}
-.gauge-ring svg{transform:rotate(-90deg);}
-.gauge-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-.gauge-num{font-family:var(--mono);font-size:32px;font-weight:700;line-height:1;}
-.gauge-lbl{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
-.gauge-tier{font-size:0.8rem;font-weight:700;margin-bottom:4px;}
-.gauge-range{font-size:0.72rem;color:var(--muted);}
-.score-history{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;}
-.score-entry-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
-.modal-overlay.show{display:flex;}
-.modal{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:28px;width:100%;max-width:500px;animation:fadeIn 0.3s ease;position:relative;max-height:90vh;overflow-y:auto;}
-.modal-title{font-size:1.15rem;font-weight:800;margin-bottom:8px;}
-.modal-sub{font-size:0.84rem;color:var(--muted);line-height:1.6;margin-bottom:20px;}
-.modal-close{position:absolute;top:18px;right:18px;background:var(--card2);border:1px solid var(--border);color:var(--text);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
-.croa-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px;margin-bottom:18px;font-size:0.82rem;color:var(--muted);line-height:1.6;}
-.croa-box strong{color:var(--amber);}
-.mail-label{background:#fff;color:#111;border-radius:8px;padding:20px 24px;font-family:'Courier New',monospace;font-size:0.85rem;line-height:1.6;border:2px solid #ccc;position:relative;}
-.mail-label-header{font-weight:700;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;border-bottom:1px solid #ccc;padding-bottom:8px;margin-bottom:12px;color:#555;}
-.mail-label-from{margin-bottom:14px;}
-.mail-label-to{font-weight:700;font-size:1rem;}
-.mail-certified{position:absolute;top:16px;right:16px;background:#c41e3a;color:#fff;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;padding:4px 8px;border-radius:4px;}
-.disc-card{display:flex;align-items:flex-start;gap:11px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.14);border-radius:12px;padding:15px 18px;}
-.disc-ico{color:var(--amber);flex-shrink:0;margin-top:2px;font-size:16px;}
-.disc-text{font-size:0.78rem;color:var(--muted);line-height:1.6;}
-.disc-text strong{color:var(--amber);}
-.checklist-wrap{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-top:14px;}
-.checklist-title{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;}
-.check-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.8rem;color:var(--muted);}
-.check-row.done{color:var(--accent);}
-.check-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--dim);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all 0.2s;}
-.check-row.done .check-dot{background:var(--accent);border-color:var(--accent);color:#03120b;}
-.footer{padding:26px 24px;border-top:1px solid var(--border);}
-.footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
-.footer-copy{font-size:0.78rem;color:var(--dim);}
-.cta-card{background:linear-gradient(135deg,#0d1f2d,#0d1a2a);border:1px solid rgba(34,211,165,0.18);border-radius:22px;padding:68px 40px;text-align:center;position:relative;overflow:hidden;}
-.cta-glow{position:absolute;width:500px;height:300px;background:rgba(34,211,165,0.05);border-radius:50%;filter:blur(80px);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
-.cta-content{position:relative;z-index:1;}
-.cta-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:10px;}
-.cta-sub{color:var(--muted);font-size:0.95rem;margin-bottom:28px;}
-.empty-state{text-align:center;padding:48px 20px;color:var(--dim);}
-.empty-state p{font-size:0.84rem;margin-top:10px;line-height:1.6;}
-@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-6px);}40%{transform:translateX(6px);}60%{transform:translateX(-4px);}80%{transform:translateX(4px);}}
-.shake{animation:shake 0.4s ease;}
-@media print{body *{visibility:hidden;}.letter-paper,.letter-paper *{visibility:visible;}.letter-paper{position:fixed;top:0;left:0;width:100%;font-size:12pt;box-shadow:none;padding:1in 1.2in;}}
-@media(max-width:1024px){.app-grid{grid-template-columns:1fr;}.preview-panel{position:static;}}
-@media(max-width:768px){.steps-grid{grid-template-columns:1fr;}.features-grid{grid-template-columns:1fr;}.dt-grid{grid-template-columns:1fr;}.score-gauges{grid-template-columns:1fr;}.nav-tabs{display:none;}.cta-card{padding:44px 22px;}}
-@media(max-width:480px){.hero-h1{font-size:2.4rem;}.hero-actions{flex-direction:column;align-items:stretch;}.hero-actions .btn-hero{justify-content:center;}.field-row,.field-row3{grid-template-columns:1fr;}.bureau-grid{grid-template-columns:1fr;}.letter-paper{padding:28px 20px;font-size:0.82rem;}}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITC — How To Get To 700 In 45 Days</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1D2842;
+      --cyan:   #00AEEF;
+      --green:  #22C55E;
+      --white:  #ffffff;
+      --black:  #000000;
+      --silver: #C0C0C0;
+      --bg:     #0D1220;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
 
-/* ══ CREDITSMART AI PAGE ══════════════════════════════════════════════════ */
-.cs-wrap{max-width:980px;margin:0 auto;padding:32px 24px 100px;}
-.cs-hero-band{background:linear-gradient(135deg,rgba(155,111,255,0.08),rgba(34,211,165,0.05));border:1px solid rgba(155,111,255,0.2);border-radius:22px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden;}
-.cs-hero-band::after{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 55% 80% at 90% 50%,rgba(155,111,255,0.07),transparent);pointer-events:none;}
-.cs-ai-pill{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(155,111,255,0.12);border:1px solid rgba(155,111,255,0.3);border-radius:20px;font-size:0.68rem;font-weight:700;color:var(–purple);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
-.cs-ai-dot{width:6px;height:6px;background:var(–purple);border-radius:50%;animation:pulse 1.8s infinite;}
-.cs-hero-band h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px;}
-.cs-hero-band p{font-size:0.88rem;color:var(–muted);line-height:1.7;max-width:600px;}
-.cs-warning-note{display:flex;align-items:flex-start;gap:10px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.18);border-radius:10px;padding:12px 15px;margin-top:16px;font-size:0.78rem;color:var(–muted);line-height:1.55;}
-.cs-warning-note strong{color:var(–amber);}
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      border-bottom: 2px solid var(--cyan);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--white);
+      letter-spacing: 0.06em;
+    }
+    .logo-text span { color: var(--cyan); }
 
-/* step flow */
-.cs-flow{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:28px;}
-.cs-flow-card{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:18px 16px;position:relative;}
-.cs-flow-n{font-family:var(–mono);font-size:0.62rem;color:var(–purple);font-weight:700;letter-spacing:0.1em;margin-bottom:8px;}
-.cs-flow-ico{font-size:20px;margin-bottom:8px;}
-.cs-flow-title{font-size:0.84rem;font-weight:700;margin-bottom:4px;}
-.cs-flow-desc{font-size:0.74rem;color:var(–muted);line-height:1.5;}
-.cs-flow-arrow{display:none;}
+    /* ── LAYOUT ── */
+    main { max-width: 860px; margin: 0 auto; padding: 0 20px; }
 
-/* step 1: get report */
-.cs-get-report{background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;margin-bottom:20px;}
-.cs-panel-hdr{padding:22px 26px;border-bottom:1px solid var(–border);display:flex;align-items:center;gap:14px;}
-.cs-step-badge{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(–mono);font-size:0.7rem;font-weight:700;flex-shrink:0;}
-.cs-badge-active{background:rgba(155,111,255,0.15);border:1px solid rgba(155,111,255,0.3);color:var(–purple);}
-.cs-badge-done{background:rgba(34,211,165,0.12);border:1px solid rgba(34,211,165,0.3);color:var(–accent);}
-.cs-panel-hdr-text h3{font-size:0.95rem;font-weight:700;margin-bottom:2px;}
-.cs-panel-hdr-text p{font-size:0.78rem;color:var(–muted);}
-.cs-panel-body{padding:24px 26px;}
-.cs-acr-launch{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;margin-bottom:20px;}
-.cs-acr-btn{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#1a56db,#4f8ef7);color:#fff;font-family:var(–font);font-size:0.9rem;font-weight:700;padding:14px 22px;border-radius:11px;border:none;cursor:pointer;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 20px rgba(79,142,247,0.25);}
-.cs-acr-btn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(79,142,247,0.4);}
-.cs-acr-info{flex:1;min-width:200px;background:var(–card2);border:1px solid var(–border);border-radius:11px;padding:14px 16px;font-size:0.78rem;color:var(–muted);line-height:1.6;}
-.cs-acr-info strong{color:var(–text);display:block;margin-bottom:4px;}
-.cs-instructions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.cs-inst-card{background:var(–card2);border:1px solid var(–border);border-radius:12px;padding:14px 16px;}
-.cs-inst-num{font-family:var(–mono);font-size:0.62rem;color:var(–purple);font-weight:700;letter-spacing:0.08em;margin-bottom:6px;}
-.cs-inst-title{font-size:0.83rem;font-weight:700;margin-bottom:4px;}
-.cs-inst-desc{font-size:0.76rem;color:var(–muted);line-height:1.55;}
-.cs-copy-tip{background:rgba(34,211,165,0.06);border:1px solid rgba(34,211,165,0.18);border-radius:10px;padding:12px 15px;font-size:0.78rem;color:var(–muted);line-height:1.55;}
-.cs-copy-tip strong{color:var(–accent);}
-.cs-copy-tip code{font-family:var(–mono);background:rgba(34,211,165,0.1);padding:1px 6px;border-radius:4px;font-size:0.75rem;}
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 56px 0 40px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--cyan);
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    h1 .hl { color: var(--cyan); }
+    .subhead {
+      font-size: 1.05rem;
+      color: var(--silver);
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
 
-/* step 2: paste + scan */
-.cs-paste-panel{background:var(–card);border:1px solid var(–border);border-radius:18px;overflow:hidden;margin-bottom:20px;}
-.cs-paste-body{padding:20px 26px 0;}
-.cs-report-ta{background:var(–card2);border:1px solid var(–border);border-radius:10px;padding:14px 16px;color:var(–text);font-family:var(–mono);font-size:0.78rem;width:100%;outline:none;resize:vertical;min-height:220px;line-height:1.65;transition:border-color 0.2s,box-shadow 0.2s;}
-.cs-report-ta:focus{border-color:rgba(155,111,255,0.45);box-shadow:0 0 0 3px rgba(155,111,255,0.07);}
-.cs-report-ta::placeholder{color:var(–dim);font-family:var(–font);font-size:0.82rem;line-height:1.7;}
-.cs-ta-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 26px 20px;flex-wrap:wrap;gap:8px;}
-.cs-char-count{font-size:0.7rem;color:var(–dim);}
-.cs-sample-link{font-size:0.74rem;color:var(–blue);background:none;border:none;cursor:pointer;font-family:var(–font);font-weight:600;text-decoration:underline;text-underline-offset:2px;padding:0;}
-.cs-scan-footer{padding:16px 26px;border-top:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.cs-bureau-select-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.cs-bureau-lbl{font-size:0.76rem;color:var(–muted);font-weight:600;white-space:nowrap;}
-.cs-bureau-chip{padding:5px 12px;background:var(–card2);border:1px solid var(–border);border-radius:6px;font-size:0.76rem;font-weight:600;color:var(–muted);cursor:pointer;transition:all 0.2s;font-family:var(–font);}
-.cs-bureau-chip.active{background:rgba(155,111,255,0.1);border-color:rgba(155,111,255,0.35);color:var(–purple);}
-.cs-scan-btn{background:linear-gradient(135deg,var(–purple),#7c55e8);color:#fff;font-family:var(–font);font-size:0.9rem;font-weight:700;padding:12px 22px;border-radius:9px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.2s;box-shadow:0 4px 20px rgba(155,111,255,0.25);}
-.cs-scan-btn:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(155,111,255,0.4);}
-.cs-scan-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
+    /* ── VIDEO ── */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--navy);
+      margin-bottom: 40px;
+    }
+    .video-wrap iframe,
+    .video-wrap video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1D2842 0%, #0D1220 100%);
+      color: var(--silver);
+      gap: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    .play-ring {
+      width: 68px;
+      height: 68px;
+      background: var(--cyan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .play-ring svg { margin-left: 5px; }
 
-/* loading */
-.cs-loading{display:none;background:var(–card);border:1px solid var(–border);border-radius:18px;padding:52px 30px;text-align:center;margin-bottom:20px;}
-.cs-loading.show{display:block;}
-.cs-spinner{width:52px;height:52px;border:3px solid rgba(155,111,255,0.15);border-top-color:var(–purple);border-radius:50%;animation:spin 0.85s linear infinite;margin:0 auto 22px;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.cs-load-title{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
-.cs-load-sub{font-size:0.82rem;color:var(–muted);margin-bottom:24px;}
-.cs-load-steps{display:flex;flex-direction:column;gap:8px;max-width:300px;margin:0 auto;}
-.cs-ls{display:flex;align-items:center;gap:10px;font-size:0.78rem;color:var(–dim);text-align:left;transition:color 0.3s;}
-.cs-ls.active{color:var(–text);}
-.cs-ls.done{color:var(–accent);}
-.cs-ls-dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0;transition:background 0.3s;}
-.cs-ls.active .cs-ls-dot{animation:pulse 0.9s infinite;}
+    /* ── BUTTONS ── */
+    .btn-cta {
+      display: inline-block;
+      background: var(--green);
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 18px 44px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: filter 0.15s, transform 0.15s;
+    }
+    .btn-cta:hover  { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-cta:active { transform: translateY(0); }
+    .cta-wrap { text-align: center; padding: 16px 0 8px; }
+    .cta-sub  { font-size: 0.8rem; color: var(--silver); margin-top: 10px; }
 
-/* results */
-.cs-results{display:none;margin-bottom:20px;}
-.cs-results.show{display:block;}
-.cs-results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
-.cs-results-title{font-size:1.1rem;font-weight:800;letter-spacing:-0.02em;}
-.cs-rescan-btn{background:transparent;color:var(–muted);font-family:var(–font);font-size:0.79rem;font-weight:600;padding:7px 14px;border-radius:8px;border:1px solid var(–border2);cursor:pointer;transition:all 0.2s;}
-.cs-rescan-btn:hover{color:var(–text);}
-.cs-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
-.cs-stat-card{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:18px;text-align:center;}
-.cs-stat-val{font-family:var(–mono);font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:4px;}
-.cs-stat-lbl{font-size:0.68rem;color:var(–muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
-.cs-stat-card.cs-crit .cs-stat-val{color:var(–red);}
-.cs-stat-card.cs-high .cs-stat-val{color:var(–amber);}
-.cs-stat-card.cs-med .cs-stat-val{color:var(–blue);}
-.cs-stat-card.cs-total .cs-stat-val{color:var(–accent);}
-.cs-overview-box{background:var(–card2);border:1px solid var(–border);border-radius:12px;padding:16px 18px;margin-bottom:20px;font-size:0.84rem;color:var(–muted);line-height:1.7;}
-.cs-overview-box strong{color:var(–text);}
-.cs-findings-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
-.cs-findings-label{font-size:0.95rem;font-weight:700;}
-.cs-filter-row{display:flex;gap:5px;}
-.cs-ftab{padding:5px 12px;border-radius:6px;font-size:0.74rem;font-weight:600;cursor:pointer;border:none;font-family:var(–font);color:var(–muted);background:var(–card2);transition:all 0.2s;}
-.cs-ftab.active{background:rgba(155,111,255,0.1);color:var(–purple);border:1px solid rgba(155,111,255,0.25);}
-.cs-finding{background:var(–card);border:1px solid var(–border);border-radius:14px;padding:18px 20px;margin-bottom:10px;transition:border-color 0.2s,transform 0.15s;}
-.cs-finding:hover{border-color:var(–border2);transform:translateY(-1px);}
-.cs-finding.cs-queued{border-color:rgba(34,211,165,0.3);background:rgba(34,211,165,0.02);}
-.cs-finding.cs-ignored{opacity:0.38;}
-.cs-finding-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;}
-.cs-finding-creditor{font-size:0.95rem;font-weight:700;margin-bottom:2px;}
-.cs-finding-subtype{font-size:0.74rem;color:var(–muted);}
-.cs-sev{font-size:0.67rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.4px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
-.cs-sev-critical{background:rgba(239,68,68,0.12);color:var(–red);border:1px solid rgba(239,68,68,0.22);}
-.cs-sev-high{background:rgba(245,158,11,0.1);color:var(–amber);border:1px solid rgba(245,158,11,0.2);}
-.cs-sev-medium{background:rgba(79,142,247,0.1);color:var(–blue);border:1px solid rgba(79,142,247,0.2);}
-.cs-sev-low{background:rgba(34,211,165,0.08);color:var(–accent);border:1px solid rgba(34,211,165,0.18);}
-.cs-finding-desc{font-size:0.82rem;color:var(–muted);line-height:1.65;margin-bottom:10px;}
-.cs-law-tag{display:inline-flex;align-items:center;font-size:0.72rem;font-family:var(–mono);color:var(–purple);background:rgba(155,111,255,0.08);border:1px solid rgba(155,111,255,0.15);border-radius:5px;padding:3px 9px;margin-bottom:12px;}
-.cs-finding-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.cs-dispute-btn{background:var(–accent);color:#03120b;font-family:var(–font);font-size:0.77rem;font-weight:700;padding:7px 14px;border-radius:7px;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all 0.2s;}
-.cs-dispute-btn:hover{background:var(–accent2);transform:translateY(-1px);}
-.cs-queued-tag{font-size:0.72rem;font-weight:700;color:var(–accent);display:flex;align-items:center;gap:5px;}
-.cs-ignore-btn{background:transparent;color:var(–dim);font-family:var(–font);font-size:0.76rem;font-weight:600;padding:7px 12px;border-radius:7px;border:1px solid var(–border);cursor:pointer;transition:all 0.2s;}
-.cs-ignore-btn:hover{color:var(–muted);}
-.cs-bottom-bar{background:var(–card);border:1px solid rgba(34,211,165,0.2);border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.cs-bottom-bar-text{font-size:0.85rem;color:var(–muted);}
-.cs-bottom-bar-text strong{color:var(–accent);}
-.cs-bottom-bar-actions{display:flex;gap:8px;flex-wrap:wrap;}
-.cs-error-panel{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:14px;padding:28px;text-align:center;margin-bottom:20px;display:none;}
-.cs-error-panel.show{display:block;}
-.cs-error-panel p{font-size:0.84rem;color:var(–muted);margin-top:6px;line-height:1.6;}
-@media(max-width:900px){.cs-flow{grid-template-columns:1fr 1fr;}.cs-summary-grid{grid-template-columns:1fr 1fr;}.cs-instructions{grid-template-columns:1fr;}}
-@media(max-width:600px){.cs-flow{grid-template-columns:1fr;}.cs-summary-grid{grid-template-columns:1fr 1fr;}.cs-hero-band{padding:24px 20px;}}
+    /* ── DIVIDER ── */
+    .rule { border: none; border-top: 1px solid rgba(0,174,239,0.18); margin: 48px 0; }
 
-</style>
+    /* ── WHAT YOU GET ── */
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .section-title span { color: var(--cyan); }
+
+    .get-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .get-item:last-child { border-bottom: none; }
+    .get-check {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .get-text strong {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      display: block;
+      font-size: 1rem;
+    }
+    .get-text p { color: var(--silver); font-size: 0.88rem; margin-top: 2px; }
+
+    /* ── 3-STEP METHOD ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .step-card {
+      background: var(--navy);
+      border: 1px solid rgba(0,174,239,0.25);
+      border-radius: 10px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .step-num  { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.5rem; color: var(--cyan); line-height: 1; margin-bottom: 8px; }
+    .step-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .step-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.55; }
+
+    /* ── CARD GRAPHIC ── */
+    .card-wrap { display: flex; justify-content: center; margin: 40px 0 0; }
+    .metal-card { width: min(340px, 100%); filter: drop-shadow(0 12px 32px rgba(0,174,239,0.22)); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(0,174,239,0.15);
+      text-align: center;
+      padding: 32px 24px;
+      margin-top: 64px;
+    }
+    .footer-logo { margin-bottom: 12px; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+    .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.82rem; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--cyan); }
+    .disclaimer { font-size: 0.75rem; color: #666; max-width: 680px; margin: 0 auto; line-height: 1.65; }
+
+    @media (max-width: 600px) {
+      .steps-grid { grid-template-columns: 1fr; gap: 14px; }
+      .hero { padding: 36px 0 28px; }
+    }
+  </style>
 </head>
 <body>
-<div class="bg-layer"></div>
-<div class="bg-grid"></div>
-<div class="toast" id="toast"></div>
 
-<!-- CROA MODAL -->
-
-<div class="modal-overlay" id="croa-modal">
-  <div class="modal">
-    <div class="modal-title">⚖️ Required Legal Disclosure</div>
-    <div class="modal-sub">Under the Credit Repair Organizations Act (CROA), 15 U.S.C. § 1679, you have certain rights.</div>
-    <div class="croa-box">
-      <strong>Your Rights Under Federal Law:</strong><br><br>
-      You have a right to dispute inaccurate information in your credit report without the help of a credit repair organization.<br><br>
-      You may review your credit report without charge on a yearly basis. You are entitled to a free copy from AnnualCreditReport.com.<br><br>
-      You have the right to sue a credit repair organization that violates the Credit Repair Organizations Act. This law prohibits deceptive practices by credit repair organizations.<br><br>
-      <strong>Disclaimer:</strong> DisputeKit Pro provides dispute letter templates only. We are not attorneys. These letters do not constitute legal advice. Results are not guaranteed. For complex matters, consult a licensed consumer law attorney.
-    </div>
-    <div style="display:flex;gap:10px;">
-      <button class="btn btn-primary btn-full" onclick="acceptCROA()">I Understand — Continue</button>
-    </div>
-  </div>
-</div>
-
-<!-- NAV -->
-
-<nav class="nav">
-  <div class="nav-inner">
-    <button class="nav-logo" onclick="showPage('home')">
-      <span class="logo-mark">DK</span>
-      <span class="logo-text">DisputeKit<span class="logo-pro">PRO</span></span>
-    </button>
-    <div class="nav-tabs">
-      <button class="nav-tab active" id="nt-home" onclick="showPage('home')">Home</button>
-      <button class="nav-tab" id="nt-creditsmart" onclick="showPage('creditsmart')" style="color:var(--purple);">✦ CreditSmart AI</button>
-      <button class="nav-tab" id="nt-app" onclick="gotoApp()">Build Letter</button>
-      <button class="nav-tab" id="nt-tracker" onclick="showPage('tracker')">Dispute Tracker</button>
-      <button class="nav-tab" id="nt-scores" onclick="showPage('scores')">Score Tracker</button>
-    </div>
-    <button class="nav-cta" onclick="gotoApp()">Start Free →</button>
-  </div>
-</nav>
-
-<!-- HOME PAGE -->
-
-<div class="page active" id="page-home">
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-badge"><span class="badge-dot"></span>FCRA Compliant · All 3 Bureaus · Instant Results</div>
-      <h1 class="hero-h1">Fight Credit Errors<br><span class="h-acc">Like a Pro.</span></h1>
-      <p class="hero-sub">Generate aggressive, bureau-ready credit dispute letters with full FCRA citations in under 3 minutes. ID upload, score tracking, and dispute management — all in one place.</p>
-      <div class="hero-actions">
-        <button class="btn-hero btn-hero-primary" onclick="gotoApp()">Build My Dispute Letter <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-        <button class="btn-hero btn-hero-ghost" onclick="showPage('tracker')">View Dispute Tracker</button>
-      </div>
-      <div class="trust-row">
-        <span class="trust-item"><span class="trust-check">✦</span>Aggressive FCRA Language</span>
-        <span class="trust-item"><span class="trust-check">✦</span>Driver's License Upload</span>
-        <span class="trust-item"><span class="trust-check">✦</span>Dispute Status Tracking</span>
-        <span class="trust-item"><span class="trust-check">✦</span>Score History Dashboard</span>
-      </div>
-    </div>
-  </section>
-  <section class="section" id="how-it-works">
-    <div class="container">
-      <div class="sec-label">Simple Process</div>
-      <h2 class="sec-title">Three steps to a ready-to-send letter</h2>
-      <div class="steps-grid">
-        <div class="step-card"><div class="step-num">01</div><div class="step-ico">📋</div><h3 class="step-title">Select Your Dispute Type</h3><p class="step-desc">Choose from 8 dispute categories including identity theft, collections, charge-offs, and late payments. Upload your ID to auto-fill your information.</p></div>
-        <div class="step-card"><div class="step-num">02</div><div class="step-ico">🎚️</div><h3 class="step-title">Set Your Aggression Level</h3><p class="step-desc">Choose Standard, Aggressive, or Maximum Force. Maximum Force letters cite FCRA §611, §623, demand Method of Verification, and threaten CFPB action.</p></div>
-        <div class="step-card"><div class="step-num">03</div><div class="step-ico">📬</div><h3 class="step-title">Send &amp; Track</h3><p class="step-desc">Download your letter as a PDF, generate certified mail labels, then log it in your Dispute Tracker to monitor the 30-day response deadline.</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section section-alt">
-    <div class="container">
-      <div class="sec-label">Full Suite</div>
-      <h2 class="sec-title">Everything in one place</h2>
-      <div class="features-grid">
-        <div class="feat-card"><div class="feat-ico fi-teal">🔥</div><h4 class="feat-title">Aggressive Letter Engine</h4><p class="feat-desc">3 aggression levels. Maximum Force cites FCRA §611, §623, §605B, demands proof of verification, and includes CFPB complaint threats.</p></div>
-        <div class="feat-card"><div class="feat-ico fi-blue">🪪</div><h4 class="feat-title">Driver's License Upload</h4><p class="feat-desc">Upload your ID photo to auto-fill your name and address. Stored locally only — never sent anywhere.</p></div>
-        <div class="feat-card"><div class="feat-ico fi-purple">📬</div><h4 class="feat-title">Dispute Tracker</h4><p class="feat-desc">Log every dispute, track status from Sent → Removed, and get deadline countdowns for each bureau's 30-day window.</p></div>
-        <div class="feat-card"><div class="feat-ico fi-amber">📊</div><h4 class="feat-title">Score Dashboard</h4><p class="feat-desc">Manually track Equifax, Experian, and TransUnion scores over time with a visual gauge and history chart.</p></div>
-        <div class="feat-card"><div class="feat-ico fi-teal">📮</div><h4 class="feat-title">Certified Mail Labels</h4><p class="feat-desc">Generate USPS-formatted certified mail address labels for each bureau — print and send.</p></div>
-        <div class="feat-card"><div class="feat-ico fi-blue">⚡</div><h4 class="feat-title">Round 2 Escalation</h4><p class="feat-desc">When bureaus respond "verified," generate an even more aggressive follow-up demanding Method of Verification under FCRA §611(a)(7).</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="cta-card">
-        <div class="cta-glow"></div>
-        <div class="cta-content">
-          <h2 class="cta-title">Ready to fight your credit report?</h2>
-          <p class="cta-sub">Takes under 3 minutes. Free. No signup required.</p>
-          <button class="btn-hero btn-hero-primary" onclick="gotoApp()">Start Building Your Letter →</button>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section style="padding:20px 24px 28px;">
-    <div class="container"><div class="disc-card"><span class="disc-ico">⚠</span><p class="disc-text"><strong>Legal Disclaimer:</strong> DisputeKit Pro generates dispute letter templates only and is not a substitute for legal advice. We are not attorneys and do not guarantee any specific outcome. For complex credit or legal matters, consult a licensed credit attorney or consumer rights advocate.</p></div></div>
-  </section>
-  <footer class="footer">
-    <div class="footer-inner">
-      <div style="display:flex;align-items:center;gap:9px;"><span class="logo-mark" style="width:28px;height:28px;font-size:0.62rem;border-radius:6px;">DK</span><span style="font-weight:700;font-size:0.9rem;">DisputeKit Pro</span></div>
-      <p class="footer-copy">© 2025 DisputeKit Pro. Free to use. Not legal advice.</p>
-    </div>
-  </footer>
-</div>
-
-<!-- APP PAGE -->
-
-<div class="page" id="page-app">
-  <div class="app-wrap">
-    <div class="app-grid">
-      <!-- FORM PANEL -->
-      <div class="form-panel">
-        <div class="form-progress"><div class="form-progress-fill" id="form-progress-fill" style="width:0%"></div></div>
-        <div class="panel-hdr">
-          <h2 class="panel-title">Build Your Letter</h2>
-          <p class="panel-sub">Fill in the fields. Letter updates live on the right.</p>
-        </div>
-        <div style="padding:0 26px;">
-          <div class="validation-banner" id="validation-banner"></div>
-        </div>
-        <!-- ID UPLOAD -->
-        <div class="form-sec">
-          <div class="form-sec-lbl">🪪 Step 0 — ID Upload (Optional)</div>
-          <div class="id-upload-zone" id="id-zone" ondragover="idDragOver(event)" ondragleave="idDragLeave(event)" ondrop="idDrop(event)">
-            <input type="file" id="id-file-input" accept="image/*" onchange="handleIdUpload(this.files[0])">
-            <div class="id-upload-ico">🪪</div>
-            <div class="id-upload-title">Upload Driver's License</div>
-            <div class="id-upload-sub">Drag &amp; drop or tap to select. Auto-fills your name &amp; address.<br>Stored locally only — never uploaded.</div>
-          </div>
-          <div id="id-preview-wrap" class="hidden">
-            <div class="id-preview"><img id="id-preview-img" src="" alt="ID Preview"></div>
-            <div class="id-parsed" id="id-parsed-data">
-              <div class="id-parsed-title">✓ ID Detected — Confirm fields below match your ID</div>
-              <div id="id-parsed-rows"></div>
-            </div>
-            <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="clearId()">Remove ID</button>
-          </div>
-        </div>
-        <!-- AGGRESSION -->
-        <div class="form-sec">
-          <div class="form-sec-lbl">🎚️ Step 1 — Letter Aggression Level</div>
-          <div class="aggression-wrap">
-            <input type="range" id="agg-slider" min="1" max="3" value="2" oninput="updateAggBadge();updateLetter();updateProgress()">
-            <div class="agg-labels"><span>Standard</span><span>Aggressive</span><span>Maximum Force</span></div>
-            <div><span class="agg-badge agg-2" id="agg-badge">⚡ Aggressive — FCRA Citations Included</span></div>
-          </div>
-        </div>
-        <!-- DISPUTE TYPE -->
-        <div class="form-sec">
-          <div class="form-sec-lbl">Step 2 — Dispute Type <span class="required-star">*</span></div>
-          <div class="dt-grid" id="dt-grid"></div>
-          <div class="field-error" id="err-dispute-type">Please select a dispute type to continue.</div>
-        </div>
-        <!-- BUREAU -->
-        <div class="form-sec">
-          <div class="form-sec-lbl">Step 3 — Credit Bureau <span class="required-star">*</span></div>
-          <div class="bureau-grid">
-            <label class="bureau-opt"><input type="radio" name="bureau" value="Equifax" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Equifax</span></label>
-            <label class="bureau-opt"><input type="radio" name="bureau" value="Experian" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">Experian</span></label>
-            <label class="bureau-opt"><input type="radio" name="bureau" value="TransUnion" onchange="updateLetter();updateProgress();clearFieldError('bureau')"><span class="bureau-lbl">TransUnion</span></label>
-          </div>
-          <div class="bureau-required-hint" id="err-bureau">Please select a credit bureau.</div>
-        </div>
-        <!-- YOUR INFO -->
-        <div class="form-sec">
-          <div class="form-sec-lbl">Step 4 — Your Information</div>
-          <div class="field-group">
-            <div class="field">
-              <label class="field-label">Full Legal Name <span class="required">*</span></label>
-              <input type="text" id="fullName" class="field-input" placeholder="e.g. John A. Smith" maxlength="80" oninput="updateLetter();updateProgress();clearFieldError('fullName')">
-              <div class="field-error" id="err-fullName">Full name is required.</div>
-            </div>
-            <div class="field">
-              <label class="field-label">Street Address <span class="required">*</span></label>
-              <input type="text" id="address" class="field-input" placeholder="123 Main St" maxlength="100" oninput="updateLetter();updateProgress();clearFieldError('address')">
-              <div class="field-error" id="err-address">Street address is required.</div>
-            </div>
-            <div class="field-row field-row3">
-              <div class="field">
-                <label class="field-label">City <span class="required">*</span></label>
-                <input type="text" id="city" class="field-input" placeholder="Miami" maxlength="60" oninput="updateLetter();updateProgress();clearFieldError('city')">
-                <div class="field-error" id="err-city">City is required.</div>
-              </div>
-              <div class="field">
-                <label class="field-label">State <span class="required">*</span></label>
-                <input type="text" id="state" class="field-input" placeholder="FL" maxlength="2" oninput="this.value=this.value.toUpperCase();updateLetter();updateProgress();clearFieldError('state')">
-                <div class="field-error" id="err-state">State required.</div>
-              </div>
-              <div class="field">
-                <label class="field-label">ZIP <span class="required">*</span></label>
-                <input type="text" id="zip" class="field-input" placeholder="33101" maxlength="5" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress();clearFieldError('zip')">
-                <div class="field-error" id="err-zip">ZIP required.</div>
-              </div>
-            </div>
-            <div class="field">
-              <label class="field-label">Date of Birth</label>
-              <input type="date" id="dob" class="field-input" oninput="updateLetter();updateProgress()">
-            </div>
-            <div class="field">
-              <label class="field-label">Last 4 of SSN <span style="font-size:0.7rem;color:var(--dim);font-weight:400;">(for identity verification only)</span></label>
-              <input type="text" id="ssn4" class="field-input" placeholder="••••" maxlength="4" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');updateLetter();updateProgress()">
-              <span class="field-hint">⚠️ Only last 4 digits. Stored locally only. Never transmitted.</span>
-            </div>
-            <div class="field">
-              <label class="field-label">Date of Letter</label>
-              <input type="date" id="letterDate" class="field-input" oninput="updateLetter()">
-            </div>
-          </div>
-        </div>
-        <!-- DYNAMIC FIELDS -->
-        <div class="form-sec" id="dynamic-sec">
-          <div class="form-sec-lbl">Step 5 — Account Details</div>
-          <div id="dynamic-fields">
-            <div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above to see relevant fields.</div>
-          </div>
-        </div>
-        <!-- CHECKLIST -->
-        <div class="form-sec">
-          <div class="form-sec-lbl">📋 Completion Checklist</div>
-          <div class="checklist-wrap">
-            <div class="check-row" id="chk-dispute"><span class="check-dot">✓</span>Dispute type selected</div>
-            <div class="check-row" id="chk-bureau"><span class="check-dot">✓</span>Credit bureau selected</div>
-            <div class="check-row" id="chk-name"><span class="check-dot">✓</span>Full name entered</div>
-            <div class="check-row" id="chk-address"><span class="check-dot">✓</span>Address entered</div>
-            <div class="check-row" id="chk-citystate"><span class="check-dot">✓</span>City, State &amp; ZIP entered</div>
-          </div>
-        </div>
-        <div style="padding:18px 26px;display:flex;gap:9px;justify-content:flex-end;border-top:1px solid var(--border);">
-          <button class="btn btn-ghost" onclick="clearForm()">Clear Form</button>
-          <button class="btn btn-primary btn-pulse" onclick="logDispute()" id="log-btn">📬 Log This Dispute</button>
-        </div>
-      </div>
-      <!-- PREVIEW PANEL -->
-      <div class="preview-panel">
-        <div class="preview-hdr">
-          <div>
-            <h2 class="panel-title">Letter Preview</h2>
-            <p class="panel-sub">Updates live as you type.</p>
-            <div class="letter-complete-badge hidden" id="letter-complete-badge">✓ Letter Ready to Send</div>
-          </div>
-          <div class="preview-actions">
-            <button class="btn btn-sm btn-ghost" onclick="copyLetter()" id="copy-btn">📋 Copy</button>
-            <button class="btn btn-sm btn-ghost" onclick="printLetter()">🖨 Print</button>
-            <button class="btn btn-sm btn-ghost" onclick="showMailLabel()">📮 Mail Label</button>
-            <button class="btn btn-sm btn-primary" onclick="downloadPDF()">⬇ PDF</button>
-          </div>
-        </div>
-        <div class="letter-container" id="letter-container">
-          <div class="letter-empty" id="letter-empty">
-            <div style="font-size:48px;">📄</div>
-            <p class="le-title">Your letter will appear here</p>
-            <p class="le-sub">Select a dispute type and enter your name to start generating your letter.</p>
-          </div>
-          <div class="letter-out" id="letter-out" style="display:none;">
-            <div class="letter-paper" id="letter-paper"></div>
-          </div>
-        </div>
-        <div class="preview-disc">ℹ This letter is a template only and does not constitute legal advice.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TRACKER PAGE -->
-
-<div class="page" id="page-tracker">
-  <div class="tracker-wrap">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
-      <div><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;">Dispute Tracker</h1><p style="font-size:0.84rem;color:var(--muted);margin-top:3px;">Monitor every dispute from sent to resolved.</p></div>
-      <button class="btn btn-primary" onclick="showPage('app')">+ New Dispute</button>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;" id="tracker-stats"></div>
-    <div id="disputes-list">
-      <div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click "Log This Dispute" to start tracking.</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- SCORE TRACKER PAGE -->
-
-<div class="page" id="page-scores">
-  <div class="score-wrap">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
-      <div><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;">Score Tracker</h1><p style="font-size:0.84rem;color:var(--muted);margin-top:3px;">Track all 3 bureau scores over time.</p></div>
-    </div>
-    <div class="score-gauges" id="score-gauges"></div>
-    <div class="score-history">
-      <div class="card-title">Score History</div>
-      <canvas id="score-canvas" style="width:100%;height:120px;display:block;"></canvas>
-      <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;" id="score-legend"></div>
-    </div>
-    <div class="score-entry-form">
-      <div class="card-title">Log New Scores</div>
-      <div id="score-validation-banner" class="validation-banner"></div>
-      <div class="field-row" style="margin-bottom:12px;">
-        <div class="field">
-          <label class="field-label">Date <span class="required">*</span></label>
-          <input type="date" id="score-date" class="field-input">
-        </div>
-        <div class="field">
-          <label class="field-label">Equifax</label>
-          <input type="number" id="score-eq" class="field-input" placeholder="720" min="300" max="850" inputmode="numeric">
-        </div>
-      </div>
-      <div class="field-row" style="margin-bottom:14px;">
-        <div class="field">
-          <label class="field-label">Experian</label>
-          <input type="number" id="score-ex" class="field-input" placeholder="715" min="300" max="850" inputmode="numeric">
-        </div>
-        <div class="field">
-          <label class="field-label">TransUnion</label>
-          <input type="number" id="score-tu" class="field-input" placeholder="710" min="300" max="850" inputmode="numeric">
-        </div>
-      </div>
-      <button class="btn btn-primary btn-full" onclick="logScores()">✓ Save Scores</button>
-    </div>
-    <div style="margin-top:16px;" class="disc-card">
-      <span class="disc-ico">ℹ</span>
-      <p class="disc-text">Enter your scores manually from <strong style="color:var(--text);">AnnualCreditReport.com</strong> (free yearly report) or from your bank/card app.</p>
-    </div>
-  </div>
-</div>
-
-<!-- MAIL LABEL MODAL -->
-
-<div class="modal-overlay" id="mail-modal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('mail-modal').classList.remove('show')">×</button>
-    <div class="modal-title">📮 Certified Mail Label</div>
-    <div class="modal-sub">Print this label and attach to your certified mail envelope. Send via USPS Certified Mail with Return Receipt for legal proof of delivery.</div>
-    <div id="mail-label-content"></div>
-    <div style="display:flex;gap:9px;margin-top:16px;">
-      <button class="btn btn-primary btn-full" onclick="printMailLabel()">🖨 Print Label</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ CREDITSMART AI PAGE ═══ -->
-
-<div class="page" id="page-creditsmart">
-<div class="cs-wrap">
-
-  <!-- Hero -->
-
-  <div class="cs-hero-band">
-    <div class="cs-ai-pill"><span class="cs-ai-dot"></span>Powered by Claude AI</div>
-    <h1>CreditSmart <span class="h-acc">AI Scanner</span></h1>
-    <p>Get your free credit report from AnnualCreditReport.com, paste it below, and let Claude AI scan every line for errors, FCRA violations, and disputable items. One click sends any finding straight to the letter builder.</p>
-    <div class="cs-warning-note">
-      <span style="font-size:16px;flex-shrink:0;">&#x26A0;</span>
-      <span><strong>Privacy Note:</strong> Your credit report text is sent to the Claude AI API for analysis only. It is never stored by this app. Do not include your full SSN — last 4 digits only if needed for context.</span>
-    </div>
-  </div>
-
-  <!-- How it works flow -->
-
-  <div class="cs-flow">
-    <div class="cs-flow-card">
-      <div class="cs-flow-n">STEP 01</div>
-      <div class="cs-flow-ico">&#x1F4CA;</div>
-      <div class="cs-flow-title">Get Your Free Report</div>
-      <div class="cs-flow-desc">Visit AnnualCreditReport.com — the only federally authorized free source. You can now access it weekly.</div>
-    </div>
-    <div class="cs-flow-card">
-      <div class="cs-flow-n">STEP 02</div>
-      <div class="cs-flow-ico">&#x1F4CB;</div>
-      <div class="cs-flow-title">Copy &amp; Paste the Text</div>
-      <div class="cs-flow-desc">Select all text from your report page, copy it, and paste it into the box below.</div>
-    </div>
-    <div class="cs-flow-card">
-      <div class="cs-flow-n">STEP 03</div>
-      <div class="cs-flow-ico">&#x1F916;</div>
-      <div class="cs-flow-title">AI Finds Every Error</div>
-      <div class="cs-flow-desc">Claude scans for late payment errors, unknown collections, wrong balances, outdated items, and more.</div>
-    </div>
-    <div class="cs-flow-card">
-      <div class="cs-flow-n">STEP 04</div>
-      <div class="cs-flow-ico">&#x1F4EC;</div>
-      <div class="cs-flow-title">Dispute in One Click</div>
-      <div class="cs-flow-desc">Each flagged item auto-loads into the letter builder. Review, set aggression level, and send.</div>
-    </div>
-  </div>
-
-  <!-- STEP 1: Get Report Panel -->
-
-  <div class="cs-get-report">
-    <div class="cs-panel-hdr">
-      <div class="cs-step-badge cs-badge-active">1</div>
-      <div class="cs-panel-hdr-text">
-        <h3>Get Your Free Credit Report</h3>
-        <p>AnnualCreditReport.com is the only official, federally authorized free source — free weekly now</p>
-      </div>
-    </div>
-    <div class="cs-panel-body">
-      <div class="cs-acr-launch">
-        <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener noreferrer" class="cs-acr-btn">
-          &#x1F517; Open AnnualCreditReport.com
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="opacity:0.7"><path d="M2 11L11 2M11 2H5M11 2V8" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </a>
-        <div class="cs-acr-info">
-          <strong>&#x2714; Free &amp; Government Authorized</strong>
-          Mandated by the Fair Credit Reporting Act. No credit card required. Access all 3 bureaus: Equifax, Experian &amp; TransUnion.
-        </div>
-      </div>
-      <div class="cs-instructions">
-        <div class="cs-inst-card">
-          <div class="cs-inst-num">A &mdash; REQUEST</div>
-          <div class="cs-inst-title">Choose your bureaus</div>
-          <div class="cs-inst-desc">Select Equifax, Experian, or TransUnion (or all 3). Request the full report — not just the score.</div>
-        </div>
-        <div class="cs-inst-card">
-          <div class="cs-inst-num">B &mdash; VERIFY</div>
-          <div class="cs-inst-title">Complete identity verification</div>
-          <div class="cs-inst-desc">You'll answer a few security questions. This is normal — it's required to protect your data.</div>
-        </div>
-        <div class="cs-inst-card">
-          <div class="cs-inst-num">C &mdash; REVIEW</div>
-          <div class="cs-inst-title">View your full report online</div>
-          <div class="cs-inst-desc">Once it loads, you can see all accounts, payment history, inquiries, and personal information.</div>
-        </div>
-        <div class="cs-inst-card">
-          <div class="cs-inst-num">D &mdash; COPY</div>
-          <div class="cs-inst-title">Select All &rarr; Copy &rarr; Paste below</div>
-          <div class="cs-inst-desc">Use Ctrl+A (or Cmd+A on Mac) to select all, then Ctrl+C to copy. Come back here and paste it.</div>
-        </div>
-      </div>
-      <div class="cs-copy-tip">
-        <strong>&#x1F4A1; Pro Tip:</strong> On the report page, press <code>Ctrl+A</code> then <code>Ctrl+C</code> to copy everything. Paste into the box below. Don't worry if it looks messy — Claude can read it. The more text you include, the better the analysis.
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 2: Paste + Scan -->
-
-  <div class="cs-paste-panel">
-    <div class="cs-panel-hdr">
-      <div class="cs-step-badge cs-badge-active">2</div>
-      <div class="cs-panel-hdr-text">
-        <h3>Paste Your Credit Report</h3>
-        <p>Paste the full text from your AnnualCreditReport.com page below</p>
-      </div>
-    </div>
-    <div class="cs-paste-body">
-      <textarea class="cs-report-ta" id="cs-report-text"
-        placeholder="Paste your credit report text here...&#10;&#10;Example of what it might look like:&#10;&#10;EQUIFAX CREDIT REPORT&#10;Report Date: 01/15/2025&#10;&#10;ACCOUNT INFORMATION&#10;Capital One Platinum Mastercard&#10;Account #: 414700XXXXXX1234&#10;Date Opened: 03/15/2019&#10;Account Status: Open&#10;Payment Status: 120 Days Past Due&#10;Balance: $2,340&#10;Credit Limit: $3,000&#10;&#10;Midland Credit Management&#10;Original Creditor: Sprint&#10;Account #: MCM-8823991&#10;Balance: $847&#10;Status: In Collections&#10;Date Opened: 11/2020&#10;..."
-        oninput="csUpdateCharCount()" maxlength="40000"></textarea>
-    </div>
-    <div class="cs-ta-footer">
-      <button class="cs-sample-link" onclick="csLoadSample()">&#x1F9EA; Load a sample report to try it out</button>
-      <div class="cs-char-count" id="cs-char-count">0 / 40,000</div>
-    </div>
-    <div class="cs-scan-footer">
-      <div class="cs-bureau-select-row">
-        <span class="cs-bureau-lbl">Bureau:</span>
-        <button class="cs-bureau-chip active" id="csbtn-all" onclick="csBureauSelect('all',this)">All 3</button>
-        <button class="cs-bureau-chip" id="csbtn-eq" onclick="csBureauSelect('Equifax',this)">Equifax</button>
-        <button class="cs-bureau-chip" id="csbtn-ex" onclick="csBureauSelect('Experian',this)">Experian</button>
-        <button class="cs-bureau-chip" id="csbtn-tu" onclick="csBureauSelect('TransUnion',this)">TransUnion</button>
-      </div>
-      <button class="cs-scan-btn" id="cs-scan-btn" onclick="csRunScan()">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.6"/><path d="M8 5v3.5l2 1.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-        Scan with Claude AI
-      </button>
-    </div>
-  </div>
-
-  <!-- Loading -->
-
-  <div class="cs-loading" id="cs-loading">
-    <div class="cs-spinner"></div>
-    <div class="cs-load-title">Scanning your credit report...</div>
-    <div class="cs-load-sub">Claude AI is reading every account for errors and FCRA violations</div>
-    <div class="cs-load-steps" id="cs-load-steps">
-      <div class="cs-ls active" id="csl-0"><span class="cs-ls-dot"></span>Parsing account information...</div>
-      <div class="cs-ls" id="csl-1"><span class="cs-ls-dot"></span>Checking payment history accuracy...</div>
-      <div class="cs-ls" id="csl-2"><span class="cs-ls-dot"></span>Scanning collections &amp; charge-offs...</div>
-      <div class="cs-ls" id="csl-3"><span class="cs-ls-dot"></span>Verifying balances and dates...</div>
-      <div class="cs-ls" id="csl-4"><span class="cs-ls-dot"></span>Checking inquiries &amp; identity info...</div>
-      <div class="cs-ls" id="csl-5"><span class="cs-ls-dot"></span>Building dispute recommendations...</div>
-    </div>
-  </div>
-
-  <!-- Error Panel -->
-
-  <div class="cs-error-panel" id="cs-error-panel">
-    <div style="font-size:36px;margin-bottom:10px;">&#x26A0;&#xFE0F;</div>
-    <div style="font-weight:700;font-size:1rem;" id="cs-error-title">Scan failed</div>
-    <p id="cs-error-msg">Something went wrong. Please check your report text and try again.</p>
-    <button class="btn btn-ghost" style="margin-top:16px;" onclick="csReset()">&#x21BA; Try Again</button>
-  </div>
-
-  <!-- Results -->
-
-  <div class="cs-results" id="cs-results">
-    <div class="cs-results-hdr">
-      <div>
-        <div class="cs-results-title">&#x2705; Scan Complete</div>
-        <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;" id="cs-scan-time"></div>
-      </div>
-      <button class="cs-rescan-btn" onclick="csReset()">&#x21BA; New Scan</button>
-    </div>
-    <div class="cs-overview-box" id="cs-overview"></div>
-    <div class="cs-summary-grid" id="cs-summary-grid"></div>
-    <div class="cs-findings-bar">
-      <div class="cs-findings-label">Flagged Items</div>
-      <div class="cs-filter-row">
-        <button class="cs-ftab active" onclick="csFilter('all',this)">All</button>
-        <button class="cs-ftab" onclick="csFilter('critical',this)">&#x1F534; Critical</button>
-        <button class="cs-ftab" onclick="csFilter('high',this)">&#x1F7E1; High</button>
-        <button class="cs-ftab" onclick="csFilter('medium',this)">&#x1F535; Medium</button>
-      </div>
-    </div>
-    <div id="cs-findings-list"></div>
-    <div class="cs-bottom-bar">
-      <div class="cs-bottom-bar-text"><strong id="cs-queued-label">0 items queued</strong> &mdash; ready to dispute</div>
-      <div class="cs-bottom-bar-actions">
-        <button class="btn btn-ghost btn-sm" onclick="csQueueAll()">Queue All</button>
-        <button class="btn btn-primary" onclick="csGoDispute()">Open Letter Builder &#x2192;</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-</div>
-
+<!-- ═══════════════════════════════════════════════
+     CONFIG — edit these four values and you're done
+     ═══════════════════════════════════════════════ -->
 <script>
-// ── SECURITY ──
-function escHtml(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');}
-function sanitizeStr(s,maxLen){return String(s||'').replace(/[<>]/g,'').slice(0,maxLen||500);}
-
-// ── STATE ──
-let selDispute=null;
-let disputes=[];
-let scoreHistory=[];
-let croaAccepted=false;
-
-try{disputes=JSON.parse(localStorage.getItem('dk_disputes')||'[]');}catch(e){disputes=[];}
-try{scoreHistory=JSON.parse(localStorage.getItem('dk_scores')||'[]');}catch(e){scoreHistory=[];}
-try{croaAccepted=localStorage.getItem('dk_croa')==='1';}catch(e){croaAccepted=false;}
-
-// ── TOAST ──
-let toastTimer=null;
-function toast(msg,type=''){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.className='toast show'+(type?' '+type:'');
-  if(toastTimer)clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
-}
-
-// ── CROA ──
-function gotoApp(){
-  if(!croaAccepted){document.getElementById('croa-modal').classList.add('show');}
-  else{showPage('app');}
-}
-function acceptCROA(){
-  croaAccepted=true;
-  try{localStorage.setItem('dk_croa','1');}catch(e){}
-  document.getElementById('croa-modal').classList.remove('show');
-  showPage('app');
-}
-
-// ── PAGE NAV ──
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  const page=document.getElementById('page-'+name);
-  if(page)page.classList.add('active');
-  const nt=document.getElementById('nt-'+name);
-  if(nt)nt.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(name==='tracker')renderTracker();
-  if(name==='scores')renderScores();
-}
-
-// ── BUREAU ADDRESSES ──
-const BUREAU_ADDR={
-  Equifax:'Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256',
-  Experian:'Experian\nP.O. Box 4500\nAllen, TX 75013',
-  TransUnion:'TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016'
-};
-
-// ── DISPUTE TYPES ──
-const DISPUTE_TYPES=[
-  {id:'inaccurate',label:'Inaccurate Info',icon:'🪪',
-   fields:[
-     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Bank of America',required:true},
-     {id:'accountNumber',label:'Account Number (last 4 ok)',type:'text',ph:'****1234',required:true},
-     {id:'inaccurateItem',label:'What information is inaccurate?',type:'text',ph:'Wrong address, wrong DOB',required:true},
-     {id:'correctInfo',label:'What is the correct information?',type:'text',ph:'Correct address is...',required:true},
-     {id:'extra',label:'Additional Details (optional)',type:'textarea',ph:'Any supporting context...',required:false}
-   ]},
-  {id:'late-payment',label:'Late Payment',icon:'📅',
-   fields:[
-     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Chase Bank',required:true},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****5678',required:true},
-     {id:'lateDate',label:'Date of Reported Late Payment',type:'text',ph:'March 2023',required:true},
-     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Payment was made on time','Payment was lost or misapplied','Account was in a deferment or hardship program','Never received a statement or billing notice','Other'],required:true},
-     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...',required:false}
-   ]},
-  {id:'collection',label:'Collection Account',icon:'🏦',
-   fields:[
-     {id:'collectionAgency',label:'Collection Agency Name',type:'text',ph:'Midland Credit Management',required:true},
-     {id:'originalCreditor',label:'Original Creditor (if known)',type:'text',ph:'Capital One',required:false},
-     {id:'accountNumber',label:'Account / Reference Number',type:'text',ph:'****9012',required:true},
-     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['This debt is not mine','This debt has already been paid','The amount reported is incorrect','The debt is past the statute of limitations','I was never notified about this collection','Other'],required:true},
-     {id:'extra',label:'Additional Details',type:'textarea',ph:'Explain your dispute...',required:false}
-   ]},
-  {id:'charge-off',label:'Charge-Off',icon:'❌',
-   fields:[
-     {id:'creditorName',label:'Original Creditor Name',type:'text',ph:'Citibank',required:true},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****3456',required:true},
-     {id:'chargeOffDate',label:'Reported Charge-Off Date',type:'text',ph:'June 2021',required:true},
-     {id:'disputeReason',label:'Reason for Dispute',type:'select',opts:['Charge-off date is incorrect','Balance amount is inaccurate','Account was settled/paid in full','This account does not belong to me','Account was included in bankruptcy','Other'],required:true},
-     {id:'extra',label:'Additional Explanation',type:'textarea',ph:'Supporting details...',required:false}
-   ]},
-  {id:'identity-theft',label:'Identity Theft',icon:'🔒',
-   fields:[
-     {id:'fraudCreditor',label:'Creditor of Fraudulent Account',type:'text',ph:'Synchrony Bank',required:true},
-     {id:'accountNumber',label:'Fraudulent Account Number',type:'text',ph:'****7890',required:true},
-     {id:'hasFTC',label:'I have an FTC Identity Theft Report',type:'checkbox',required:false},
-     {id:'hasPD',label:'I have a Police Report on file',type:'checkbox',required:false},
-     {id:'ftcNum',label:'FTC Report Number (if available)',type:'text',ph:'123456789',required:false},
-     {id:'pdNum',label:'Police Report Number (if available)',type:'text',ph:'2023-00123',required:false},
-     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the fraudulent activity...',required:false}
-   ]},
-  {id:'mixed-file',label:'Mixed File',icon:'🔀',
-   fields:[
-     {id:'mixedName',label:"Other Person's Name (if known)",type:'text',ph:'John B. Smith',required:false},
-     {id:'accountNumber',label:'Account Number Being Disputed',type:'text',ph:'****2345',required:true},
-     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Wells Fargo',required:true},
-     {id:'mixedReason',label:'How did this appear?',type:'select',opts:['Similar name to another person','Same address as a previous resident','Possible Social Security Number mix-up',"Deceased person's account mixed with mine",'Other'],required:true},
-     {id:'extra',label:'Additional Details',type:'textarea',ph:'Describe the mix-up...',required:false}
-   ]},
-  {id:'goodwill',label:'Goodwill Removal',icon:'🤝',
-   fields:[
-     {id:'creditorName',label:'Creditor Name',type:'text',ph:'Bank of America',required:true},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****4567',required:true},
-     {id:'lateDate',label:'Date(s) of Late Payment(s)',type:'text',ph:'January–March 2022',required:true},
-     {id:'paymentHistory',label:'Overall Payment History',type:'select',opts:['Excellent — this was an isolated incident','Good — only a few late payments over many years','Paid in full since then','Long-standing customer'],required:true},
-     {id:'hardshipReason',label:'Reason for Hardship (optional)',type:'text',ph:'Job loss, medical emergency, etc.',required:false},
-     {id:'extra',label:'Additional Context',type:'textarea',ph:'Why you deserve goodwill removal...',required:false}
-   ]},
-  {id:'verification',label:'Method of Verification',icon:'🔍',
-   fields:[
-     {id:'creditorName',label:'Creditor / Furnisher Name',type:'text',ph:'Discover Financial',required:true},
-     {id:'accountNumber',label:'Account Number',type:'text',ph:'****6789',required:true},
-     {id:'itemDisputed',label:'What item are you disputing?',type:'text',ph:'Balance, account status, payment history',required:true},
-     {id:'previousDispute',label:'Previous Dispute Date (if Round 2)',type:'text',ph:'e.g. January 15, 2025',required:false},
-     {id:'extra',label:'Explanation',type:'textarea',ph:'Supporting explanation...',required:false}
-   ]}
-];
-
-// ── INIT ──
-window.addEventListener('DOMContentLoaded',()=>{
-  buildDTButtons();
-  setDefaultDate();
-  updateAggBadge();
-  updateChecklist();
-});
-
-function buildDTButtons(){
-  const g=document.getElementById('dt-grid');
-  if(!g)return;
-  g.innerHTML='';
-  DISPUTE_TYPES.forEach(dt=>{
-    const b=document.createElement('button');
-    b.className='dt-btn';
-    b.setAttribute('data-id',dt.id);
-    b.type='button';
-    b.innerHTML=`<span class="dt-ico">${dt.icon}</span>${dt.label}`;
-    b.addEventListener('click',()=>selectDT(dt.id));
-    g.appendChild(b);
-  });
-}
-
-function setDefaultDate(){
-  const today=new Date().toISOString().slice(0,10);
-  const d=document.getElementById('letterDate');if(d&&!d.value)d.value=today;
-  const sd=document.getElementById('score-date');if(sd&&!sd.value)sd.value=today;
-}
-
-function selectDT(id){
-  selDispute=id;
-  document.querySelectorAll('.dt-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-id')===id));
-  clearFieldError('dispute-type');
-  renderDynFields(id);
-  updateLetter();
-  updateProgress();
-  updateChecklist();
-}
-
-function renderDynFields(id){
-  const dt=DISPUTE_TYPES.find(d=>d.id===id);
-  const c=document.getElementById('dynamic-fields');
-  if(!dt){c.innerHTML='<div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above.</div>';return;}
-  c.innerHTML='';
-  const fg=document.createElement('div');fg.className='field-group';
-  dt.fields.forEach(f=>{
-    const w=document.createElement('div');w.className='field';
-    if(f.type==='checkbox'){
-      w.innerHTML=`<label class="field-check"><input type="checkbox" id="${escHtml(f.id)}" onchange="updateLetter()"> ${escHtml(f.label)}</label>`;
-    }else if(f.type==='textarea'){
-      const req=f.required?`<span class="required"> *</span>`:'';
-      w.innerHTML=`<label class="field-label">${escHtml(f.label)}${req}</label><textarea id="${escHtml(f.id)}" class="field-textarea" placeholder="${escHtml(f.ph||'')}" maxlength="1000" oninput="updateLetter();clearFieldError('${escHtml(f.id)}')"></textarea><div class="field-error" id="err-${escHtml(f.id)}">This field is required.</div>`;
-
-```
-}else if(f.type==='select'){
-  const req=f.required?`<span class="required"> *</span>`:'';
-  const opts=f.opts.map(o=>`<option value="${escHtml(o)}">${escHtml(o)}</option>`).join('');
-  w.innerHTML=`<label class="field-label">${escHtml(f.label)}${req}</label><select id="${escHtml(f.id)}" class="field-select" onchange="updateLetter();clearFieldError('${escHtml(f.id)}')"><option value="">— Select —</option>${opts}</select><div class="field-error" id="err-${escHtml(f.id)}">Please select an option.</div>`;
-}else{
-  const req=f.required?`<span class="required"> *</span>`:'';
-  w.innerHTML=`<label class="field-label">${escHtml(f.label)}${req}</label><input type="text" id="${escHtml(f.id)}" class="field-input" placeholder="${escHtml(f.ph||'')}" maxlength="200" oninput="updateLetter();clearFieldError('${escHtml(f.id)}')"><div class="field-error" id="err-${escHtml(f.id)}">This field is required.</div>`;
-}
-fg.appendChild(w);
-```
-
-});
-c.appendChild(fg);
-}
-
-// ── VALIDATION ──
-function showFieldError(id,msg){
-const el=document.getElementById(id);
-const err=document.getElementById(‘err-’+id);
-if(el){el.classList.add(‘invalid’);el.classList.add(‘shake’);setTimeout(()=>el.classList.remove(‘shake’),400);}
-if(err){err.textContent=msg||err.textContent;err.classList.add(‘show’);}
-}
-function clearFieldError(id){
-const el=document.getElementById(id);
-const err=document.getElementById(‘err-’+id);
-if(el)el.classList.remove(‘invalid’);
-if(err)err.classList.remove(‘show’);
-}
-function validateForm(){
-let errors=[];
-let firstErrorEl=null;
-if(!selDispute){
-const e=document.getElementById(‘err-dispute-type’);
-if(e){e.classList.add(‘show’);if(!firstErrorEl)firstErrorEl=e;}
-errors.push(‘Select a dispute type’);
-}else{
-const e=document.getElementById(‘err-dispute-type’);if(e)e.classList.remove(‘show’);
-}
-const bureau=document.querySelector(‘input[name=“bureau”]:checked’);
-if(!bureau){
-const e=document.getElementById(‘err-bureau’);
-if(e){e.classList.add(‘show’);if(!firstErrorEl)firstErrorEl=e;}
-errors.push(‘Select a credit bureau’);
-}else{
-const e=document.getElementById(‘err-bureau’);if(e)e.classList.remove(‘show’);
-}
-const coreFields=[
-{id:‘fullName’,msg:‘Full legal name is required’},
-{id:‘address’,msg:‘Street address is required’},
-{id:‘city’,msg:‘City is required’},
-{id:‘state’,msg:‘State is required (2 letters)’},
-{id:‘zip’,msg:‘ZIP code is required’}
-];
-coreFields.forEach(f=>{
-const el=document.getElementById(f.id);
-if(!el||!el.value.trim()){
-showFieldError(f.id,f.msg);
-errors.push(f.msg);
-if(!firstErrorEl)firstErrorEl=el;
-}else{
-clearFieldError(f.id);
-}
-});
-const stateEl=document.getElementById(‘state’);
-if(stateEl&&stateEl.value.trim()&&stateEl.value.trim().length!==2){
-showFieldError(‘state’,‘State must be 2 letters (e.g. FL)’);
-errors.push(‘State must be 2 letters’);
-}
-const zipEl=document.getElementById(‘zip’);
-if(zipEl&&zipEl.value.trim()&&zipEl.value.trim().length!==5){
-showFieldError(‘zip’,‘ZIP must be 5 digits’);
-errors.push(‘ZIP must be 5 digits’);
-}
-if(selDispute){
-const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
-if(dt){
-dt.fields.forEach(f=>{
-if(!f.required||f.type===‘checkbox’)return;
-const el=document.getElementById(f.id);
-if(!el||!el.value.trim()){
-showFieldError(f.id,‘This field is required’);
-errors.push(f.label+’ is required’);
-if(!firstErrorEl)firstErrorEl=el;
-}else{
-clearFieldError(f.id);
-}
-});
-}
-}
-if(errors.length>0){
-const banner=document.getElementById(‘validation-banner’);
-if(banner){
-banner.innerHTML=’<strong>⚠️ Please fix the following before continuing:</strong><br>• ‘+errors.join(’<br>• ’);
-banner.classList.add(‘show’);
-}
-if(firstErrorEl){firstErrorEl.scrollIntoView({behavior:‘smooth’,block:‘center’});}
-return false;
-}
-const banner=document.getElementById(‘validation-banner’);
-if(banner)banner.classList.remove(‘show’);
-return true;
-}
-
-// ── PROGRESS ──
-function updateProgress(){
-const checks=[
-!!selDispute,
-!!document.querySelector(‘input[name=“bureau”]:checked’),
-!!(document.getElementById(‘fullName’)&&document.getElementById(‘fullName’).value.trim()),
-!!(document.getElementById(‘address’)&&document.getElementById(‘address’).value.trim()),
-!!(document.getElementById(‘city’)&&document.getElementById(‘city’).value.trim())&&
-!!(document.getElementById(‘state’)&&document.getElementById(‘state’).value.trim())&&
-!!(document.getElementById(‘zip’)&&document.getElementById(‘zip’).value.trim())
-];
-const done=checks.filter(Boolean).length;
-const pct=Math.round((done/checks.length)*100);
-const fill=document.getElementById(‘form-progress-fill’);
-if(fill)fill.style.width=pct+’%’;
-updateChecklist(checks);
-const badge=document.getElementById(‘letter-complete-badge’);
-if(badge){
-if(pct===100&&selDispute){badge.classList.remove(‘hidden’);}
-else{badge.classList.add(‘hidden’);}
-}
-}
-
-function updateChecklist(checks){
-if(!checks){
-checks=[
-!!selDispute,
-!!document.querySelector(‘input[name=“bureau”]:checked’),
-!!(document.getElementById(‘fullName’)&&document.getElementById(‘fullName’).value.trim()),
-!!(document.getElementById(‘address’)&&document.getElementById(‘address’).value.trim()),
-!!(document.getElementById(‘city’)&&document.getElementById(‘city’).value.trim())&&
-!!(document.getElementById(‘state’)&&document.getElementById(‘state’).value.trim())&&
-!!(document.getElementById(‘zip’)&&document.getElementById(‘zip’).value.trim())
-];
-}
-const ids=[‘chk-dispute’,‘chk-bureau’,‘chk-name’,‘chk-address’,‘chk-citystate’];
-ids.forEach((id,i)=>{
-const row=document.getElementById(id);
-if(row)row.classList.toggle(‘done’,checks[i]);
-});
-}
-
-// ── FIELD VALUES ──
-function getVal(id){
-const e=document.getElementById(id);
-if(!e)return’’;
-if(e.type===‘checkbox’)return e.checked;
-return sanitizeStr(e.value.trim(),500);
-}
-function getFields(){
-const f={fullName:getVal(‘fullName’),address:getVal(‘address’),city:getVal(‘city’),state:getVal(‘state’),zip:getVal(‘zip’),dob:getVal(‘dob’),ssn4:getVal(‘ssn4’),letterDate:getVal(‘letterDate’),bureau:’’};
-const b=document.querySelector(‘input[name=“bureau”]:checked’);if(b)f.bureau=b.value;
-if(selDispute){const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);if(dt)dt.fields.forEach(fld=>f[fld.id]=getVal(fld.id));}
-return f;
-}
-function formatDate(s){if(!s)return’[Date]’;try{const d=new Date(s+‘T00:00:00’);return d.toLocaleDateString(‘en-US’,{year:‘numeric’,month:‘long’,day:‘numeric’});}catch(e){return s;}}
-
-// ── AGGRESSION ──
-function updateAggBadge(){
-const v=parseInt(document.getElementById(‘agg-slider’).value);
-const badge=document.getElementById(‘agg-badge’);
-if(v===1){badge.className=‘agg-badge agg-1’;badge.textContent=‘✅ Standard — Polite & Professional’;}
-else if(v===2){badge.className=‘agg-badge agg-2’;badge.textContent=‘⚡ Aggressive — FCRA Citations Included’;}
-else{badge.className=‘agg-badge agg-3’;badge.textContent=‘🔥 Maximum Force — CFPB Threat + MOV Demand’;}
-}
-
-// ── LETTER GENERATION ──
-function generateLetter(f,dt){
-const agg=parseInt(document.getElementById(‘agg-slider’).value);
-const sender=[f.fullName||’[Your Full Name]’,f.address||’[Your Address]’,[f.city||’[City]’,f.state||’[State]’,f.zip||’[ZIP]’].filter(Boolean).join(’, ‘)].join(’\n’);
-const bureauAddr=f.bureau?(BUREAU_ADDR[f.bureau]||`[${f.bureau} Address]`):’[Select a Bureau Above]’;
-const date=formatDate(f.letterDate);
-const ssnLine=f.ssn4?`\nLast 4 of SSN: ***-**-${f.ssn4}`:’’;
-const dobLine=f.dob?`\nDate of Birth: ${formatDate(f.dob)}`:’’;
-let body=’’,closing=’’;
-const cn=f.creditorName||f.collectionAgency||f.fraudCreditor||’[Creditor]’;
-const an=f.accountNumber||’[Account Number]’;
-
-if(dt.id===‘inaccurate’){
-body=`I am writing to formally dispute inaccurate personal information appearing on my credit report. The account reported by ${cn} (Account No. ${an}) contains the following error:\n\nInaccurate Item: ${f.inaccurateItem||'[Describe error]'}\nCorrect Information: ${f.correctInfo||'[Correct info]'}`;
-if(f.extra)body+=`\n\nAdditional Details: ${f.extra}`;
-}else if(dt.id===‘late-payment’){
-body=`I am writing to dispute a late payment notation reported on my credit file by ${cn} (Account No. ${an}) for the period of ${f.lateDate||'[Date]'}.\n\nReason for Dispute: ${f.disputeReason||'[Reason]'}`;
-if(f.extra)body+=`\n\n${f.extra}`;
-}else if(dt.id===‘collection’){
-body=`I am writing to dispute a collection account appearing on my credit report from ${cn}${f.originalCreditor?', originally placed by '+f.originalCreditor:''} (Account No. ${an}).\n\nReason for Dispute: ${f.disputeReason||'[Reason]'}`;
-if(f.extra)body+=`\n\n${f.extra}`;
-}else if(dt.id===‘charge-off’){
-body=`I am disputing a charge-off listed on my credit report by ${cn} (Account No. ${an}), with a reported charge-off date of ${f.chargeOffDate||'[Date]'}.\n\nReason for Dispute: ${f.disputeReason||'[Reason]'}`;
-if(f.extra)body+=`\n\n${f.extra}`;
-}else if(dt.id===‘identity-theft’){
-let reports=[];
-if(f.hasFTC)reports.push(`an FTC Identity Theft Report${f.ftcNum?' (No. '+f.ftcNum+')':''}`);
-if(f.hasPD)reports.push(`a Police Report${f.pdNum?' (No. '+f.pdNum+')':''}`);
-body=`I am a victim of identity theft and am writing to dispute a fraudulent account opened in my name without my knowledge or consent.\n\nFraudulent Account: ${cn} (Account No. ${an})${reports.length?'\n\nDocumentation filed: '+reports.join(' and '):''}`;
-if(f.extra)body+=`\n\n${f.extra}`;
-}else if(dt.id===‘mixed-file’){
-body=`I am reporting a mixed credit file. My report contains an account that does not belong to me: ${cn} (Account No. ${an})${f.mixedName?', which appears to belong to '+f.mixedName:''}.\n\nProbable Cause: ${f.mixedReason||'[Reason]'}`;
-if(f.extra)body+=`\n\n${f.extra}`;
-}else if(dt.id===‘goodwill’){
-body=`I am writing to respectfully request goodwill removal of a late payment notation on my account with ${cn} (Account No. ${an}) for the period of ${f.lateDate||'[Date]'}.\n\nMy payment history has been: ${f.paymentHistory||'[History]'}${f.hardshipReason?'\n\nCircumstances: '+f.hardshipReason:''}`;
-if(f.extra)body+=`\n\n${f.extra}`;
-}else if(dt.id===‘verification’){
-body=`I am writing to formally request full verification of an account reported by ${cn} (Account No. ${an}).\n\nItem Disputed: ${f.itemDisputed||'[Item]'}${f.previousDispute?'\n\nNote: This follows a prior dispute submitted on '+f.previousDispute+', to which you responded "verified" without providing adequate proof.':''}`;
-if(f.extra)body+=`\n\n${f.extra}`;
-}
-
-if(agg===1){
-closing=`Pursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, I respectfully request that you investigate this matter and correct or remove any inaccurate information within the required 30-day period.\n\nPlease provide me with written confirmation of the results of your investigation and a free updated copy of my credit report if any changes are made.`;
-}else if(agg===2){
-closing=`Pursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, you are legally required to investigate this dispute within 30 days of receipt. Failure to conduct a reasonable investigation and correct inaccurate information is a violation of the FCRA.\n\nI am also invoking my rights under FCRA § 1681s-2(b), which requires the furnisher of this information to conduct their own reasonable investigation upon notification by the credit reporting agency.\n\nIf this information cannot be verified with documentary evidence, it MUST be deleted immediately. I expect written notification of your findings, including a free copy of my updated credit report.\n\nBe advised: I am aware of my right to seek damages under FCRA § 1681n (willful noncompliance) and § 1681o (negligent noncompliance) for failure to follow proper dispute procedures.`;
-}else{
-closing=`LEGAL NOTICE — RESPONSE REQUIRED WITHIN 30 DAYS\n\nPursuant to the Fair Credit Reporting Act (FCRA), 15 U.S.C. § 1681i, you are LEGALLY REQUIRED to complete your investigation within 30 days of receipt of this letter (or 45 days if I submit additional information). This is not a request — it is your federal obligation.\n\nFURTHER DEMANDS:\n\n1. FCRA § 1681i(a)(6)(B) — You must provide me with written notice of the results of your investigation.\n\n2. FCRA § 1681i(a)(7) — If you determine the information is accurate, you must provide me with the business name, address, and telephone number of any furnisher contacted, AND the specific method used to verify the information (Method of Verification). I am specifically invoking this right and expect full compliance.\n\n3. FCRA § 1681s-2(b) — The data furnisher has an independent legal duty to investigate upon your notification. I expect you to fulfill your obligations to notify them.\n\n4. FCRA § 623(b) — The furnisher must conduct a reasonable investigation. A rubber-stamp "verified" response without documentary evidence is a violation.\n\nIF YOU FAIL TO COMPLY:\n\nBe advised that willful and negligent noncompliance with the FCRA exposes your organization to civil liability under 15 U.S.C. § 1681n and § 1681o, including actual damages, statutory damages up to $1,000 per violation, punitive damages, and attorney's fees.\n\nI also reserve the right to file a formal complaint with the Consumer Financial Protection Bureau (CFPB) at ConsumerFinance.gov, the Federal Trade Commission (FTC), and my State Attorney General's office if this matter is not resolved promptly.\n\nThis letter is being sent via USPS Certified Mail with Return Receipt Requested. The tracking number and delivery confirmation will be retained as legal proof of delivery.\n\nI demand written confirmation of receipt of this dispute and the results of your investigation within the required timeframe.`;
-}
-
-const idLine=dt.id===‘identity-theft’?`\n\nFCRA § 605B (15 U.S.C. § 1681c-2) requires you to block fraudulent information from appearing on my credit report within 4 business days of receiving this notice.\n`:’’;
-
-return `${sender}${ssnLine}${dobLine}\n\n${date}\n\n${bureauAddr}\n\nRe: Formal Credit Report Dispute — ${dt.label}\n${'─'.repeat(50)}\n\nTo Whom It May Concern:\n\n${body}\n${idLine}\n${closing}\n\nSincerely,\n\n\n${f.fullName||'[Your Full Name]'}\n${sender}`;
-}
-
-function updateLetter(){
-const f=getFields();
-const empty=document.getElementById(‘letter-empty’);
-const out=document.getElementById(‘letter-out’);
-const paper=document.getElementById(‘letter-paper’);
-if(!selDispute||!f.fullName){
-if(empty)empty.style.display=‘flex’;
-if(out)out.style.display=‘none’;
-return;
-}
-const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);if(!dt)return;
-const text=generateLetter(f,dt);
-if(empty)empty.style.display=‘none’;
-if(out)out.style.display=‘block’;
-if(paper)paper.innerHTML=escHtml(text).replace(/\n/g,’<br>’);
-}
-
-// ── ACTIONS ──
-async function copyLetter(){
-if(!validateForAction())return;
-const f=getFields();
-const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
-const text=generateLetter(f,dt);
-try{
-await navigator.clipboard.writeText(text);
-const b=document.getElementById(‘copy-btn’);
-const orig=b.innerHTML;b.innerHTML=‘✓ Copied!’;
-setTimeout(()=>b.innerHTML=orig,2000);
-toast(‘✓ Letter copied to clipboard!’);
-}catch(e){toast(‘Copy failed — try the PDF button instead.’,‘err’);}
-}
-function printLetter(){
-if(!validateForAction())return;
-window.print();
-}
-function downloadPDF(){
-if(!validateForAction())return;
-const f=getFields();
-const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
-const text=generateLetter(f,dt);
-try{
-const{jsPDF}=window.jspdf;
-const doc=new jsPDF({orientation:‘portrait’,unit:‘pt’,format:‘letter’});
-const ml=72,mt=72,pw=doc.internal.pageSize.getWidth(),ph=doc.internal.pageSize.getHeight(),mw=pw-ml*2;
-doc.setFont(‘Times’,‘normal’);doc.setFontSize(11);doc.setTextColor(30,30,30);
-const lines=doc.splitTextToSize(text,mw);const lh=16;let y=mt;
-lines.forEach(line=>{if(y>ph-mt){doc.addPage();y=mt;}doc.text(line,ml,y);y+=lh;});
-const safe=(f.fullName||‘letter’).replace(/\s+/g,’_’).toLowerCase();
-doc.save(`DisputeKit_${dt.id}_${safe}.pdf`);
-toast(‘📥 PDF downloaded!’);
-}catch(e){toast(‘PDF failed — try Copy or Print.’,‘err’);}
-}
-function validateForAction(){
-const f=getFields();
-if(!selDispute){toast(‘⚠️ Select a dispute type first.’,‘warn’);return false;}
-if(!f.fullName){toast(‘⚠️ Enter your full name first.’,‘warn’);showFieldError(‘fullName’,‘Your name is required.’);return false;}
-if(!f.bureau){toast(‘⚠️ Select a credit bureau first.’,‘warn’);return false;}
-return true;
-}
-function logDispute(){
-if(!validateForm())return;
-const f=getFields();
-const dt=DISPUTE_TYPES.find(d=>d.id===selDispute);
-const agg=parseInt(document.getElementById(‘agg-slider’).value);
-const aggLabels=[’’,‘Standard’,‘Aggressive’,‘Maximum Force’];
-const now=new Date();
-const deadline=new Date(now);deadline.setDate(now.getDate()+30);
-const d={
-id:Date.now(),
-creditor:sanitizeStr(f.creditorName||f.collectionAgency||f.fraudCreditor||‘Unknown’,100),
-accountNumber:sanitizeStr(f.accountNumber||’’,20),
-type:dt.label,bureau:f.bureau||‘All Bureaus’,
-aggression:aggLabels[agg],
-status:‘sent’,
-sentDate:now.toISOString().slice(0,10),
-deadline:deadline.toISOString().slice(0,10),
-notes:’’
-};
-disputes.unshift(d);
-try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
-toast(‘📬 Dispute logged! Check your Tracker.’);
-}
-function updateDisputeStatus(id,status){
-const d=disputes.find(x=>x.id===id);if(!d)return;
-d.status=status;
-try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
-renderTracker();toast(’✓ Status updated to: ’+status);
-}
-function deleteDispute(id){
-if(!confirm(‘Delete this dispute record?’))return;
-disputes=disputes.filter(x=>x.id!==id);
-try{localStorage.setItem(‘dk_disputes’,JSON.stringify(disputes));}catch(e){}
-renderTracker();toast(‘Dispute deleted.’);
-}
-
-// ── TRACKER RENDER ──
-function renderTracker(){
-const stats=document.getElementById(‘tracker-stats’);
-const list=document.getElementById(‘disputes-list’);
-const statusMap={sent:‘Sent’,review:‘In Review’,responded:‘Responded’,removed:‘Removed ✓’,verified:‘Bureau Verified’};
-const statusClass={sent:‘s-sent’,review:‘s-review’,responded:‘s-responded’,removed:‘s-removed’,verified:‘s-verified’};
-const counts={sent:0,review:0,responded:0,removed:0,verified:0};
-disputes.forEach(d=>{if(counts[d.status]!==undefined)counts[d.status]++;});
-if(stats){
-stats.innerHTML=[
-{label:‘Total’,val:disputes.length,cls:’’},
-{label:‘Active’,val:disputes.filter(d=>[‘sent’,‘review’,‘responded’].includes(d.status)).length,cls:‘vb’},
-{label:‘Removed’,val:counts.removed,cls:‘vg’},
-{label:‘Verified’,val:counts.verified,cls:‘vr’},
-].map(s=>`<div class="card card-sm"><div class="card-title">${s.label}</div><div style="font-family:var(--mono);font-size:28px;font-weight:700;${s.cls==='vb'?'color:var(--blue)':s.cls==='vg'?'color:var(--accent)':s.cls==='vr'?'color:var(--red)':''}">${s.val}</div></div>`).join(’’);
-}
-if(!disputes.length){
-list.innerHTML=’<div class="empty-state"><div style="font-size:40px;">📋</div><p>No disputes logged yet.<br>Build a letter and click “Log This Dispute” to start tracking.</p></div>’;
-return;
-}
-list.innerHTML=disputes.map(d=>{
-const sentMs=new Date(d.sentDate).getTime();
-const deadMs=new Date(d.deadline).getTime();
-const nowMs=Date.now();
-const daysLeft=Math.ceil((deadMs-nowMs)/(1000*60*60*24));
-const pct=Math.max(0,Math.min(100,((nowMs-sentMs)/(deadMs-sentMs))*100));
-const urgent=daysLeft<=5&&daysLeft>0&&[‘sent’,‘review’].includes(d.status);
-const barColor=d.status===‘removed’?‘var(–accent)’:d.status===‘verified’?‘var(–red)’:pct>80?‘var(–red)’:pct>60?‘var(–amber)’:‘var(–blue)’;
-return `<div class="dispute-item"><div class="di-top"><div><div class="di-name">${escHtml(d.creditor)}${d.accountNumber?' — ****'+escHtml(d.accountNumber.slice(-4)):''}</div><div class="di-bureau">${escHtml(d.type)} · ${escHtml(d.bureau)} · ${escHtml(d.aggression)}</div></div><span class="di-status-badge ${statusClass[d.status]||'s-sent'}">${statusMap[d.status]||d.status}</span></div><div class="di-meta"><span>📅 Sent: ${d.sentDate}</span><span class="di-deadline${urgent?' urgent':''}">⏰ Deadline: ${d.deadline}${daysLeft>0?' ('+daysLeft+'d left)':' (PAST DUE)'}</span></div><div class="deadline-bar"><div class="deadline-fill" style="width:${pct}%;background:${barColor};"></div></div><div class="di-actions" style="margin-top:12px;"><select class="field-select" style="max-width:160px;padding:6px 30px 6px 10px;font-size:0.78rem;" onchange="updateDisputeStatus(${d.id},this.value)"><option value="sent"${d.status==='sent'?' selected':''}>Sent</option><option value="review"${d.status==='review'?' selected':''}>In Review</option><option value="responded"${d.status==='responded'?' selected':''}>Responded</option><option value="removed"${d.status==='removed'?' selected':''}>Removed ✓</option><option value="verified"${d.status==='verified'?' selected':''}>Bureau Verified</option></select><button class="btn btn-sm btn-amber" onclick="generateRound2(${d.id})">⚡ Round 2 Letter</button><button class="btn btn-sm btn-red" onclick="deleteDispute(${d.id})">✕ Delete</button></div></div>`;
-}).join(’’);
-}
-
-function generateRound2(id){
-const d=disputes.find(x=>x.id===id);if(!d)return;
-selectDT(‘verification’);
-setTimeout(()=>{
-const cn=document.getElementById(‘creditorName’);if(cn)cn.value=d.creditor;
-const pd=document.getElementById(‘previousDispute’);if(pd)pd.value=d.sentDate;
-const item=document.getElementById(‘itemDisputed’);if(item)item.value=d.type+’ — Bureau responded Verified. Demanding Method of Verification.’;
-document.getElementById(‘agg-slider’).value=3;
-updateAggBadge();updateLetter();updateProgress();
-},100);
-gotoApp();
-toast(‘⚡ Round 2 letter loaded — set to Maximum Force.’);
-}
-
-// ── MAIL LABEL ──
-function showMailLabel(){
-const f=getFields();
-if(!f.bureau){toast(‘⚠️ Select a bureau first.’,‘warn’);return;}
-const bureauFull={
-Equifax:‘Equifax Information Services LLC\nP.O. Box 740256\nAtlanta, GA 30374-0256’,
-Experian:‘Experian\nP.O. Box 4500\nAllen, TX 75013’,
-TransUnion:‘TransUnion LLC\nConsumer Dispute Center\nP.O. Box 2000\nChester, PA 19016’
-};
-const toAddr=bureauFull[f.bureau]||f.bureau;
-const fromAddr=[f.fullName||’[Your Name]’,f.address||’[Your Address]’,[f.city,f.state,f.zip].filter(Boolean).join(’, ‘)].filter(Boolean).join(’\n’);
-document.getElementById(‘mail-label-content’).innerHTML=`<div class="mail-label"><div class="mail-certified">CERTIFIED MAIL</div><div class="mail-label-header">Return Address (From):</div><div class="mail-label-from">${escHtml(fromAddr).replace(/\n/g,'<br>')}</div><div class="mail-label-header">Send To:</div><div class="mail-label-to">${escHtml(toAddr).replace(/\n/g,'<br>')}</div></div><p style="font-size:0.78rem;color:var(--muted);margin-top:12px;line-height:1.6;">💡 <strong>Tip:</strong> Send via USPS Certified Mail with Return Receipt Requested. Keep your tracking number and green card as legal proof of delivery. The 30-day dispute window starts when the bureau receives it.</p>`;
-document.getElementById(‘mail-modal’).classList.add(‘show’);
-}
-function printMailLabel(){
-const content=document.getElementById(‘mail-label-content’).innerHTML;
-const w=window.open(’’,’_blank’);
-if(!w)return;
-w.document.write(`<html><body style="font-family:Courier New,monospace;padding:40px;">${content}<script>window.onload=()=>{window.print();window.close();}<\/script></body></html>`);
-w.document.close();
-}
-
-// ── ID UPLOAD ──
-function idDragOver(e){e.preventDefault();document.getElementById(‘id-zone’).classList.add(‘dragover’);}
-function idDragLeave(e){document.getElementById(‘id-zone’).classList.remove(‘dragover’);}
-function idDrop(e){e.preventDefault();idDragLeave(e);const f=e.dataTransfer.files[0];if(f&&f.type.startsWith(‘image/’))handleIdUpload(f);}
-function handleIdUpload(file){
-if(!file||!file.type.startsWith(‘image/’)){toast(‘⚠️ Please upload an image file.’,‘err’);return;}
-if(file.size>10*1024*1024){toast(‘⚠️ File too large. Max 10MB.’,‘err’);return;}
-const reader=new FileReader();
-reader.onload=e=>{
-const src=e.target.result;
-document.getElementById(‘id-preview-img’).src=src;
-document.getElementById(‘id-preview-wrap’).classList.remove(‘hidden’);
-document.getElementById(‘id-zone’).style.display=‘none’;
-document.getElementById(‘id-parsed-rows’).innerHTML=`<div class="id-parsed-row"><span class="id-parsed-key">Status</span><span class="id-parsed-val" style="color:var(--accent);">✓ ID Uploaded</span></div><div class="id-parsed-row"><span class="id-parsed-key">Note</span><span class="id-parsed-val" style="font-family:var(--font);font-size:0.78rem;color:var(--muted);">Confirm your name &amp; address in Step 4 match your ID</span></div>`;
-toast(‘✓ ID uploaded. Confirm your info matches in Step 4.’);
-};
-reader.readAsDataURL(file);
-}
-function clearId(){
-document.getElementById(‘id-preview-wrap’).classList.add(‘hidden’);
-document.getElementById(‘id-zone’).style.display=’’;
-document.getElementById(‘id-file-input’).value=’’;
-document.getElementById(‘id-preview-img’).src=’’;
-toast(‘ID removed.’);
-}
-
-// ── SCORE TRACKER ──
-function logScores(){
-const date=document.getElementById(‘score-date’).value;
-const eq=parseInt(document.getElementById(‘score-eq’).value)||0;
-const ex=parseInt(document.getElementById(‘score-ex’).value)||0;
-const tu=parseInt(document.getElementById(‘score-tu’).value)||0;
-const banner=document.getElementById(‘score-validation-banner’);
-const errors=[];
-if(!date)errors.push(‘Please select a date.’);
-if(!eq&&!ex&&!tu)errors.push(‘Enter at least one score.’);
-const validate=s=>s===0||(s>=300&&s<=850);
-if((eq&&!validate(eq))||(ex&&!validate(ex))||(tu&&!validate(tu)))errors.push(‘Scores must be between 300 and 850.’);
-if(errors.length>0){
-if(banner){banner.textContent=‘⚠️ ‘+errors.join(’ ‘);banner.classList.add(‘show’);}
-[‘score-eq’,‘score-ex’,‘score-tu’,‘score-date’].forEach(id=>{
-const el=document.getElementById(id);
-if(el&&!el.value){el.classList.add(‘invalid’);el.classList.add(‘shake’);setTimeout(()=>{el.classList.remove(‘shake’);el.classList.remove(‘invalid’);},400);}
-});
-return;
-}
-if(banner)banner.classList.remove(‘show’);
-scoreHistory.push({date,eq:eq||null,ex:ex||null,tu:tu||null});
-scoreHistory.sort((a,b)=>a.date.localeCompare(b.date));
-try{localStorage.setItem(‘dk_scores’,JSON.stringify(scoreHistory));}catch(e){}
-[‘score-eq’,‘score-ex’,‘score-tu’].forEach(id=>{const e=document.getElementById(id);if(e)e.value=’’;});
-renderScores();
-toast(‘✓ Scores saved!’);
-}
-
-function scoreTier(s){
-if(!s)return{label:‘No Data’,color:‘var(–dim)’};
-if(s>=800)return{label:‘Exceptional’,color:’#22c55e’};
-if(s>=740)return{label:‘Very Good’,color:‘var(–accent)’};
-if(s>=670)return{label:‘Good’,color:‘var(–blue)’};
-if(s>=580)return{label:‘Fair’,color:‘var(–amber)’};
-return{label:‘Poor’,color:‘var(–red)’};
-}
-
-function renderScores(){
-const latest={eq:null,ex:null,tu:null};
-scoreHistory.forEach(e=>{if(e.eq)latest.eq=e.eq;if(e.ex)latest.ex=e.ex;if(e.tu)latest.tu=e.tu;});
-const bureaus=[{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}];
-const gauges=document.getElementById(‘score-gauges’);
-if(gauges){
-gauges.innerHTML=bureaus.map(b=>{
-const score=latest[b.key];
-const pct=score?((score-300)/550)*100:0;
-const tier=scoreTier(score);
-const r=54;const circ=2*Math.PI*r;const dash=circ*(pct/100);
-return `<div class="gauge-card"><div class="gauge-bureau">${b.label}</div><div class="gauge-ring"><svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="${r}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10"/><circle cx="60" cy="60" r="${r}" fill="none" stroke="${score?b.color:'rgba(255,255,255,0.05)'}" stroke-width="10" stroke-dasharray="${dash} ${circ}" stroke-linecap="round" style="transition:stroke-dasharray 0.8s ease;"/></svg><div class="gauge-center"><div class="gauge-num" style="color:${score?b.color:'var(--dim)'}">${score||'—'}</div><div class="gauge-lbl">score</div></div></div><div class="gauge-tier" style="color:${tier.color}">${tier.label}</div><div class="gauge-range">Range: 300–850</div></div>`;
-}).join(’’);
-}
-renderScoreChart(bureaus);
-}
-
-function renderScoreChart(bureaus){
-const canvas=document.getElementById(‘score-canvas’);if(!canvas)return;
-const ctx=canvas.getContext(‘2d’);
-const W=canvas.offsetWidth||800;const H=120;
-canvas.width=W;canvas.height=H;
-ctx.clearRect(0,0,W,H);
-if(scoreHistory.length<2){
-ctx.fillStyle=‘rgba(255,255,255,0.15)’;
-ctx.font=‘13px Sora, sans-serif’;
-ctx.textAlign=‘center’;
-ctx.fillText(‘Log at least 2 score entries to see your chart’,W/2,H/2);
-return;
-}
-const pad={l:10,r:10,t:10,b:10};
-const cW=W-pad.l-pad.r;const cH=H-pad.t-pad.b;
-const allScores=scoreHistory.flatMap(e=>[e.eq,e.ex,e.tu].filter(Boolean));
-// FIX: use Function.prototype.apply instead of spread operator to avoid Unicode ellipsis bug
-const minS=Math.min.apply(null,allScores)-20;
-const maxS=Math.max.apply(null,allScores)+20;
-const toX=function(i){return pad.l+(i/(scoreHistory.length-1))*cW;};
-const toY=function(v){return pad.t+(1-(v-minS)/(maxS-minS))*cH;};
-bureaus.forEach(b=>{
-const pts=scoreHistory.map((e,i)=>e[b.key]?{x:toX(i),y:toY(e[b.key])}:null).filter(Boolean);
-if(pts.length<2)return;
-ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
-pts.forEach(p=>ctx.lineTo(p.x,p.y));
-ctx.strokeStyle=b.color;ctx.lineWidth=2;ctx.stroke();
-pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fillStyle=b.color;ctx.fill();});
-});
-const legend=document.getElementById(‘score-legend’);
-if(legend)legend.innerHTML=bureaus.map(b=>`<span style="display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted);"><span style="width:12px;height:3px;background:${b.color};border-radius:2px;display:inline-block;"></span>${b.label}</span>`).join(’’);
-}
-
-function clearForm(){
-if(!confirm(‘Clear the form and start over?’))return;
-document.querySelectorAll(’.field-input,.field-textarea,.field-select’).forEach(e=>{e.value=’’;e.classList.remove(‘invalid’);});
-document.querySelectorAll(’.field-check input’).forEach(e=>e.checked=false);
-document.querySelectorAll(‘input[name=“bureau”]’).forEach(e=>e.checked=false);
-document.querySelectorAll(’.field-error’).forEach(e=>e.classList.remove(‘show’));
-document.querySelectorAll(’.bureau-required-hint’).forEach(e=>e.classList.remove(‘show’));
-const banner=document.getElementById(‘validation-banner’);if(banner)banner.classList.remove(‘show’);
-selDispute=null;
-document.querySelectorAll(’.dt-btn’).forEach(b=>b.classList.remove(‘active’));
-document.getElementById(‘dynamic-fields’).innerHTML=’<div style="text-align:center;padding:20px;color:var(--dim);font-size:0.84rem;">↑ Select a dispute type above.</div>’;
-document.getElementById(‘agg-slider’).value=2;
-updateAggBadge();
-setDefaultDate();
-document.getElementById(‘letter-empty’).style.display=‘flex’;
-document.getElementById(‘letter-out’).style.display=‘none’;
-const badge=document.getElementById(‘letter-complete-badge’);if(badge)badge.classList.add(‘hidden’);
-const fill=document.getElementById(‘form-progress-fill’);if(fill)fill.style.width=‘0%’;
-updateChecklist();
-}
-
-// ══ CREDITSMART AI ══════════════════════════════════════════════════════════
-let csSelectedBureau = ‘all’;
-let csFindings = [];
-let csLoadTimer = null;
-
-function csBureauSelect(val, btn) {
-csSelectedBureau = val;
-document.querySelectorAll(’.cs-bureau-chip’).forEach(b => b.classList.remove(‘active’));
-if(btn) btn.classList.add(‘active’);
-}
-
-function csUpdateCharCount() {
-const ta = document.getElementById(‘cs-report-text’);
-const el = document.getElementById(‘cs-char-count’);
-if(ta && el) el.textContent = ta.value.length.toLocaleString() + ’ / 40,000’;
-}
-
-function csLoadSample() {
-const sample = `EQUIFAX CREDIT REPORT
-Report Date: January 15, 2025
-Consumer: John A. Smith | DOB: 05/14/1985
-
-=== ACCOUNT INFORMATION ===
-
-Capital One Platinum Mastercard
-Account #: 414700XXXXXX1234
-Date Opened: 03/15/2019
-Account Type: Revolving
-Account Status: Open
-Payment Status: 120 Days Past Due
-High Balance: $3,000 | Balance: $2,340 | Credit Limit: $3,000
-Payment History: OK OK OK OK OK 30 60 90 120 120 120
-
-Midland Credit Management
-Original Creditor: T-Mobile USA
-Account #: MCM-88239914
-Date Opened: 11/10/2020
-Balance: $847
-Account Status: Collection
-Date of First Delinquency: 08/2018
-
-Chase Sapphire Preferred
-Account #: 4147XXXXXXXX5678
-Date Opened: 07/2016
-Payment Status: Paid, Closed
-Balance: $1,200
-[NOTE: Consumer reports this account was paid in full in 2022]
-
-Synchrony Bank / Amazon Store Card
-Account #: SYNC-AMZN-3310
-Date Opened: 01/2021
-Payment Status: Current
-Balance: $0
-[This account does not appear on consumer’s records]
-
-=== INQUIRIES ===
-Hard Inquiry: Carvana Auto Finance — 03/12/2024
-Hard Inquiry: Best Buy Credit Services — 03/12/2024
-Hard Inquiry: Credit One Bank — 01/05/2025
-Hard Inquiry: Credit One Bank — 01/06/2025
-
-=== PERSONAL INFORMATION ===
-Current Address: 123 Main St, Miami FL 33101
-Previous Address: 4892 Unknown Ave, Detroit MI 48201 [Consumer states this address is not theirs]`;
-
-const ta = document.getElementById(‘cs-report-text’);
-if(ta) { ta.value = sample; csUpdateCharCount(); }
-}
-
-async function csRunScan() {
-const ta = document.getElementById(‘cs-report-text’);
-const text = ta ? ta.value.trim() : ‘’;
-if(text.length < 50) { toast(‘⚠️ Please paste your credit report text first (minimum 50 characters).’, ‘warn’); return; }
-
-// Hide results, show loading
-document.getElementById(‘cs-results’).classList.remove(‘show’);
-document.getElementById(‘cs-error-panel’).classList.remove(‘show’);
-document.getElementById(‘cs-loading’).classList.add(‘show’);
-document.getElementById(‘cs-scan-btn’).disabled = true;
-
-// Animate loading steps
-let step = 0;
-const steps = document.querySelectorAll(’.cs-ls’);
-steps.forEach(s => { s.classList.remove(‘active’,‘done’); });
-steps[0].classList.add(‘active’);
-csLoadTimer = setInterval(() => {
-if(step < steps.length - 1) {
-steps[step].classList.remove(‘active’); steps[step].classList.add(‘done’);
-step++; steps[step].classList.add(‘active’);
-}
-}, 900);
-
-const bureauNote = csSelectedBureau === ‘all’ ? ‘all three bureaus (Equifax, Experian, TransUnion)’ : csSelectedBureau;
-
-const prompt = `You are a professional credit repair expert and FCRA (Fair Credit Reporting Act) attorney. Analyze the following credit report text and identify every potentially disputable item.
-
-Bureau context: ${bureauNote}
-
-For each issue found, provide a JSON array. Each item must have these exact fields:
-
-- “creditor”: string (name of the creditor or agency)
-- “accountNumber”: string (last 4 digits if visible, otherwise “N/A”)
-- “severity”: string (one of: “critical”, “high”, “medium”, “low”)
-- “disputeType”: string (one of: “inaccurate”, “late-payment”, “collection”, “charge-off”, “identity-theft”, “mixed-file”, “goodwill”, “verification”)
-- “issue”: string (short title of the problem, max 12 words)
-- “description”: string (clear explanation of why this is disputable, 1-3 sentences, written for a consumer to understand)
-- “fcraSection”: string (most relevant FCRA section, e.g. “§ 1681i”, “§ 1681c”, “§ 1681s-2(b)”, “§ 605B”)
-- “suggestedAction”: string (what to say in a dispute letter, 1 sentence)
-- “bureau”: string (which bureau this appears on, based on the report text, or “Unknown”)
-
-Severity guide:
-
-- critical: identity theft, fraudulent accounts, accounts you don’t recognize, severe errors causing major damage
-- high: incorrect late payments, charge-offs with wrong dates/amounts, collections past statute of limitations, wrong balances
-- medium: duplicate hard inquiries, wrong personal information, accounts that should be removed due to age (7-year rule)
-- low: minor discrepancies, goodwill removal candidates, accounts to verify
-
-Also provide a brief overall summary. Return your response as a JSON object with two keys:
-
-1. “overview”: string (2-3 sentence summary of the report and key concerns found)
-1. “findings”: array of the items above
-
-If no issues are found, return findings as an empty array with an appropriate overview.
-
-IMPORTANT: Return ONLY valid JSON. No markdown, no backticks, no explanation outside the JSON.
-
-CREDIT REPORT TEXT:
-${text.slice(0, 15000)}`;
-
-try {
-const response = await fetch(‘https://api.anthropic.com/v1/messages’, {
-method: ‘POST’,
-headers: { ‘Content-Type’: ‘application/json’ },
-body: JSON.stringify({
-model: ‘claude-sonnet-4-20250514’,
-max_tokens: 4000,
-messages: [{ role: ‘user’, content: prompt }]
-})
-});
-
-```
-clearInterval(csLoadTimer);
-// Mark all steps done
-document.querySelectorAll('.cs-ls').forEach(s => { s.classList.remove('active'); s.classList.add('done'); });
-
-if(!response.ok) {
-  const err = await response.json().catch(() => ({}));
-  throw new Error(err.error?.message || 'API error ' + response.status);
-}
-
-const data = await response.json();
-const raw = data.content.filter(c => c.type === 'text').map(c => c.text).join('');
-
-let parsed;
-try {
-  const clean = raw.replace(/```json|```/g, '').trim();
-  parsed = JSON.parse(clean);
-} catch(e) {
-  throw new Error('Could not parse AI response. Please try again.');
-}
-
-csFindings = (parsed.findings || []).map((f, i) => ({ ...f, id: i, queued: false, ignored: false }));
-const overview = parsed.overview || 'Scan complete.';
-
-document.getElementById('cs-loading').classList.remove('show');
-csRenderResults(overview, csFindings);
-document.getElementById('cs-scan-btn').disabled = false;
-```
-
-} catch(err) {
-clearInterval(csLoadTimer);
-document.getElementById(‘cs-loading’).classList.remove(‘show’);
-document.getElementById(‘cs-error-title’).textContent = ‘Scan failed’;
-document.getElementById(‘cs-error-msg’).textContent = err.message || ‘Something went wrong. Please try again.’;
-document.getElementById(‘cs-error-panel’).classList.add(‘show’);
-document.getElementById(‘cs-scan-btn’).disabled = false;
-console.error(‘CreditSmart error:’, err);
-}
-}
-
-function csRenderResults(overview, findings) {
-document.getElementById(‘cs-scan-time’).textContent = ‘Scanned ’ + new Date().toLocaleString();
-document.getElementById(‘cs-overview’).innerHTML = escHtml(overview).replace(/\n/g,’<br>’);
-
-const counts = { critical:0, high:0, medium:0, low:0 };
-findings.forEach(f => { if(counts[f.severity] !== undefined) counts[f.severity]++; });
-
-document.getElementById(‘cs-summary-grid’).innerHTML = [
-{ cls:‘cs-crit’, val: counts.critical, lbl:‘Critical’ },
-{ cls:‘cs-high’, val: counts.high, lbl:‘High Priority’ },
-{ cls:‘cs-med’, val: counts.medium, lbl:‘Medium’ },
-{ cls:‘cs-total’, val: findings.length, lbl:‘Total Flagged’ },
-].map(s => `<div class="cs-stat-card ${s.cls}"><div class="cs-stat-val">${s.val}</div><div class="cs-stat-lbl">${s.lbl}</div></div>`).join(’’);
-
-csRenderFindings(‘all’);
-document.getElementById(‘cs-results’).classList.add(‘show’);
-document.getElementById(‘cs-results’).scrollIntoView({behavior:‘smooth’,block:‘start’});
-}
-
-function csRenderFindings(filter) {
-const list = document.getElementById(‘cs-findings-list’);
-const visible = filter === ‘all’ ? csFindings : csFindings.filter(f => f.severity === filter);
-
-if(!visible.length) {
-list.innerHTML = `<div class="empty-state"><div style="font-size:36px;">${filter==='all'?'✅':'🔍'}</div><p>${filter==='all'?'No disputable items found in this report.':'No '+filter+' severity items found.'}</p></div>`;
-return;
-}
-
-const sevMap = { critical:‘cs-sev-critical’, high:‘cs-sev-high’, medium:‘cs-sev-medium’, low:‘cs-sev-low’ };
-const sevLabel = { critical:‘🔴 Critical’, high:‘🟡 High’, medium:‘🔵 Medium’, low:‘🟢 Low’ };
-
-list.innerHTML = visible.map(f => `<div class="cs-finding${f.queued?' cs-queued':''}${f.ignored?' cs-ignored':''}" id="cs-f-${f.id}"> <div class="cs-finding-top"> <div> <div class="cs-finding-creditor">${escHtml(f.creditor)}${f.accountNumber&&f.accountNumber!=='N/A'?' &mdash; <span style=\"font-family:var(--mono);font-size:0.82rem;\">'+'****'+escHtml(f.accountNumber.slice(-4))+'</span>':''}</div> <div class="cs-finding-subtype">${escHtml(f.issue)} &bull; ${escHtml(f.bureau||'')}</div> </div> <span class="cs-sev ${sevMap[f.severity]||'cs-sev-medium'}">${sevLabel[f.severity]||f.severity}</span> </div> <div class="cs-finding-desc">${escHtml(f.description)}</div> <div class="cs-law-tag">FCRA ${escHtml(f.fcraSection||'§ 1681i')}</div> <div class="cs-finding-actions"> ${f.queued ?`<span class="cs-queued-tag">✓ Queued for Dispute</span><button class="cs-ignore-btn" onclick="csUnqueue(${f.id})">Remove</button>`:`<button class="cs-dispute-btn" onclick="csQueueItem(${f.id})">→ Dispute This</button><button class="cs-ignore-btn" onclick="csIgnore(${f.id})">${f.ignored?‘Restore’:‘Ignore’}</button>` } </div> </div>`).join(’’);
-
-csUpdateQueuedCount();
-}
-
-function csQueueItem(id) {
-const f = csFindings.find(x => x.id === id);
-if(!f) return;
-f.queued = true; f.ignored = false;
-csRenderFinding(id);
-csUpdateQueuedCount();
-toast(‘✓ Added to dispute queue’);
-}
-
-function csUnqueue(id) {
-const f = csFindings.find(x => x.id === id);
-if(f) { f.queued = false; csRenderFinding(id); csUpdateQueuedCount(); }
-}
-
-function csIgnore(id) {
-const f = csFindings.find(x => x.id === id);
-if(f) { f.ignored = !f.ignored; if(f.ignored) f.queued = false; csRenderFinding(id); csUpdateQueuedCount(); }
-}
-
-function csRenderFinding(id) {
-// Re-render just the one card without full list re-render to preserve filter
-const activeFilter = document.querySelector(’.cs-ftab.active’);
-csFilter(activeFilter ? activeFilter.textContent.toLowerCase().replace(/[^a-z]/g,’’) || ‘all’ : ‘all’, activeFilter);
-}
-
-function csUpdateQueuedCount() {
-const n = csFindings.filter(f => f.queued).length;
-const el = document.getElementById(‘cs-queued-label’);
-if(el) el.textContent = n + (n === 1 ? ’ item queued’ : ’ items queued’);
-}
-
-function csQueueAll() {
-csFindings.forEach(f => { if(!f.ignored) f.queued = true; });
-const activeFilter = document.querySelector(’.cs-ftab.active’);
-csRenderFindings(activeFilter ? (activeFilter.dataset.filter || ‘all’) : ‘all’);
-toast(‘✓ All items queued for dispute’);
-}
-
-function csFilter(filter, btn) {
-// Normalize filter value
-const filterMap = {‘all’:‘all’,‘critical’:‘critical’,‘high’:‘high’,‘medium’:‘medium’,‘🔴critical’:‘critical’,‘🟡high’:‘high’,‘🔵medium’:‘medium’};
-const key = filterMap[filter] || filter;
-document.querySelectorAll(’.cs-ftab’).forEach(b => b.classList.remove(‘active’));
-if(btn) { btn.classList.add(‘active’); btn.dataset.filter = key; }
-csRenderFindings(key);
-}
-
-function csGoDispute() {
-const queued = csFindings.filter(f => f.queued);
-if(!queued.length) { toast(‘⚠️ Queue at least one item first using “Dispute This”’,‘warn’); return; }
-const first = queued[0];
-// Map dispute type and pre-fill
-const dtMap = {
-‘inaccurate’:‘inaccurate’,‘late-payment’:‘late-payment’,‘collection’:‘collection’,
-‘charge-off’:‘charge-off’,‘identity-theft’:‘identity-theft’,‘mixed-file’:‘mixed-file’,
-‘goodwill’:‘goodwill’,‘verification’:‘verification’
-};
-const dtId = dtMap[first.disputeType] || ‘inaccurate’;
-selectDT(dtId);
-setTimeout(() => {
-const cn = document.getElementById(‘creditorName’) || document.getElementById(‘collectionAgency’) || document.getElementById(‘fraudCreditor’);
-if(cn) cn.value = first.creditor || ‘’;
-const an = document.getElementById(‘accountNumber’);
-if(an) an.value = first.accountNumber !== ‘N/A’ ? first.accountNumber : ‘’;
-const extra = document.getElementById(‘extra’);
-if(extra) extra.value = first.suggestedAction || ‘’;
-updateLetter(); updateProgress();
-}, 150);
-gotoApp();
-toast(’⚡ Letter builder loaded from CreditSmart findings!’);
-}
-
-function csReset() {
-csFindings = [];
-document.getElementById(‘cs-results’).classList.remove(‘show’);
-document.getElementById(‘cs-error-panel’).classList.remove(‘show’);
-document.getElementById(‘cs-loading’).classList.remove(‘show’);
-document.getElementById(‘cs-report-text’).value = ‘’;
-csUpdateCharCount();
-window.scrollTo({top:0,behavior:‘smooth’});
-}
-
-window.addEventListener(‘resize’,()=>{
-if(scoreHistory.length){
-renderScoreChart([{key:‘eq’,label:‘Equifax’,color:’#ef4444’},{key:‘ex’,label:‘Experian’,color:’#4f8ef7’},{key:‘tu’,label:‘TransUnion’,color:’#22d3a5’}]);
-}
-});
+  const CONFIG = {
+    VIDEO_URL:    "",   // YouTube embed URL, Vimeo embed URL, or direct .mp4
+    CHECKOUT_URL: "#",  // your payment / checkout page URL
+  };
 </script>
 
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="24,2 44,13 44,35 24,46 4,35 4,13" fill="#1D2842" stroke="#00AEEF" stroke-width="2.2"/>
+      <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
+            font-family="Montserrat,sans-serif" font-weight="800" font-size="11.5"
+            fill="#ffffff" letter-spacing="0.5">ITC</text>
+    </svg>
+    <span class="logo-text">ITC <span>Credit</span></span>
+  </a>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Digital Program</div>
+    <h1>How To Get To <span class="hl">700</span><br>In 45 Days</h1>
+    <p class="subhead">The exact step-by-step system to dispute errors, delete negatives, and rebuild your credit score — fast.</p>
+  </section>
+
+  <!-- VIDEO -->
+  <div class="video-wrap" id="videoWrap">
+    <div class="video-placeholder" id="videoPlaceholder">
+      <div class="play-ring">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <polygon points="6,3 22,13 6,23" fill="#000"/>
+        </svg>
+      </div>
+      <span>Video coming soon</span>
+    </div>
+  </div>
+
+  <!-- TOP CTA -->
+  <div class="cta-wrap">
+    <a class="btn-cta" id="ctaTop" href="#">Get Instant Access</a>
+    <p class="cta-sub">Secure checkout &nbsp;·&nbsp; Instant delivery</p>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- WHAT YOU GET -->
+  <section>
+    <h2 class="section-title">What You <span>Get</span></h2>
+
+    <div class="get-item">
+      <div class="get-check"><svg width="14" height="14" viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3" stroke="#000" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="get-text">
+        <strong>Step-by-Step Dispute Blueprint</strong>
+        <p>Exactly what to write, which bureaus to target, and when to send each letter.</p>
+      </div>
+    </div>
+
+    <div class="get-item">
+      <div class="get-check"><svg width="14" height="14" viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3" stroke="#000" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="get-text">
+        <strong>Done-For-You Dispute Letter Templates</strong>
+        <p>Pre-written FCRA-compliant templates you can send immediately.</p>
+      </div>
+    </div>
+
+    <div class="get-item">
+      <div class="get-check"><svg width="14" height="14" viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3" stroke="#000" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="get-text">
+        <strong>Credit Score Tracker</strong>
+        <p>Monitor your progress across all three bureaus as your score climbs.</p>
+      </div>
+    </div>
+
+    <div class="get-item">
+      <div class="get-check"><svg width="14" height="14" viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3" stroke="#000" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="get-text">
+        <strong>45-Day Action Plan</strong>
+        <p>A clear daily and weekly roadmap so you always know exactly what to do next.</p>
+      </div>
+    </div>
+
+    <div class="get-item">
+      <div class="get-check"><svg width="14" height="14" viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3" stroke="#000" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="get-text">
+        <strong>Lifetime Access &amp; Updates</strong>
+        <p>Access every new version of the program as laws and strategies evolve.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- 3-STEP METHOD -->
+  <section>
+    <h2 class="section-title">The <span>Method</span></h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-name">Dispute</div>
+        <p class="step-desc">Identify every error on your report and challenge them with the right letters sent to the right bureaus.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-name">Delete</div>
+        <p class="step-desc">Force bureaus to remove unverifiable and incorrect negative items from your credit file.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-name">Pay</div>
+        <p class="step-desc">Strategically handle remaining balances to maximize your score increase in the least time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLACK METAL CARD GRAPHIC -->
+  <div class="card-wrap">
+    <svg class="metal-card" viewBox="0 0 340 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mg" x1="0" y1="0" x2="340" y2="210" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#1e1e1e"/>
+          <stop offset="42%"  stop-color="#2c2c2c"/>
+          <stop offset="70%"  stop-color="#181818"/>
+          <stop offset="100%" stop-color="#0d0d0d"/>
+        </linearGradient>
+        <linearGradient id="sg" x1="0" y1="0" x2="340" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#fff" stop-opacity="0"/>
+          <stop offset="50%"  stop-color="#fff" stop-opacity="0.05"/>
+          <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect width="340" height="210" rx="16" fill="url(#mg)" stroke="#333" stroke-width="1"/>
+      <rect width="340" height="210" rx="16" fill="url(#sg)"/>
+      <!-- EMV chip -->
+      <rect x="24" y="54" width="46" height="36" rx="5" fill="none" stroke="#C0C0C0" stroke-width="1.5"/>
+      <line x1="24" y1="69" x2="70" y2="69" stroke="#C0C0C0" stroke-width="1" opacity="0.7"/>
+      <line x1="41" y1="54" x2="41" y2="90" stroke="#C0C0C0" stroke-width="1" opacity="0.7"/>
+      <line x1="53" y1="54" x2="53" y2="90" stroke="#C0C0C0" stroke-width="1" opacity="0.7"/>
+      <!-- card number -->
+      <circle cx="28"  cy="140" r="3" fill="#555"/><circle cx="36"  cy="140" r="3" fill="#555"/>
+      <circle cx="44"  cy="140" r="3" fill="#555"/><circle cx="52"  cy="140" r="3" fill="#555"/>
+      <circle cx="68"  cy="140" r="3" fill="#555"/><circle cx="76"  cy="140" r="3" fill="#555"/>
+      <circle cx="84"  cy="140" r="3" fill="#555"/><circle cx="92"  cy="140" r="3" fill="#555"/>
+      <circle cx="108" cy="140" r="3" fill="#555"/><circle cx="116" cy="140" r="3" fill="#555"/>
+      <circle cx="124" cy="140" r="3" fill="#555"/><circle cx="132" cy="140" r="3" fill="#555"/>
+      <text x="150" y="145" font-family="monospace" font-size="14" fill="#C0C0C0" letter-spacing="3">7  0  0</text>
+      <!-- cardholder name -->
+      <text x="24" y="178" font-family="Montserrat,sans-serif" font-size="11" fill="#C0C0C0" letter-spacing="1.2" font-weight="600">ITC CREDIT HOLDER</text>
+      <!-- ITC hex mark on card -->
+      <polygon points="306,26 322,35 322,53 306,62 290,53 290,35" fill="none" stroke="#00AEEF" stroke-width="1.6"/>
+      <text x="306" y="47" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="8" fill="#00AEEF">ITC</text>
+    </svg>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- BOTTOM CTA -->
+  <div class="cta-wrap" style="padding-bottom: 60px;">
+    <h2 class="section-title" style="margin-bottom:22px;">Ready to Hit <span>700?</span></h2>
+    <a class="btn-cta" id="ctaBottom" href="#">Get Instant Access</a>
+    <p class="cta-sub">Secure checkout &nbsp;·&nbsp; Instant delivery</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+      <polygon points="24,2 44,13 44,35 24,46 4,35 4,13" fill="#1D2842" stroke="#00AEEF" stroke-width="2"/>
+      <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
+            font-family="Montserrat,sans-serif" font-weight="800" font-size="11.5" fill="#ffffff">ITC</text>
+    </svg>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Contact</a>
+  </div>
+  <p class="disclaimer">
+    DISCLAIMER: This digital program is for educational purposes only. Individual results vary based on credit history, bureau processing times, and consistent execution of the strategies provided. We do not guarantee any specific credit score increase. This program does not constitute legal or financial advice. Always review your rights under the Fair Credit Reporting Act (FCRA).
+  </p>
+</footer>
+
+<!-- VIDEO + LINK INIT -->
+<script>
+  (function () {
+    const { VIDEO_URL, CHECKOUT_URL } = CONFIG;
+
+    document.getElementById("ctaTop").href    = CHECKOUT_URL || "#";
+    document.getElementById("ctaBottom").href = CHECKOUT_URL || "#";
+
+    const wrap        = document.getElementById("videoWrap");
+    const placeholder = document.getElementById("videoPlaceholder");
+
+    if (VIDEO_URL) {
+      placeholder.style.display = "none";
+      const isYT  = /youtube\.com|youtu\.be/.test(VIDEO_URL);
+      const isMp4 = /\.(mp4|webm|ogg)$/i.test(VIDEO_URL);
+
+      if (isMp4) {
+        const v = document.createElement("video");
+        v.src = VIDEO_URL; v.controls = true;
+        v.style.cssText = "position:absolute;inset:0;width:100%;height:100%;";
+        wrap.appendChild(v);
+      } else {
+        const f = document.createElement("iframe");
+        f.src = VIDEO_URL;
+        f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+        f.allowFullscreen = true;
+        wrap.appendChild(f);
+      }
+    }
+  })();
+</script>
 </body>
 </html>
