@@ -3,118 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ITC — You're In. Let's Get to 700.</title>
+  <title>You're In! — I Teach Credit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --navy:   #1D2842;
       --cyan:   #00AEEF;
       --green:  #22C55E;
+      --ghover: #16A34A;
       --white:  #ffffff;
       --black:  #000000;
-      --silver: #C0C0C0;
-      --bg:     #0D1220;
+      --silver: #BBBCBD;
+      --bg:     #111827;
+      --card:   #0f1623;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--white);
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
+      line-height: 1.65;
     }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.65s ease both; }
+    .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.22s; }
+    .d3 { animation-delay: 0.34s; } .d4 { animation-delay: 0.46s; }
 
-    /* ── HEADER ── */
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+      width: 100%;
+      text-align: center;
+    }
+    .btn:hover  { background: var(--ghover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34,197,94,0.35); }
+    .btn:active { transform: translateY(0); box-shadow: none; }
+
+    /* ─── HEADER ─── */
     header {
       background: var(--navy);
-      border-bottom: 2px solid var(--cyan);
-      padding: 16px 24px;
+      border-bottom: 2px solid rgba(0,174,239,0.35);
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--white); letter-spacing: 0.06em; }
-    .logo-text span { color: var(--cyan); }
+    header img { height: 44px; width: auto; display: block; }
 
-    /* ── LAYOUT ── */
-    main { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+    /* ─── LAYOUT ─── */
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
 
-    /* ── CONFIRMATION ── */
-    .confirm-wrap {
+    /* ─── CONFIRMATION ─── */
+    .confirm-section {
+      padding: 64px 24px 52px;
       text-align: center;
-      padding: 56px 0 44px;
+      background: linear-gradient(160deg, #1D2842 0%, #0f1623 60%);
     }
     .confirm-icon {
-      width: 76px;
-      height: 76px;
+      width: 80px;
+      height: 80px;
       background: var(--green);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 26px;
+      margin: 0 auto 28px;
     }
-    h1 {
+    .confirm-section h1 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      line-height: 1.15;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.12;
       margin-bottom: 14px;
     }
-    h1 .hl { color: var(--cyan); }
+    .confirm-section h1 span { color: var(--cyan); }
     .confirm-sub {
       font-size: 1.05rem;
       color: var(--silver);
       max-width: 460px;
-      margin: 0 auto 18px;
+      margin: 0 auto 20px;
     }
-    .access-note {
+    .access-tag {
       display: inline-block;
       background: rgba(0,174,239,0.1);
       border: 1px solid rgba(0,174,239,0.35);
       color: var(--cyan);
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       padding: 8px 20px;
       border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
 
-    /* ── DIVIDER ── */
-    .rule { border: none; border-top: 1px solid rgba(0,174,239,0.18); margin: 44px 0; }
+    /* next steps */
+    .next-steps {
+      margin-top: 40px;
+      text-align: left;
+      background: var(--card);
+      border: 1px solid rgba(0,174,239,0.15);
+      border-radius: 10px;
+      padding: 28px 32px;
+    }
+    .next-steps h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .next-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .next-item:last-child { border-bottom: none; }
+    .next-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--navy);
+      border: 1px solid rgba(0,174,239,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--cyan);
+      margin-top: 1px;
+    }
+    .next-item p { font-size: 0.92rem; color: var(--silver); }
+    .next-item strong { color: var(--white); font-weight: 600; }
 
-    /* ── UPSELL ── */
+    /* ─── DIVIDER ─── */
+    .rule { border: none; border-top: 1px solid rgba(0,174,239,0.12); margin: 52px 0; }
+
+    /* ─── UPSELL ─── */
+    .upsell-section { padding: 0 24px 72px; }
     .upsell-headline {
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
-      font-size: clamp(1.3rem, 3vw, 1.85rem);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
       text-align: center;
       margin-bottom: 8px;
     }
     .upsell-headline span { color: var(--cyan); }
     .upsell-sub { text-align: center; color: var(--silver); font-size: 0.95rem; margin-bottom: 36px; }
 
-    /* ── UPSELL CARDS ── */
     .upsell-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      margin-bottom: 64px;
+      max-width: 800px;
+      margin: 0 auto;
     }
     .upsell-card {
       background: var(--navy);
-      border: 1px solid rgba(0,174,239,0.22);
-      border-radius: 12px;
+      border: 1px solid rgba(0,174,239,0.2);
+      border-radius: 14px;
       padding: 36px 28px;
-      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
+      text-align: center;
+      gap: 14px;
+      transition: transform 0.2s, border-color 0.2s;
     }
+    .upsell-card:hover { transform: translateY(-4px); border-color: rgba(0,174,239,0.5); }
     .upsell-card.featured {
       border-color: var(--cyan);
-      box-shadow: 0 0 36px rgba(0,174,239,0.14);
+      box-shadow: 0 0 40px rgba(0,174,239,0.12);
     }
     .card-badge {
       display: inline-block;
@@ -122,18 +202,18 @@
       color: var(--black);
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       padding: 3px 12px;
       border-radius: 2px;
     }
     .card-icon {
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: rgba(0,174,239,0.1);
-      border: 1px solid rgba(0,174,239,0.28);
+      background: rgba(0,174,239,0.08);
+      border: 1px solid rgba(0,174,239,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -143,149 +223,138 @@
       font-weight: 800;
       font-size: 1.25rem;
     }
-    .card-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.6; }
+    .card-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.65; flex: 1; }
 
-    /* ── BUTTONS — green only ── */
-    .btn-cta {
-      display: inline-block;
-      background: var(--green);
-      color: var(--black);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 15px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      width: 100%;
-      text-align: center;
-      transition: filter 0.15s, transform 0.15s;
-    }
-    .btn-cta:hover  { filter: brightness(1.1); transform: translateY(-2px); }
-    .btn-cta:active { transform: translateY(0); }
-
-    /* ── FOOTER ── */
+    /* ─── FOOTER ─── */
     footer {
       background: var(--navy);
       border-top: 1px solid rgba(0,174,239,0.15);
       text-align: center;
-      padding: 32px 24px;
+      padding: 28px 24px;
     }
-    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 14px; }
-    .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.82rem; transition: color 0.15s; }
+    footer img { height: 36px; width: auto; margin-bottom: 12px; }
+    .footer-links { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; margin-bottom: 10px; }
+    .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.82rem; }
     .footer-links a:hover { color: var(--cyan); }
-    .disclaimer { font-size: 0.75rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.65; }
+    .disclaimer { font-size: 0.74rem; color: #555; max-width: 520px; margin: 8px auto 0; line-height: 1.65; }
 
-    @media (max-width: 560px) {
+    @media (max-width: 580px) {
       .upsell-grid { grid-template-columns: 1fr; }
-      .confirm-wrap { padding: 36px 0 28px; }
-      .upsell-card { padding: 28px 20px; }
+      .confirm-section { padding: 44px 16px 40px; }
+      .next-steps { padding: 22px 20px; }
+      header { padding: 12px 16px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     CONFIG — edit these two values and you're done
-     ═══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════
+     CONFIG — fill these in, everything wires up automatically
+     ══════════════════════════════════════════════════════ -->
 <script>
   const CONFIG = {
-    SKOOL_URL:    "#",   // your Skool community / group URL
-    COACHING_URL: "#",   // your 1-on-1 coaching booking URL
+    SKOOL_URL:    "#skool",       // ITC Skool community URL
+    COACHING_URL: "#coaching",   // 1-on-1 coaching booking URL
   };
 </script>
 
 <!-- HEADER -->
 <header>
-  <a class="logo" href="index.html">
-    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="24,2 44,13 44,35 24,46 4,35 4,13" fill="#1D2842" stroke="#00AEEF" stroke-width="2.2"/>
-      <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
-            font-family="Montserrat,sans-serif" font-weight="800" font-size="11.5"
-            fill="#ffffff" letter-spacing="0.5">ITC</text>
-    </svg>
-    <span class="logo-text">ITC <span>Credit</span></span>
+  <a href="index.html">
+    <img src="itc-logo-transparent.png" alt="I Teach Credit logo" width="120" height="44" />
   </a>
 </header>
 
-<main>
-
-  <!-- CONFIRMATION -->
-  <div class="confirm-wrap">
-    <div class="confirm-icon">
-      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-        <polyline points="7,19 15,27 31,11" stroke="#000" stroke-width="3.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <h1>You're In. Let's Get to <span class="hl">700.</span></h1>
-    <p class="confirm-sub">Your purchase is confirmed. Check your email for your access link and next steps.</p>
-    <span class="access-note">Access details sent to your email</span>
+<!-- CONFIRMATION -->
+<section class="confirm-section">
+  <div class="confirm-icon fade-up">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <polyline points="8,20 16,28 32,12" stroke="#000" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
+  <h1 class="fade-up d1">You're In. <span>Let's Get to 700.</span></h1>
+  <p class="confirm-sub fade-up d2">Your purchase is confirmed. Check your email for your access link and everything you need to get started.</p>
+  <span class="access-tag fade-up d3">Access details sent to your email</span>
 
-  <hr class="rule" />
+  <div class="wrap">
+    <div class="next-steps fade-up d4">
+      <h3>What Happens Next</h3>
+      <div class="next-item">
+        <div class="next-num">1</div>
+        <p><strong>Check your email</strong> — your access link and program materials are on their way.</p>
+      </div>
+      <div class="next-item">
+        <div class="next-num">2</div>
+        <p><strong>Pull your credit report</strong> — you'll need it to complete Step 1 of the blueprint.</p>
+      </div>
+      <div class="next-item">
+        <div class="next-num">3</div>
+        <p><strong>Start Day 1 of the 45-day plan</strong> — follow the steps and track your progress.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- UPSELL — Group or 1 on 1 -->
-  <section>
-    <h2 class="upsell-headline">Want to Go <span>Further?</span></h2>
-    <p class="upsell-sub">Join the group for community support, or work directly with me one on one.</p>
+<!-- UPSELL -->
+<section class="upsell-section">
+  <div class="wrap">
+    <hr class="rule" />
+    <h2 class="upsell-headline fade-up">Want to Go <span>Further?</span></h2>
+    <p class="upsell-sub fade-up d1">Join the group for community support, or work directly with Ryan one on one.</p>
 
     <div class="upsell-grid">
 
       <!-- GROUP -->
-      <div class="upsell-card">
+      <div class="upsell-card fade-up d2">
         <span class="card-badge">Community</span>
         <div class="card-icon">
-          <!-- group / people icon -->
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-            <circle cx="11" cy="11" r="5.5" stroke="#00AEEF" stroke-width="1.8"/>
-            <circle cx="21" cy="11" r="5.5" stroke="#00AEEF" stroke-width="1.8"/>
+            <circle cx="11" cy="11" r="5" stroke="#00AEEF" stroke-width="1.8"/>
+            <circle cx="21" cy="11" r="5" stroke="#00AEEF" stroke-width="1.8"/>
             <path d="M2 26c0-4.4 4-8 9-8h8c5 0 9 3.6 9 8" stroke="#00AEEF" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="card-title">Group</div>
-        <p class="card-desc">Join the private Skool community. Get accountability, Q&amp;A, shared resources, and people on the same journey.</p>
-        <a class="btn-cta" id="skoolBtn" href="#">Join the Group</a>
+        <div class="card-title">Join the Group</div>
+        <p class="card-desc">Get into the private ITC Skool community. Accountability, Q&amp;A, resources, and people working the same system you are.</p>
+        <a class="btn" id="skoolBtn" href="#">Join the Group</a>
       </div>
 
       <!-- 1 ON 1 -->
-      <div class="upsell-card featured">
+      <div class="upsell-card featured fade-up d3">
         <span class="card-badge">Most Direct</span>
         <div class="card-icon">
-          <!-- single person icon -->
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-            <circle cx="15" cy="11" r="6.5" stroke="#00AEEF" stroke-width="1.8"/>
-            <path d="M4 28c0-6 4.9-11 11-11s11 5 11 11" stroke="#00AEEF" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="15" cy="11" r="6" stroke="#00AEEF" stroke-width="1.8"/>
+            <path d="M4 28c0-5.5 4.9-10 11-10s11 4.5 11 10" stroke="#00AEEF" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="card-title">1 on 1 Coaching</div>
-        <p class="card-desc">Work directly with me. We go through your specific report, build your personal plan, and I walk you through every step.</p>
-        <a class="btn-cta" id="coachingBtn" href="#">Book 1 on 1</a>
+        <p class="card-desc">Work directly with Ryan. He goes through your specific credit report, builds your personal plan, and walks you through every step.</p>
+        <a class="btn" id="coachingBtn" href="#">Book 1 on 1</a>
       </div>
 
     </div>
-  </section>
-
-</main>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
+  <img src="itc-logo-transparent.png" alt="I Teach Credit logo" width="80" height="29" />
   <div class="footer-links">
     <a href="#">Privacy Policy</a>
     <a href="#">Terms of Service</a>
     <a href="#">Contact</a>
   </div>
-  <p class="disclaimer">
-    DISCLAIMER: This digital program is for educational purposes only. Results vary. We do not guarantee any specific credit score increase.
-  </p>
+  <p class="disclaimer">I Teach Credit provides credit education. Results vary and are not guaranteed.</p>
 </footer>
 
-<!-- LINK INIT -->
+<!-- INIT -->
 <script>
   (function () {
-    const { SKOOL_URL, COACHING_URL } = CONFIG;
-    document.getElementById("skoolBtn").href    = SKOOL_URL    || "#";
-    document.getElementById("coachingBtn").href = COACHING_URL || "#";
+    var s = CONFIG.SKOOL_URL    || "#";
+    var c = CONFIG.COACHING_URL || "#";
+    document.getElementById("skoolBtn").href    = s;
+    document.getElementById("coachingBtn").href = c;
   })();
 </script>
 </body>
