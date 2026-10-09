@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>shermar trades llc — web studio</title>
+  <meta name="description" content="A one-person web studio building landing pages, sales funnels, and payment flows that get small businesses paid." />
+  <meta property="og:title" content="shermar trades llc — web studio" />
+  <meta property="og:description" content="Landing pages, sales funnels, and payment flows for small businesses. Designed, built, and launched fast." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" rx="36" fill="%231c1a26"/><rect x="26" y="88" width="148" height="28" rx="6" fill="%23b8852c" transform="rotate(-22 100 100)"/><rect x="26" y="88" width="148" height="28" rx="6" fill="%23b8852c" transform="rotate(22 100 100)" opacity=".52"/></svg>' />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,500;1,600&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── shermar trades llc · ledger aesthetic ──
+       dark ink shell, cream paper interior, bronze accents */
+    :root {
+      --ink:      #14121d;
+      --ink-2:    #1c1a26;
+      --paper:    #f0ece3;
+      --paper-2:  #e7e2d6;
+      --bronze:   #b8852c;
+      --bronze-lt:#ca9a42;
+      --cream:    #e8e3d8;
+      --muted-d:  #8f8a94;
+      --muted-l:  #78736a;
+      --line-d:   #2a2736;
+      --line-l:   #d9d3c6;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Barlow', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--bronze); color: var(--ink); }
+
+    .wrap { max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── labels ── */
+    .label {
+      font-size: .64rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--bronze);
+      display: block; margin-bottom: 22px;
+    }
+    .label--muted { color: var(--muted-l); }
+
+    /* ── buttons ── */
+    .btn {
+      display: inline-block;
+      font-family: 'Barlow', sans-serif;
+      font-size: .78rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink); background: var(--bronze);
+      padding: 14px 30px; text-decoration: none;
+      border: 1px solid var(--bronze);
+      transition: background .2s, color .2s;
+    }
+    .btn:hover { background: var(--bronze-lt); border-color: var(--bronze-lt); }
+    .btn--ghost {
+      background: transparent; color: var(--cream);
+      border: 1px solid var(--line-d);
+    }
+    .btn--ghost:hover { background: transparent; border-color: var(--bronze); color: var(--bronze-lt); }
+
+    /* ── header ── */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(20,18,29,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line-d);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; max-width: 1020px; margin: 0 auto;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--cream);
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem; font-weight: 500; letter-spacing: .04em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a {
+      font-size: .74rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--muted-d); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      font-size: .7rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--bronze); border: 1px solid var(--bronze);
+      padding: 9px 18px; transition: background .2s, color .2s;
+    }
+    .nav-cta:hover { background: var(--bronze); color: var(--ink); }
+
+    /* ── hero ── */
+    .hero {
+      position: relative;
+      padding: 110px 0 120px;
+      overflow: hidden;
+    }
+    .hero-mark {
+      position: absolute; right: -120px; top: 50%;
+      transform: translateY(-50%);
+      width: 520px; height: 520px; opacity: .05;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.7rem, 7vw, 4.8rem);
+      line-height: 1.04;
+      letter-spacing: .005em;
+      max-width: 15ch;
+      text-wrap: balance;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic; font-weight: 600; color: var(--bronze-lt);
+    }
+    .hero-sub {
+      font-size: 1.04rem; color: var(--muted-d);
+      max-width: 48ch; margin-bottom: 42px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ── paper interior ── */
+    .paper {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    /* ── work ── */
+    .work { padding: 96px 0; }
+    .work-case {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: center;
+      margin-top: 8px;
+    }
+    .case-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      font-weight: 500; line-height: 1.12;
+      margin-bottom: 18px;
+    }
+    .case-body { color: var(--muted-l); font-size: .98rem; margin-bottom: 26px; max-width: 46ch; }
+    .case-facts {
+      list-style: none; border-top: 1px solid var(--line-l);
+    }
+    .case-facts li {
+      font-size: .8rem; letter-spacing: .04em; color: var(--ink);
+      padding: 12px 2px; border-bottom: 1px solid var(--line-l);
+      display: flex; justify-content: space-between; gap: 16px;
+    }
+    .case-facts li span { color: var(--muted-l); }
+
+    /* mini site preview, drawn in CSS — the ITC funnel */
+    .case-visual {
+      background: var(--ink-2);
+      border: 1px solid var(--line-l);
+      box-shadow: 14px 14px 0 var(--paper-2);
+      padding: 0;
+    }
+    .cv-bar {
+      display: flex; gap: 6px; align-items: center;
+      padding: 10px 14px; border-bottom: 1px solid #2a2736;
+    }
+    .cv-dot { width: 8px; height: 8px; border-radius: 50%; background: #3a3648; }
+    .cv-body { padding: 26px 24px 30px; }
+    .cv-eyebrow { width: 72px; height: 8px; background: #00AEEF; margin-bottom: 14px; }
+    .cv-h { height: 14px; background: #e8e3d8; margin-bottom: 8px; }
+    .cv-h.w1 { width: 82%; } .cv-h.w2 { width: 58%; margin-bottom: 18px; }
+    .cv-sub { height: 7px; background: #4a4656; margin-bottom: 6px; }
+    .cv-sub.w1 { width: 90%; } .cv-sub.w2 { width: 66%; margin-bottom: 20px; }
+    .cv-btn { width: 128px; height: 30px; background: #22C55E; }
+    .cv-card {
+      float: right; width: 108px; height: 66px; margin: -118px 0 0;
+      background: linear-gradient(135deg, #1D2842, #0f1623);
+      border: 1px solid #00AEEF; box-shadow: 0 0 22px rgba(0,174,239,.35);
+    }
+
+    /* ── services ── */
+    .services { padding: 0 0 96px; }
+    .svc-row {
+      display: grid;
+      grid-template-columns: 220px 1fr 150px;
+      gap: 28px; align-items: baseline;
+      padding: 30px 2px;
+      border-top: 1px solid var(--line-l);
+    }
+    .svc-row:last-child { border-bottom: 1px solid var(--line-l); }
+    .svc-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem; font-weight: 500; line-height: 1.2;
+    }
+    .svc-desc { font-size: .92rem; color: var(--muted-l); max-width: 52ch; }
+    .svc-price {
+      font-size: .74rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--bronze);
+      text-align: right; white-space: nowrap;
+    }
+
+    /* ── process (dark) ── */
+    .process { padding: 96px 0; border-top: 1px solid var(--line-d); }
+    .steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 36px; margin-top: 10px;
+    }
+    .step-no {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic; font-weight: 600;
+      font-size: 2.2rem; color: var(--bronze);
+      line-height: 1; margin-bottom: 14px;
+    }
+    .step h3 {
+      font-family: 'Barlow', sans-serif;
+      font-size: .78rem; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; margin-bottom: 10px; color: var(--cream);
+    }
+    .step p { font-size: .88rem; color: var(--muted-d); }
+
+    /* ── about ── */
+    .about { padding: 96px 0; }
+    .about-line {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 400; line-height: 1.35;
+      max-width: 30ch;
+    }
+    .about-line em { font-style: italic; color: var(--bronze); }
+    .about-byline {
+      margin-top: 26px; font-size: .78rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted-l); font-weight: 500;
+    }
+
+    /* ── contact (dark) ── */
+    .contact { padding: 110px 0 100px; border-top: 1px solid var(--line-d); text-align: left; }
+    .contact h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      line-height: 1.08; max-width: 18ch;
+      text-wrap: balance; margin-bottom: 30px;
+    }
+    .contact h2 em { font-style: italic; color: var(--bronze-lt); }
+    .contact-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+    .contact-email {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem; color: var(--cream); letter-spacing: .02em;
+      user-select: all;
+    }
+    .contact-note { margin-top: 26px; font-size: .78rem; color: var(--muted-d); }
+
+    /* ── footer ── */
+    footer {
+      border-top: 1px solid var(--line-d);
+      padding: 34px 0;
+    }
+    .foot {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      max-width: 1020px; margin: 0 auto; padding: 0 28px;
+    }
+    .foot-brand { display: flex; align-items: center; gap: 10px; }
+    .foot-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: .95rem; color: var(--muted-d);
+    }
+    .foot-copy { font-size: .72rem; color: var(--muted-d); letter-spacing: .06em; }
+
+    /* ── responsive ── */
+    @media (max-width: 860px) {
+      .work-case { grid-template-columns: 1fr; gap: 40px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .svc-row { grid-template-columns: 1fr; gap: 8px; }
+      .svc-price { text-align: left; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+    @media (max-width: 520px) {
+      .hero { padding: 72px 0 84px; }
+      .work, .process, .about { padding: 72px 0; }
+      .services { padding-bottom: 72px; }
+      .contact { padding: 80px 0 72px; }
+      .steps { grid-template-columns: 1fr; gap: 28px; }
+      .nav { padding: 14px 20px; }
+      .wrap, .hero-inner, .foot { padding-inline: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     CONFIG — your contact details, edit here only
+     ════════════════════════════════════════════════ -->
+<script>
+  const CONFIG = {
+    EMAIL: "shermar.johnson98@gmail.com",   // swap for a business email when you have one
+    // LIVE_WORK_URL: "",                   // add the live I Teach Credit URL here when deployed
+  };
+</script>
+
+<!-- HEADER -->
+<header>
+  <nav class="nav">
+    <a class="brand" href="#top">
+      <svg width="30" height="30" viewBox="0 0 200 200" aria-hidden="true">
+        <rect width="200" height="200" rx="36" fill="#1c1a26"/>
+        <rect x="26" y="88" width="148" height="28" rx="6" fill="#b8852c" transform="rotate(-22 100 100)"/>
+        <rect x="26" y="88" width="148" height="28" rx="6" fill="#b8852c" transform="rotate(22 100 100)" opacity=".52"/>
+      </svg>
+      <span class="brand-name">shermar trades</span>
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a class="nav-cta" href="#contact">Start a project</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <svg class="hero-mark" viewBox="0 0 200 200" aria-hidden="true">
+    <rect x="26" y="88" width="148" height="28" rx="6" fill="#b8852c" transform="rotate(-22 100 100)"/>
+    <rect x="26" y="88" width="148" height="28" rx="6" fill="#b8852c" transform="rotate(22 100 100)" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="label">shermar trades llc · web studio</span>
+    <h1>Pages that get small businesses <em>paid.</em></h1>
+    <p class="hero-sub">I design and build landing pages, sales funnels, and payment flows — from first draft to live checkout. No page builders, no monthly plugin bills, no waiting months.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#contact">Start a project</a>
+      <a class="btn btn--ghost" href="#work">See recent work</a>
+    </div>
+  </div>
+</section>
+
+<!-- PAPER INTERIOR -->
+<div class="paper">
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <span class="label">Recent work</span>
+      <div class="work-case">
+        <div>
+          <h2 class="case-title">I Teach Credit — sales funnel</h2>
+          <p class="case-body">A complete funnel for a credit-education business: landing page with video, a thank-you page with community and coaching upsells, Stripe checkout, and brand assets pulled straight from the client's own card design. Built as a single lightweight package and shipped in days.</p>
+          <ul class="case-facts">
+            <li>Deliverables <span>Landing page · thank-you page · brand assets</span></li>
+            <li>Payments <span>Stripe payment links</span></li>
+            <li>Hosting <span>Netlify — zero monthly page-builder fees</span></li>
+          </ul>
+        </div>
+        <div class="case-visual" aria-hidden="true">
+          <div class="cv-bar"><span class="cv-dot"></span><span class="cv-dot"></span><span class="cv-dot"></span></div>
+          <div class="cv-body">
+            <div class="cv-eyebrow"></div>
+            <div class="cv-h w1"></div>
+            <div class="cv-h w2"></div>
+            <div class="cv-sub w1"></div>
+            <div class="cv-sub w2"></div>
+            <div class="cv-btn"></div>
+            <div class="cv-card"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <span class="label">Services</span>
+      <div class="svc-row">
+        <h3 class="svc-name">Landing pages &amp; funnels</h3>
+        <p class="svc-desc">One focused page that sells one thing. Headline, offer, proof, checkout — wired to Stripe or whatever payment link you use, with a thank-you page that upsells for you.</p>
+        <span class="svc-price">from $250</span>
+      </div>
+      <div class="svc-row">
+        <h3 class="svc-name">Business websites</h3>
+        <p class="svc-desc">Clean, fast, mobile-first sites for service businesses — home, services, about, contact. No bloated themes, no plugins to maintain. You own the files.</p>
+        <span class="svc-price">quoted per project</span>
+      </div>
+      <div class="svc-row">
+        <h3 class="svc-name">Payments &amp; delivery</h3>
+        <p class="svc-desc">Stripe payment links, deposit-and-final invoicing, digital delivery, and thank-you flows — set up right the first time so you get paid without chasing.</p>
+        <span class="svc-price">add-on</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <span class="label">How it works</span>
+    <div class="steps">
+      <div class="step">
+        <div class="step-no">1</div>
+        <h3>Brief</h3>
+        <p>Tell me what you sell and what the page needs to do. One call or a few messages is enough.</p>
+      </div>
+      <div class="step">
+        <div class="step-no">2</div>
+        <h3>Build</h3>
+        <p>I design and build in one pass — you review a real working page, not wireframes.</p>
+      </div>
+      <div class="step">
+        <div class="step-no">3</div>
+        <h3>Revise</h3>
+        <p>We tighten the copy, images, and links together until it reads and converts right.</p>
+      </div>
+      <div class="step">
+        <div class="step-no">4</div>
+        <h3>Launch</h3>
+        <p>Deployed to your domain, handed over clean. You keep every file — you own it all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="paper">
+  <section class="about">
+    <div class="wrap">
+      <span class="label">About</span>
+      <p class="about-line">A one-person studio. No account managers, no handoffs — <em>the person you message is the person who builds your site.</em></p>
+      <p class="about-byline">Run by Shermar Johnson</p>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="label">Contact</span>
+    <h2>Have something to sell? <em>Let's put a page on it.</em></h2>
+    <div class="contact-row">
+      <a class="btn" id="emailBtn" href="#">Email me</a>
+      <span class="contact-email" id="emailText"></span>
+    </div>
+    <p class="contact-note">Deposits and invoices handled securely through Stripe.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot">
+    <div class="foot-brand">
+      <svg width="22" height="22" viewBox="0 0 200 200" aria-hidden="true">
+        <rect width="200" height="200" rx="36" fill="#1c1a26"/>
+        <rect x="26" y="88" width="148" height="28" rx="6" fill="#b8852c" transform="rotate(-22 100 100)"/>
+        <rect x="26" y="88" width="148" height="28" rx="6" fill="#b8852c" transform="rotate(22 100 100)" opacity=".52"/>
+      </svg>
+      <span class="foot-name">shermar trades llc</span>
+    </div>
+    <span class="foot-copy">&copy; <span id="yr"></span> shermar trades llc</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    document.getElementById("yr").textContent = new Date().getFullYear();
+    var email = CONFIG.EMAIL || "";
+    document.getElementById("emailText").textContent = email;
+    var btn = document.getElementById("emailBtn");
+    btn.href = email ? "mailto:" + email + "?subject=New%20project%20inquiry" : "#";
+  })();
+</script>
+
+</body>
+</html>
